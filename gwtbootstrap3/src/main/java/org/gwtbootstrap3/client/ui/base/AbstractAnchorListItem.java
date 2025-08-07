@@ -298,4 +298,7 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
         anchor.setTargetHistoryToken(targetHistoryToken);
     }
 
+    public Anchor getAnchor() {
+        return anchor;
+    }
 }
