@@ -925,7 +925,10 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
             @org.gwtbootstrap3.extras.select.client.ui.event.LoadedEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasLoadedHandlers;)(select);
         });
         $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::CHANGED_EVENT, function(event, clickedIndex, newValue, oldValue) {
-            select.@org.gwtbootstrap3.extras.select.client.ui.SelectBase::onValueChange()();
+            // This avoid to fire twice the onValueChange !!!
+            if (clickedIndex !== undefined) {
+                select.@org.gwtbootstrap3.extras.select.client.ui.SelectBase::onValueChange()();
+            }
         });
         $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::SHOW_EVENT, function(event) {
             @org.gwtbootstrap3.extras.select.client.ui.event.ShowEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasShowHandlers;)(select);
