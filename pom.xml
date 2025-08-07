@@ -68,6 +68,7 @@
         <module>gwtbootstrap3</module>
         <module>gwtbootstrap3-extras</module>
         <module>gwtbootstrap3-demo</module>
+        <module>gwtbootstrap3-seed</module>
     </modules>
 
     <properties>
