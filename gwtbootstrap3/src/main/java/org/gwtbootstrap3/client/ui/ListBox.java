@@ -21,7 +21,10 @@ package org.gwtbootstrap3.client.ui;
  */
 
 import org.gwtbootstrap3.client.ui.base.HasId;
+import org.gwtbootstrap3.client.ui.base.HasSize;
+import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
+import org.gwtbootstrap3.client.ui.constants.InputSize;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
@@ -30,7 +33,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * @author Sven Jacobs
  * @see com.google.gwt.user.client.ui.ListBox
  */
-public class ListBox extends com.google.gwt.user.client.ui.ListBox implements HasId {
+public class ListBox extends com.google.gwt.user.client.ui.ListBox implements HasId, HasSize<InputSize> {
 
     private final IdMixin<ListBox> idMixin = new IdMixin<>(this);
 
@@ -62,5 +65,15 @@ public class ListBox extends com.google.gwt.user.client.ui.ListBox implements Ha
     @Override
     public String getId() {
         return idMixin.getId();
+    }
+
+    @Override
+    public void setSize(InputSize size) {
+        StyleHelper.addUniqueEnumStyleName(this, InputSize.class, size);
+    }
+
+    @Override
+    public InputSize getSize() {
+        return InputSize.fromStyleName(getStyleName());
     }
 }

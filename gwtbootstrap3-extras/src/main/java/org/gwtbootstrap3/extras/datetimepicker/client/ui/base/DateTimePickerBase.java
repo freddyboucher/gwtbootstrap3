@@ -30,15 +30,12 @@ import org.gwtbootstrap3.client.shared.event.HideHandler;
 import org.gwtbootstrap3.client.shared.event.ShowEvent;
 import org.gwtbootstrap3.client.shared.event.ShowHandler;
 import org.gwtbootstrap3.client.ui.TextBox;
-import org.gwtbootstrap3.client.ui.base.HasId;
-import org.gwtbootstrap3.client.ui.base.HasPlaceholder;
-import org.gwtbootstrap3.client.ui.base.HasReadOnly;
-import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
-import org.gwtbootstrap3.client.ui.base.ValueBoxBase;
+import org.gwtbootstrap3.client.ui.base.*;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.BlankValidatorMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.ErrorHandlerMixin;
 import org.gwtbootstrap3.client.ui.constants.DeviceSize;
+import org.gwtbootstrap3.client.ui.constants.InputSize;
 import org.gwtbootstrap3.client.ui.form.error.ErrorHandler;
 import org.gwtbootstrap3.client.ui.form.error.ErrorHandlerType;
 import org.gwtbootstrap3.client.ui.form.error.HasErrorHandler;
@@ -105,7 +102,7 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
         HasPlaceholder, HasAutoClose, HasDaysOfWeekDisabled, HasEndDate, HasForceParse, HasFormat, HasHighlightToday,
         HasKeyboardNavigation, HasMaxView, HasMinuteStep, HasMinView, HasShowMeridian, HasShowTodayButton, HasShowClearButton, HasStartDate,
         HasStartView, HasViewSelect, HasWeekStart, HasDateTimePickerHandlers, HasLanguage, HasName, HasValue<Date>, HasPosition,
-        LeafValueEditor<Date>, HasEditorErrors<Date>, HasErrorHandler, HasValidators<Date>, HasBlankValidator<Date> {
+        LeafValueEditor<Date>, HasEditorErrors<Date>, HasErrorHandler, HasValidators<Date>, HasBlankValidator<Date>, HasSize<InputSize> {
 
     static class DatePickerValidatorMixin extends BlankValidatorMixin<DateTimePickerBase, Date> {
 
@@ -874,4 +871,13 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
         errorHandlerMixin.showErrors(errors);
     }
 
+    @Override
+    public void setSize(InputSize size) {
+        textBox.setSize(size);
+    }
+
+    @Override
+    public InputSize getSize() {
+        return textBox.getSize();
+    }
 }
