@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,6 +19,7 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * limitations under the License.
  * #L%
  */
+
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.CONTAINER;
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.DROPDOWN_ALIGN_RIGHT;
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.DROPUP_AUTO;
@@ -49,9 +50,7 @@ import org.gwtbootstrap3.client.ui.base.HasSize;
 import org.gwtbootstrap3.client.ui.base.HasType;
 import org.gwtbootstrap3.client.ui.base.mixin.AttributeMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
-import org.gwtbootstrap3.client.ui.constants.ButtonSize;
-import org.gwtbootstrap3.client.ui.constants.ButtonType;
-import org.gwtbootstrap3.client.ui.constants.Styles;
+import org.gwtbootstrap3.client.ui.constants.*;
 import org.gwtbootstrap3.extras.select.client.ui.constants.DropdownAlignRight;
 import org.gwtbootstrap3.extras.select.client.ui.constants.LiveSearchStyle;
 import org.gwtbootstrap3.extras.select.client.ui.constants.MenuSize;
@@ -98,9 +97,8 @@ import com.google.gwt.user.client.ui.impl.FocusImpl;
  * Bootstrap select widget base
  *
  * @param <T> select value type
- *
- * @see http://silviomoreto.github.io/bootstrap-select/
  * @author Xiaodong Sun
+ * @see http://silviomoreto.github.io/bootstrap-select/
  */
 public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>, HasEnabled, Focusable,
         HasType<ButtonType>, HasSize<ButtonSize>, IsEditor<LeafValueEditor<T>>, HasAllSelectHandlers<T> {
@@ -150,7 +148,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
         // Inject the language JS is necessary
         if (language.getJs() != null) {
             ScriptInjector.fromString(language.getJs().getText())
-                .setWindow(ScriptInjector.TOP_WINDOW).inject();
+                    .setWindow(ScriptInjector.TOP_WINDOW).inject();
         }
         initialize(getElement(), options);
         bindSelectEvents(getElement());
@@ -532,6 +530,8 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
     }
 
     private void updateStyle() {
+        removeStyleName(InputSize.SMALL.getCssName());
+        removeStyleName(InputSize.LARGE.getCssName());
         StringBuilder sb = new StringBuilder();
         if (type != null) {
             sb.append(type.getCssName());
@@ -541,6 +541,15 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
                 sb.append(" ");
             }
             sb.append(size.getCssName());
+            switch (size) {
+                case EXTRA_SMALL:
+                case SMALL:
+                    addStyleName(InputSize.SMALL.getCssName());
+                    break;
+                case LARGE:
+                    addStyleName(InputSize.LARGE.getCssName());
+                    break;
+            }
         }
         setStyle(sb.toString());
     }
@@ -921,31 +930,31 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      */
     private native void bindSelectEvents(Element e) /*-{
         var select = this;
-        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::LOADED_EVENT, function(event) {
+        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::LOADED_EVENT, function (event) {
             @org.gwtbootstrap3.extras.select.client.ui.event.LoadedEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasLoadedHandlers;)(select);
         });
-        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::CHANGED_EVENT, function(event, clickedIndex, newValue, oldValue) {
+        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::CHANGED_EVENT, function (event, clickedIndex, newValue, oldValue) {
             // This avoid to fire twice the onValueChange !!!
             if (clickedIndex !== undefined) {
                 select.@org.gwtbootstrap3.extras.select.client.ui.SelectBase::onValueChange()();
             }
         });
-        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::SHOW_EVENT, function(event) {
+        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::SHOW_EVENT, function (event) {
             @org.gwtbootstrap3.extras.select.client.ui.event.ShowEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasShowHandlers;)(select);
         });
-        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::SHOWN_EVENT, function(event) {
+        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::SHOWN_EVENT, function (event) {
             @org.gwtbootstrap3.extras.select.client.ui.event.ShownEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasShownHandlers;)(select);
         });
-        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::HIDE_EVENT, function(event) {
+        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::HIDE_EVENT, function (event) {
             @org.gwtbootstrap3.extras.select.client.ui.event.HideEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasHideHandlers;)(select);
         });
-        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::HIDDEN_EVENT, function(event) {
+        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::HIDDEN_EVENT, function (event) {
             @org.gwtbootstrap3.extras.select.client.ui.event.HiddenEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasHiddenHandlers;)(select);
         });
-        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::RENDERED_EVENT, function(event) {
+        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::RENDERED_EVENT, function (event) {
             @org.gwtbootstrap3.extras.select.client.ui.event.RenderedEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasRenderedHandlers;)(select);
         });
-        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::REFRESHED_EVENT, function(event) {
+        $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::REFRESHED_EVENT, function (event) {
             @org.gwtbootstrap3.extras.select.client.ui.event.RefreshedEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasRefreshedHandlers;)(select);
         });
     }-*/;
