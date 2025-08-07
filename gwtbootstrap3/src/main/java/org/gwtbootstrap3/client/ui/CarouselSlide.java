@@ -29,14 +29,14 @@ import org.gwtbootstrap3.client.ui.html.Div;
  * @author Joshua Godi
  */
 public class CarouselSlide extends Div implements HasActive {
-    private final ActiveMixin<CarouselSlide> activeMixin = new ActiveMixin<CarouselSlide>(this);
+    private final ActiveMixin<CarouselSlide> activeMixin = new ActiveMixin<>(this);
 
     public CarouselSlide() {
         setStyleName(Styles.ITEM);
     }
 
     @Override
-    public void setActive(final boolean active) {
+    public void setActive(boolean active) {
         activeMixin.setActive(active);
     }
 

@@ -54,7 +54,7 @@ import java.util.List;
  *
  * @author Joshua Godi
  * @author Drew Spencer
- * @see org.gwtbootstrap3.client.ui.NavTabs
+ * @see NavTabs
  */
 public class TabListItem extends AnchorListItem implements HasDataTarget {
 
@@ -70,22 +70,22 @@ public class TabListItem extends AnchorListItem implements HasDataTarget {
      *
      * @param text text for the list item
      */
-    public TabListItem(final String text) {
+    public TabListItem(String text) {
         super(text);
         setDataToggle(Toggle.TAB);
     }
 
-    public TabListItem(final String text, final IconType iconType) {
+    public TabListItem(String text, IconType iconType) {
         this(text);
         setIcon(iconType);
     }
 
-    public TabListItem(final String text, final IconType iconType, final IconSize iconSize) {
+    public TabListItem(String text, IconType iconType, IconSize iconSize) {
         this(text, iconType);
         setIconSize(iconSize);
     }
 
-    public TabListItem(final String text, final String badgeText) {
+    public TabListItem(String text, String badgeText) {
         this(text);
         setBadgeText(badgeText);
     }
@@ -102,7 +102,7 @@ public class TabListItem extends AnchorListItem implements HasDataTarget {
      *
      * @param fireEvents true=fire show/hide events, false=don't fire show/hide events
      */
-    public void showTab(final boolean fireEvents) {
+    public void showTab(boolean fireEvents) {
         showTab(anchor.getElement());
 
         if (fireEvents) {
@@ -116,7 +116,7 @@ public class TabListItem extends AnchorListItem implements HasDataTarget {
      * @param showHandler show handler
      * @return HandlerRegistration to manage handles
      */
-    public HandlerRegistration addShowHandler(final TabShowHandler showHandler) {
+    public HandlerRegistration addShowHandler(TabShowHandler showHandler) {
         return addHandler(showHandler, TabShowEvent.getType());
     }
 
@@ -126,7 +126,7 @@ public class TabListItem extends AnchorListItem implements HasDataTarget {
      * @param shownHandler show handler
      * @return HandlerRegistration to manage handles
      */
-    public HandlerRegistration addShownHandler(final TabShownHandler shownHandler) {
+    public HandlerRegistration addShownHandler(TabShownHandler shownHandler) {
         return addHandler(shownHandler, TabShownEvent.getType());
     }
 
@@ -135,7 +135,7 @@ public class TabListItem extends AnchorListItem implements HasDataTarget {
      * don't try to execute a place change event with it being clicked
      */
     @Override
-    public void setHref(final String href) {
+    public void setHref(String href) {
         setDataTarget(href);
     }
 
@@ -147,19 +147,19 @@ public class TabListItem extends AnchorListItem implements HasDataTarget {
 
     /** {@inheritDoc} */
     @Override
-    public void setDataTargetWidgets(final List<Widget> widgets) {
+    public void setDataTargetWidgets(List<Widget> widgets) {
         anchor.setDataTargetWidgets(widgets);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setDataTargetWidget(final Widget widget) {
+    public void setDataTargetWidget(Widget widget) {
         anchor.setDataTargetWidget(widget);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setDataTarget(final String dataTarget) {
+    public void setDataTarget(String dataTarget) {
         anchor.setDataTarget(dataTarget);
     }
 
@@ -171,7 +171,7 @@ public class TabListItem extends AnchorListItem implements HasDataTarget {
 
     /** {@inheritDoc} */
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
         // On enable/disable we need to add/remove the data toggle for it to work properly
@@ -204,7 +204,7 @@ public class TabListItem extends AnchorListItem implements HasDataTarget {
         return anchor.getHTML();
     }
 
-    public void setHTML(final String html) {
+    public void setHTML(String html) {
         anchor.setHTML(html);
     }
 
@@ -215,7 +215,7 @@ public class TabListItem extends AnchorListItem implements HasDataTarget {
      * @param evt Event
      * @see org.gwtbootstrap3.client.shared.event.ShowEvent
      */
-    protected void onShow(final Event evt) {
+    protected void onShow(Event evt) {
         fireEvent(new TabShowEvent(this, evt));
     }
 
@@ -226,7 +226,7 @@ public class TabListItem extends AnchorListItem implements HasDataTarget {
      * @param evt Event
      * @see org.gwtbootstrap3.client.shared.event.ShownEvent
      */
-    protected void onShown(final Event evt) {
+    protected void onShown(Event evt) {
         fireEvent(new TabShownEvent(this, evt));
     }
 
@@ -235,19 +235,15 @@ public class TabListItem extends AnchorListItem implements HasDataTarget {
     }
 
     // @formatter:off
-    private void bindJavaScriptEvents(final Element e) {
+    private void bindJavaScriptEvents( Element e) {
         JQuery tab = JQuery.jQuery(e);
 
-        tab.on("show.bs.tab", (evt) -> {
-            onShow(evt);
-        });
+        tab.on("show.bs.tab", this::onShow);
 
-        tab.on("shown.bs.tab", (evt) -> {
-            onShown(evt);
-        });
+        tab.on("shown.bs.tab", this::onShown);
     }
 
-    private void unbindJavaScriptEvents(final Element e) {
+    private void unbindJavaScriptEvents( Element e) {
         JQuery.jQuery(e).off("show.bs.tab");
         JQuery.jQuery(e).off("shown.bs.tab");
     }

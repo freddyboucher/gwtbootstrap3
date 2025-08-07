@@ -85,7 +85,7 @@ public enum ColumnPull implements Size, Style.HasCssName {
 
     private final String cssClass;
 
-    private ColumnPull(final String cssClass) {
+    ColumnPull(String cssClass) {
         this.cssClass = cssClass;
     }
 

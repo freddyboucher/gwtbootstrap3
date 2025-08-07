@@ -40,7 +40,7 @@ public interface HasResponsiveness {
      * Sets the devices that the element is visible on
      *
      * @param deviceSize device size
-     * @see org.gwtbootstrap3.client.ui.constants.DeviceSize
+     * @see DeviceSize
      */
     void setVisibleOn(DeviceSize deviceSize);
 
@@ -48,7 +48,7 @@ public interface HasResponsiveness {
      * Sets the devices that the element is hidden on
      *
      * @param deviceSize device sizes
-     * @see org.gwtbootstrap3.client.ui.constants.DeviceSize
+     * @see DeviceSize
      */
     void setHiddenOn(DeviceSize deviceSize);
 }

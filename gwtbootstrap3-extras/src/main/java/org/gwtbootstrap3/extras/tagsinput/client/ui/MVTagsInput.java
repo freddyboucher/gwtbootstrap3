@@ -70,7 +70,7 @@ public class MVTagsInput extends MultiValueTagsInput<String> {
         if (isAttached())
             return super.getValue();
         else {
-            List<String> value = new ArrayList<String>();
+            List<String> value = new ArrayList<>();
             for(int i=0; i<getElement().getChildCount(); i++) {
                 value.add(getElement().getChild(i).getNodeValue());
             }

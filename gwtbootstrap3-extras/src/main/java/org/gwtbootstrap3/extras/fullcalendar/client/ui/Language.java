@@ -79,7 +79,7 @@ public enum Language {
     private final String code;
     private final TextResource resource;
 
-    private Language(final String code, final TextResource resource) {
+    Language(String code, TextResource resource) {
         this.code = code;
         this.resource = resource;
     }

@@ -48,7 +48,7 @@ public class RangeSlider extends SliderBase<Range> {
      * @param max
      * @param range
      */
-    public RangeSlider(final double min, final double max, final Range range) {
+    public RangeSlider(double min, double max, Range range) {
         this();
         setMin(min);
         setMax(max);
@@ -65,7 +65,7 @@ public class RangeSlider extends SliderBase<Range> {
      * @param value
      */
     @UiConstructor
-    public RangeSlider(final double min, final double max, final String value) {
+    public RangeSlider(double min, double max, String value) {
         this(min, max, Range.fromString(value));
     }
 

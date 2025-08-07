@@ -26,7 +26,7 @@ package org.gwtbootstrap3.extras.datetimepicker.client.ui.base.constants;
  * Be sure to load one language, it will use whatever is loaded last
  *
  * @author Joshua Godi
- * @see org.gwtbootstrap3.extras.datetimepicker.client.ui.base.constants.DateTimePickerLanguage
+ * @see DateTimePickerLanguage
  */
 public interface HasLanguage {
     void setLanguage(DateTimePickerLanguage language);

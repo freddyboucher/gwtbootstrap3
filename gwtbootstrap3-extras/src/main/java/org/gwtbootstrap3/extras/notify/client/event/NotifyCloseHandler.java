@@ -33,8 +33,5 @@ public interface NotifyCloseHandler {
     /**
      * Default Notify's close handler
      */
-    static NotifyCloseHandler DEFAULT_CLOSE_HANDLER = new NotifyCloseHandler() {
-        @Override
-        public void onClose() {}
-    };
+    NotifyCloseHandler DEFAULT_CLOSE_HANDLER = () -> {};
 }

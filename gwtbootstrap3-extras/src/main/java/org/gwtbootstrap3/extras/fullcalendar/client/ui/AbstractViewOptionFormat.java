@@ -38,7 +38,7 @@ public abstract class AbstractViewOptionFormat {
     }
 
     protected Map<ViewOptionHash, String> getDefaultOptions() {
-        final Map<ViewOptionHash, String> map = new HashMap<ViewOptionHash, String>();
+        Map<ViewOptionHash, String> map = new HashMap<>();
         populateDefaultOptions(map);
         return map;
     }

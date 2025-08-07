@@ -28,8 +28,6 @@ import org.gwtbootstrap3.client.ui.constants.PaginationSize;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.html.UnorderedList;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.SimplePager;
 
 /**
@@ -43,13 +41,13 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
         setStyleName(Styles.PAGINATION);
     }
 
-    public Pagination(final PaginationSize paginationSize) {
+    public Pagination(PaginationSize paginationSize) {
         this();
         setPaginationSize(paginationSize);
     }
 
     @Override
-    public void setPaginationSize(final PaginationSize paginationSize) {
+    public void setPaginationSize(PaginationSize paginationSize) {
         StyleHelper.addUniqueEnumStyleName(this, PaginationSize.class, paginationSize);
     }
 
@@ -59,14 +57,14 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
     }
 
     public AnchorListItem addPreviousLink() {
-        final AnchorListItem listItem = new AnchorListItem();
+        AnchorListItem listItem = new AnchorListItem();
         listItem.setIcon(IconType.ANGLE_DOUBLE_LEFT);
         insert(listItem, 0);
         return listItem;
     }
 
     public AnchorListItem addNextLink() {
-        final AnchorListItem listItem = new AnchorListItem();
+        AnchorListItem listItem = new AnchorListItem();
         listItem.setIcon(IconType.ANGLE_DOUBLE_RIGHT);
         add(listItem);
         return listItem;
@@ -84,32 +82,26 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
      *
      * @param pager the SimplePager of the CellTable/DataGrid
      */
-    public void rebuild(final SimplePager pager) {
+    public void rebuild(SimplePager pager) {
         clear();
 
         if (pager.getPageCount() == 0) {
             return;
         }
 
-        final AnchorListItem prev = addPreviousLink();
-        prev.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(final ClickEvent event) {
-                pager.previousPage();
-                updatePaginationState(pager);
-            }
+        AnchorListItem prev = addPreviousLink();
+        prev.addClickHandler(event -> {
+            pager.previousPage();
+            updatePaginationState(pager);
         });
         prev.setEnabled(pager.hasPreviousPage());
 
         for (int i = 0; i < pager.getPageCount(); i++) {
-            final int display = i + 1;
-            final AnchorListItem page = new AnchorListItem(String.valueOf(display));
-            page.addClickHandler(new ClickHandler() {
-                @Override
-                public void onClick(final ClickEvent event) {
-                    pager.setPage(display - 1);
-                    updatePaginationState(pager);
-                }
+            int display = i + 1;
+            AnchorListItem page = new AnchorListItem(String.valueOf(display));
+            page.addClickHandler(event -> {
+                pager.setPage(display - 1);
+                updatePaginationState(pager);
             });
 
             if (i == pager.getPage()) {
@@ -119,13 +111,10 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
             add(page);
         }
 
-        final AnchorListItem next = addNextLink();
-        next.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(final ClickEvent event) {
-                pager.nextPage();
-                updatePaginationState(pager);
-            }
+        AnchorListItem next = addNextLink();
+        next.addClickHandler(event -> {
+            pager.nextPage();
+            updatePaginationState(pager);
         });
         next.setEnabled(pager.hasNextPage());
     }
@@ -136,7 +125,7 @@ public class Pagination extends UnorderedList implements HasResponsiveness, HasP
      * on the state of the given SimplePager.
      * @param pager the SimplePager of the CellTable/DataGrid
      */
-    private void updatePaginationState(final SimplePager pager) {
+    private void updatePaginationState(SimplePager pager) {
 
         for (int i = 0; i < getWidgetCount(); i++) {
             if (i == 0) { //previous button

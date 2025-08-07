@@ -30,7 +30,7 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
     }
 
     @Inject
-    HomeView(final Binder uiBinder) {
+    HomeView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

@@ -42,7 +42,7 @@ public class GalleryView extends ViewImpl implements GalleryPresenter.MyView {
     @UiField Gallery galleryWithControls;
 
     @Inject
-    GalleryView(final Binder uiBinder) {
+    GalleryView(Binder uiBinder) {
       initWidget(uiBinder.createAndBindUi(this));
     }
 

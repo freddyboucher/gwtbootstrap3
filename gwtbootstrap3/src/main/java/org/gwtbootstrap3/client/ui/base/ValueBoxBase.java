@@ -49,28 +49,28 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
 
     private static final String MAX_LENGTH = "maxlength";
 
-    private final IdMixin<ValueBoxBase<T>> idMixin = new IdMixin<ValueBoxBase<T>>(this);
+    private final IdMixin<ValueBoxBase<T>> idMixin = new IdMixin<>(this);
 
-    private final ErrorHandlerMixin<T> errorHandlerMixin = new ErrorHandlerMixin<T>(this);
+    private final ErrorHandlerMixin<T> errorHandlerMixin = new ErrorHandlerMixin<>(this);
 
-    private final BlankValidatorMixin<ValueBoxBase<T>, T> validatorMixin = new BlankValidatorMixin<ValueBoxBase<T>, T>(this,
-        errorHandlerMixin.getErrorHandler());
+    private final BlankValidatorMixin<ValueBoxBase<T>, T> validatorMixin = new BlankValidatorMixin<>(this,
+            errorHandlerMixin.getErrorHandler());
 
     /**
      * Creates a value box that wraps the given browser element handle. This is only used by subclasses.
      *
      * @param elem the browser element to wrap
      */
-    protected ValueBoxBase(final Element elem, final Renderer<T> renderer, final Parser<T> parser) {
+    protected ValueBoxBase(Element elem, Renderer<T> renderer, Parser<T> parser) {
         super(elem, renderer, parser);
     }
 
-    public void setMaxLength(final int maxLength) {
+    public void setMaxLength(int maxLength) {
         getElement().setAttribute(MAX_LENGTH, Integer.toString(maxLength));
     }
 
     @Override
-    public void setPlaceholder(final String placeHolder) {
+    public void setPlaceholder(String placeHolder) {
         getElement().setAttribute(PLACEHOLDER, placeHolder != null ? placeHolder : "");
     }
 
@@ -80,7 +80,7 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
     }
 
     @Override
-    public void setAutoComplete(final boolean autoComplete) {
+    public void setAutoComplete(boolean autoComplete) {
         getElement().setAttribute(AUTO_COMPLETE, autoComplete ? ON : OFF);
     }
 
@@ -90,7 +90,7 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
     }
 
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         idMixin.setId(id);
     }
 
@@ -100,12 +100,12 @@ public class ValueBoxBase<T> extends com.google.gwt.user.client.ui.ValueBoxBase<
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 

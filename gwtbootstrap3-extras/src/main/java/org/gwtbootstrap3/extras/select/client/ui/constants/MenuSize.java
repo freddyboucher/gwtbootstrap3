@@ -41,8 +41,8 @@ public enum MenuSize {
 
     private String value;
 
-    private MenuSize(String size) {
-        this.value = size;
+    MenuSize(String size) {
+        value = size;
     }
 
     /**

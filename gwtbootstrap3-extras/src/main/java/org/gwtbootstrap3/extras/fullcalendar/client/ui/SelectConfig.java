@@ -30,7 +30,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 public class SelectConfig implements IsJavaScriptObject {
     private JavaScriptObject script;
 
-    public SelectConfig(final SelectEventCallback handler) {
+    public SelectConfig(SelectEventCallback handler) {
         if (handler != null) {
             newInstance(handler);
         }

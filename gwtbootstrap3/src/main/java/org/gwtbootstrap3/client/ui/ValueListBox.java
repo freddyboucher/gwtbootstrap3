@@ -64,24 +64,24 @@ public class ValueListBox<T> extends com.google.gwt.user.client.ui.ValueListBox<
         HasResponsiveness, HasPlaceholder, HasSize<InputSize>, HasEditorErrors<T>, HasErrorHandler, HasValidators<T>,
         HasBlankValidator<T> {
 
-    private final IdMixin<ValueListBox<T>> idMixin = new IdMixin<ValueListBox<T>>(this);
+    private final IdMixin<ValueListBox<T>> idMixin = new IdMixin<>(this);
 
-    private final ErrorHandlerMixin<T> errorHandlerMixin = new ErrorHandlerMixin<T>(this);
+    private final ErrorHandlerMixin<T> errorHandlerMixin = new ErrorHandlerMixin<>(this);
 
-    private final BlankValidatorMixin<ValueListBox<T>, T> validatorMixin = new BlankValidatorMixin<ValueListBox<T>, T>(
+    private final BlankValidatorMixin<ValueListBox<T>, T> validatorMixin = new BlankValidatorMixin<>(
             this, errorHandlerMixin.getErrorHandler());
 
-    public ValueListBox(final Renderer<T> renderer) {
-        this(renderer, new SimpleKeyProvider<T>());
+    public ValueListBox(Renderer<T> renderer) {
+        this(renderer, new SimpleKeyProvider<>());
     }
 
-    public ValueListBox(final Renderer<T> renderer, final ProvidesKey<T> keyProvider) {
+    public ValueListBox(Renderer<T> renderer, ProvidesKey<T> keyProvider) {
         super(renderer, keyProvider);
     }
 
     /** {@inheritDoc} */
     @Override
-    protected void initWidget(final Widget widget) {
+    protected void initWidget(Widget widget) {
         super.initWidget(new ListBox());
     }
 
@@ -99,7 +99,7 @@ public class ValueListBox<T> extends com.google.gwt.user.client.ui.ValueListBox<
 
     /** {@inheritDoc} */
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         idMixin.setId(id);
     }
 
@@ -111,13 +111,13 @@ public class ValueListBox<T> extends com.google.gwt.user.client.ui.ValueListBox<
 
     /** {@inheritDoc} */
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
@@ -135,7 +135,7 @@ public class ValueListBox<T> extends com.google.gwt.user.client.ui.ValueListBox<
 
     /** {@inheritDoc} */
     @Override
-    public void setPlaceholder(final String placeHolder) {
+    public void setPlaceholder(String placeHolder) {
         getElement().setAttribute(PLACEHOLDER, placeHolder != null ? placeHolder : "");
     }
 

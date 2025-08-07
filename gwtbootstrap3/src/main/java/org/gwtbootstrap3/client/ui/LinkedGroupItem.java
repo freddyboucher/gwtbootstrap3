@@ -48,20 +48,20 @@ import com.google.gwt.user.client.History;
 public class LinkedGroupItem extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref,
         HasTargetHistoryToken, HasActive, HasType<ListGroupItemType> {
 
-    private final ActiveMixin<LinkedGroupItem> activeMixin = new ActiveMixin<LinkedGroupItem>(this);
+    private final ActiveMixin<LinkedGroupItem> activeMixin = new ActiveMixin<>(this);
 
     private final Span span = new Span();
 
     private String targetHistoryToken;
 
-    public LinkedGroupItem(final String href) {
+    public LinkedGroupItem(String href) {
         setElement(Document.get().createAnchorElement());
         setStyleName(Styles.LIST_GROUP_ITEM);
         setHref(href);
         add(span);
     }
 
-    public LinkedGroupItem(final String text, final String href) {
+    public LinkedGroupItem(String text, String href) {
         this(href);
         setText(text);
     }
@@ -71,16 +71,16 @@ public class LinkedGroupItem extends ComplexWidget implements HasClickHandlers, 
     }
 
     @Override
-    public HandlerRegistration addClickHandler(final ClickHandler handler) {
+    public HandlerRegistration addClickHandler(ClickHandler handler) {
         return addDomHandler(handler, ClickEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addDoubleClickHandler(final DoubleClickHandler handler) {
+    public HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler) {
         return addDomHandler(handler, DoubleClickEvent.getType());
     }
 
-    public void setText(final String text) {
+    public void setText(String text) {
         span.setText(text);
     }
 
@@ -89,7 +89,7 @@ public class LinkedGroupItem extends ComplexWidget implements HasClickHandlers, 
     }
 
     @Override
-    public void setHref(final String href) {
+    public void setHref(String href) {
         AnchorElement.as(getElement()).setHref(href);
     }
 
@@ -99,9 +99,9 @@ public class LinkedGroupItem extends ComplexWidget implements HasClickHandlers, 
     }
 
     @Override
-    public void setTargetHistoryToken(final String targetHistoryToken) {
+    public void setTargetHistoryToken(String targetHistoryToken) {
         this.targetHistoryToken = targetHistoryToken;
-        final String hash = History.encodeHistoryToken(targetHistoryToken);
+        String hash = History.encodeHistoryToken(targetHistoryToken);
         setHref("#" + hash);
     }
 
@@ -111,7 +111,7 @@ public class LinkedGroupItem extends ComplexWidget implements HasClickHandlers, 
     }
 
     @Override
-    public void setActive(final boolean active) {
+    public void setActive(boolean active) {
         activeMixin.setActive(active);
     }
 
@@ -121,7 +121,7 @@ public class LinkedGroupItem extends ComplexWidget implements HasClickHandlers, 
     }
 
     @Override
-    public void setType(final ListGroupItemType type) {
+    public void setType(ListGroupItemType type) {
         StyleHelper.addUniqueEnumStyleName(this, ListGroupItemType.class, type);
     }
 

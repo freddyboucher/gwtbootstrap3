@@ -62,7 +62,7 @@ public enum SelectLanguage {
     private final String code;
     private final TextResource js;
 
-    private SelectLanguage(final String code, final TextResource js) {
+    SelectLanguage(String code, TextResource js) {
         this.js = js;
         this.code = code;
     }

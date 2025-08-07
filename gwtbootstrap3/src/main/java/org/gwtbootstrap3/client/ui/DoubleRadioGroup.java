@@ -38,7 +38,7 @@ public class DoubleRadioGroup extends RadioGroupBase<Double> {
      * @param name the name.
      */
     @UiConstructor
-    public DoubleRadioGroup(final String name) {
+    public DoubleRadioGroup(String name) {
         super(name, DoubleParser.instance());
     }
 

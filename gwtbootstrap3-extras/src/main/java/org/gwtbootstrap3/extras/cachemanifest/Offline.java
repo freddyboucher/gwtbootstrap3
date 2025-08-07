@@ -23,8 +23,12 @@ package org.gwtbootstrap3.extras.cachemanifest;
 import com.google.gwt.core.ext.LinkerContext;
 import com.google.gwt.core.ext.TreeLogger;
 import com.google.gwt.core.ext.UnableToCompleteException;
-import com.google.gwt.core.ext.linker.*;
+import com.google.gwt.core.ext.linker.AbstractLinker;
+import com.google.gwt.core.ext.linker.ArtifactSet;
+import com.google.gwt.core.ext.linker.ConfigurationProperty;
+import com.google.gwt.core.ext.linker.EmittedArtifact;
 import com.google.gwt.core.ext.linker.EmittedArtifact.Visibility;
+import com.google.gwt.core.ext.linker.LinkerOrder;
 import com.google.gwt.core.ext.linker.LinkerOrder.Order;
 
 import java.util.Date;
@@ -86,42 +90,40 @@ public class Offline extends AbstractLinker {
     }
 
     @Override
-    public ArtifactSet link(final TreeLogger logger, final LinkerContext context, final ArtifactSet artifacts) throws UnableToCompleteException {
+    public ArtifactSet link(TreeLogger logger, LinkerContext context, ArtifactSet artifacts) throws UnableToCompleteException {
 
-        final ArtifactSet artifactset = new ArtifactSet(artifacts);
+        ArtifactSet artifactset = new ArtifactSet(artifacts);
 
-        final HashSet<String> resources = new HashSet<String>();
-        for (final EmittedArtifact emitted : artifacts.find(EmittedArtifact.class)) {
+        HashSet<String> resources = new HashSet<>();
+        for (EmittedArtifact emitted : artifacts.find(EmittedArtifact.class)) {
 
             if (skipArtifact(emitted))
                 continue;
             resources.add(emitted.getPartialPath());
         }
 
-        final SortedSet<ConfigurationProperty> staticFileProperties = context.getConfigurationProperties();
-        for (final ConfigurationProperty configurationProperty : staticFileProperties) {
-            final String name = configurationProperty.getName();
+        SortedSet<ConfigurationProperty> staticFileProperties = context.getConfigurationProperties();
+        for (ConfigurationProperty configurationProperty : staticFileProperties) {
+            String name = configurationProperty.getName();
             if (CACHEMANIFEST_STATIC_FILES_PROPERTY.equals(name)) {
-                for (final String value : configurationProperty.getValues()) {
-                    resources.add(value);
-                }
+                resources.addAll(configurationProperty.getValues());
             }
         }
 
-        final String manifestString = buildManifestContents(resources);
+        String manifestString = buildManifestContents(resources);
         if (manifestString != null) {
-            final EmittedArtifact manifest = emitString(logger, manifestString, "appcache.manifest");
+            EmittedArtifact manifest = emitString(logger, manifestString, "appcache.manifest");
             artifactset.add(manifest);
         }
         return artifactset;
     }
 
-    private boolean skipArtifact(final EmittedArtifact emitted) {
+    private boolean skipArtifact(EmittedArtifact emitted) {
 
         if (emitted.getVisibility().matches(Visibility.Private))
             return true;
 
-        final String pathName = emitted.getPartialPath();
+        String pathName = emitted.getPartialPath();
 
         if (pathName.endsWith("symbolMap"))
             return true;
@@ -143,16 +145,16 @@ public class Offline extends AbstractLinker {
         return false;
     }
 
-    private String buildManifestContents(final Set<String> resources) {
+    private String buildManifestContents(Set<String> resources) {
         if (resources == null)
             return null;
 
-        final StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         sb.append("CACHE MANIFEST\n");
         sb.append("# Version: " + (new Date()).getTime() + "." + Math.random() + "\n");
         sb.append("\n");
         sb.append("CACHE:\n");
-        for (final String resourcePath : resources) {
+        for (String resourcePath : resources) {
             sb.append(resourcePath + "\n");
         }
 

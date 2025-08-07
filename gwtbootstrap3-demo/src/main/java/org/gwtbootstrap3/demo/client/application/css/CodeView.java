@@ -33,7 +33,7 @@ public class CodeView extends ViewImpl implements CodePresenter.MyView {
     }
 
     @Inject
-    CodeView(final Binder uiBinder) {
+    CodeView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

@@ -32,13 +32,12 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  */
 public class ListBox extends com.google.gwt.user.client.ui.ListBox implements HasId {
 
-    private final IdMixin<ListBox> idMixin = new IdMixin<ListBox>(this);
+    private final IdMixin<ListBox> idMixin = new IdMixin<>(this);
 
     /**
      * Creates an empty list box in single selection mode.
      */
     public ListBox() {
-        super();
         setStyleName(Styles.FORM_CONTROL);
     }
 
@@ -50,13 +49,13 @@ public class ListBox extends com.google.gwt.user.client.ui.ListBox implements Ha
      * @deprecated use {@link #setMultipleSelect(boolean)} instead.
      */
     @Deprecated
-    public ListBox(final boolean isMultipleSelect) {
+    public ListBox(boolean isMultipleSelect) {
         this();
         setMultipleSelect(isMultipleSelect);
     }
 
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         idMixin.setId(id);
     }
 

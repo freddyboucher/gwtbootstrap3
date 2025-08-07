@@ -44,9 +44,9 @@ public class ListGroupPresenter extends Presenter<ListGroupPresenter.MyView, Lis
     }
 
     @Inject
-    public ListGroupPresenter(final EventBus eventBus,
-                              final MyView view,
-                              final MyProxy proxy) {
+    public ListGroupPresenter(EventBus eventBus,
+                              MyView view,
+                              MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

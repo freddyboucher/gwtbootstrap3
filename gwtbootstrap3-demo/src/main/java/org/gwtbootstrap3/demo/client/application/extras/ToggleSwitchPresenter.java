@@ -44,7 +44,7 @@ public class ToggleSwitchPresenter extends Presenter<ToggleSwitchPresenter.MyVie
     }
 
     @Inject
-    public ToggleSwitchPresenter(final EventBus eventBus, final MyView view, final MyProxy proxy) {
+    public ToggleSwitchPresenter(EventBus eventBus, MyView view, MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

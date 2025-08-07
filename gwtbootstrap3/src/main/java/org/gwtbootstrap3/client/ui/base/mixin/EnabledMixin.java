@@ -31,12 +31,12 @@ import com.google.gwt.user.client.ui.UIObject;
 public class EnabledMixin<T extends UIObject & HasEnabled> extends AbstractMixin implements HasEnabled {
     private static final String DISABLED = "disabled";
 
-    public EnabledMixin(final T uiObject) {
+    public EnabledMixin(T uiObject) {
         super(uiObject);
     }
 
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         if (enabled) {
             uiObject.removeStyleName(Styles.DISABLED);
             uiObject.getElement().removeAttribute(DISABLED);

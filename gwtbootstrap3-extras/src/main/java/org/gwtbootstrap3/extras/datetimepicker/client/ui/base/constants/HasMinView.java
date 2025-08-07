@@ -26,7 +26,7 @@ package org.gwtbootstrap3.extras.datetimepicker.client.ui.base.constants;
  * The lowest view that the datetimepicker should show.
  *
  * @author Joshua Godi
- * @see org.gwtbootstrap3.extras.datetimepicker.client.ui.base.constants.DateTimePickerView
+ * @see DateTimePickerView
  */
 public interface HasMinView {
     void setMinView(DateTimePickerView dateTimePickerView);

@@ -34,7 +34,7 @@ public class ToggleSwitchView extends ViewImpl implements ToggleSwitchPresenter.
     }
 
     @Inject
-    ToggleSwitchView(final Binder uiBinder) {
+    ToggleSwitchView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

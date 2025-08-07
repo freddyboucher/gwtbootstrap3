@@ -42,7 +42,7 @@ public class ConfirmOptions extends DialogOptions {
      * @param message
      * @return
      */
-    public static final ConfirmOptions newOptions(final String message) {
+    public static final ConfirmOptions newOptions(String message) {
         ConfirmOptions options = JavaScriptObject.createObject().cast();
         options.setMessage(message);
         options.setCallback(ConfirmCallback.DEFAULT_CONFIRM_CALLBACK);

@@ -34,7 +34,7 @@ public enum TypeAttrType implements Type {
 
     private final String inputType;
 
-    private TypeAttrType(final String inputType) {
+    TypeAttrType(String inputType) {
         this.inputType = inputType;
     }
 

@@ -38,8 +38,5 @@ public interface PromptCallback extends Callback {
     /**
      * Default {@link PromptCallback} does nothing.
      */
-    static final PromptCallback DEFAULT_PROMPT_CALLBACK = new PromptCallback() {
-        @Override
-        public void callback(String result) {}
-    };
+    PromptCallback DEFAULT_PROMPT_CALLBACK = result -> {};
 }

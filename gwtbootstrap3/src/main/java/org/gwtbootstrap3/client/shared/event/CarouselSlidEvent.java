@@ -30,7 +30,7 @@ import com.google.gwt.user.client.Event;
  */
 public class CarouselSlidEvent extends GwtEvent<CarouselSlidHandler> implements CarouselEvent {
 
-    private static final Type<CarouselSlidHandler> TYPE = new Type<CarouselSlidHandler>();
+    private static final Type<CarouselSlidHandler> TYPE = new Type<>();
 
     private final Carousel carousel;
     private final Event nativeEvent;
@@ -39,7 +39,7 @@ public class CarouselSlidEvent extends GwtEvent<CarouselSlidHandler> implements 
         return TYPE;
     }
 
-    public CarouselSlidEvent(final Carousel carousel, final Event nativeEvent) {
+    public CarouselSlidEvent(Carousel carousel, Event nativeEvent) {
         this.carousel = carousel;
         this.nativeEvent = nativeEvent;
     }
@@ -60,7 +60,7 @@ public class CarouselSlidEvent extends GwtEvent<CarouselSlidHandler> implements 
     }
 
     @Override
-    protected void dispatch(final CarouselSlidHandler handler) {
+    protected void dispatch(CarouselSlidHandler handler) {
         handler.onSlid(this);
     }
 }

@@ -45,16 +45,16 @@ import com.google.gwt.event.shared.HandlerRegistration;
 public class MultiValueTagsInput<T> extends TagsInputBase<T> implements HasValueChangeHandlers<List<String>> {
 
     public MultiValueTagsInput() {
-        this(new CollectionDataset<T>(Collections.<T>emptyList()));
+        this(new CollectionDataset<>(Collections.emptyList()));
     }
 
-    public MultiValueTagsInput(final Dataset<T> dataset) {
+    public MultiValueTagsInput(Dataset<T> dataset) {
         this(Arrays.asList(dataset));
         
         setDatasets(dataset);
     }
 
-    public MultiValueTagsInput(final Collection<? extends Dataset<T>> datasets) {
+    public MultiValueTagsInput(Collection<? extends Dataset<T>> datasets) {
         SelectElement tagsSelect = Document.get().createSelectElement();
         tagsSelect.setMultiple(true);
         tagsSelect.setAttribute("data-role", "tagsinput");
@@ -65,16 +65,16 @@ public class MultiValueTagsInput<T> extends TagsInputBase<T> implements HasValue
     }
 
     public MultiValueTagsInput(Element e) {
-        this(e, new CollectionDataset<T>(Collections.<T>emptyList()));
+        this(e, new CollectionDataset<>(Collections.emptyList()));
     }
 
-    public MultiValueTagsInput(Element e, final Dataset<T> dataset) {
+    public MultiValueTagsInput(Element e, Dataset<T> dataset) {
         this(e, Arrays.asList(dataset));
         
         setDatasets(dataset);
     }
 
-    public MultiValueTagsInput(Element e, final Collection<? extends Dataset<T>> datasets) {
+    public MultiValueTagsInput(Element e, Collection<? extends Dataset<T>> datasets) {
         e.setAttribute("data-role", "tagsinput");
 
         setElement(e);
@@ -95,7 +95,7 @@ public class MultiValueTagsInput<T> extends TagsInputBase<T> implements HasValue
         if (isAttached())
             return toMultiValue(getValue(getElement()));
         else    
-            return new ArrayList<String>();
+            return new ArrayList<>();
     }
 
     @Override

@@ -30,7 +30,7 @@ package org.gwtbootstrap3.extras.typeahead.client.base;
  * @author Florian Kremser <florian.kremser@sage.com>
  */
 public abstract class Dataset<T> {
-    private static long nextId = 0;
+    private static long nextId;
     private String name;
     private Template emptyTemplate;
     private Template footerTemplate;
@@ -38,14 +38,14 @@ public abstract class Dataset<T> {
     private SuggestionTemplate<T> suggestionTemplate;
 
     protected Dataset() {
-        this.name = "dataset" + nextId++;
+        name = "dataset" + nextId++;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    public void setName(final String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -58,7 +58,7 @@ public abstract class Dataset<T> {
         return emptyTemplate;
     }
 
-    public void setEmptyTemplate(final Template emptyTemplate) {
+    public void setEmptyTemplate(Template emptyTemplate) {
         this.emptyTemplate = emptyTemplate;
     }
 
@@ -71,7 +71,7 @@ public abstract class Dataset<T> {
         return footerTemplate;
     }
 
-    public void setFooterTemplate(final Template footerTemplate) {
+    public void setFooterTemplate(Template footerTemplate) {
         this.footerTemplate = footerTemplate;
     }
 
@@ -84,7 +84,7 @@ public abstract class Dataset<T> {
         return headerTemplate;
     }
 
-    public void setHeaderTemplate(final Template headerTemplate) {
+    public void setHeaderTemplate(Template headerTemplate) {
         this.headerTemplate = headerTemplate;
     }
 
@@ -97,7 +97,7 @@ public abstract class Dataset<T> {
         return suggestionTemplate;
     }
 
-    public void setSuggestionTemplate(final SuggestionTemplate<T> suggestionTemplate) {
+    public void setSuggestionTemplate(SuggestionTemplate<T> suggestionTemplate) {
         this.suggestionTemplate = suggestionTemplate;
     }
 
@@ -107,10 +107,10 @@ public abstract class Dataset<T> {
      * @param query    the user input
      * @param callback callback for suggestions
      */
-    public abstract void findMatches(final String query, final SuggestionCallback<T> callback);
+    public abstract void findMatches(String query, SuggestionCallback<T> callback);
 
     @Override
-    public boolean equals(final Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dataset<?> dataset = (Dataset<?>) o;

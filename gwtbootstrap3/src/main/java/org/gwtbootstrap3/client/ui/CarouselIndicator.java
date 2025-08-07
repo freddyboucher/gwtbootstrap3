@@ -37,14 +37,14 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class CarouselIndicator extends ComplexWidget implements HasDataTarget, HasActive {
 
-    private final DataTargetMixin<CarouselIndicator> targetMixin = new DataTargetMixin<CarouselIndicator>(this);
-    private final ActiveMixin<CarouselIndicator> activeMixin = new ActiveMixin<CarouselIndicator>(this);
+    private final DataTargetMixin<CarouselIndicator> targetMixin = new DataTargetMixin<>(this);
+    private final ActiveMixin<CarouselIndicator> activeMixin = new ActiveMixin<>(this);
 
     public CarouselIndicator() {
         setElement(Document.get().createLIElement());
     }
 
-    public void setDataSlideTo(final String dataSlideTo) {
+    public void setDataSlideTo(String dataSlideTo) {
         getElement().setAttribute(Attributes.DATA_SLIDE_TO, dataSlideTo);
     }
 
@@ -53,7 +53,7 @@ public class CarouselIndicator extends ComplexWidget implements HasDataTarget, H
     }
 
     @Override
-    public void setActive(final boolean active) {
+    public void setActive(boolean active) {
         activeMixin.setActive(active);
     }
 
@@ -63,17 +63,17 @@ public class CarouselIndicator extends ComplexWidget implements HasDataTarget, H
     }
 
     @Override
-    public void setDataTargetWidgets(final List<Widget> widgets) {
+    public void setDataTargetWidgets(List<Widget> widgets) {
         targetMixin.setDataTargetWidgets(widgets);
     }
 
     @Override
-    public void setDataTargetWidget(final Widget widget) {
+    public void setDataTargetWidget(Widget widget) {
         targetMixin.setDataTargetWidget(widget);
     }
 
     @Override
-    public void setDataTarget(final String dataTarget) {
+    public void setDataTarget(String dataTarget) {
         targetMixin.setDataTarget(dataTarget);
     }
 

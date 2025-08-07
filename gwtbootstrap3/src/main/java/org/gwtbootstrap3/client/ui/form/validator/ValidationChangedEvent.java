@@ -56,10 +56,10 @@ public class ValidationChangedEvent extends GwtEvent<ValidationChangedEvent.Vali
          *
          * @param event the event
          */
-        public void onValidationChanged(ValidationChangedEvent event);
+        void onValidationChanged(ValidationChangedEvent event);
     }
 
-    private static final Type<ValidationChangedHandler> TYPE = new Type<ValidationChangedHandler>();
+    private static final Type<ValidationChangedHandler> TYPE = new Type<>();
 
     /**
      * Fire the event.
@@ -135,7 +135,7 @@ public class ValidationChangedEvent extends GwtEvent<ValidationChangedEvent.Vali
     @Override
     public int hashCode() {
         int hashCode = 23;
-        hashCode = (hashCode * 37) + new Boolean(valid).hashCode();
+        hashCode = (hashCode * 37) + Boolean.valueOf(valid).hashCode();
         return hashCode;
     }
 

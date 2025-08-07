@@ -49,7 +49,7 @@ public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T>
      *
      * @param pageSize the page size
      */
-    public DataGrid(final int pageSize) {
+    public DataGrid(int pageSize) {
         this(pageSize, getDefaultResources());
     }
 
@@ -61,7 +61,7 @@ public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T>
      * @param keyProvider an instance of ProvidesKey, or null if the record
      *                    object should act as its own key
      */
-    public DataGrid(final int pageSize, final ProvidesKey<T> keyProvider) {
+    public DataGrid(int pageSize, ProvidesKey<T> keyProvider) {
         super(pageSize, getDefaultResources(), keyProvider);
         getTableBodyElement().getParentElement().addClassName(TableType.DEFAULT.getCssName());
     }
@@ -73,7 +73,7 @@ public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T>
      * @param pageSize  the page size
      * @param resources the resources to use for this widget
      */
-    public DataGrid(final int pageSize, final DataGrid.Resources resources) {
+    public DataGrid(int pageSize, DataGrid.Resources resources) {
         super(pageSize, resources, null);
         getTableBodyElement().getParentElement().addClassName(TableType.DEFAULT.getCssName());
     }
@@ -89,7 +89,7 @@ public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T>
      * @param loadingIndicator the widget to use as a loading indicator, or null
      *                         to disable
      */
-    public DataGrid(final int pageSize, final Resources resources, final ProvidesKey<T> keyProvider, final Widget loadingIndicator) {
+    public DataGrid(int pageSize, Resources resources, ProvidesKey<T> keyProvider, Widget loadingIndicator) {
         super(pageSize, resources, keyProvider, loadingIndicator);
         getTableBodyElement().getParentElement().addClassName(TableType.DEFAULT.getCssName());
     }
@@ -101,29 +101,29 @@ public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T>
      * @param keyProvider an instance of ProvidesKey, or null if the record
      *                    object should act as its own key
      */
-    public DataGrid(final ProvidesKey<T> keyProvider) {
+    public DataGrid(ProvidesKey<T> keyProvider) {
         this(DEFAULT_PAGESIZE, keyProvider);
     }
 
     private static DataGrid.Resources getDefaultResources() {
         if (DEFAULT_RESOURCES == null) {
-            final DataGrid.Resources dataGridResources = GWT.create(Resources.class);
+            DataGrid.Resources dataGridResources = GWT.create(Resources.class);
             DEFAULT_RESOURCES = new ResourcesAdapter(dataGridResources);
         }
         return DEFAULT_RESOURCES;
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
-    public void setStriped(final boolean striped) {
+    public void setStriped(boolean striped) {
         if (striped) {
             addToDataGrid(TableType.STRIPED);
         } else {
@@ -131,7 +131,7 @@ public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T>
         }
     }
 
-    public void setBordered(final boolean bordered) {
+    public void setBordered(boolean bordered) {
         if (bordered) {
             addToDataGrid(TableType.BORDERED);
         } else {
@@ -139,7 +139,7 @@ public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T>
         }
     }
 
-    public void setCondensed(final boolean condensed) {
+    public void setCondensed(boolean condensed) {
         if (condensed) {
             addToDataGrid(TableType.CONDENSED);
         } else {
@@ -147,7 +147,7 @@ public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T>
         }
     }
 
-    public void setHover(final boolean hover) {
+    public void setHover(boolean hover) {
         if (hover) {
             addToDataGrid(TableType.HOVER);
         } else {
@@ -155,13 +155,13 @@ public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T>
         }
     }
 
-    private void addToDataGrid(final TableType tableType) {
+    private void addToDataGrid(TableType tableType) {
         getTableHeadElement().getParentElement().addClassName(tableType.getCssName());
         getTableBodyElement().getParentElement().addClassName(tableType.getCssName());
         getTableFootElement().getParentElement().addClassName(tableType.getCssName());
     }
 
-    private void removeFromDataGrid(final TableType tableType) {
+    private void removeFromDataGrid(TableType tableType) {
         getTableHeadElement().getParentElement().removeClassName(tableType.getCssName());
         getTableBodyElement().getParentElement().removeClassName(tableType.getCssName());
         getTableFootElement().getParentElement().removeClassName(tableType.getCssName());
@@ -174,9 +174,9 @@ public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T>
         private final DataGrid.Resources resources;
         private final StyleAdapter style;
 
-        public ResourcesAdapter(final DataGrid.Resources resources) {
+        public ResourcesAdapter(DataGrid.Resources resources) {
             this.resources = resources;
-            this.style = new StyleAdapter();
+            style = new StyleAdapter();
         }
 
         @Override

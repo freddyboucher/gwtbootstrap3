@@ -35,9 +35,9 @@ import com.google.gwt.dom.client.Element;
 public abstract class ButtonBase extends com.google.gwt.user.client.ui.ButtonBase implements HasResponsiveness, HasId,
         HasPull {
 
-    private final IdMixin<ButtonBase> idMixin = new IdMixin<ButtonBase>(this);
-    private final PullMixin<ButtonBase> pullMixin = new PullMixin<ButtonBase>(this);
-    private final EnabledMixin<ButtonBase> enabledMixin = new EnabledMixin<ButtonBase>(this);
+    private final IdMixin<ButtonBase> idMixin = new IdMixin<>(this);
+    private final PullMixin<ButtonBase> pullMixin = new PullMixin<>(this);
+    private final EnabledMixin<ButtonBase> enabledMixin = new EnabledMixin<>(this);
 
     protected ButtonBase(Element elem) {
         super(elem);
@@ -57,7 +57,7 @@ public abstract class ButtonBase extends com.google.gwt.user.client.ui.ButtonBas
      * {@inheritDoc}
      */
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         idMixin.setId(id);
     }
 
@@ -73,7 +73,7 @@ public abstract class ButtonBase extends com.google.gwt.user.client.ui.ButtonBas
      * {@inheritDoc}
      */
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
@@ -81,7 +81,7 @@ public abstract class ButtonBase extends com.google.gwt.user.client.ui.ButtonBas
      * {@inheritDoc}
      */
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
@@ -89,7 +89,7 @@ public abstract class ButtonBase extends com.google.gwt.user.client.ui.ButtonBas
      * {@inheritDoc}
      */
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         pullMixin.setPull(pull);
     }
 

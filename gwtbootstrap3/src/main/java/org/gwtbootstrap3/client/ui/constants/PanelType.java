@@ -37,7 +37,7 @@ public enum PanelType implements Type, Style.HasCssName {
 
     private final String cssClass;
 
-    private PanelType(final String cssClass) {
+    PanelType(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -46,7 +46,7 @@ public enum PanelType implements Type, Style.HasCssName {
         return cssClass;
     }
 
-    public static PanelType fromStyleName(final String styleName) {
+    public static PanelType fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, PanelType.class, DEFAULT);
     }
 }

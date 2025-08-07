@@ -822,7 +822,7 @@ public enum IconType implements Type, Style.HasCssName {
 
     private final String cssClass;
 
-    private IconType(final String cssClass) {
+    IconType(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -831,7 +831,7 @@ public enum IconType implements Type, Style.HasCssName {
         return cssClass;
     }
 
-    public static IconType fromStyleName(final String styleName) {
+    public static IconType fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, IconType.class, null);
     }
 }

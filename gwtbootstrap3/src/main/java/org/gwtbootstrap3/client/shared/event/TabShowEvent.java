@@ -30,7 +30,7 @@ import com.google.gwt.user.client.Event;
  */
 public class TabShowEvent extends GwtEvent<TabShowHandler> implements TabEvent {
 
-    private static final Type<TabShowHandler> TYPE = new Type<TabShowHandler>();
+    private static final Type<TabShowHandler> TYPE = new Type<>();
 
     private final TabListItem tab;
     private final Event nativeEvent;
@@ -39,7 +39,7 @@ public class TabShowEvent extends GwtEvent<TabShowHandler> implements TabEvent {
         return TYPE;
     }
 
-    public TabShowEvent(final TabListItem tab, final Event nativeEvent) {
+    public TabShowEvent(TabListItem tab, Event nativeEvent) {
         this.tab = tab;
         this.nativeEvent = nativeEvent;
     }
@@ -60,7 +60,7 @@ public class TabShowEvent extends GwtEvent<TabShowHandler> implements TabEvent {
     }
 
     @Override
-    protected void dispatch(final TabShowHandler handler) {
+    protected void dispatch(TabShowHandler handler) {
         handler.onShow(this);
     }
 }

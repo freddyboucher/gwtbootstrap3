@@ -22,23 +22,11 @@ package org.gwtbootstrap3.demo.client.application.extras;
 
 import java.util.Date;
 
-import org.gwtbootstrap3.client.shared.event.HideEvent;
-import org.gwtbootstrap3.client.shared.event.HideHandler;
-import org.gwtbootstrap3.client.shared.event.ShowEvent;
-import org.gwtbootstrap3.client.shared.event.ShowHandler;
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.html.Div;
 import org.gwtbootstrap3.client.ui.html.Paragraph;
 import org.gwtbootstrap3.extras.datetimepicker.client.ui.DateTimePicker;
 import org.gwtbootstrap3.extras.datetimepicker.client.ui.base.constants.DateTimePickerDayOfWeek;
-import org.gwtbootstrap3.extras.datetimepicker.client.ui.base.events.ChangeDateEvent;
-import org.gwtbootstrap3.extras.datetimepicker.client.ui.base.events.ChangeDateHandler;
-import org.gwtbootstrap3.extras.datetimepicker.client.ui.base.events.ChangeMonthEvent;
-import org.gwtbootstrap3.extras.datetimepicker.client.ui.base.events.ChangeMonthHandler;
-import org.gwtbootstrap3.extras.datetimepicker.client.ui.base.events.ChangeYearEvent;
-import org.gwtbootstrap3.extras.datetimepicker.client.ui.base.events.ChangeYearHandler;
-import org.gwtbootstrap3.extras.datetimepicker.client.ui.base.events.OutOfRangeEvent;
-import org.gwtbootstrap3.extras.datetimepicker.client.ui.base.events.OutOfRangeHandler;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -94,69 +82,51 @@ public class DateTimePickerView extends ViewImpl implements DateTimePickerPresen
     Button setFormat;
 
     @Inject
-    DateTimePickerView(final Binder uiBinder) {
+    DateTimePickerView(Binder uiBinder) {
         eventDateTimePicker = new DateTimePicker();
         eventDateTimePicker.setValue(new Date());
 
         initWidget(uiBinder.createAndBindUi(this));
 
-        eventDateTimePicker.addChangeDateHandler(new ChangeDateHandler() {
-            @Override
-            public void onChangeDate(final ChangeDateEvent evt) {
-                final Paragraph logEntry = new Paragraph();
-                logEntry.setText("Changed Date Event Fired! (" + eventDateTimePicker.getValue().toString() + ")");
-                logRow.add(logEntry);
-            }
+        eventDateTimePicker.addChangeDateHandler(evt -> {
+            Paragraph logEntry = new Paragraph();
+            logEntry.setText("Changed Date Event Fired! (" + eventDateTimePicker.getValue().toString() + ")");
+            logRow.add(logEntry);
         });
 
-        eventDateTimePicker.addChangeMonthHandler(new ChangeMonthHandler() {
-            @Override
-            public void onChangeMonth(final ChangeMonthEvent evt) {
-                final Paragraph logEntry = new Paragraph();
-                logEntry.setText("Changed Month Event Fired! (" + eventDateTimePicker.getValue().toString() + ")");
-                logRow.add(logEntry);
-            }
+        eventDateTimePicker.addChangeMonthHandler(evt -> {
+            Paragraph logEntry = new Paragraph();
+            logEntry.setText("Changed Month Event Fired! (" + eventDateTimePicker.getValue().toString() + ")");
+            logRow.add(logEntry);
         });
 
-        eventDateTimePicker.addChangeYearHandler(new ChangeYearHandler() {
-            @Override
-            public void onChangeYear(final ChangeYearEvent evt) {
-                final Paragraph logEntry = new Paragraph();
-                logEntry.setText("Changed Year Event Fired! (" + eventDateTimePicker.getValue().toString() + ")");
-                logRow.add(logEntry);
-            }
+        eventDateTimePicker.addChangeYearHandler(evt -> {
+            Paragraph logEntry = new Paragraph();
+            logEntry.setText("Changed Year Event Fired! (" + eventDateTimePicker.getValue().toString() + ")");
+            logRow.add(logEntry);
         });
 
-        eventDateTimePicker.addOutOfRangeHandler(new OutOfRangeHandler() {
-            @Override
-            public void onOutOfRange(final OutOfRangeEvent evt) {
-                final Paragraph logEntry = new Paragraph();
-                logEntry.setText("Out of Range Event Fired! (" + eventDateTimePicker.getValue().toString() + ")");
-                logRow.add(logEntry);
-            }
+        eventDateTimePicker.addOutOfRangeHandler(evt -> {
+            Paragraph logEntry = new Paragraph();
+            logEntry.setText("Out of Range Event Fired! (" + eventDateTimePicker.getValue().toString() + ")");
+            logRow.add(logEntry);
         });
 
-        eventDateTimePicker.addShowHandler(new ShowHandler() {
-            @Override
-            public void onShow(final ShowEvent showEvent) {
-                final Paragraph logEntry = new Paragraph();
-                logEntry.setText("Show Event Fired");
-                logRow.add(logEntry);
-            }
+        eventDateTimePicker.addShowHandler(showEvent -> {
+            Paragraph logEntry = new Paragraph();
+            logEntry.setText("Show Event Fired");
+            logRow.add(logEntry);
         });
 
-        eventDateTimePicker.addHideHandler(new HideHandler() {
-            @Override
-            public void onHide(final HideEvent hideEvent) {
-                final Paragraph logEntry = new Paragraph();
-                logEntry.setText("Hide Event Fired");
-                logRow.add(logEntry);
-            }
+        eventDateTimePicker.addHideHandler(hideEvent -> {
+            Paragraph logEntry = new Paragraph();
+            logEntry.setText("Hide Event Fired");
+            logRow.add(logEntry);
         });
     }
 
     @UiHandler("addRemove")
-    public void handleAddRemove(final ClickEvent event) {
+    public void handleAddRemove(ClickEvent event) {
         if (eventDateTimePicker.isAttached()) {
             eventDateTimePicker.removeFromParent();
         } else {
@@ -165,72 +135,72 @@ public class DateTimePickerView extends ViewImpl implements DateTimePickerPresen
     }
 
     @UiHandler("clearLogButton")
-    public void handleClearLog(final ClickEvent event) {
+    public void handleClearLog(ClickEvent event) {
         logRow.clear();
     }
 
     @UiHandler("endDate")
-    public void handleEndDate(final ClickEvent event) {
+    public void handleEndDate(ClickEvent event) {
         methods.setEndDate("2015-01-27");
     }
 
     @UiHandler("startDate")
-    public void handleStartDate(final ClickEvent event) {
+    public void handleStartDate(ClickEvent event) {
         methods.setStartDate("2015-01-10");
     }
 
     @UiHandler("getValue")
-    public void handleGetValue(final ClickEvent event) {
+    public void handleGetValue(ClickEvent event) {
         Window.alert(methods.getValue().toString());
     }
 
     @UiHandler("setValue")
-    public void handleSetValue(final ClickEvent event) {
+    public void handleSetValue(ClickEvent event) {
         methods.setValue(new Date(System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 3)));
     }
 
     @UiHandler("enable")
-    public void handleEnable(final ClickEvent event) {
+    public void handleEnable(ClickEvent event) {
         methods.setEnabled(true);
     }
 
     @UiHandler("disable")
-    public void handledisable(final ClickEvent event) {
+    public void handledisable(ClickEvent event) {
         methods.setEnabled(false);
     }
 
     @UiHandler("readonly")
-    public void handleReadOnly(final ClickEvent event) {
+    public void handleReadOnly(ClickEvent event) {
         methods.setReadOnly(true);
     }
 
     @UiHandler("editable")
-    public void handleEditable(final ClickEvent event) {
+    public void handleEditable(ClickEvent event) {
         methods.setReadOnly(false);
     }
 
     @UiHandler("disableSundays")
-    public void handleDisableSundays(final ClickEvent event) {
+    public void handleDisableSundays(ClickEvent event) {
         methods.setDaysOfWeekDisabled(DateTimePickerDayOfWeek.SUNDAY);
     }
 
     @UiHandler("enableSundays")
-    public void handleEnableSundays(final ClickEvent event) {
+    public void handleEnableSundays(ClickEvent event) {
         methods.setDaysOfWeekDisabled();
     }
 
     @UiHandler("hide")
-    public void handleHide(final ClickEvent event) {
+    public void handleHide(ClickEvent event) {
         methods.hide();
     }
 
     @UiHandler("show")
-    public void handleShow(final ClickEvent event) {
+    public void handleShow(ClickEvent event) {
         methods.show();
     }
 
     @UiHandler("setFormat")
-    public void handleSetFormat(final ClickEvent event) {
+    public void handleSetFormat(ClickEvent event) {
         methods.setFormat("dd.mm.yyyy");
         methods.reload();
     }

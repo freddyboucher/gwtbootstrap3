@@ -40,12 +40,12 @@ public class Form extends AbstractForm implements HasType<FormType> {
         this(FormType.DEFAULT);
     }
 
-    public Form(final FormType type) {
+    public Form(FormType type) {
         setType(type);
     }
 
     @Override
-    public void setType(final FormType type) {
+    public void setType(FormType type) {
         StyleHelper.addUniqueEnumStyleName(this, FormType.class, type);
     }
 

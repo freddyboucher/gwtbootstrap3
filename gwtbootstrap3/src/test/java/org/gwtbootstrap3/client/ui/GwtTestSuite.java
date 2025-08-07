@@ -30,7 +30,7 @@ import com.google.gwt.junit.tools.GWTTestSuite;
 public class GwtTestSuite extends TestCase {
 
     public static Test suite() {
-        final GWTTestSuite suite = new GWTTestSuite("gwtbootstrap3 suite");
+        GWTTestSuite suite = new GWTTestSuite("gwtbootstrap3 suite");
         suite.addTestSuite(CheckBoxButtonGwt.class);
         suite.addTestSuite(RadioButtonGwt.class);
         suite.addTestSuite(ValidatorsGwt.class);

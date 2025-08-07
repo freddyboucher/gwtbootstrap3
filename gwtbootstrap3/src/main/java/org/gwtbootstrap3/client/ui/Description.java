@@ -36,12 +36,12 @@ public class Description extends ComplexWidget {
         setElement(Document.get().createDLElement());
     }
 
-    public void setHorizontal(final boolean horizontal) {
+    public void setHorizontal(boolean horizontal) {
         setStyleName(Styles.DL_HORIZONTAL, horizontal);
     }
 
     @Override
-    public void add(final Widget child) {
+    public void add(Widget child) {
         if (!(child instanceof DescriptionComponent)) {
             throw new IllegalArgumentException(
                     "Description can only have children of type DescriptionData and DescriptionTitle");

@@ -27,7 +27,7 @@ import com.google.gwt.event.shared.GwtEvent;
  * @author Joshua Godi
  */
 public class ShowEvent extends GwtEvent<ShowHandler> {
-    private static final Type<ShowHandler> TYPE = new Type<ShowHandler>();
+    private static final Type<ShowHandler> TYPE = new Type<>();
     private final NativeEvent nativeEvent;
 
     public static Type<ShowHandler> getType() {
@@ -38,7 +38,7 @@ public class ShowEvent extends GwtEvent<ShowHandler> {
         this(null);
     }
 
-    public ShowEvent(final NativeEvent nativeEvent) {
+    public ShowEvent(NativeEvent nativeEvent) {
         this.nativeEvent = nativeEvent;
     }
 
@@ -48,7 +48,7 @@ public class ShowEvent extends GwtEvent<ShowHandler> {
     }
 
     @Override
-    protected void dispatch(final ShowHandler handler) {
+    protected void dispatch(ShowHandler handler) {
         handler.onShow(this);
     }
 

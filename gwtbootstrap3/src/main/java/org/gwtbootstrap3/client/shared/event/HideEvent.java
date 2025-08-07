@@ -27,7 +27,7 @@ import com.google.gwt.event.shared.GwtEvent;
  * @author Joshua Godi
  */
 public class HideEvent extends GwtEvent<HideHandler> {
-    private static final Type<HideHandler> TYPE = new Type<HideHandler>();
+    private static final Type<HideHandler> TYPE = new Type<>();
     private final NativeEvent nativeEvent;
 
     public static Type<HideHandler> getType() {
@@ -38,7 +38,7 @@ public class HideEvent extends GwtEvent<HideHandler> {
         this(null);
     }
 
-    public HideEvent(final NativeEvent nativeEvent) {
+    public HideEvent(NativeEvent nativeEvent) {
         this.nativeEvent = nativeEvent;
     }
 
@@ -48,7 +48,7 @@ public class HideEvent extends GwtEvent<HideHandler> {
     }
 
     @Override
-    protected void dispatch(final HideHandler handler) {
+    protected void dispatch(HideHandler handler) {
         handler.onHide(this);
     }
 

@@ -32,5 +32,5 @@ public interface HasFormValue {
 
     String getFormValue();
 
-    void setFormValue(final String value);
+    void setFormValue(String value);
 }

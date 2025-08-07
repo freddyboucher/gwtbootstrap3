@@ -42,7 +42,7 @@ public class AlertOptions extends DialogOptions {
      * @param message
      * @return
      */
-    public static final AlertOptions newOptions(final String message) {
+    public static final AlertOptions newOptions(String message) {
         AlertOptions options = JavaScriptObject.createObject().cast();
         options.setMessage(message);
         return options;

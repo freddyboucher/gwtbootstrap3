@@ -35,7 +35,7 @@ public class RenderedEvent extends GwtEvent<RenderedHandler> {
      *
      * @param source the source of the handlers
      */
-    public static void fire(final HasRenderedHandlers source) {
+    public static void fire(HasRenderedHandlers source) {
         if (TYPE != null) {
             RenderedEvent event = new RenderedEvent();
             source.fireEvent(event);
@@ -49,7 +49,7 @@ public class RenderedEvent extends GwtEvent<RenderedHandler> {
      */
     public static Type<RenderedHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<RenderedHandler>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -60,7 +60,7 @@ public class RenderedEvent extends GwtEvent<RenderedHandler> {
     }
 
     @Override
-    protected void dispatch(final RenderedHandler handler) {
+    protected void dispatch(RenderedHandler handler) {
         handler.onRendered(this);
     }
 

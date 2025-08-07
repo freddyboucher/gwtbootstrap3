@@ -72,7 +72,7 @@ public class SummernoteImageUploadEvent extends GwtEvent<SummernoteImageUploadHa
      *
      * @param source the source of the handlers
      */
-    public static void fire(final HasSummernoteImageUploadHandlers source, JsArray<ImageFile> images) {
+    public static void fire(HasSummernoteImageUploadHandlers source, JsArray<ImageFile> images) {
         if (TYPE != null) {
             SummernoteImageUploadEvent event = new SummernoteImageUploadEvent(images);
             source.fireEvent(event);
@@ -86,7 +86,7 @@ public class SummernoteImageUploadEvent extends GwtEvent<SummernoteImageUploadHa
      */
     public static Type<SummernoteImageUploadHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<SummernoteImageUploadHandler>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -97,7 +97,7 @@ public class SummernoteImageUploadEvent extends GwtEvent<SummernoteImageUploadHa
     }
 
     @Override
-    protected void dispatch(final SummernoteImageUploadHandler handler) {
+    protected void dispatch(SummernoteImageUploadHandler handler) {
         handler.onSummernoteImageUpload(this);
     }
 

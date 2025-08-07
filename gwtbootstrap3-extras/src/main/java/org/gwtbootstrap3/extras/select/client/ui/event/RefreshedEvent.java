@@ -35,7 +35,7 @@ public class RefreshedEvent extends GwtEvent<RefreshedHandler> {
      *
      * @param source the source of the handlers
      */
-    public static void fire(final HasRefreshedHandlers source) {
+    public static void fire(HasRefreshedHandlers source) {
         if (TYPE != null) {
             RefreshedEvent event = new RefreshedEvent();
             source.fireEvent(event);
@@ -49,7 +49,7 @@ public class RefreshedEvent extends GwtEvent<RefreshedHandler> {
      */
     public static Type<RefreshedHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<RefreshedHandler>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -60,7 +60,7 @@ public class RefreshedEvent extends GwtEvent<RefreshedHandler> {
     }
 
     @Override
-    protected void dispatch(final RefreshedHandler handler) {
+    protected void dispatch(RefreshedHandler handler) {
         handler.onRefreshed(this);
     }
 

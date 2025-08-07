@@ -41,11 +41,11 @@ public enum NotifyType implements Type, HasCssName {
 
     private final String cssClass;
 
-    private NotifyType(final String cssClass) {
+    NotifyType(String cssClass) {
         this.cssClass = cssClass;
     }
 
-    public static NotifyType fromStyleName(final String styleName) {
+    public static NotifyType fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, NotifyType.class, INFO);
     }
 

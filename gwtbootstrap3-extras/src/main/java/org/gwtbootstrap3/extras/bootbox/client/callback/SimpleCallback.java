@@ -35,8 +35,5 @@ public interface SimpleCallback extends Callback {
     /**
      * Default {@link SimpleCallback} does nothing.
      */
-    static final SimpleCallback DEFAULT_SIMPLE_CALLBACK = new SimpleCallback() {
-        @Override
-        public void callback() {}
-    };
+    SimpleCallback DEFAULT_SIMPLE_CALLBACK = () -> {};
 }

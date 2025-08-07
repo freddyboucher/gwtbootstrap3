@@ -28,15 +28,13 @@ import org.gwtbootstrap3.extras.summernote.client.ui.base.SummernoteBase;
 public class Summernote extends SummernoteBase {
 
     public Summernote() {
-        super();
     }
 
-    public Summernote(final int height) {
-        super();
+    public Summernote(int height) {
         setDefaultHeight(height);
     }
 
-    public Summernote(final int height, final boolean hasFocus) {
+    public Summernote(int height, boolean hasFocus) {
         this(height);
         setHasFocus(hasFocus);
     }

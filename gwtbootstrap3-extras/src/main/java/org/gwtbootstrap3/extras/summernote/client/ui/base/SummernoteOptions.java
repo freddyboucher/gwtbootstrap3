@@ -120,7 +120,7 @@ class SummernoteOptions extends JavaScriptObject {
         return getToolbarGroup(name, arr);
     }
 
-    private static final native JsArrayMixed getToolbarGroup(String name, JsArrayString buttons) /*-{
+    private static native JsArrayMixed getToolbarGroup(String name, JsArrayString buttons) /*-{
         return [name, buttons];
     }-*/;
 

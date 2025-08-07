@@ -40,7 +40,7 @@ public class AnimateView extends ViewImpl implements AnimatePresenter.MyView {
     }
 
     @Inject
-    AnimateView(final Binder uiBinder) {
+    AnimateView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
         Animate.animate(animated, Animation.RUBBER_BAND);
     }

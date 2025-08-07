@@ -33,7 +33,6 @@ import com.google.gwt.dom.client.Style.Unit;
 public class InlineHelpBlock extends HelpBlock {
 
     public InlineHelpBlock() {
-        super();
         Style style = getElement().getStyle();
         style.setDisplay(Display.INLINE_BLOCK);
         style.setMarginTop(0, Unit.PX);

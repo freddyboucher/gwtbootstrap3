@@ -39,7 +39,7 @@ import com.google.gwt.user.client.ui.impl.HyperlinkImpl;
  *
  * @author Sven Jacobs
  * @see Button
- * @see org.gwtbootstrap3.client.ui.base.button.AbstractToggleButton
+ * @see AbstractToggleButton
  */
 public class AnchorButton extends AbstractToggleButton implements HasHref, HasTargetHistoryToken {
 
@@ -47,7 +47,7 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, HasTa
 
     private static HyperlinkImpl impl = GWT.create(HyperlinkImpl.class);
 
-    public AnchorButton(final ButtonType type) {
+    public AnchorButton(ButtonType type) {
         super(type);
         setHref(EMPTY_HREF);
         sinkEvents(Event.ONCLICK);
@@ -71,10 +71,10 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, HasTa
      * @param targetHistoryToken String target history token of the widget
      */
     @Override
-    public void setTargetHistoryToken(final String targetHistoryToken) {
+    public void setTargetHistoryToken(String targetHistoryToken) {
         this.targetHistoryToken = targetHistoryToken;
         if (targetHistoryToken != null) {
-            final String hash = History.encodeHistoryToken(targetHistoryToken);
+            String hash = History.encodeHistoryToken(targetHistoryToken);
             getAnchorElement().setHref("#" + hash);
         }
     }
@@ -99,8 +99,8 @@ public class AnchorButton extends AbstractToggleButton implements HasHref, HasTa
      * @param href String href
      */
     @Override
-    public void setHref(final String href) {
-        this.targetHistoryToken = null;
+    public void setHref(String href) {
+        targetHistoryToken = null;
         getAnchorElement().setHref(href);
     }
 

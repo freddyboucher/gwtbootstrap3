@@ -37,7 +37,7 @@ public enum TooltipType implements Type {
 
     private final String type;
 
-    private TooltipType(final String type) {
+    TooltipType(String type) {
         this.type = type;
     }
 

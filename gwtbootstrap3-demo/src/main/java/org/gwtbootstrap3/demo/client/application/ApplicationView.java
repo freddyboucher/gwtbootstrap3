@@ -48,12 +48,12 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     @Inject
-    ApplicationView(final Binder binder) {
+    ApplicationView(Binder binder) {
         initWidget(binder.createAndBindUi(this));
     }
 
     @Override
-    public void setInSlot(final Object slot, final IsWidget content) {
+    public void setInSlot(Object slot, IsWidget content) {
         if (slot == ApplicationPresenter.TYPE_SetMainContent) {
             contentContainer.setWidget(content);
         } else {

@@ -41,7 +41,7 @@ public class Range {
      * @param minValue
      * @param maxValue
      */
-    public Range(final double minValue, final double maxValue) {
+    public Range(double minValue, double maxValue) {
         this.minValue = minValue;
         this.maxValue = maxValue;
     }
@@ -53,7 +53,7 @@ public class Range {
      *
      * @param array
      */
-    public Range(final JsArrayNumber array) {
+    public Range(JsArrayNumber array) {
         this(array.get(0), array.get(1));
     }
 

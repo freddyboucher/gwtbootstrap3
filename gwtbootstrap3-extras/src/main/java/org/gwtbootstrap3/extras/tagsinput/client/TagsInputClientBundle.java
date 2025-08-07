@@ -29,8 +29,8 @@ import com.google.gwt.resources.client.TextResource;
  * @author Marko Nikolić <marko.nikolic@iten.rs>
  */
 public interface TagsInputClientBundle extends ClientBundle {
-    public static final TagsInputClientBundle INSTANCE = GWT.create(TagsInputClientBundle.class);
-    static final String VERSION = "0.8.0";
+    TagsInputClientBundle INSTANCE = GWT.create(TagsInputClientBundle.class);
+    String VERSION = "0.8.0";
 
     @Source("resource/js/bootstrap-tagsinput-" + VERSION + ".min.cache.js")
     TextResource tagsinput();

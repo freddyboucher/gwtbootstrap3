@@ -42,7 +42,7 @@ public class ErrorHandlerMixin<V> implements HasEditorErrors<V>, HasErrorHandler
 
     private ErrorHandlerType errorHandlerType = ErrorHandlerType.DEFAULT;
 
-    private Widget inputWidget = null;
+    private Widget inputWidget;
 
     /**
      * Mixin for the {@link ErrorHandler} implementation.

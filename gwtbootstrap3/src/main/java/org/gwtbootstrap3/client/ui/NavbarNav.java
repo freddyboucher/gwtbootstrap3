@@ -42,7 +42,7 @@ public class NavbarNav extends UnorderedList {
     }
 
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         NavbarPull navbarPull = NavbarPull.NONE;
 
         if (pull == Pull.LEFT) {
@@ -56,7 +56,7 @@ public class NavbarNav extends UnorderedList {
 
     @Override
     public Pull getPull() {
-        final NavbarPull navbarPull = NavbarPull.fromStyleName(getStyleName());
+        NavbarPull navbarPull = NavbarPull.fromStyleName(getStyleName());
 
         if (navbarPull == NavbarPull.NONE) {
             return Pull.NONE;

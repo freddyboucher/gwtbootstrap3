@@ -32,21 +32,20 @@ import org.gwtbootstrap3.client.ui.base.RadioGroupBase;
  */
 public class RadioGroupBlankValidator<T> extends BlankValidator<T> {
 
-    private RadioGroupBase<T> inputWidget = null;
+    private RadioGroupBase<T> inputWidget;
 
     /**
      * Constructor.
      *
      * @param inputWidget the input widget
      */
-    public RadioGroupBlankValidator(final RadioGroupBase<T> inputWidget) {
-        super();
+    public RadioGroupBlankValidator(RadioGroupBase<T> inputWidget) {
         this.inputWidget = inputWidget;
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean isValid(final T value) {
+    public boolean isValid(T value) {
         boolean valid = false;
         for (Radio child : inputWidget.getRadioChildren()) {
             valid |= child.getValue();

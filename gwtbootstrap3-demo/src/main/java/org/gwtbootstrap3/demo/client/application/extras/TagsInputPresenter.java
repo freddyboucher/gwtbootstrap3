@@ -45,9 +45,9 @@ public class TagsInputPresenter extends Presenter<TagsInputPresenter.MyView, Tag
     }
 
     @Inject
-    public TagsInputPresenter(final EventBus eventBus,
-                              final MyView view,
-                              final MyProxy proxy) {
+    public TagsInputPresenter(EventBus eventBus,
+                              MyView view,
+                              MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

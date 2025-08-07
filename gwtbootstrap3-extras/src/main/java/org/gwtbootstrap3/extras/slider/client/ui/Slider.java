@@ -49,7 +49,7 @@ public class Slider extends SliderBase<Double> {
      * @param value
      */
     @UiConstructor
-    public Slider(final double min, final double max, final double value) {
+    public Slider(double min, double max, double value) {
         this();
         setMin(min);
         setMax(max);

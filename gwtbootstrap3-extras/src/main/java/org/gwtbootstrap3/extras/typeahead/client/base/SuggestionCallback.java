@@ -33,11 +33,11 @@ import java.util.Collection;
 public class SuggestionCallback<T> {
     private final JavaScriptObject jsCallback;
 
-    public SuggestionCallback(final JavaScriptObject jsCallback) {
+    public SuggestionCallback(JavaScriptObject jsCallback) {
         this.jsCallback = jsCallback;
     }
 
-    public void execute(final Collection<Suggestion<T>> suggestions) {
+    public void execute(Collection<Suggestion<T>> suggestions) {
         JsArray<Suggestion<T>> jsArray = JsArrayString.createArray().cast();
         if (suggestions != null) {
             for (Suggestion<T> s : suggestions) {

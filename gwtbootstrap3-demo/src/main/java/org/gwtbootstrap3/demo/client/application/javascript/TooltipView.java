@@ -20,8 +20,6 @@ package org.gwtbootstrap3.demo.client.application.javascript;
  * #L%
  */
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
@@ -46,21 +44,11 @@ public class TooltipView extends ViewImpl implements TooltipPresenter.MyView {
     }
 
     @Inject
-    TooltipView(final Binder uiBinder) {
+    TooltipView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
 
-        forceHideButton.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(final ClickEvent event) {
-                forceTooltip.hide();
-            }
-        });
+        forceHideButton.addClickHandler(event -> forceTooltip.hide());
 
-        forceShowButton.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(final ClickEvent event) {
-                forceTooltip.show();
-            }
-        });
+        forceShowButton.addClickHandler(event -> forceTooltip.show());
     }
 }

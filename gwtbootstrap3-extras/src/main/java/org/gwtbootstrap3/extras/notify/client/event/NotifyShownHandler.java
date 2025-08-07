@@ -33,8 +33,5 @@ public interface NotifyShownHandler {
     /**
      * Default Notify's shown handler
      */
-    static NotifyShownHandler DEFAULT_SHOWN_HANDLER = new NotifyShownHandler() {
-        @Override
-        public void onShown() {}
-    };
+    NotifyShownHandler DEFAULT_SHOWN_HANDLER = () -> {};
 }

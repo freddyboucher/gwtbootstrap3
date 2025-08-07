@@ -33,7 +33,7 @@ public class NavView extends ViewImpl implements NavPresenter.MyView {
     }
 
     @Inject
-    NavView(final Binder uiBinder) {
+    NavView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

@@ -42,7 +42,7 @@ public class SummernoteKeyDownEvent extends GwtEvent<SummernoteKeyDownHandler> {
      * @param source the source of the handlers
      * @param nativeEvent native key down event
      */
-    public static void fire(final HasSummernoteKeyDownHandlers source, NativeEvent nativeEvent) {
+    public static void fire(HasSummernoteKeyDownHandlers source, NativeEvent nativeEvent) {
         if (TYPE != null) {
             SummernoteKeyDownEvent event = new SummernoteKeyDownEvent(nativeEvent);
             source.fireEvent(event);
@@ -56,7 +56,7 @@ public class SummernoteKeyDownEvent extends GwtEvent<SummernoteKeyDownHandler> {
      */
     public static Type<SummernoteKeyDownHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<SummernoteKeyDownHandler>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -67,7 +67,7 @@ public class SummernoteKeyDownEvent extends GwtEvent<SummernoteKeyDownHandler> {
     }
 
     @Override
-    protected void dispatch(final SummernoteKeyDownHandler handler) {
+    protected void dispatch(SummernoteKeyDownHandler handler) {
         handler.onSummnernoteKeyDown(this);
     }
 

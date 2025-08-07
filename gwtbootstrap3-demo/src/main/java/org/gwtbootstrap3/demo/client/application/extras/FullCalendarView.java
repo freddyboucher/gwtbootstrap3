@@ -23,8 +23,6 @@ package org.gwtbootstrap3.demo.client.application.extras;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.LoadEvent;
-import com.google.gwt.event.dom.client.LoadHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -36,7 +34,19 @@ import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.gwt.FlowPanel;
-import org.gwtbootstrap3.extras.fullcalendar.client.ui.*;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.CalendarConfig;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.ClickAndHoverConfig;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.ClickAndHoverEventCallback;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.DragAndResizeCallback;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.DragAndResizeConfig;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.Event;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.FullCalendar;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.GeneralDisplay;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.Header;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.Language;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.SelectConfig;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.SelectEventCallback;
+import org.gwtbootstrap3.extras.fullcalendar.client.ui.ViewOption;
 
 import java.util.Date;
 
@@ -67,12 +77,12 @@ public class FullCalendarView extends ViewImpl implements FullCalendarPresenter.
     }
 
     @Inject
-    FullCalendarView(final Binder uiBinder) {
+    FullCalendarView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
     
     @UiHandler("backgroundEvents")
-    public void backgroundEvents(final ClickEvent event) {
+    public void backgroundEvents(ClickEvent event) {
         if (backgroundEventsCalendar != null) {
             return;
         }
@@ -88,19 +98,13 @@ public class FullCalendarView extends ViewImpl implements FullCalendarPresenter.
         config.setSelectHelper(false);
 
         backgroundEventsCalendar = new FullCalendar("" + System.currentTimeMillis(), ViewOption.month, config, true);
-        backgroundEventsCalendar.addLoadHandler(new LoadHandler() {
-
-            @Override
-            public void onLoad(LoadEvent event) {
-                addBackgroundEvents(backgroundEventsCalendar);
-            }
-        });
+        backgroundEventsCalendar.addLoadHandler(event1 -> addBackgroundEvents(backgroundEventsCalendar));
         backgroundEventsPanel.add(backgroundEventsCalendar);
     }
     
     
     @UiHandler("localization")
-    public void localization(final ClickEvent event) {
+    public void localization(ClickEvent event) {
         if (localizationCalendar != null) {
             return;
         }
@@ -108,18 +112,12 @@ public class FullCalendarView extends ViewImpl implements FullCalendarPresenter.
         config.setLangauge(Language.Spanish);
 
         localizationCalendar = new FullCalendar("" + System.currentTimeMillis(), ViewOption.agendaWeek, config, true);
-        localizationCalendar.addLoadHandler(new LoadHandler() {
-
-            @Override
-            public void onLoad(LoadEvent event) {
-                addEvents(localizationCalendar);
-            }
-        });
+        localizationCalendar.addLoadHandler(event1 -> addEvents(localizationCalendar));
         localizationPanel.add(localizationCalendar);
     }
     
     @UiHandler("configuring")
-    public void configuring(final ClickEvent event) {
+    public void configuring(ClickEvent event) {
         if (configuringCalendar != null) {
             return;
         }
@@ -213,13 +211,7 @@ public class FullCalendarView extends ViewImpl implements FullCalendarPresenter.
         config.setGeneralDisplay(gd);
 
         configuringCalendar = new FullCalendar("" + System.currentTimeMillis(), ViewOption.agendaWeek, config, true);
-        configuringCalendar.addLoadHandler(new LoadHandler() {
-
-            @Override
-            public void onLoad(LoadEvent event) {
-                addEvents(configuringCalendar);
-            }
-        });
+        configuringCalendar.addLoadHandler(event1 -> addEvents(configuringCalendar));
         configuringPanel.add(configuringCalendar);
     }
 

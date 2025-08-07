@@ -38,7 +38,7 @@ public class IntegerRadioGroup extends RadioGroupBase<Integer> {
      * @param name the name.
      */
     @UiConstructor
-    public IntegerRadioGroup(final String name) {
+    public IntegerRadioGroup(String name) {
         super(name, IntegerParser.instance());
     }
 

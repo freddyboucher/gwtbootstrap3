@@ -40,7 +40,7 @@ public class ColumnFormat extends AbstractViewOptionFormat implements IsJavaScri
         if (options == null) {
             options = getDefaultOptions();
         }
-        for (final ViewOptionHash option : options.keySet()) {
+        for (ViewOptionHash option : options.keySet()) {
             setFormat(option.name(), options.get(option));
         }
     }
@@ -49,7 +49,7 @@ public class ColumnFormat extends AbstractViewOptionFormat implements IsJavaScri
     /**
      * @see http://arshaw.com/fullcalendar/docs/text/columnFormat/
      */
-    protected void populateDefaultOptions(final Map<ViewOptionHash, String> options) {
+    protected void populateDefaultOptions(Map<ViewOptionHash, String> options) {
         options.put(ViewOptionHash.month, "ddd");
         options.put(ViewOptionHash.week, "ddd M/d");
         options.put(ViewOptionHash.day, "dddd M/d");

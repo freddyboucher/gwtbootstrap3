@@ -50,7 +50,7 @@ public class Popover extends AbstractTooltip {
 
     private static final String TEMPLATE = "<div class=\"popover\" role=\"tooltip\"><div class=\"arrow\"></div><h3 class=\"popover-title\"></h3><div class=\"popover-content\"></div></div>";
 
-    private String content = null;
+    private String content;
 
     /**
      * Creates the empty Popover
@@ -65,7 +65,7 @@ public class Popover extends AbstractTooltip {
      *
      * @param title title for the popover
      */
-    public Popover(final String title) {
+    public Popover(String title) {
         this();
         setTitle(title);
     }
@@ -75,7 +75,7 @@ public class Popover extends AbstractTooltip {
      *
      * @param title title for the popover
      */
-    public Popover(final String title, String content) {
+    public Popover(String title, String content) {
         this();
         setTitle(title);
         setContent(content);
@@ -86,7 +86,7 @@ public class Popover extends AbstractTooltip {
      *
      * @param w widget for the popover
      */
-    public Popover(final Widget w) {
+    public Popover(Widget w) {
         this();
         setWidget(w);
     }
@@ -98,7 +98,7 @@ public class Popover extends AbstractTooltip {
      * @param title title for the popover
      * @param content content for the popover
      */
-    public Popover(final Widget w, final String title, String content) {
+    public Popover(Widget w, String title, String content) {
         this();
         setWidget(w);
         setTitle(title);
@@ -111,7 +111,7 @@ public class Popover extends AbstractTooltip {
      * @param e the {@link Element}.
      * @param arg the arg
      */
-    private void call(final Element e, final String arg) {
+    private void call(Element e, String arg) {
         JQuery.jQuery(e).popover(arg);
     }
 
@@ -172,6 +172,6 @@ public class Popover extends AbstractTooltip {
      */
     private void updateTitleWhenShowing(Element e) {
         JQuery.jQuery(e).popover("fixTitle").popover("show");
-    };
+    }
 
 }

@@ -77,7 +77,7 @@ public class SizeValidator<T> extends AbstractValidator<T> {
      * @param max the max to set
      */
     public void setMax(Integer max) {
-        this.maxValue = max;
+        maxValue = max;
         assert maxValue > 0;
     }
 

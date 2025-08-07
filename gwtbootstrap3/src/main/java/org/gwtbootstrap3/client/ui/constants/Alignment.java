@@ -35,7 +35,7 @@ public enum Alignment implements Style.HasCssName {
 
     private final String cssClass;
 
-    private Alignment(final String cssClass) {
+    Alignment(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -44,7 +44,7 @@ public enum Alignment implements Style.HasCssName {
         return cssClass;
     }
 
-    public static Alignment fromStyleName(final String styleName) {
+    public static Alignment fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, Alignment.class, DEFAULT);
     }
 }

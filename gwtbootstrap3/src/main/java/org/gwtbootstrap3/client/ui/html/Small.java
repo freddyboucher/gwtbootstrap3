@@ -36,7 +36,7 @@ public class Small extends AbstractTextWidget {
         super(Document.get().createElement(ElementTags.SMALL));
     }
 
-    public Small(final String text) {
+    public Small(String text) {
         this();
         setHTML(text);
     }

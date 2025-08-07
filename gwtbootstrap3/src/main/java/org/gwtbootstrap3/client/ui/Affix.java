@@ -45,7 +45,7 @@ public class Affix {
      *
      * @param element Element to "affixnize"
      */
-    public static void affix(final Element element) {
+    public static void affix(Element element) {
         internalAffix(element, 10);
     }
 
@@ -55,7 +55,7 @@ public class Affix {
      * @param element Element to "affixnize"
      * @param offset  Offset of affix
      */
-    public static void affix(final Element element, final int offset) {
+    public static void affix(Element element, int offset) {
         internalAffix(element, offset);
     }
 
@@ -64,7 +64,7 @@ public class Affix {
      *
      * @param object Object to "affixnize"
      */
-    public static void affix(final UIObject object) {
+    public static void affix(UIObject object) {
         affix(object.getElement());
     }
 
@@ -74,12 +74,12 @@ public class Affix {
      * @param object Object to "affixnize"
      * @param offset Offset of affix
      */
-    public static void affix(final UIObject object, final int offset) {
+    public static void affix(UIObject object, int offset) {
         affix(object.getElement(), offset);
     }
 
     // @formatter:off
 
     @JsMethod
-    private static native void internalAffix(final Element e, final int offset);
+    private static native void internalAffix( Element e, int offset);
 }

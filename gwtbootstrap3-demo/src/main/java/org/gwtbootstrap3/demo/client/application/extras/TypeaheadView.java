@@ -30,8 +30,6 @@ import org.gwtbootstrap3.extras.typeahead.client.base.Dataset;
 import org.gwtbootstrap3.extras.typeahead.client.base.StringDataset;
 import org.gwtbootstrap3.extras.typeahead.client.base.Suggestion;
 import org.gwtbootstrap3.extras.typeahead.client.base.SuggestionCallback;
-import org.gwtbootstrap3.extras.typeahead.client.base.SuggestionTemplate;
-import org.gwtbootstrap3.extras.typeahead.client.base.Template;
 import org.gwtbootstrap3.extras.typeahead.client.ui.Typeahead;
 
 import java.util.ArrayList;
@@ -49,7 +47,7 @@ public class TypeaheadView extends ViewImpl implements TypeaheadPresenter.MyView
         final String name;
         final int age;
 
-        Person(final String name, final int age) {
+        Person(String name, int age) {
             this.name = name;
             this.age = age;
         }
@@ -72,11 +70,11 @@ public class TypeaheadView extends ViewImpl implements TypeaheadPresenter.MyView
     @UiField(provided = true)
     Typeahead<Person> templateTypeahead;
 
-    private final List<Person> persons = new ArrayList<Person>();
+    private final List<Person> persons = new ArrayList<>();
     private final String placeholder = "Enter a name";
 
     @Inject
-    TypeaheadView(final Binder uiBinder) {
+    TypeaheadView(Binder uiBinder) {
       persons.add(new Person("Bill Happernan", 50));
       persons.add(new Person("Bob Wondersteen", 38));
       persons.add(new Person("Bobak Longfield", 24));
@@ -102,71 +100,53 @@ public class TypeaheadView extends ViewImpl implements TypeaheadPresenter.MyView
     }
 
     private void createStaticTypeahead() {
-      List<String> names = new ArrayList<String>();
+      List<String> names = new ArrayList<>();
       for (Person person : persons) {
         names.add(person.name);
       }
 
       StringDataset dataset = new StringDataset(names);
-      staticTypeahead = new Typeahead<String>(dataset);
+      staticTypeahead = new Typeahead<>(dataset);
       staticTypeahead.setPlaceholder(placeholder);
     }
 
     private void createAsyncTypeahead() {
-      asyncTypeahead = new Typeahead<Person>(new Dataset<Person>() {
-        @Override
-        public void findMatches(String query, SuggestionCallback<Person> callback) {
-          List<Suggestion<Person>> suggestions = new ArrayList<Suggestion<Person>>();
+      asyncTypeahead = new Typeahead<>(new Dataset<Person>() {
+          @Override
+          public void findMatches(String query, SuggestionCallback<Person> callback) {
+              List<Suggestion<Person>> suggestions = new ArrayList<>();
 
-          String queryLower = query.toLowerCase();
-          for (Person person : persons) {
-            if (person.name.toLowerCase().contains(queryLower)) {
-              Suggestion<Person> s = Suggestion.create(person.name, person, this);
-              suggestions.add(s);
-            }
+              String queryLower = query.toLowerCase();
+              for (Person person : persons) {
+                  if (person.name.toLowerCase().contains(queryLower)) {
+                      Suggestion<Person> s = Suggestion.create(person.name, person, this);
+                      suggestions.add(s);
+                  }
+              }
+
+              callback.execute(suggestions);
           }
-
-          callback.execute(suggestions);
-        }
       });
       asyncTypeahead.setPlaceholder(placeholder);
     }
 
   private void createHighlightTypeahead() {
-    CollectionDataset<Person> dataset = new CollectionDataset<Person>(persons);
-    highlightTypeahead = new Typeahead<Person>(dataset);
+    CollectionDataset<Person> dataset = new CollectionDataset<>(persons);
+    highlightTypeahead = new Typeahead<>(dataset);
     highlightTypeahead.setPlaceholder(placeholder);
     highlightTypeahead.setHighlight(true);
   }
 
   private void createTemplateTypeahead() {
-    CollectionDataset<Person> dataset = new CollectionDataset<Person>(persons);
-    dataset.setSuggestionTemplate(new SuggestionTemplate<Person>() {
-      @Override
-      public String render(Suggestion<Person> suggestion) {
-        Person person = suggestion.getData();
-        return "<strong>" + person.name + "</strong>&nbsp; - " + person.age + " years";
-      }
+    CollectionDataset<Person> dataset = new CollectionDataset<>(persons);
+    dataset.setSuggestionTemplate(suggestion -> {
+      Person person = suggestion.getData();
+      return "<strong>" + person.name + "</strong>&nbsp; - " + person.age + " years";
     });
-    dataset.setEmptyTemplate(new Template() {
-      @Override
-      public String render() {
-        return "<div style=\"color:red;padding:6px 12px\"><strong>Empty, no matches!</strong></div>";
-      }
-    });
-    dataset.setHeaderTemplate(new Template() {
-      @Override
-      public String render() {
-        return "<span style=\"padding:6px 12px\"><i>Header</i></div>";
-      }
-    });
-    dataset.setFooterTemplate(new Template() {
-      @Override
-      public String render() {
-        return "<span style=\"padding:6px 12px\"><i>Footer</i></div>";
-      }
-    });
-    templateTypeahead = new Typeahead<Person>(dataset);
+    dataset.setEmptyTemplate(() -> "<div style=\"color:red;padding:6px 12px\"><strong>Empty, no matches!</strong></div>");
+    dataset.setHeaderTemplate(() -> "<span style=\"padding:6px 12px\"><i>Header</i></div>");
+    dataset.setFooterTemplate(() -> "<span style=\"padding:6px 12px\"><i>Footer</i></div>");
+    templateTypeahead = new Typeahead<>(dataset);
     templateTypeahead.setPlaceholder(placeholder);
     templateTypeahead.setWidth("360px");
   }

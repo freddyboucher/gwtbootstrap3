@@ -43,8 +43,8 @@ import org.gwtbootstrap3.client.ui.html.Div;
  * </pre>
  *
  * @author Joshua Godi
- * @see org.gwtbootstrap3.client.ui.TabContent
- * @see org.gwtbootstrap3.client.ui.NavTabs
+ * @see TabContent
+ * @see NavTabs
  */
 public class TabPanel extends Div implements HasTabPosition {
 
@@ -59,7 +59,7 @@ public class TabPanel extends Div implements HasTabPosition {
      * {@inheritDoc}
      */
     @Override
-    public void setTabPosition(final TabPosition tabPosition) {
+    public void setTabPosition(TabPosition tabPosition) {
         // When setting TabPosition that isn't TOP, make sure to inherit the
         // PositionedTabs module from Extra's in order to get the CSS injected!
         StyleHelper.addUniqueEnumStyleName(this, TabPosition.class, tabPosition);

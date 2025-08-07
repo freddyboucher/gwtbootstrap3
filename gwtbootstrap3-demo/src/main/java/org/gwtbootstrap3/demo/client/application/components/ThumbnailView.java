@@ -33,7 +33,7 @@ public class ThumbnailView extends ViewImpl implements ThumbnailPresenter.MyView
     }
 
     @Inject
-    ThumbnailView(final Binder uiBinder) {
+    ThumbnailView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

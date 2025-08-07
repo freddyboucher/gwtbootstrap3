@@ -34,7 +34,7 @@ import com.google.gwt.uibinder.client.UiConstructor;
 public class Abbreviation extends AbstractTextWidget {
 
     @UiConstructor
-    public Abbreviation(final String title) {
+    public Abbreviation(String title) {
         super(Document.get().createElement(ElementTags.ABBR));
         setTitle(title);
     }

@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,17 +21,114 @@ package org.gwtbootstrap3.demo.client.application;
  */
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
-
-import org.gwtbootstrap3.demo.client.application.components.*;
-import org.gwtbootstrap3.demo.client.application.css.*;
+import org.gwtbootstrap3.demo.client.application.components.AlertPresenter;
+import org.gwtbootstrap3.demo.client.application.components.AlertView;
+import org.gwtbootstrap3.demo.client.application.components.BadgePresenter;
+import org.gwtbootstrap3.demo.client.application.components.BadgeView;
+import org.gwtbootstrap3.demo.client.application.components.BreadcrumbPresenter;
+import org.gwtbootstrap3.demo.client.application.components.BreadcrumbView;
+import org.gwtbootstrap3.demo.client.application.components.ButtonDropdownPresenter;
+import org.gwtbootstrap3.demo.client.application.components.ButtonDropdownView;
+import org.gwtbootstrap3.demo.client.application.components.ButtonGroupPresenter;
+import org.gwtbootstrap3.demo.client.application.components.ButtonGroupView;
+import org.gwtbootstrap3.demo.client.application.components.DropdownPresenter;
+import org.gwtbootstrap3.demo.client.application.components.DropdownView;
+import org.gwtbootstrap3.demo.client.application.components.IconPresenter;
+import org.gwtbootstrap3.demo.client.application.components.IconView;
+import org.gwtbootstrap3.demo.client.application.components.InputGroupPresenter;
+import org.gwtbootstrap3.demo.client.application.components.InputGroupView;
+import org.gwtbootstrap3.demo.client.application.components.JumbotronPresenter;
+import org.gwtbootstrap3.demo.client.application.components.JumbotronView;
+import org.gwtbootstrap3.demo.client.application.components.LabelPresenter;
+import org.gwtbootstrap3.demo.client.application.components.LabelView;
+import org.gwtbootstrap3.demo.client.application.components.ListGroupPresenter;
+import org.gwtbootstrap3.demo.client.application.components.ListGroupView;
+import org.gwtbootstrap3.demo.client.application.components.MediaObjectPresenter;
+import org.gwtbootstrap3.demo.client.application.components.MediaObjectView;
+import org.gwtbootstrap3.demo.client.application.components.NavPresenter;
+import org.gwtbootstrap3.demo.client.application.components.NavView;
+import org.gwtbootstrap3.demo.client.application.components.NavbarPresenter;
+import org.gwtbootstrap3.demo.client.application.components.NavbarView;
+import org.gwtbootstrap3.demo.client.application.components.PageHeaderPresenter;
+import org.gwtbootstrap3.demo.client.application.components.PageHeaderView;
+import org.gwtbootstrap3.demo.client.application.components.PaginationPresenter;
+import org.gwtbootstrap3.demo.client.application.components.PaginationView;
+import org.gwtbootstrap3.demo.client.application.components.PanelPresenter;
+import org.gwtbootstrap3.demo.client.application.components.PanelView;
+import org.gwtbootstrap3.demo.client.application.components.ProgressBarPresenter;
+import org.gwtbootstrap3.demo.client.application.components.ProgressBarView;
+import org.gwtbootstrap3.demo.client.application.components.SuggestBoxPresenter;
+import org.gwtbootstrap3.demo.client.application.components.SuggestBoxView;
+import org.gwtbootstrap3.demo.client.application.components.ThumbnailPresenter;
+import org.gwtbootstrap3.demo.client.application.components.ThumbnailView;
+import org.gwtbootstrap3.demo.client.application.components.WellPresenter;
+import org.gwtbootstrap3.demo.client.application.components.WellView;
+import org.gwtbootstrap3.demo.client.application.css.ButtonsPresenter;
+import org.gwtbootstrap3.demo.client.application.css.ButtonsView;
+import org.gwtbootstrap3.demo.client.application.css.CodePresenter;
+import org.gwtbootstrap3.demo.client.application.css.CodeView;
+import org.gwtbootstrap3.demo.client.application.css.FormsPresenter;
+import org.gwtbootstrap3.demo.client.application.css.FormsView;
+import org.gwtbootstrap3.demo.client.application.css.GridSystemPresenter;
+import org.gwtbootstrap3.demo.client.application.css.GridSystemView;
+import org.gwtbootstrap3.demo.client.application.css.ImagesPresenter;
+import org.gwtbootstrap3.demo.client.application.css.ImagesView;
+import org.gwtbootstrap3.demo.client.application.css.ResponsiveUtilitiesPresenter;
+import org.gwtbootstrap3.demo.client.application.css.ResponsiveUtilitiesView;
+import org.gwtbootstrap3.demo.client.application.css.TablesPresenter;
+import org.gwtbootstrap3.demo.client.application.css.TablesView;
+import org.gwtbootstrap3.demo.client.application.css.TypographyPresenter;
+import org.gwtbootstrap3.demo.client.application.css.TypographyView;
 import org.gwtbootstrap3.demo.client.application.css.validation.FormsWithValidationPresenter;
 import org.gwtbootstrap3.demo.client.application.css.validation.FormsWithValidationView;
-import org.gwtbootstrap3.demo.client.application.extras.*;
+import org.gwtbootstrap3.demo.client.application.extras.AnimatePresenter;
+import org.gwtbootstrap3.demo.client.application.extras.AnimateView;
+import org.gwtbootstrap3.demo.client.application.extras.BootboxJSPresenter;
+import org.gwtbootstrap3.demo.client.application.extras.BootboxJSView;
+import org.gwtbootstrap3.demo.client.application.extras.BootstrapSelectPresenter;
+import org.gwtbootstrap3.demo.client.application.extras.BootstrapSelectView;
+import org.gwtbootstrap3.demo.client.application.extras.CardPresenter;
+import org.gwtbootstrap3.demo.client.application.extras.CardView;
+import org.gwtbootstrap3.demo.client.application.extras.DatePickerPresenter;
+import org.gwtbootstrap3.demo.client.application.extras.DatePickerView;
+import org.gwtbootstrap3.demo.client.application.extras.DateTimePickerPresenter;
+import org.gwtbootstrap3.demo.client.application.extras.DateTimePickerView;
+import org.gwtbootstrap3.demo.client.application.extras.FullCalendarPresenter;
+import org.gwtbootstrap3.demo.client.application.extras.FullCalendarView;
+import org.gwtbootstrap3.demo.client.application.extras.GalleryPresenter;
+import org.gwtbootstrap3.demo.client.application.extras.GalleryView;
+import org.gwtbootstrap3.demo.client.application.extras.NotifyPresenter;
+import org.gwtbootstrap3.demo.client.application.extras.NotifyView;
+import org.gwtbootstrap3.demo.client.application.extras.OfflinePresenter;
+import org.gwtbootstrap3.demo.client.application.extras.OfflineView;
+import org.gwtbootstrap3.demo.client.application.extras.SliderPresenter;
+import org.gwtbootstrap3.demo.client.application.extras.SliderView;
+import org.gwtbootstrap3.demo.client.application.extras.SummernotePresenter;
+import org.gwtbootstrap3.demo.client.application.extras.SummernoteView;
+import org.gwtbootstrap3.demo.client.application.extras.TagsInputPresenter;
+import org.gwtbootstrap3.demo.client.application.extras.TagsInputView;
+import org.gwtbootstrap3.demo.client.application.extras.ToggleSwitchPresenter;
+import org.gwtbootstrap3.demo.client.application.extras.ToggleSwitchView;
+import org.gwtbootstrap3.demo.client.application.extras.TypeaheadPresenter;
+import org.gwtbootstrap3.demo.client.application.extras.TypeaheadView;
 import org.gwtbootstrap3.demo.client.application.general.HomePresenter;
 import org.gwtbootstrap3.demo.client.application.general.HomeView;
 import org.gwtbootstrap3.demo.client.application.general.SetupPresenter;
 import org.gwtbootstrap3.demo.client.application.general.SetupView;
-import org.gwtbootstrap3.demo.client.application.javascript.*;
+import org.gwtbootstrap3.demo.client.application.javascript.AffixPresenter;
+import org.gwtbootstrap3.demo.client.application.javascript.AffixView;
+import org.gwtbootstrap3.demo.client.application.javascript.CarouselPresenter;
+import org.gwtbootstrap3.demo.client.application.javascript.CarouselView;
+import org.gwtbootstrap3.demo.client.application.javascript.CollapsePresenter;
+import org.gwtbootstrap3.demo.client.application.javascript.CollapseView;
+import org.gwtbootstrap3.demo.client.application.javascript.ModalPresenter;
+import org.gwtbootstrap3.demo.client.application.javascript.ModalView;
+import org.gwtbootstrap3.demo.client.application.javascript.PopoverPresenter;
+import org.gwtbootstrap3.demo.client.application.javascript.PopoverView;
+import org.gwtbootstrap3.demo.client.application.javascript.TabPresenter;
+import org.gwtbootstrap3.demo.client.application.javascript.TabView;
+import org.gwtbootstrap3.demo.client.application.javascript.TooltipPresenter;
+import org.gwtbootstrap3.demo.client.application.javascript.TooltipView;
 
 /**
  * @author Joshua Godi

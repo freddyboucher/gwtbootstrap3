@@ -41,8 +41,6 @@ import org.gwtbootstrap3.extras.tagsinput.client.event.ItemAddedOnInitHandler;
 import org.gwtbootstrap3.extras.tagsinput.client.event.ItemRemovedEvent;
 import org.gwtbootstrap3.extras.tagsinput.client.event.ItemRemovedHandler;
 import org.gwtbootstrap3.extras.typeahead.client.base.Dataset;
-import org.gwtbootstrap3.extras.typeahead.client.events.TypeaheadSelectedEvent;
-import org.gwtbootstrap3.extras.typeahead.client.events.TypeaheadSelectedHandler;
 import org.gwtbootstrap3.extras.typeahead.client.ui.Typeahead;
 
 import com.google.gwt.core.client.JavaScriptObject;
@@ -78,22 +76,17 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
     private ScheduledCommand attachTypeahead = new ScheduledCommand() {   
         @Override
         public void execute() {
-            typeahead = new Typeahead<T>(input(), datasets);
+            typeahead = new Typeahead<>(input(), datasets);
             typeahead.reconfigure();
-            typeahead.addTypeaheadSelectedHandler(new TypeaheadSelectedHandler<T>() {
-                @Override
-                public void onSelected(TypeaheadSelectedEvent<T> event) {
-                    add(event.getSuggestion().getData());
-                }
-            });
+            typeahead.addTypeaheadSelectedHandler(event -> add(event.getSuggestion().getData()));
         }
     };
     
-    public void setDatasets(final Dataset<T> dataset) {
-        this.datasets = Arrays.asList(dataset);
+    public void setDatasets(Dataset<T> dataset) {
+        datasets = Arrays.asList(dataset);
     }
 
-    public void setDatasets(final Collection<? extends Dataset<T>> datasets) {
+    public void setDatasets(Collection<? extends Dataset<T>> datasets) {
         this.datasets = datasets;
     }
 
@@ -102,11 +95,11 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
      * 
      * @param tagClass Classname for the tags
      */
-    public void setTagClass(final String tagClass) {
+    public void setTagClass(String tagClass) {
         options.setTagClass(tagClass);
     }
     
-    public void setTagClass(final TagClassCallback<T> cb) {
+    public void setTagClass(TagClassCallback<T> cb) {
         options.setTagClass(cb);
     }
 
@@ -115,11 +108,11 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
      * 
      * @param itemValue name of field used for the tag value
      */
-    public void setItemValue(final String itemValue) {
+    public void setItemValue(String itemValue) {
         options.setItemValue(itemValue);
     }
 
-    public void setItemValue(final ItemValueCallback<T> cb) {
+    public void setItemValue(ItemValueCallback<T> cb) {
         options.setItemValue(cb);
     }
     
@@ -129,11 +122,11 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
      * 
      * @param itemText name of field used for the tag text
      */
-    public void setItemText(final String itemText) {
+    public void setItemText(String itemText) {
         options.setItemText(itemText);
     }
     
-    public void setItemText(final ItemTextCallback<T> cb) {
+    public void setItemText(ItemTextCallback<T> cb) {
         options.setItemText(cb);
     }
     
@@ -143,7 +136,7 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
      * 
      * @param confirmKeys Array of keycodes
      */
-    public void setConfirmKeys(final List<Integer> confirmKeys) {
+    public void setConfirmKeys(List<Integer> confirmKeys) {
         JsArrayInteger keys = JsArrayInteger.createArray().cast();
         
         for(int key : confirmKeys) {
@@ -158,7 +151,7 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
      * 
      * @param maxTags max number of tags
      */
-    public void setMaxTags(final int maxTags) {
+    public void setMaxTags(int maxTags) {
         options.setMaxTags(maxTags);
     }
     
@@ -167,7 +160,7 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
      * 
      * @param maxChars max number of chars
      */
-    public void setMaxChars(final int maxChars) {
+    public void setMaxChars(int maxChars) {
         options.setMaxChars(maxChars);
     }
     
@@ -176,7 +169,7 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
      * 
      * @param trimValue
      */
-    public void setTrimValue(final boolean trimValue) {
+    public void setTrimValue(boolean trimValue) {
         options.setTrimValue(trimValue);
     }
     
@@ -185,7 +178,7 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
      * 
      * @param allowDuplicates
      */
-    public void setAllowDuplicaties(final boolean allowDuplicates) {
+    public void setAllowDuplicaties(boolean allowDuplicates) {
         options.setAllowDuplicates(allowDuplicates);
     }
     
@@ -195,7 +188,7 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
      * 
      * @param focusClass classname
      */
-    public void setFocusClass(final String focusClass) {
+    public void setFocusClass(String focusClass) {
         options.setFocusClass(focusClass);
     }
     
@@ -204,32 +197,32 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
      * 
      * @param callback callback method.
      */
-    public void onTagExists(final OnTagExistsCallback<T> callback) {
+    public void onTagExists(OnTagExistsCallback<T> callback) {
         options.onTagExists(callback);
     }
     
     @Override
-    public HandlerRegistration addItemAddedOnInitHandler(final ItemAddedOnInitHandler<T> handler) {
+    public HandlerRegistration addItemAddedOnInitHandler(ItemAddedOnInitHandler<T> handler) {
         return addHandler(handler, ItemAddedOnInitEvent.getType());
     }
     
     @Override
-    public HandlerRegistration addBeforeItemAddHandler(final BeforeItemAddHandler<T> handler) {
+    public HandlerRegistration addBeforeItemAddHandler(BeforeItemAddHandler<T> handler) {
         return addHandler(handler, BeforeItemAddEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addItemAddedHandler(final ItemAddedHandler<T> handler) {
+    public HandlerRegistration addItemAddedHandler(ItemAddedHandler<T> handler) {
         return addHandler(handler, ItemAddedEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addBeforeItemRemoveHandler(final BeforeItemRemoveHandler<T> handler) {
+    public HandlerRegistration addBeforeItemRemoveHandler(BeforeItemRemoveHandler<T> handler) {
         return addHandler(handler, BeforeItemRemoveEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addItemRemovedHandler(final ItemRemovedHandler<T> handler) {
+    public HandlerRegistration addItemRemovedHandler(ItemRemovedHandler<T> handler) {
         return addHandler(handler, ItemRemovedEvent.getType());
     }
     
@@ -299,7 +292,7 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
     }-*/;
     
     protected static List<String> toMultiValue(JavaScriptObject js_multi_value) {
-        List<String> retValue = new ArrayList<String>();
+        List<String> retValue = new ArrayList<>();
         
         if (js_multi_value != null) {
             JsArrayString js_string_array = js_multi_value.cast();
@@ -337,7 +330,7 @@ class TagsInputBase<T> extends Widget implements HasAllTagsInputEvents<T>, HasCh
      */
     public List<T> getItems() {
         JsArray<JavaScriptObject> js_items = getItems(getElement());
-        List<T> items = new ArrayList<T>();
+        List<T> items = new ArrayList<>();
         
         for(int i=0; i<js_items.length(); i++) {
             @SuppressWarnings("unchecked")

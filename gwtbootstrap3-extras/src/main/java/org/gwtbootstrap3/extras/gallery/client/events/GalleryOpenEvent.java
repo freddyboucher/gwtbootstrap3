@@ -32,12 +32,12 @@ import org.gwtbootstrap3.extras.gallery.client.ui.Gallery;
  */
 public class GalleryOpenEvent extends GwtEvent<GalleryOpenHandler> {
 
-    public static  void fire(final Gallery source, final Event nativeEvent) {
+    public static  void fire(Gallery source, Event nativeEvent) {
         GalleryOpenEvent event = new GalleryOpenEvent(source, nativeEvent);
         source.fireEvent(event);
     }
 
-    private static final Type<GalleryOpenHandler> TYPE = new Type<GalleryOpenHandler>();
+    private static final Type<GalleryOpenHandler> TYPE = new Type<>();
 
     private final Gallery gallery;
     private final Event nativeEvent;
@@ -46,7 +46,7 @@ public class GalleryOpenEvent extends GwtEvent<GalleryOpenHandler> {
         return TYPE;
     }
 
-    private GalleryOpenEvent(final Gallery gallery, final Event nativeEvent) {
+    private GalleryOpenEvent(Gallery gallery, Event nativeEvent) {
         this.gallery = gallery;
         this.nativeEvent = nativeEvent;
     }
@@ -65,7 +65,7 @@ public class GalleryOpenEvent extends GwtEvent<GalleryOpenHandler> {
     }
 
     @Override
-    protected void dispatch(final GalleryOpenHandler handler) {
+    protected void dispatch(GalleryOpenHandler handler) {
         handler.onOpen(this);
     }
 }

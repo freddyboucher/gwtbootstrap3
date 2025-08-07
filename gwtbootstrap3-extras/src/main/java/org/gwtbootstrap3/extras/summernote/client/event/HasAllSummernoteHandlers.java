@@ -30,51 +30,51 @@ public interface HasAllSummernoteHandlers extends HasSummernoteInitHandlers,
         HasSummernoteKeyUpHandlers, HasSummernoteKeyDownHandlers, HasSummernotePasteHandlers,
         HasSummernoteImageUploadHandlers, HasSummernoteChangeHandlers {
 
-    static final String SUMMERNOTE_PREFIX = "summernote.";
+    String SUMMERNOTE_PREFIX = "summernote.";
 
     /**
      * The {@link SummernoteInitEvent} name
      */
-    static final String SUMMERNOTE_INIT_EVENT = SUMMERNOTE_PREFIX + "init";
+    String SUMMERNOTE_INIT_EVENT = SUMMERNOTE_PREFIX + "init";
 
     /**
      * The {@link SummernoteEnterEvent} name
      */
-    static final String SUMMERNOTE_ENTER_EVENT = SUMMERNOTE_PREFIX + "enter";
+    String SUMMERNOTE_ENTER_EVENT = SUMMERNOTE_PREFIX + "enter";
 
     /**
      * The {@link SummernoteFocusEvent} name
      */
-    static final String SUMMERNOTE_FOCUS_EVENT = SUMMERNOTE_PREFIX + "focus";
+    String SUMMERNOTE_FOCUS_EVENT = SUMMERNOTE_PREFIX + "focus";
 
     /**
      * The {@link SummernoteBlurEvent} name
      */
-    static final String SUMMERNOTE_BLUR_EVENT = SUMMERNOTE_PREFIX + "blur";
+    String SUMMERNOTE_BLUR_EVENT = SUMMERNOTE_PREFIX + "blur";
 
     /**
      * The {@link SummernoteKeyUpEvent} name
      */
-    static final String SUMMERNOTE_KEYUP_EVENT = SUMMERNOTE_PREFIX + "keyup";
+    String SUMMERNOTE_KEYUP_EVENT = SUMMERNOTE_PREFIX + "keyup";
 
     /**
      * The {@link SummernoteKeyDownEvent} name
      */
-    static final String SUMMERNOTE_KEYDOWN_EVENT = SUMMERNOTE_PREFIX + "keydown";
+    String SUMMERNOTE_KEYDOWN_EVENT = SUMMERNOTE_PREFIX + "keydown";
 
     /**
      * The {@link SummernotePasteEvent} name
      */
-    static final String SUMMERNOTE_PASTE_EVENT = SUMMERNOTE_PREFIX + "paste";
+    String SUMMERNOTE_PASTE_EVENT = SUMMERNOTE_PREFIX + "paste";
 
     /**
      * The {@link SummernoteImageUploadEvent} name
      */
-    static final String SUMMERNOTE_IMAGE_UPLOAD_EVENT = SUMMERNOTE_PREFIX + "image.upload";
+    String SUMMERNOTE_IMAGE_UPLOAD_EVENT = SUMMERNOTE_PREFIX + "image.upload";
 
     /**
      * The {@link SummernoteChangeEvent} name
      */
-    static final String SUMMERNOTE_CHANGE_EVENT = SUMMERNOTE_PREFIX + "change";
+    String SUMMERNOTE_CHANGE_EVENT = SUMMERNOTE_PREFIX + "change";
 
 }

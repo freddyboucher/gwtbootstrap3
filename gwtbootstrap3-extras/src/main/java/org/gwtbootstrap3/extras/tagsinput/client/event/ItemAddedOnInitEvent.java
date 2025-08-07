@@ -51,9 +51,9 @@ public class ItemAddedOnInitEvent<T> extends GwtEvent<ItemAddedOnInitHandler<T>>
      *
      * @param source the source of the handlers
      */
-    public static <T> void fire(final HasItemAddedOnInitHandlers<T> source, T item) {
+    public static <T> void fire(HasItemAddedOnInitHandlers<T> source, T item) {
         if (TYPE != null) {
-            ItemAddedOnInitEvent<T> event = new ItemAddedOnInitEvent<T>(item);
+            ItemAddedOnInitEvent<T> event = new ItemAddedOnInitEvent<>(item);
             source.fireEvent(event);
         }
     }
@@ -65,7 +65,7 @@ public class ItemAddedOnInitEvent<T> extends GwtEvent<ItemAddedOnInitHandler<T>>
      */
     public static Type<ItemAddedOnInitHandler<?>> getType() {
         if (TYPE == null) {
-            TYPE = new Type<ItemAddedOnInitHandler<?>>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }

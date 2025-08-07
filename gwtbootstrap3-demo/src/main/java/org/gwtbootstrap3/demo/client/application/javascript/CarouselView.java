@@ -33,7 +33,7 @@ public class CarouselView extends ViewImpl implements CarouselPresenter.MyView {
     }
 
     @Inject
-    CarouselView(final Binder uiBinder) {
+    CarouselView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

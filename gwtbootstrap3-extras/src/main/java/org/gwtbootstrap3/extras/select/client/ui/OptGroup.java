@@ -59,7 +59,7 @@ public class OptGroup extends ComplexWidget implements HasEnabled {
      *
      * @param label
      */
-    public void setLabel(final String label) {
+    public void setLabel(String label) {
         if (label != null)
             attrMixin.setAttribute(LABEL, label);
         else
@@ -82,7 +82,7 @@ public class OptGroup extends ComplexWidget implements HasEnabled {
     }
 
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         enabledMixin.setEnabled(enabled);
     }
 
@@ -91,7 +91,7 @@ public class OptGroup extends ComplexWidget implements HasEnabled {
      *
      * @param subtext
      */
-    public void setSubtext(final String subtext) {
+    public void setSubtext(String subtext) {
         if (subtext != null)
             attrMixin.setAttribute(SUBTEXT, subtext);
         else
@@ -113,7 +113,7 @@ public class OptGroup extends ComplexWidget implements HasEnabled {
      *
      * @param iconType
      */
-    public void setIcon(final IconType iconType) {
+    public void setIcon(IconType iconType) {
         if (iconType != null)
             attrMixin.setAttribute(ICON, iconType.getCssName());
         else
@@ -137,7 +137,7 @@ public class OptGroup extends ComplexWidget implements HasEnabled {
      *
      * @param maxOptions
      */
-    public void setMaxOptions(final int maxOptions) {
+    public void setMaxOptions(int maxOptions) {
         attrMixin.setAttribute(MAX_OPTIONS, Integer.toString(maxOptions));
     }
 

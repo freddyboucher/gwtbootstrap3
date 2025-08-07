@@ -98,7 +98,7 @@ public enum DatePickerLanguage {
     private final String code;
     private final TextResource js;
 
-    private DatePickerLanguage(final String code, final TextResource js) {
+    DatePickerLanguage(String code, TextResource js) {
         this.js = js;
         this.code = code;
     }

@@ -32,12 +32,12 @@ import org.gwtbootstrap3.extras.gallery.client.ui.Gallery;
  */
 public class GallerySlideEvent extends GwtEvent<GallerySlideHandler> {
 
-    public static  void fire(final Gallery source, final Event nativeEvent, int index) {
+    public static  void fire(Gallery source, Event nativeEvent, int index) {
         GallerySlideEvent event = new GallerySlideEvent(source, nativeEvent, index);
         source.fireEvent(event);
     }
 
-    private static final Type<GallerySlideHandler> TYPE = new Type<GallerySlideHandler>();
+    private static final Type<GallerySlideHandler> TYPE = new Type<>();
 
     private final Gallery gallery;
     private final Event nativeEvent;
@@ -47,7 +47,7 @@ public class GallerySlideEvent extends GwtEvent<GallerySlideHandler> {
         return TYPE;
     }
 
-    private GallerySlideEvent(final Gallery gallery, final Event nativeEvent, int index) {
+    private GallerySlideEvent(Gallery gallery, Event nativeEvent, int index) {
         this.gallery = gallery;
         this.nativeEvent = nativeEvent;
         this.index = index;
@@ -71,7 +71,7 @@ public class GallerySlideEvent extends GwtEvent<GallerySlideHandler> {
     }
 
     @Override
-    protected void dispatch(final GallerySlideHandler handler) {
+    protected void dispatch(GallerySlideHandler handler) {
         handler.onSlide(this);
     }
 }

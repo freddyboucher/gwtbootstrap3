@@ -41,16 +41,16 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Joshua Godi
  */
 public abstract class AbstractTextWidget extends Widget implements HasId, HasHTML, HasResponsiveness, HasInlineStyle, IsEditor<LeafValueEditor<String>>, HasPull {
-    private final PullMixin<AbstractTextWidget> pullMixin = new PullMixin<AbstractTextWidget>(this);
-    private final IdMixin<AbstractTextWidget> idMixin = new IdMixin<AbstractTextWidget>(this);
+    private final PullMixin<AbstractTextWidget> pullMixin = new PullMixin<>(this);
+    private final IdMixin<AbstractTextWidget> idMixin = new IdMixin<>(this);
     private LeafValueEditor<String> editor;
 
-    protected AbstractTextWidget(final Element element) {
+    protected AbstractTextWidget(Element element) {
         setElement(element);
     }
 
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         idMixin.setId(id);
     }
 
@@ -60,7 +60,7 @@ public abstract class AbstractTextWidget extends Widget implements HasId, HasHTM
     }
 
     @Override
-    public void setText(final String text) {
+    public void setText(String text) {
         getElement().setInnerText(text);
     }
 
@@ -75,57 +75,57 @@ public abstract class AbstractTextWidget extends Widget implements HasId, HasHTM
     }
 
     @Override
-    public void setHTML(final String html) {
+    public void setHTML(String html) {
         getElement().setInnerHTML(html);
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
     @Override
-    public void setMarginTop(final double margin) {
+    public void setMarginTop(double margin) {
         getElement().getStyle().setMarginTop(margin, Style.Unit.PX);
     }
 
     @Override
-    public void setMarginLeft(final double margin) {
+    public void setMarginLeft(double margin) {
         getElement().getStyle().setMarginLeft(margin, Style.Unit.PX);
     }
 
     @Override
-    public void setMarginRight(final double margin) {
+    public void setMarginRight(double margin) {
         getElement().getStyle().setMarginRight(margin, Style.Unit.PX);
     }
 
     @Override
-    public void setMarginBottom(final double margin) {
+    public void setMarginBottom(double margin) {
         getElement().getStyle().setMarginBottom(margin, Style.Unit.PX);
     }
 
     @Override
-    public void setPaddingTop(final double padding) {
+    public void setPaddingTop(double padding) {
         getElement().getStyle().setPaddingTop(padding, Style.Unit.PX);
     }
 
     @Override
-    public void setPaddingLeft(final double padding) {
+    public void setPaddingLeft(double padding) {
         getElement().getStyle().setPaddingLeft(padding, Style.Unit.PX);
     }
 
     @Override
-    public void setPaddingRight(final double padding) {
+    public void setPaddingRight(double padding) {
         getElement().getStyle().setPaddingRight(padding, Style.Unit.PX);
     }
 
     @Override
-    public void setPaddingBottom(final double padding) {
+    public void setPaddingBottom(double padding) {
         getElement().getStyle().setPaddingBottom(padding, Style.Unit.PX);
     }
 
@@ -149,7 +149,7 @@ public abstract class AbstractTextWidget extends Widget implements HasId, HasHTM
      * {@inheritDoc}
      */
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         pullMixin.setPull(pull);
     }
 

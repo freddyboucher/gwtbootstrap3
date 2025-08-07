@@ -35,8 +35,8 @@ import com.google.gwt.dom.client.Element;
 public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWidget implements HasResponsiveness,
         HasId, HasPull {
 
-    private final IdMixin<FocusWidget> idMixin = new IdMixin<FocusWidget>(this);
-    private final PullMixin<FocusWidget> pullMixin = new PullMixin<FocusWidget>(this);
+    private final IdMixin<FocusWidget> idMixin = new IdMixin<>(this);
+    private final PullMixin<FocusWidget> pullMixin = new PullMixin<>(this);
 
     public FocusWidget(Element elem) {
         super(elem);
@@ -56,7 +56,7 @@ public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWid
      * {@inheritDoc}
      */
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         idMixin.setId(id);
     }
 
@@ -72,7 +72,7 @@ public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWid
      * {@inheritDoc}
      */
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
@@ -80,7 +80,7 @@ public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWid
      * {@inheritDoc}
      */
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
@@ -88,7 +88,7 @@ public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWid
      * {@inheritDoc}
      */
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         pullMixin.setPull(pull);
     }
 

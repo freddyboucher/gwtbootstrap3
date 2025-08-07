@@ -77,7 +77,7 @@ public class AgendaOptions implements IsJavaScriptObject {
         theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.AgendaOptions::options.axisFormat = format;
     }-*/;
 
-    public void setSlotDuration(final int minutes) {
+    public void setSlotDuration(int minutes) {
         assert minutes >= 0 && minutes <= 60;
         if (minutes < 10) {
             setSlotDuration("00:0" + minutes + ":00");
@@ -94,7 +94,7 @@ public class AgendaOptions implements IsJavaScriptObject {
         theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.AgendaOptions::options.slotDuration = timeString;
     }-*/;
 
-    public void setSnapDuration(final int minutes) {
+    public void setSnapDuration(int minutes) {
         assert minutes >= 0 && minutes <= 60;
         if (minutes < 10) {
             setSnapDuration("00:0" + minutes + ":00");

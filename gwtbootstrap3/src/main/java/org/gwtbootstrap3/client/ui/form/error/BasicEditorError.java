@@ -28,13 +28,13 @@ import com.google.gwt.editor.client.EditorError;
  */
 public class BasicEditorError implements EditorError {
 
-    protected boolean consumed = false;
+    protected boolean consumed;
 
-    protected Editor<?> editor = null;
+    protected Editor<?> editor;
 
-    protected String message = null;
+    protected String message;
 
-    protected Object value = null;
+    protected Object value;
 
     /**
      * Create an new error.

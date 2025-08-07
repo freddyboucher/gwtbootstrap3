@@ -33,7 +33,7 @@ public enum NavbarType implements Type, Style.HasCssName {
 
     private final String cssClass;
 
-    private NavbarType(final String cssClass) {
+    NavbarType(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -42,7 +42,7 @@ public enum NavbarType implements Type, Style.HasCssName {
         return cssClass;
     }
 
-    public static NavbarType fromStyleName(final String styleName) {
+    public static NavbarType fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, NavbarType.class, DEFAULT);
     }
 }

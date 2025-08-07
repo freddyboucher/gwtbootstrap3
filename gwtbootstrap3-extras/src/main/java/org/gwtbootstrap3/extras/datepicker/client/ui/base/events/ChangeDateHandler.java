@@ -26,5 +26,5 @@ import com.google.gwt.event.shared.EventHandler;
  * @author Joshua Godi
  */
 public interface ChangeDateHandler extends EventHandler {
-    void onChangeDate(final ChangeDateEvent evt);
+    void onChangeDate(ChangeDateEvent evt);
 }

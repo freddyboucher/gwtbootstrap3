@@ -34,7 +34,7 @@ public enum ModalSize implements Style.HasCssName {
 
     private final String cssClass;
 
-    private ModalSize(final String cssClass) {
+    ModalSize(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -43,7 +43,7 @@ public enum ModalSize implements Style.HasCssName {
         return cssClass;
     }
 
-    public static ModalSize fromStyleName(final String styleName) {
+    public static ModalSize fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, ModalSize.class, MEDIUM);
     }
 }

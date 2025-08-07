@@ -38,7 +38,7 @@ public class FieldSet extends ComplexWidget implements HasEnabled {
     }
 
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         getElement().setPropertyBoolean(DISABLED, !enabled);
     }
 

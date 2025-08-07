@@ -37,17 +37,17 @@ public final class EnumHelper {
      * @return First enum constant found or default value
      */
     @SuppressWarnings("unchecked")
-    public static <E extends Enum<? extends Style.HasCssName>> E fromStyleName(final String styleName,
-                                                                               final Class<E> enumClass,
-                                                                               final E defaultValue) {
+    public static <E extends Enum<? extends Style.HasCssName>> E fromStyleName(String styleName,
+                                                                               Class<E> enumClass,
+                                                                               E defaultValue) {
 
         if (styleName == null || enumClass == null) {
             return defaultValue;
         }
 
-        for (final Enum<? extends Style.HasCssName> constant : enumClass.getEnumConstants()) {
-            final Style.HasCssName anEnum = (Style.HasCssName) constant;
-            final String cssClass = anEnum.getCssName();
+        for (Enum<? extends Style.HasCssName> constant : enumClass.getEnumConstants()) {
+            Style.HasCssName anEnum = (Style.HasCssName) constant;
+            String cssClass = anEnum.getCssName();
 
             if (cssClass != null && StyleHelper.containsStyle(styleName, cssClass)) {
                 return (E) anEnum;

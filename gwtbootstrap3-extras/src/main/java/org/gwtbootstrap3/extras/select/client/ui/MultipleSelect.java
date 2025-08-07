@@ -64,7 +64,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
      *
      * @param showActionsBox
      */
-    public void setShowActionsBox(final boolean showActionsBox) {
+    public void setShowActionsBox(boolean showActionsBox) {
         if (showActionsBox)
             attrMixin.setAttribute(ACTIONS_BOX, Boolean.toString(true));
         else
@@ -79,7 +79,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
      *
      * @param deselectAllText
      */
-    public void setDeselectAllText(final String deselectAllText) {
+    public void setDeselectAllText(String deselectAllText) {
         if (deselectAllText != null)
             attrMixin.setAttribute(DESELECT_ALL_TEXT, deselectAllText);
         else
@@ -94,7 +94,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
      *
      * @param selectAllText
      */
-    public void setSelectAllText(final String selectAllText) {
+    public void setSelectAllText(String selectAllText) {
         if (selectAllText != null)
             attrMixin.setAttribute(SELECT_ALL_TEXT, selectAllText);
         else
@@ -109,7 +109,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
      *
      * @param maxOptions
      */
-    public void setMaxOptions(final int maxOptions) {
+    public void setMaxOptions(int maxOptions) {
         attrMixin.setAttribute(MAX_OPTIONS, Integer.toString(maxOptions));
     }
 
@@ -121,7 +121,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
      * @param handler
      * @see #setMaxOptions(int)
      */
-    public void setMaxOptionsTextHandler(final MaxOptionsTextHandler handler) {
+    public void setMaxOptionsTextHandler(MaxOptionsTextHandler handler) {
         options.setMaxOptionsTextHandler(handler);
     }
 
@@ -133,7 +133,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
      *
      * @param multipleSeparator
      */
-    public void setMultipleSeparator(final String multipleSeparator) {
+    public void setMultipleSeparator(String multipleSeparator) {
         if (multipleSeparator != null)
             attrMixin.setAttribute(MULTIPLE_SEPARATOR, multipleSeparator);
         else
@@ -148,7 +148,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
      *
      * @param noneSelectedText
      */
-    public void setNoneSelectedText(final String noneSelectedText) {
+    public void setNoneSelectedText(String noneSelectedText) {
         if (noneSelectedText != null)
             attrMixin.setAttribute(NONE_SELECTED_TEXT, noneSelectedText);
         else
@@ -163,7 +163,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
      * @param format
      * @see SelectedTextFormat
      */
-    public void setSelectedTextFormat(final SelectedTextFormat format) {
+    public void setSelectedTextFormat(SelectedTextFormat format) {
         if (format != null)
             attrMixin.setAttribute(SELECTED_TEXT_FORMAT, format.getFormat());
         else
@@ -177,7 +177,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
      * @param minCount
      * @see SelectedTextFormat#getFormat(int)
      */
-    public void setCountSelectedTextFormat(final int minCount) {
+    public void setCountSelectedTextFormat(int minCount) {
         attrMixin.setAttribute(SELECTED_TEXT_FORMAT, SelectedTextFormat.COUNT.getFormat(minCount));
     }
 
@@ -195,7 +195,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
     }
 
     private List<String> getSelectedValues() {
-        final List<String> allSelected = new ArrayList<>(0);
+        List<String> allSelected = new ArrayList<>(0);
         for (Entry<OptionElement, Option> entry : itemMap.entrySet()) {
             Option opt = entry.getValue();
             if (opt.isSelected())
@@ -207,8 +207,8 @@ public class MultipleSelect extends SelectBase<List<String>> {
     @Override
     protected void setSelectedValue(List<String> value) {
         if (isAttached()) {
-            final JsArrayString arr = JavaScriptObject.createArray().cast();
-            for (final String val : value) {
+            JsArrayString arr = JavaScriptObject.createArray().cast();
+            for (String val : value) {
                 arr.push(val);
             }
             setValue(getElement(), arr);
@@ -228,7 +228,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
      * @return the selected items list
      */
     public List<Option> getSelectedItems() {
-        final List<Option> items = new ArrayList<>(0);
+        List<Option> items = new ArrayList<>(0);
         for (Entry<OptionElement, Option> entry : itemMap.entrySet()) {
             Option opt = entry.getValue();
             if (opt.isSelected())

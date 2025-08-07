@@ -36,7 +36,7 @@ public class Legend extends AbstractTextWidget {
         super(Document.get().createLegendElement());
     }
 
-    public Legend(final String text) {
+    public Legend(String text) {
         this();
         setText(text);
     }

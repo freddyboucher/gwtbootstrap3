@@ -39,7 +39,7 @@ enum Option {
     private final String command;
     private final String attribute;
     
-    private Option(String command, String attribute) {
+    Option(String command, String attribute) {
         this.command = command;
         this.attribute = attribute;
     }

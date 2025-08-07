@@ -83,10 +83,10 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
  * @see ModalHeader
  * @see ModalBody
  * @see ModalFooter
- * @see org.gwtbootstrap3.client.shared.event.ModalShowEvent
- * @see org.gwtbootstrap3.client.shared.event.ModalShownEvent
- * @see org.gwtbootstrap3.client.shared.event.ModalHideEvent
- * @see org.gwtbootstrap3.client.shared.event.ModalHiddenEvent
+ * @see ModalShowEvent
+ * @see ModalShownEvent
+ * @see ModalHideEvent
+ * @see ModalHiddenEvent
  */
 public class Modal extends Div implements IsClosable {
 
@@ -98,9 +98,9 @@ public class Modal extends Div implements IsClosable {
     private final ModalDialog dialog = new ModalDialog();
     private ModalHeader header = new ModalHeader();
 
-    private HandlerRegistration removeOnHideHandlerReg = null;
+    private HandlerRegistration removeOnHideHandlerReg;
 
-    private boolean hideOtherModals = false;
+    private boolean hideOtherModals;
 
     public Modal() {
         setStyleName(Styles.MODAL);
@@ -115,7 +115,7 @@ public class Modal extends Div implements IsClosable {
     }
 
     @Override
-    public void setWidth(final String width) {
+    public void setWidth(String width) {
         dialog.setWidth(width);
     }
 
@@ -136,7 +136,7 @@ public class Modal extends Div implements IsClosable {
     }
 
     @Override
-    public void add(final Widget w) {
+    public void add(Widget w) {
         // User can supply own ModalHeader
         if (w instanceof ModalHeader) {
             header.removeFromParent();
@@ -151,12 +151,12 @@ public class Modal extends Div implements IsClosable {
     }
 
     @Override
-    public void setTitle(final String title) {
+    public void setTitle(String title) {
         header.setTitle(title);
     }
 
     @Override
-    public void setClosable(final boolean closable) {
+    public void setClosable(boolean closable) {
         header.setClosable(closable);
     }
 
@@ -170,7 +170,7 @@ public class Modal extends Div implements IsClosable {
      *
      * @param hideOtherModals - true to force hide other modals, false to keep them shown
      */
-    public void setHideOtherModals(final boolean hideOtherModals) {
+    public void setHideOtherModals(boolean hideOtherModals) {
         this.hideOtherModals = hideOtherModals;
     }
 
@@ -179,18 +179,15 @@ public class Modal extends Div implements IsClosable {
      *
      * @param removeOnHide - true to remove modal and unbind events on hide, false to keep it in the DOM
      */
-    public void setRemoveOnHide(final boolean removeOnHide) {
+    public void setRemoveOnHide(boolean removeOnHide) {
         if (removeOnHideHandlerReg != null) {
             removeOnHideHandlerReg.removeHandler();
             removeOnHideHandlerReg = null;
         }
         if (removeOnHide) {
-            removeOnHideHandlerReg = addHiddenHandler(new ModalHiddenHandler() {
-                @Override
-                public void onHidden(final ModalHiddenEvent evt) {
-                    // Do logical detach
-                    removeFromParent();
-                }
+            removeOnHideHandlerReg = addHiddenHandler(evt -> {
+                // Do logical detach
+                removeFromParent();
             });
         }
     }
@@ -200,7 +197,7 @@ public class Modal extends Div implements IsClosable {
      *
      * @param fade If {@code true} modal will fade in/out
      */
-    public void setFade(final boolean fade) {
+    public void setFade(boolean fade) {
         if (fade) {
             addStyleName(Styles.FADE);
         } else {
@@ -212,9 +209,9 @@ public class Modal extends Div implements IsClosable {
      * Sets backdrop of modal.
      *
      * @param backdrop Backdrop of modal
-     * @see org.gwtbootstrap3.client.ui.constants.ModalBackdrop
+     * @see ModalBackdrop
      */
-    public void setDataBackdrop(final ModalBackdrop backdrop) {
+    public void setDataBackdrop(ModalBackdrop backdrop) {
         if (backdrop != null) {
             getElement().setAttribute(Attributes.DATA_BACKDROP, backdrop.getBackdrop());
         } else {
@@ -222,7 +219,7 @@ public class Modal extends Div implements IsClosable {
         }
     }
 
-    public void setDataKeyboard(final boolean keyboard) {
+    public void setDataKeyboard(boolean keyboard) {
         getElement().setAttribute(Attributes.DATA_KEYBOARD, Boolean.toString(keyboard));
 
         // tabindex must be set to -1 for ESC key to work
@@ -244,19 +241,19 @@ public class Modal extends Div implements IsClosable {
         modal(getElement(), HIDE);
     }
 
-    public HandlerRegistration addShowHandler(final ModalShowHandler modalShowHandler) {
+    public HandlerRegistration addShowHandler(ModalShowHandler modalShowHandler) {
         return addHandler(modalShowHandler, ModalShowEvent.getType());
     }
 
-    public HandlerRegistration addShownHandler(final ModalShownHandler modalShownHandler) {
+    public HandlerRegistration addShownHandler(ModalShownHandler modalShownHandler) {
         return addHandler(modalShownHandler, ModalShownEvent.getType());
     }
 
-    public HandlerRegistration addHideHandler(final ModalHideHandler modalHideHandler) {
+    public HandlerRegistration addHideHandler(ModalHideHandler modalHideHandler) {
         return addHandler(modalHideHandler, ModalHideEvent.getType());
     }
 
-    public HandlerRegistration addHiddenHandler(final ModalHiddenHandler modalHiddenHandler) {
+    public HandlerRegistration addHiddenHandler(ModalHiddenHandler modalHiddenHandler) {
         return addHandler(modalHiddenHandler, ModalHiddenEvent.getType());
     }
 
@@ -265,9 +262,9 @@ public class Modal extends Div implements IsClosable {
      * recommended to add an event handler to the modal.
      *
      * @param evt Event
-     * @see org.gwtbootstrap3.client.shared.event.ModalShowEvent
+     * @see ModalShowEvent
      */
-    protected void onShow(final Event evt) {
+    protected void onShow(Event evt) {
         if (hideOtherModals) {
             hideOtherModals();
         }
@@ -279,9 +276,9 @@ public class Modal extends Div implements IsClosable {
      * it's recommended to add an event handler to the modal.
      *
      * @param evt Event
-     * @see org.gwtbootstrap3.client.shared.event.ModalShownEvent
+     * @see ModalShownEvent
      */
-    protected void onShown(final Event evt) {
+    protected void onShown(Event evt) {
         fireEvent(new ModalShownEvent(this, evt));
     }
 
@@ -290,9 +287,9 @@ public class Modal extends Div implements IsClosable {
      * recommended to add an event handler to the modal.
      *
      * @param evt Event
-     * @see org.gwtbootstrap3.client.shared.event.ModalHideEvent
+     * @see ModalHideEvent
      */
-    protected void onHide(final Event evt) {
+    protected void onHide(Event evt) {
         fireEvent(new ModalHideEvent(this, evt));
     }
 
@@ -301,39 +298,31 @@ public class Modal extends Div implements IsClosable {
      * it's recommended to add an event handler to the modal.
      *
      * @param evt Event
-     * @see org.gwtbootstrap3.client.shared.event.ModalHiddenEvent
+     * @see ModalHiddenEvent
      */
-    protected void onHidden(final Event evt) {
+    protected void onHidden(Event evt) {
         fireEvent(new ModalHiddenEvent(this, evt));
     }
 
     private void checkIsAttached() {
-        if (!this.isAttached()) {
+        if (!isAttached()) {
             RootPanel.get().add(this);
         }
     }
 
-    private void bindJavaScriptEvents(final Element e) {
+    private void bindJavaScriptEvents(Element e) {
         JQuery modal = JQuery.jQuery(e);
 
-        modal.on("show.bs.modal", (evt) -> {
-            onShow(evt);
-        });
+        modal.on("show.bs.modal", this::onShow);
 
-        modal.on("shown.bs.modal", (evt) -> {
-            onShown(evt);
-        });
+        modal.on("shown.bs.modal", this::onShown);
 
-        modal.on("hide.bs.modal", (evt) -> {
-            onHide(evt);
-        });
+        modal.on("hide.bs.modal", this::onHide);
 
-        modal.on("hidden.bs.modal", (evt) -> {
-            onHidden(evt);
-        });
+        modal.on("hidden.bs.modal", this::onHidden);
     }
 
-    private void modal(final Element e, final String arg) {
+    private void modal(Element e, String arg) {
         JQuery.jQuery(e).modal(arg);
     }
 
@@ -343,7 +332,7 @@ public class Modal extends Div implements IsClosable {
     }
 
     // Unbinds all the handlers
-    private void unbindAllHandlers(final Element e) {
+    private void unbindAllHandlers(Element e) {
         JQuery je = JQuery.jQuery(e);
         je.off("show.bs.modal");
         je.off("shown.bs.modal");

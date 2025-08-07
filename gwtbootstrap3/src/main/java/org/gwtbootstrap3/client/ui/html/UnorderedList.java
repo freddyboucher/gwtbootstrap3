@@ -44,7 +44,7 @@ import com.google.gwt.dom.client.Document;
  * </pre>
  *
  * @author Joshua Godi
- * @see org.gwtbootstrap3.client.ui.ListItem
+ * @see ListItem
  */
 public class UnorderedList extends ComplexWidget {
 
@@ -60,11 +60,11 @@ public class UnorderedList extends ComplexWidget {
      *
      * @param widgets widgets to be added
      */
-    public UnorderedList(final ListItem... widgets) {
+    public UnorderedList(ListItem... widgets) {
         this();
 
         // Add all the list items to the widget
-        for (final ListItem li : widgets) {
+        for (ListItem li : widgets) {
             add(li);
         }
     }
@@ -74,7 +74,7 @@ public class UnorderedList extends ComplexWidget {
      *
      * @param unstyled boolean true/false to make unstyled
      */
-    public void setUnstyled(final boolean unstyled) {
+    public void setUnstyled(boolean unstyled) {
         setStyleName(Styles.UNSTYLED, unstyled);
     }
 
@@ -92,7 +92,7 @@ public class UnorderedList extends ComplexWidget {
      *
      * @param inline true/false for inline or not
      */
-    public void setInline(final boolean inline) {
+    public void setInline(boolean inline) {
         StyleHelper.toggleStyleName(this, inline, Styles.LIST_INLINE);
     }
 

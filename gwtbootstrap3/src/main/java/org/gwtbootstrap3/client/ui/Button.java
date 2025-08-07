@@ -41,7 +41,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
  * </pre>
  *
  * @author Sven Jacobs
- * @see org.gwtbootstrap3.client.ui.base.button.AbstractToggleButton
+ * @see AbstractToggleButton
  * @see SubmitButton
  */
 public class Button extends AbstractToggleButton {
@@ -57,16 +57,16 @@ public class Button extends AbstractToggleButton {
      *
      * @param text Text contents of button
      */
-    public Button(final String text) {
+    public Button(String text) {
         setText(text);
     }
 
-    public Button(final String text, final ClickHandler handler) {
+    public Button(String text, ClickHandler handler) {
         this(text);
-        super.addClickHandler(handler);
+        addClickHandler(handler);
     }
 
-    public Button(final String text, final IconType iconType, final ClickHandler clickHandler) {
+    public Button(String text, IconType iconType, ClickHandler clickHandler) {
         this(text, clickHandler);
         setIcon(iconType);
     }

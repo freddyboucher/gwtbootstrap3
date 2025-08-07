@@ -31,7 +31,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 public class ClickAndHoverConfig implements IsJavaScriptObject {
     private JavaScriptObject script;
 
-    public ClickAndHoverConfig(final ClickAndHoverEventCallback handler) {
+    public ClickAndHoverConfig(ClickAndHoverEventCallback handler) {
         if (handler != null) {
             newInstance(handler);
         }

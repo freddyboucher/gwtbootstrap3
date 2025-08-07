@@ -50,9 +50,9 @@ public class ItemRemovedEvent<T> extends GwtEvent<ItemRemovedHandler<T>> {
      *
      * @param source the source of the handlers
      */
-    public static <T> void fire(final HasItemRemovedHandlers<T> source, T item) {
+    public static <T> void fire(HasItemRemovedHandlers<T> source, T item) {
         if (TYPE != null) {
-            ItemRemovedEvent<T> event = new ItemRemovedEvent<T>(item);
+            ItemRemovedEvent<T> event = new ItemRemovedEvent<>(item);
             source.fireEvent(event);
         }
     }
@@ -64,7 +64,7 @@ public class ItemRemovedEvent<T> extends GwtEvent<ItemRemovedHandler<T>> {
      */
     public static Type<ItemRemovedHandler<?>> getType() {
         if (TYPE == null) {
-            TYPE = new Type<ItemRemovedHandler<?>>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }

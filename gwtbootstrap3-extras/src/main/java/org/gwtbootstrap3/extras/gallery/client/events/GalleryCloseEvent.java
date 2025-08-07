@@ -32,12 +32,12 @@ import org.gwtbootstrap3.extras.gallery.client.ui.Gallery;
  */
 public class GalleryCloseEvent extends GwtEvent<GalleryCloseHandler> {
 
-    public static  void fire(final Gallery source, final Event nativeEvent) {
+    public static  void fire(Gallery source, Event nativeEvent) {
         GalleryCloseEvent event = new GalleryCloseEvent(source, nativeEvent);
         source.fireEvent(event);
     }
 
-    private static final Type<GalleryCloseHandler> TYPE = new Type<GalleryCloseHandler>();
+    private static final Type<GalleryCloseHandler> TYPE = new Type<>();
 
     private final Gallery gallery;
     private final Event nativeEvent;
@@ -46,7 +46,7 @@ public class GalleryCloseEvent extends GwtEvent<GalleryCloseHandler> {
         return TYPE;
     }
 
-    private GalleryCloseEvent(final Gallery gallery, final Event nativeEvent) {
+    private GalleryCloseEvent(Gallery gallery, Event nativeEvent) {
         this.gallery = gallery;
         this.nativeEvent = nativeEvent;
     }
@@ -65,7 +65,7 @@ public class GalleryCloseEvent extends GwtEvent<GalleryCloseHandler> {
     }
 
     @Override
-    protected void dispatch(final GalleryCloseHandler handler) {
+    protected void dispatch(GalleryCloseHandler handler) {
         handler.onClose(this);
     }
 }

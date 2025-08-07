@@ -42,17 +42,17 @@ import com.google.gwt.user.client.ui.HasText;
  */
 public abstract class AbstractIconButton extends AbstractButton implements HasText, HasIcon, HasIconPosition, HasBadge {
 
-    IconTextMixin<AbstractIconButton> iconTextMixin = new IconTextMixin<AbstractIconButton>(this);
+    IconTextMixin<AbstractIconButton> iconTextMixin = new IconTextMixin<>(this);
 
     protected AbstractIconButton() {
     }
 
-    protected AbstractIconButton(final ButtonType type) {
+    protected AbstractIconButton(ButtonType type) {
         super(type);
     }
 
     @Override
-    public void setText(final String text) {
+    public void setText(String text) {
         iconTextMixin.setText(text);
     }
 
@@ -62,7 +62,7 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     }
 
     @Override
-    public void setIcon(final IconType iconType) {
+    public void setIcon(IconType iconType) {
         iconTextMixin.setIcon(iconType);
     }
 
@@ -72,7 +72,7 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     }
 
     @Override
-    public void setIconPosition(final IconPosition iconPosition) {
+    public void setIconPosition(IconPosition iconPosition) {
         iconTextMixin.setIconPosition(iconPosition);
     }
 
@@ -82,7 +82,7 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     }
 
     @Override
-    public void setIconSize(final IconSize iconSize) {
+    public void setIconSize(IconSize iconSize) {
         iconTextMixin.setIconSize(iconSize);
     }
 
@@ -92,7 +92,7 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     }
 
     @Override
-    public void setIconFlip(final IconFlip iconFlip) {
+    public void setIconFlip(IconFlip iconFlip) {
         iconTextMixin.setIconFlip(iconFlip);
     }
 
@@ -102,7 +102,7 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     }
 
     @Override
-    public void setIconRotate(final IconRotate iconRotate) {
+    public void setIconRotate(IconRotate iconRotate) {
         iconTextMixin.setIconRotate(iconRotate);
     }
 
@@ -112,7 +112,7 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     }
 
     @Override
-    public void setIconBordered(final boolean iconBordered) {
+    public void setIconBordered(boolean iconBordered) {
         iconTextMixin.setIconBordered(iconBordered);
     }
 
@@ -125,7 +125,7 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
      * {@inheritDoc}
      */
     @Override
-    public void setIconInverse(final boolean iconInverse) {
+    public void setIconInverse(boolean iconInverse) {
         iconTextMixin.setIconInverse(iconInverse);
     }
 
@@ -138,7 +138,7 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     }
 
     @Override
-    public void setIconSpin(final boolean iconSpin) {
+    public void setIconSpin(boolean iconSpin) {
         iconTextMixin.setIconSpin(iconSpin);
     }
 
@@ -158,7 +158,7 @@ public abstract class AbstractIconButton extends AbstractButton implements HasTe
     }
 
     @Override
-    public void setIconFixedWidth(final boolean iconFixedWidth) {
+    public void setIconFixedWidth(boolean iconFixedWidth) {
         iconTextMixin.setIconFixedWidth(iconFixedWidth);
     }
 

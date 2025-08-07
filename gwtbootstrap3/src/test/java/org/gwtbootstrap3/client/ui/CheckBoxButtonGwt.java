@@ -33,7 +33,7 @@ public class CheckBoxButtonGwt extends InputToggleButtonGwt {
 
     public void testCheckBoxButtonLabel() {
         final String label = "label";
-        final CheckBoxButton button = new CheckBoxButton(label);
+        CheckBoxButton button = new CheckBoxButton(label);
         assertEquals(label, button.getText());
     }
 

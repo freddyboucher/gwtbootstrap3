@@ -25,7 +25,6 @@ import java.util.Map;
 
 import org.gwtbootstrap3.client.ui.form.validator.ValidationChangedEvent.ValidationChangedHandler;
 
-import com.google.gwt.editor.client.Editor;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
@@ -41,20 +40,20 @@ public class GroupValidator implements ValidationChangedEvent.HasValidationChang
 
     private final SimpleEventBus eventBus;
 
-    private boolean fireEvents = false;
+    private boolean fireEvents;
 
     private final Map<HasValidators<?>, Boolean> fields;
 
     private final Map<HasValidators<?>, HandlerRegistration> registrations;
 
-    private Boolean groupValid = null;
+    private Boolean groupValid;
 
     /**
      * Constructor.
      */
     public GroupValidator() {
-        fields = new LinkedHashMap<HasValidators<?>, Boolean>();
-        registrations = new LinkedHashMap<HasValidators<?>, HandlerRegistration>();
+        fields = new LinkedHashMap<>();
+        registrations = new LinkedHashMap<>();
         eventBus = new SimpleEventBus();
     }
 
@@ -64,18 +63,15 @@ public class GroupValidator implements ValidationChangedEvent.HasValidationChang
      * @param <T> the generic type
      * @param field the field
      */
-    public <T extends Widget & HasValidators<?>> void add(final T field) {
+    public <T extends Widget & HasValidators<?>> void add(T field) {
         fields.put(field, field.validate(false));
         if (field.isAttached()) {
             updateStateAndNotify();
         }
-        registrations.put(field, field.addValidationChangedHandler(new ValidationChangedHandler() {
-            @Override
-            public void onValidationChanged(ValidationChangedEvent event) {
-                fields.put(field, event.isValid());
-                if (fireEvents) {
-                    updateStateAndNotify();
-                }
+        registrations.put(field, field.addValidationChangedHandler(event -> {
+            fields.put(field, event.isValid());
+            if (fireEvents) {
+                updateStateAndNotify();
             }
         }));
     }
@@ -99,9 +95,9 @@ public class GroupValidator implements ValidationChangedEvent.HasValidationChang
      * @param field the field
      * @return true, if successful
      */
-    public <T extends Widget & HasValidators<?>> boolean remove(final T field) {
-        fields.remove((HasValidators<?>) field);
-        HandlerRegistration reg = registrations.remove((HasValidators<?>) field);
+    public <T extends Widget & HasValidators<?>> boolean remove(T field) {
+        fields.remove(field);
+        HandlerRegistration reg = registrations.remove(field);
         if (reg != null) {
             reg.removeHandler();
             return true;

@@ -30,7 +30,7 @@ public class SetupView extends ViewImpl implements SetupPresenter.MyView {
     }
 
     @Inject
-    SetupView(final Binder uiBinder) {
+    SetupView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

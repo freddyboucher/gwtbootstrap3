@@ -31,12 +31,12 @@ import com.google.gwt.user.client.ui.UIObject;
  */
 public class PullMixin<T extends UIObject & HasPull> extends AbstractMixin implements HasPull {
 
-    public PullMixin(final T uiObject) {
+    public PullMixin(T uiObject) {
         super(uiObject);
     }
 
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         StyleHelper.addUniqueEnumStyleName(uiObject, Pull.class, pull);
     }
 

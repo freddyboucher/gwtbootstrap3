@@ -61,8 +61,8 @@ public class ScrollSpy {
      * @param selector CSS selector for target element
      * @return ScrollSpy
      */
-    public static ScrollSpy scrollSpy(final String selector) {
-        return new ScrollSpy((Element) Document.get().getBody().cast(), selector);
+    public static ScrollSpy scrollSpy(String selector) {
+        return new ScrollSpy(Document.get().getBody().cast(), selector);
     }
 
     /**
@@ -72,8 +72,8 @@ public class ScrollSpy {
      * @param target Target element having an ID
      * @return ScrollSpy
      */
-    public static ScrollSpy scrollSpy(final HasId target) {
-        return new ScrollSpy((Element) Document.get().getBody().cast(), target);
+    public static ScrollSpy scrollSpy(HasId target) {
+        return new ScrollSpy(Document.get().getBody().cast(), target);
     }
 
     /**
@@ -83,7 +83,7 @@ public class ScrollSpy {
      * @param selector CSS selector of target element
      * @return ScrollSpy
      */
-    public static ScrollSpy scrollSpy(final UIObject spyOn, final String selector) {
+    public static ScrollSpy scrollSpy(UIObject spyOn, String selector) {
         return new ScrollSpy(spyOn.getElement(), selector);
     }
 
@@ -94,7 +94,7 @@ public class ScrollSpy {
      * @param target Target element having an ID
      * @return ScrollSpy
      */
-    public static ScrollSpy scrollSpy(final UIObject spyOn, final HasId target) {
+    public static ScrollSpy scrollSpy(UIObject spyOn, HasId target) {
         return new ScrollSpy(spyOn.getElement(), target);
     }
 
@@ -105,21 +105,21 @@ public class ScrollSpy {
      * @param selector CSS selector of target element
      * @return ScrollSpy
      */
-    public static ScrollSpy scrollSpy(final Element spyOn, final String selector) {
+    public static ScrollSpy scrollSpy(Element spyOn, String selector) {
         return new ScrollSpy(spyOn, selector);
     }
 
-    private ScrollSpy(final Element spyOn, final String selector) {
+    private ScrollSpy(Element spyOn, String selector) {
 
         this.spyOn = spyOn;
-        this.target = selector;
+        target = selector;
 
-        init(this.spyOn, this.target);
+        init(this.spyOn, target);
     }
 
-    private ScrollSpy(final Element spyOn, final HasId target) {
+    private ScrollSpy(Element spyOn, HasId target) {
 
-        final String id = target.getId();
+        String id = target.getId();
 
         if (id == null || id.isEmpty()) {
             throw new IllegalArgumentException("ScrollSpy target element must have id");
@@ -140,9 +140,9 @@ public class ScrollSpy {
     }
 
     @JsMethod
-    private static native void init(final Element e, final String target);
+    private static native void init(Element e, String target);
 
-    private void refresh(final Element e) {
+    private void refresh(Element e) {
         JQuery.jQuery(e).scrollspy("refresh");
     }
 }

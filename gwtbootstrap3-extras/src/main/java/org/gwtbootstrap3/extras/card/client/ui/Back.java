@@ -36,10 +36,10 @@ public class Back extends Div {
 
         // Add the card to the flip
         trigger = new Trigger();
-        super.add(trigger);
+        add(trigger);
     }
 
-    public void setTrigger(final IconType iconType) {
+    public void setTrigger(IconType iconType) {
         trigger.setType(iconType);
     }
 }

@@ -47,21 +47,20 @@ public class BooleanParser implements Parser<Boolean> {
      * Constructor.
      */
     protected BooleanParser() {
-        super();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Boolean parse(final CharSequence text) throws ParseException {
+    public Boolean parse(CharSequence text) throws ParseException {
         if (text != null) {
             String value = text.toString();
             if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("Yes")) {
                 return true;
             }
             try {
-                Integer i = Integer.valueOf(value);
+                int i = Integer.parseInt(value);
                 return i != 0;
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return false;

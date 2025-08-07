@@ -35,7 +35,7 @@ public class NavPills extends Nav implements HasStacked {
     }
 
     @Override
-    public void setStacked(final boolean stacked) {
+    public void setStacked(boolean stacked) {
         if (stacked) {
             addStyleName(Styles.NAV_STACKED);
         } else {

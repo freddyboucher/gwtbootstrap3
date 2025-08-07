@@ -55,16 +55,16 @@ public class DayNames implements IsJavaScriptObject {
      * @param longNames
      * @param shortNames
      */
-    public void localized(final String[] longNames, final String[] shortNames) {
+    public void localized(String[] longNames, String[] shortNames) {
         assert longNames != null && longNames.length == 7;
         assert shortNames != null && shortNames.length == 7;
-        final JsArrayString longOnes = (JsArrayString) JsArrayString.createArray();
-        for (final String name : longNames) {
+        JsArrayString longOnes = (JsArrayString) JsArrayString.createArray();
+        for (String name : longNames) {
             longOnes.push(name);
         }
 
-        final JsArrayString shortOnes = (JsArrayString) JsArrayString.createArray();
-        for (final String name : shortNames) {
+        JsArrayString shortOnes = (JsArrayString) JsArrayString.createArray();
+        for (String name : shortNames) {
             shortOnes.push(name);
         }
         localized(longOnes, shortOnes);

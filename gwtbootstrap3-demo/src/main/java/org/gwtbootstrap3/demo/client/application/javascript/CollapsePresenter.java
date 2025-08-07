@@ -44,9 +44,9 @@ public class CollapsePresenter extends Presenter<CollapsePresenter.MyView, Colla
     }
 
     @Inject
-    public CollapsePresenter(final EventBus eventBus,
-                             final MyView view,
-                             final MyProxy proxy) {
+    public CollapsePresenter(EventBus eventBus,
+                             MyView view,
+                             MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

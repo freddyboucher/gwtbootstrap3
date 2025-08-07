@@ -28,7 +28,7 @@ import com.google.gwt.user.client.Event;
  */
 public class ChangeYearEvent extends GwtEvent<ChangeYearHandler> {
 
-    private static final Type<ChangeYearHandler> TYPE = new Type<ChangeYearHandler>();
+    private static final Type<ChangeYearHandler> TYPE = new Type<>();
 
     private final Event nativeEvent;
 
@@ -36,7 +36,7 @@ public class ChangeYearEvent extends GwtEvent<ChangeYearHandler> {
         return TYPE;
     }
 
-    public ChangeYearEvent(final Event nativeEvent) {
+    public ChangeYearEvent(Event nativeEvent) {
         this.nativeEvent = nativeEvent;
     }
 
@@ -50,7 +50,7 @@ public class ChangeYearEvent extends GwtEvent<ChangeYearHandler> {
     }
 
     @Override
-    protected void dispatch(final ChangeYearHandler handler) {
+    protected void dispatch(ChangeYearHandler handler) {
         handler.onChangeYear(this);
     }
 }

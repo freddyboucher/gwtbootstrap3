@@ -37,7 +37,7 @@ public enum FormGroupSize implements Size, Style.HasCssName {
 
     private final String cssClass;
 
-    private FormGroupSize(final String cssClass) {
+    FormGroupSize(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -46,7 +46,7 @@ public enum FormGroupSize implements Size, Style.HasCssName {
         return cssClass;
     }
 
-    public static FormGroupSize fromStyleName(final String styleName) {
+    public static FormGroupSize fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, FormGroupSize.class, DEFAULT);
     }
 

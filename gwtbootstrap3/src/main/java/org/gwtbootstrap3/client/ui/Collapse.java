@@ -77,7 +77,7 @@ public class Collapse extends Div {
      *
      * @param toggle toggle the collapse
      */
-    public void setToggle(final boolean toggle) {
+    public void setToggle(boolean toggle) {
         this.toggle = toggle;
     }
 
@@ -86,7 +86,7 @@ public class Collapse extends Div {
      *
      * @param in show or hide the collapse
      */
-    public void setIn(final boolean in) {
+    public void setIn(boolean in) {
         if (in) {
             addStyleName(Styles.IN);
         } else {
@@ -127,78 +127,70 @@ public class Collapse extends Div {
         return StyleHelper.containsStyle(getStyleName(), Styles.COLLAPSING);
     }
 
-    public HandlerRegistration addShowHandler(final ShowHandler showHandler) {
+    public HandlerRegistration addShowHandler(ShowHandler showHandler) {
         return addHandler(showHandler, ShowEvent.getType());
     }
 
-    public HandlerRegistration addShownHandler(final ShownHandler shownHandler) {
+    public HandlerRegistration addShownHandler(ShownHandler shownHandler) {
         return addHandler(shownHandler, ShownEvent.getType());
     }
 
-    public HandlerRegistration addHideHandler(final HideHandler hideHandler) {
+    public HandlerRegistration addHideHandler(HideHandler hideHandler) {
         return addHandler(hideHandler, HideEvent.getType());
     }
 
-    public HandlerRegistration addHiddenHandler(final HiddenHandler hiddenHandler) {
+    public HandlerRegistration addHiddenHandler(HiddenHandler hiddenHandler) {
         return addHandler(hiddenHandler, HiddenEvent.getType());
     }
 
     /**
      * Fired when the collapse is starting to show
      */
-    private void onShow(final Event evt) {
+    private void onShow(Event evt) {
         fireEvent(new ShowEvent(evt));
     }
 
     /**
      * Fired when the collapse has shown
      */
-    private void onShown(final Event evt) {
+    private void onShown(Event evt) {
         fireEvent(new ShownEvent(evt));
     }
 
     /**
      * Fired when the collapse is starting to hide
      */
-    private void onHide(final Event evt) {
+    private void onHide(Event evt) {
         fireEvent(new HideEvent(evt));
     }
 
     /**
      * Fired when the collapse has hidden
      */
-    private void onHidden(final Event evt) {
+    private void onHidden(Event evt) {
         fireEvent(new HiddenEvent(evt));
     }
 
-    private void bindJavaScriptEvents(final com.google.gwt.dom.client.Element e) {
+    private void bindJavaScriptEvents(Element e) {
         JQuery collapse = JQuery.jQuery(e);
 
-        collapse.on("show.bs.collapse", (evt) -> {
-            onShow(evt);
-        });
+        collapse.on("show.bs.collapse", this::onShow);
 
-        collapse.on("shown.bs.collapse", (evt) -> {
-            onShown(evt);
-        });
+        collapse.on("shown.bs.collapse", this::onShown);
 
-        collapse.on("hide.bs.collapse", (evt) -> {
-            onHide(evt);
-        });
+        collapse.on("hide.bs.collapse", this::onHide);
 
-        collapse.on("hidden.bs.collapse", (evt) -> {
-            onHidden(evt);
-        });
+        collapse.on("hidden.bs.collapse", this::onHidden);
     }
 
-    private void unbindJavaScriptEvents(final Element e) {
+    private void unbindJavaScriptEvents(Element e) {
         JQuery.jQuery(e).off("show.bs.collapse");
         JQuery.jQuery(e).off("shown.bs.collapse");
         JQuery.jQuery(e).off("hide.bs.collapse");
         JQuery.jQuery(e).off("hidden.bs.collapse");
     }
 
-    private void fireMethod(final Element e, String method) {
+    private void fireMethod(Element e, String method) {
         JQuery.jQuery(e).collapse(method);
     }
 }

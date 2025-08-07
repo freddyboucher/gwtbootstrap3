@@ -51,7 +51,7 @@ public class TagsInputOptions<T> extends JavaScriptObject {
         this.tagClass = className;
     }-*/;
 
-    public final native void setTagClass(final TagClassCallback<T> callback) /*-{
+    public final native void setTagClass(TagClassCallback<T> callback) /*-{
         this.tagClass = function(item) {
             return callback.@org.gwtbootstrap3.extras.tagsinput.client.callback.TagClassCallback::getTagClass(Ljava/lang/Object;)(item);
         }
@@ -61,7 +61,7 @@ public class TagsInputOptions<T> extends JavaScriptObject {
         this.itemValue = itemValue;
     }-*/;
 
-    public final native void setItemValue(final ItemValueCallback<T> callback) /*-{
+    public final native void setItemValue(ItemValueCallback<T> callback) /*-{
         this.itemValue = function(item) {
             return callback.@org.gwtbootstrap3.extras.tagsinput.client.callback.ItemValueCallback::getItemValue(Ljava/lang/Object;)(item);
         }
@@ -71,7 +71,7 @@ public class TagsInputOptions<T> extends JavaScriptObject {
         this.itemText = itemText;
     }-*/;
     
-    public final native void setItemText(final ItemTextCallback<T> callback) /*-{
+    public final native void setItemText(ItemTextCallback<T> callback) /*-{
         this.itemText = function(item) {
             return callback.@org.gwtbootstrap3.extras.tagsinput.client.callback.ItemTextCallback::getItemText(Ljava/lang/Object;)(item);
         }
@@ -109,7 +109,7 @@ public class TagsInputOptions<T> extends JavaScriptObject {
         this.cancelConfirmKeysOnEmpty = cancelConfirmKeysOnEmpty;
     }-*/;
     
-    public final native void onTagExists(final OnTagExistsCallback<T> callback) /*-{
+    public final native void onTagExists(OnTagExistsCallback<T> callback) /*-{
         this.onTagExists = function(item, tag) {
             callback.@org.gwtbootstrap3.extras.tagsinput.client.callback.OnTagExistsCallback::onTagExists(Ljava/lang/Object;Lcom/google/gwt/dom/client/Element;)(item, tag[0]);
         }

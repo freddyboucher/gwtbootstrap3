@@ -71,7 +71,7 @@ public enum SummernoteLanguage {
     private final String code;
     private final TextResource js;
   
-    private SummernoteLanguage(final String code, final TextResource js) {
+    SummernoteLanguage(String code, TextResource js) {
         this.code = code;
         this.js = js;
     }

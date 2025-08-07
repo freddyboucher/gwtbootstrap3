@@ -35,13 +35,13 @@ public class Panel extends Div implements HasType<PanelType> {
         this(PanelType.DEFAULT);
     }
 
-    public Panel(final PanelType type) {
+    public Panel(PanelType type) {
         setStyleName(Styles.PANEL);
         setType(type);
     }
 
     @Override
-    public void setType(final PanelType type) {
+    public void setType(PanelType type) {
         StyleHelper.addUniqueEnumStyleName(this, PanelType.class, type);
     }
 

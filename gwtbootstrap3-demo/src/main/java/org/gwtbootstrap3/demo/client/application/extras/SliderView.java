@@ -24,7 +24,6 @@ import org.gwtbootstrap3.client.ui.html.Paragraph;
 import org.gwtbootstrap3.extras.slider.client.ui.Range;
 import org.gwtbootstrap3.extras.slider.client.ui.RangeSlider;
 import org.gwtbootstrap3.extras.slider.client.ui.Slider;
-import org.gwtbootstrap3.extras.slider.client.ui.base.FormatterCallback;
 import org.gwtbootstrap3.extras.slider.client.ui.base.event.SlideDisabledEvent;
 import org.gwtbootstrap3.extras.slider.client.ui.base.event.SlideEnabledEvent;
 import org.gwtbootstrap3.extras.slider.client.ui.base.event.SlideEvent;
@@ -59,22 +58,12 @@ public class SliderView extends ViewImpl implements SliderPresenter.MyView {
     interface Binder extends UiBinder<Widget, SliderView> {}
 
     @Inject
-    SliderView(final Binder uiBinder) {
+    SliderView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
 
-        formatterExample.setFormatter(new FormatterCallback<Double>() {
-            @Override
-            public String formatTooltip(final Double value) {
-                return "Current value: " + value;
-            }
-        });
+        formatterExample.setFormatter(value -> "Current value: " + value);
 
-        rangeFormatterExample.setFormatter(new FormatterCallback<Range>() {
-            @Override
-            public String formatTooltip(final Range value) {
-                return "Range: [" + value.getMinValue() + ", " + value.getMaxValue() + "]";
-            }
-        });
+        rangeFormatterExample.setFormatter(value -> "Range: [" + value.getMinValue() + ", " + value.getMaxValue() + "]");
 
     }
 
@@ -224,7 +213,7 @@ public class SliderView extends ViewImpl implements SliderPresenter.MyView {
     }
 
     private void addEventLog(String eventName, String logSuffix) {
-        final Paragraph logEntry = new Paragraph();
+        Paragraph logEntry = new Paragraph();
         logEntry.setHTML("<b>" + eventName + "</b> event fired! " + logSuffix);
         logRow.add(logEntry);
     }

@@ -38,7 +38,7 @@ import com.google.gwt.user.client.ui.Focusable;
 
 /**
  * Base class for list items that contain an
- * {@link org.gwtbootstrap3.client.ui.Anchor} link.
+ * {@link Anchor} link.
  *
  * @author Sven Jacobs
  * @author Drew Spencer
@@ -54,19 +54,13 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
      */
     protected AbstractAnchorListItem() {
         anchor = new Anchor();
-        anchor.addClickHandler(new ClickHandler() {
-
-            @Override
-            public void onClick(ClickEvent event) {
-                delegateEvent(AbstractAnchorListItem.this, event);
-            }
-        });
+        anchor.addClickHandler(event -> delegateEvent(this, event));
         add(anchor, (Element) getElement());
     }
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addClickHandler(final ClickHandler handler) {
+    public HandlerRegistration addClickHandler(ClickHandler handler) {
         return anchor.addHandler(handler, ClickEvent.getType());
     }
 
@@ -176,7 +170,7 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
 
     /** {@inheritDoc} */
     @Override
-    public void setAccessKey(final char key) {
+    public void setAccessKey(char key) {
         anchor.setAccessKey(key);
     }
 
@@ -194,38 +188,38 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
 
     /** {@inheritDoc} */
     @Override
-    public void setDataToggle(final Toggle toggle) {
+    public void setDataToggle(Toggle toggle) {
         anchor.setDataToggle(toggle);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
         anchor.setEnabled(enabled);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setFocus(final boolean focused) {
+    public void setFocus(boolean focused) {
         anchor.setFocus(focused);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setHref(final String href) {
+    public void setHref(String href) {
         anchor.setHref(href);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setIcon(final IconType iconType) {
+    public void setIcon(IconType iconType) {
         anchor.setIcon(iconType);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setIconBordered(final boolean iconBordered) {
+    public void setIconBordered(boolean iconBordered) {
         anchor.setIconBordered(iconBordered);
     }
 
@@ -237,25 +231,25 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
 
     /** {@inheritDoc} */
     @Override
-    public void setIconFixedWidth(final boolean iconFixedWidth) {
+    public void setIconFixedWidth(boolean iconFixedWidth) {
         anchor.setIconFixedWidth(iconFixedWidth);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setIconFlip(final IconFlip iconFlip) {
+    public void setIconFlip(IconFlip iconFlip) {
         anchor.setIconFlip(iconFlip);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setIconInverse(final boolean iconInverse) {
+    public void setIconInverse(boolean iconInverse) {
         anchor.setIconInverse(iconInverse);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setIconPosition(final IconPosition iconPosition) {
+    public void setIconPosition(IconPosition iconPosition) {
         anchor.setIconPosition(iconPosition);
     }
 
@@ -267,26 +261,26 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
 
     /** {@inheritDoc} */
     @Override
-    public void setIconRotate(final IconRotate iconRotate) {
+    public void setIconRotate(IconRotate iconRotate) {
         anchor.setIconRotate(iconRotate);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setIconSize(final IconSize iconSize) {
+    public void setIconSize(IconSize iconSize) {
         anchor.setIconSize(iconSize);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setIconSpin(final boolean iconSpin) {
+    public void setIconSpin(boolean iconSpin) {
         anchor.setIconSpin(iconSpin);
     }
 
     /** {@inheritDoc} */
 
     @Override
-    public void setTabIndex(final int index) {
+    public void setTabIndex(int index) {
         anchor.setTabIndex(index);
     }
 
@@ -294,13 +288,13 @@ public abstract class AbstractAnchorListItem extends AbstractListItem implements
      * {@inheritDoc}
      */
     @Override
-    public void setTarget(final String target) {
+    public void setTarget(String target) {
         anchor.setTarget(target);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setTargetHistoryToken(final String targetHistoryToken) {
+    public void setTargetHistoryToken(String targetHistoryToken) {
         anchor.setTargetHistoryToken(targetHistoryToken);
     }
 

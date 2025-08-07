@@ -47,7 +47,7 @@ public class Code extends AbstractTextWidget {
      * @param html HTML contents
      */
     @Override
-    public void setHTML(final String html) {
+    public void setHTML(String html) {
         getElement().setInnerHTML(SourceCodeHelper.parseCode(html).asString());
     }
 }

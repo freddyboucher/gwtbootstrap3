@@ -29,11 +29,11 @@ import com.google.gwt.dom.client.Element;
  * @author Jeff Isenhart
  */
 public interface ViewRenderCallback {
-    public void viewRender(JavaScriptObject view, Element element);
+    void viewRender(JavaScriptObject view, Element element);
 
-    public void viewDestroy(JavaScriptObject view, Element element);
+    void viewDestroy(JavaScriptObject view, Element element);
 
-    public void dayRender(JavaScriptObject moment, Element tdElement);
+    void dayRender(JavaScriptObject moment, Element tdElement);
 
-    public void windowResize(JavaScriptObject view);
+    void windowResize(JavaScriptObject view);
 }

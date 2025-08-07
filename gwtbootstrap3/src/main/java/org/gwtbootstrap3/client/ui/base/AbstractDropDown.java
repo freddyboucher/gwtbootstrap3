@@ -30,7 +30,7 @@ import com.google.gwt.dom.client.Element;
  */
 public class AbstractDropDown extends ComplexWidget {
 
-    public AbstractDropDown(final Element element) {
+    public AbstractDropDown(Element element) {
         setElement(element);
         setStyleName(Styles.DROPDOWN);
     }

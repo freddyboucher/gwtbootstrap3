@@ -44,9 +44,9 @@ public class CarouselPresenter extends Presenter<CarouselPresenter.MyView, Carou
     }
 
     @Inject
-    public CarouselPresenter(final EventBus eventBus,
-                             final MyView view,
-                             final MyProxy proxy) {
+    public CarouselPresenter(EventBus eventBus,
+                             MyView view,
+                             MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

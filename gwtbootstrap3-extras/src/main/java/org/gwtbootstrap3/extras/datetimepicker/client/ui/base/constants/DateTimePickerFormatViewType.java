@@ -33,7 +33,7 @@ public enum DateTimePickerFormatViewType {
 
     private final String value;
 
-    private DateTimePickerFormatViewType(final String value) {
+    DateTimePickerFormatViewType(String value) {
         this.value = value;
     }
 

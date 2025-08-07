@@ -32,7 +32,7 @@ import com.google.gwt.user.client.DOM;
  * An inline check box widget.
  *
  * @author Sven Jacobs
- * @see org.gwtbootstrap3.client.ui.CheckBox
+ * @see CheckBox
  */
 public class InlineCheckBox extends CheckBox {
 

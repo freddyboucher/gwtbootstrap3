@@ -44,9 +44,9 @@ public class AlertPresenter extends Presenter<AlertPresenter.MyView, AlertPresen
     }
 
     @Inject
-    public AlertPresenter(final EventBus eventBus,
-                          final MyView view,
-                          final MyProxy proxy) {
+    public AlertPresenter(EventBus eventBus,
+                          MyView view,
+                          MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

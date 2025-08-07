@@ -65,7 +65,7 @@ public class Notify extends JavaScriptObject {
      * @param message Message to set
      * @return Displayed Notify for update or hiding.
      */
-    public static final native Notify notify(final String message) /*-{
+    public static final native Notify notify(String message) /*-{
         return $wnd.jQuery.notify({ message: message }, null);
     }-*/;
 
@@ -76,7 +76,7 @@ public class Notify extends JavaScriptObject {
      * @param message Message to set
      * @return Displayed Notify for update or hiding.
      */
-    public static final native Notify notify(final String title, final String message) /*-{
+    public static final native Notify notify(String title, String message) /*-{
         return $wnd.jQuery.notify({ title: title, message: message }, null);
     }-*/;
 
@@ -88,7 +88,7 @@ public class Notify extends JavaScriptObject {
      * @param icon    Icon to set
      * @return Displayed Notify for update or hiding.
      */
-    public static final native Notify notify(final String title, final String message, final String icon) /*-{
+    public static final native Notify notify(String title, String message, String icon) /*-{
         return $wnd.jQuery.notify({ title: title, message: message, icon: icon }, null);
     }-*/;
 
@@ -100,7 +100,7 @@ public class Notify extends JavaScriptObject {
      * @param iconType IconType to set
      * @return Displayed Notify for update or hiding.
      */
-    public static final Notify notify(final String title, final String message, final IconType iconType) {
+    public static final Notify notify(String title, String message, IconType iconType) {
         return Notify.notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName());
     }
 
@@ -113,7 +113,7 @@ public class Notify extends JavaScriptObject {
      * @param url     Url to set
      * @return Displayed Notify for update or hiding.
      */
-    public static final native Notify notify(final String title, final String message, final String icon, final String url) /*-{
+    public static final native Notify notify(String title, String message, String icon, String url) /*-{
         return $wnd.jQuery.notify({ title: title, message: message, icon: icon, url: url }, null);
     }-*/;
 
@@ -126,7 +126,7 @@ public class Notify extends JavaScriptObject {
      * @param url      Url to set
      * @return Displayed Notify for update or hiding.
      */
-    public static final Notify notify(final String title, final String message, final IconType iconType, final String url) {
+    public static final Notify notify(String title, String message, IconType iconType, String url) {
         return Notify.notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName(), url);
     }
 
@@ -136,9 +136,9 @@ public class Notify extends JavaScriptObject {
      * @param message Message to set
      * @param type    NotifyType
      * @return Displayed Notify for update or hiding.
-     * @see org.gwtbootstrap3.extras.notify.client.constants.NotifyType
+     * @see NotifyType
      */
-    public static final native Notify notify(final String message, final NotifyType type) /*-{
+    public static final native Notify notify(String message, NotifyType type) /*-{
         return $wnd.jQuery.notify({ message: message }, { type: type.@org.gwtbootstrap3.extras.notify.client.constants.NotifyType::getCssName()() });
     }-*/;
 
@@ -149,9 +149,9 @@ public class Notify extends JavaScriptObject {
      * @param message Message to set
      * @param type    NotifyType
      * @return Displayed Notify for update or hiding.
-     * @see org.gwtbootstrap3.extras.notify.client.constants.NotifyType
+     * @see NotifyType
      */
-    public static final native Notify notify(final String title, final String message, final NotifyType type) /*-{
+    public static final native Notify notify(String title, String message, NotifyType type) /*-{
         return $wnd.jQuery.notify({ title: title, message: message }, { type: type.@org.gwtbootstrap3.extras.notify.client.constants.NotifyType::getCssName()() });
     }-*/;
 
@@ -163,9 +163,9 @@ public class Notify extends JavaScriptObject {
      * @param icon    Icon to set
      * @param type    NotifyType
      * @return Displayed Notify for update or hiding.
-     * @see org.gwtbootstrap3.extras.notify.client.constants.NotifyType
+     * @see NotifyType
      */
-    public static final native Notify notify(final String title, final String message, final String icon, final NotifyType type) /*-{
+    public static final native Notify notify(String title, String message, String icon, NotifyType type) /*-{
         return $wnd.jQuery.notify({ title: title, message: message, icon: icon }, { type: type.@org.gwtbootstrap3.extras.notify.client.constants.NotifyType::getCssName()() });
     }-*/;
 
@@ -177,9 +177,9 @@ public class Notify extends JavaScriptObject {
      * @param iconType IconType to set (css name of icon form FONT AWESOME)
      * @param type     NotifyType
      * @return Displayed Notify for update or hiding.
-     * @see org.gwtbootstrap3.extras.notify.client.constants.NotifyType
+     * @see NotifyType
      */
-    public static final Notify notify(final String title, final String message, final IconType iconType, final NotifyType type) {
+    public static final Notify notify(String title, String message, IconType iconType, NotifyType type) {
         return Notify.notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName(), type);
     }
 
@@ -192,9 +192,9 @@ public class Notify extends JavaScriptObject {
      * @param url     Url to set
      * @param type    NotifyType
      * @return Displayed Notify for update or hiding.
-     * @see org.gwtbootstrap3.extras.notify.client.constants.NotifyType
+     * @see NotifyType
      */
-    public static final native Notify notify(final String title, final String message, final String icon, final String url, final NotifyType type) /*-{
+    public static final native Notify notify(String title, String message, String icon, String url, NotifyType type) /*-{
         return $wnd.jQuery.notify({ title: title, message: message, icon: icon, url: url }, { type: type.@org.gwtbootstrap3.extras.notify.client.constants.NotifyType::getCssName()() });
     }-*/;
 
@@ -207,9 +207,9 @@ public class Notify extends JavaScriptObject {
      * @param url      Url to set
      * @param type     NotifyType
      * @return Displayed Notify for update or hiding.
-     * @see org.gwtbootstrap3.extras.notify.client.constants.NotifyType
+     * @see NotifyType
      */
-    public static final Notify notify(final String title, final String message, final IconType iconType, final String url, final NotifyType type) {
+    public static final Notify notify(String title, String message, IconType iconType, String url, NotifyType type) {
         return Notify.notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName(), url, type);
     }
 
@@ -219,9 +219,9 @@ public class Notify extends JavaScriptObject {
      * @param message Message to set
      * @param settings custom settings
      * @return Displayed Notify for update or hiding.
-     * @see org.gwtbootstrap3.extras.notify.client.ui.NotifySettings
+     * @see NotifySettings
      */
-    public static final native Notify notify(final String message, final NotifySettings settings) /*-{
+    public static final native Notify notify(String message, NotifySettings settings) /*-{
         return $wnd.jQuery.notify({ message: message }, settings);
     }-*/;
 
@@ -232,9 +232,9 @@ public class Notify extends JavaScriptObject {
      * @param message Message to set
      * @param settings custom settings
      * @return Displayed Notify for update or hiding.
-     * @see org.gwtbootstrap3.extras.notify.client.ui.NotifySettings
+     * @see NotifySettings
      */
-    public static final native Notify notify(final String title, final String message, final NotifySettings settings) /*-{
+    public static final native Notify notify(String title, String message, NotifySettings settings) /*-{
         return $wnd.jQuery.notify({ title: title, message: message }, settings);
     }-*/;
 
@@ -246,9 +246,9 @@ public class Notify extends JavaScriptObject {
      * @param icon    Icon to set
      * @param settings custom settings
      * @return Displayed Notify for update or hiding.
-     * @see org.gwtbootstrap3.extras.notify.client.ui.NotifySettings
+     * @see NotifySettings
      */
-    public static final native Notify notify(final String title, final String message, final String icon, final NotifySettings settings) /*-{
+    public static final native Notify notify(String title, String message, String icon, NotifySettings settings) /*-{
         return $wnd.jQuery.notify({ title: title, message: message, icon: icon }, settings);
     }-*/;
 
@@ -260,9 +260,9 @@ public class Notify extends JavaScriptObject {
      * @param iconType IconType to set (css name of icon form FONT AWESOME)
      * @param settings  custom settings
      * @return Displayed Notify for update or hiding.
-     * @see org.gwtbootstrap3.extras.notify.client.ui.NotifySettings
+     * @see NotifySettings
      */
-    public static final Notify notify(final String title, final String message, final IconType iconType, final NotifySettings settings) {
+    public static final Notify notify(String title, String message, IconType iconType, NotifySettings settings) {
         return Notify.notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName(), settings);
     }
 
@@ -275,9 +275,9 @@ public class Notify extends JavaScriptObject {
      * @param url     Url to set
      * @param settings custom settings
      * @return Displayed Notify for update or hiding.
-     * @see org.gwtbootstrap3.extras.notify.client.ui.NotifySettings
+     * @see NotifySettings
      */
-    public static final native Notify notify(final String title, final String message, final String icon, final String url, final NotifySettings settings) /*-{
+    public static final native Notify notify(String title, String message, String icon, String url, NotifySettings settings) /*-{
         return $wnd.jQuery.notify({ title: title, message: message, icon: icon, url: url}, settings);
     }-*/;
 
@@ -290,9 +290,9 @@ public class Notify extends JavaScriptObject {
      * @param url      Url to set
      * @param settings custom settings
      * @return Displayed Notify for update or hiding.
-     * @see org.gwtbootstrap3.extras.notify.client.ui.NotifySettings
+     * @see NotifySettings
      */
-    public static final Notify notify(final String title, final String message, final IconType iconType, final String url, final NotifySettings settings) {
+    public static final Notify notify(String title, String message, IconType iconType, String url, NotifySettings settings) {
         return Notify.notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName(), url, settings);
     }
 
@@ -307,7 +307,7 @@ public class Notify extends JavaScriptObject {
      * Hide all displayed Notifies on specific screen location.
      *
      * @param placement Notify's placement on screen.
-     * @see org.gwtbootstrap3.extras.notify.client.constants.NotifyPlacement
+     * @see NotifyPlacement
      */
     public static final native void hideAll(NotifyPlacement placement) /*-{
         if (plamenet !== null) {
@@ -348,7 +348,7 @@ public class Notify extends JavaScriptObject {
      *
      * @param type IconType to get CSS class name to set
      */
-    public final void updateIcon(final IconType type) {
+    public final void updateIcon(IconType type) {
         if (type != null) updateIcon(Styles.FONT_AWESOME_BASE + " " + type.getCssName());
     }
 
@@ -356,9 +356,9 @@ public class Notify extends JavaScriptObject {
      * Update type of once displayed Notify (CSS style class name).
      *
      * @param type one of INFO, WARNING, DANGER, SUCCESS
-     * @see org.gwtbootstrap3.extras.notify.client.constants.NotifyType
+     * @see NotifyType
      */
-    public final void updateType(final NotifyType type) {
+    public final void updateType(NotifyType type) {
         if (type != null) {
             updateType(type.getCssName());
         }
@@ -370,7 +370,7 @@ public class Notify extends JavaScriptObject {
      *
      * @param type CSS class name to set
      */
-    private final native void updateType(String type) /*-{
+    private native void updateType(String type) /*-{
         this.update('type', type);
     }-*/;
 
@@ -379,7 +379,7 @@ public class Notify extends JavaScriptObject {
      *
      * @param target URL target to set
      */
-    private final native void updateTarget(String target) /*-{
+    private native void updateTarget(String target) /*-{
         this.update('target', target);
     }-*/;
 

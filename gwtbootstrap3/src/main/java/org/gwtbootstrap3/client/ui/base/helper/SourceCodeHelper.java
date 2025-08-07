@@ -36,11 +36,11 @@ public final class SourceCodeHelper {
      * @param code Unformatted source code
      * @return Formatted source code in HTML for use in {@link org.gwtbootstrap3.client.ui.Pre} or {@link org.gwtbootstrap3.client.ui.Code}
      */
-    public static SafeHtml parseCode(final String code) {
-        final SafeHtmlBuilder builder = new SafeHtmlBuilder();
-        final String[] splitted = code.replaceAll("\\\\s", " ").split("\\\\n\\s?");
+    public static SafeHtml parseCode(String code) {
+        SafeHtmlBuilder builder = new SafeHtmlBuilder();
+        String[] splitted = code.replaceAll("\\\\s", " ").split("\\\\n\\s?");
 
-        for (final String s : splitted) {
+        for (String s : splitted) {
             builder.append(SafeHtmlUtils.fromTrustedString(SafeHtmlUtils.htmlEscapeAllowEntities(s)));
             builder.appendHtmlConstant("<br>");
         }

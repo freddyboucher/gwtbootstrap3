@@ -40,7 +40,7 @@ public class Nav extends UnorderedList implements HasJustified {
     }
 
     @Override
-    public void setJustified(final boolean justified) {
+    public void setJustified(boolean justified) {
         if (justified) {
             addStyleName(Styles.NAV_JUSTIFIED);
         } else {

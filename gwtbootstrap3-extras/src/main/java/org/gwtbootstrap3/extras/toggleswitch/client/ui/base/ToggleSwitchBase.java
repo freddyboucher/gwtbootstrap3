@@ -62,8 +62,8 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
     private SizeType size = SizeType.REGULAR;
     private ColorType onColor = ColorType.DEFAULT;
     private ColorType offColor = ColorType.PRIMARY;
-    private final IdMixin<ToggleSwitchBase> idMixin = new IdMixin<ToggleSwitchBase>(this);
-    private final AttributeMixin<ToggleSwitchBase> attributeMixin = new AttributeMixin<ToggleSwitchBase>(this);
+    private final IdMixin<ToggleSwitchBase> idMixin = new IdMixin<>(this);
+    private final AttributeMixin<ToggleSwitchBase> attributeMixin = new AttributeMixin<>(this);
     private LeafValueEditor<Boolean> editor;
 
     protected ToggleSwitchBase(InputElement element) {
@@ -84,17 +84,17 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         idMixin.setId(id);
     }
 
@@ -119,7 +119,7 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
     }
 
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         updateSwitch(Option.DISABLED, !enabled);
     }
 
@@ -129,7 +129,7 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
     }
 
     @Override
-    public void setSize(final SizeType size) {
+    public void setSize(SizeType size) {
         this.size = size;
         updateSwitch(Option.SIZE, size.getType());
     }
@@ -138,7 +138,7 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
         return onColor;
     }
 
-    public void setOnColor(final ColorType onColor) {
+    public void setOnColor(ColorType onColor) {
         this.onColor = onColor;
         updateSwitch(Option.ON_COLOR, onColor.getType());
     }
@@ -147,7 +147,7 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
         return offColor;
     }
 
-    public void setOffColor(final ColorType offColor) {
+    public void setOffColor(ColorType offColor) {
         this.offColor = offColor;
         updateSwitch(Option.OFF_COLOR, offColor.getType());
     }
@@ -156,7 +156,7 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
         return getBooleanAttribute(Option.ANIMATE);
     }
 
-    public void setAnimate(final boolean animate) {
+    public void setAnimate(boolean animate) {
         updateSwitch(Option.ANIMATE, animate);
     }
 
@@ -164,11 +164,11 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
         return getStringAttribute(Option.ON_TEXT);
     }
 
-    public void setOnText(final String onText) {
+    public void setOnText(String onText) {
         updateSwitch(Option.ON_TEXT, onText);
     }
 
-    public void setOnIcon(final IconType iconType) {
+    public void setOnIcon(IconType iconType) {
         String text = createIconHtml(iconType);
         setOnText(text);
     }
@@ -177,11 +177,11 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
         return getStringAttribute(Option.OFF_TEXT);
     }
 
-    public void setOffText(final String offText) {
+    public void setOffText(String offText) {
         updateSwitch(Option.OFF_TEXT, offText);
     }
 
-    public void setOffIcon(final IconType iconType) {
+    public void setOffIcon(IconType iconType) {
         String text = createIconHtml(iconType);
         setOffText(text);
     }
@@ -190,12 +190,12 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
         return getStringAttribute(Option.LABEL_TEXT);
     }
 
-    public void setLabelText(final String labelText) {
+    public void setLabelText(String labelText) {
         updateSwitch(Option.LABEL_TEXT, labelText);
     }
 
     @Override
-    public HandlerRegistration addValueChangeHandler(final ValueChangeHandler<Boolean> handler) {
+    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Boolean> handler) {
         return addHandler(handler, ValueChangeEvent.getType());
     }
 
@@ -208,12 +208,12 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
     }
 
     @Override
-    public void setValue(final Boolean value) {
+    public void setValue(Boolean value) {
         setValue(value, false);
     }
 
     @Override
-    public void setValue(final Boolean value, final boolean fireEvents) {
+    public void setValue(Boolean value, boolean fireEvents) {
         Boolean oldValue = getValue();
         if (isAttached()) {
             switchState(getElement(), value, true);
@@ -221,11 +221,11 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
             element.setChecked(value);
         }
         if (fireEvents) {
-            ValueChangeEvent.fireIfNotEqual(ToggleSwitchBase.this, oldValue, value);
+            ValueChangeEvent.fireIfNotEqual(this, oldValue, value);
         }
     }
 
-    public void onChange(final boolean value) {
+    public void onChange(boolean value) {
         ValueChangeEvent.fire(this, value);
     }
 
@@ -316,7 +316,7 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
     private String createIconHtml(IconType iconType) {
         // Fix incorrect handle width when using icons
         setHandleWidth("30");
-        final Icon icon = new Icon(iconType);
+        Icon icon = new Icon(iconType);
         icon.setSize(IconSize.LARGE);
         return icon.getElement().getString();
     }
@@ -351,7 +351,7 @@ public class ToggleSwitchBase extends Widget implements HasSize<SizeType>, HasVa
         } else {
             String value = attributeMixin.getAttribute(option.getAttribute());
             if (value != null && !value.isEmpty()) {
-                return Boolean.valueOf(value);
+                return Boolean.parseBoolean(value);
             } else {
                 return false;
             }

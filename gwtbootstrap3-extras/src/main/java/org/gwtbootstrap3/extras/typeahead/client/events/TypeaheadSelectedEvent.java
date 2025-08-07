@@ -33,12 +33,12 @@ import org.gwtbootstrap3.extras.typeahead.client.ui.Typeahead;
  */
 public class TypeaheadSelectedEvent<T> extends GwtEvent<TypeaheadSelectedHandler<T>> {
 
-    public static <T> void fire(final Typeahead<T> source, final Suggestion<T> suggestion, final Event nativeEvent) {
-        TypeaheadSelectedEvent<T> event = new TypeaheadSelectedEvent<T>(source, suggestion, nativeEvent);
+    public static <T> void fire(Typeahead<T> source, Suggestion<T> suggestion, Event nativeEvent) {
+        TypeaheadSelectedEvent<T> event = new TypeaheadSelectedEvent<>(source, suggestion, nativeEvent);
         source.fireEvent(event);
     }
 
-    private static final Type<TypeaheadSelectedHandler<?>> TYPE = new Type<TypeaheadSelectedHandler<?>>();
+    private static final Type<TypeaheadSelectedHandler<?>> TYPE = new Type<>();
 
     private final Typeahead<T> typeahead;
     private final Suggestion<T> suggestion;
@@ -48,7 +48,7 @@ public class TypeaheadSelectedEvent<T> extends GwtEvent<TypeaheadSelectedHandler
         return TYPE;
     }
 
-    private TypeaheadSelectedEvent(final Typeahead<T> typeahead, final Suggestion<T> suggestion, final Event nativeEvent) {
+    private TypeaheadSelectedEvent(Typeahead<T> typeahead, Suggestion<T> suggestion, Event nativeEvent) {
         this.typeahead = typeahead;
         this.suggestion = suggestion;
         this.nativeEvent = nativeEvent;
@@ -73,7 +73,7 @@ public class TypeaheadSelectedEvent<T> extends GwtEvent<TypeaheadSelectedHandler
     }
 
     @Override
-    protected void dispatch(final TypeaheadSelectedHandler<T> handler) {
+    protected void dispatch(TypeaheadSelectedHandler<T> handler) {
         handler.onSelected(this);
     }
 }

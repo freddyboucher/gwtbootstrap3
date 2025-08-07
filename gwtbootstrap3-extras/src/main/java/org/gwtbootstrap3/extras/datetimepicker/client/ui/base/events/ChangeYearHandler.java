@@ -26,6 +26,6 @@ import com.google.gwt.event.shared.EventHandler;
  * @author Joshua Godi
  */
 public interface ChangeYearHandler extends EventHandler {
-    void onChangeYear(final ChangeYearEvent evt);
+    void onChangeYear(ChangeYearEvent evt);
 }
 

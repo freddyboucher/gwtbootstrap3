@@ -37,7 +37,7 @@ public class Container extends Div {
         setStyleName(Styles.CONTAINER);
     }
 
-    public void setFluid(final boolean isFluid) {
+    public void setFluid(boolean isFluid) {
         if (isFluid) {
             removeStyleName(Styles.CONTAINER);
             addStyleName(Styles.CONTAINER_FLUID);

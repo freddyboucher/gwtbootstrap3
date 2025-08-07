@@ -40,9 +40,9 @@ public class SlideStartEvent<T> extends GwtEvent<SlideStartHandler<T>> {
      * @param source the source of the handlers
      * @param value the new slider value
      */
-    public static <T> void fire(final HasSlideStartHandlers<T> source, final T value) {
+    public static <T> void fire(HasSlideStartHandlers<T> source, T value) {
         if (TYPE != null) {
-            SlideStartEvent<T> event = new SlideStartEvent<T>(value);
+            SlideStartEvent<T> event = new SlideStartEvent<>(value);
             source.fireEvent(event);
         }
     }
@@ -54,7 +54,7 @@ public class SlideStartEvent<T> extends GwtEvent<SlideStartHandler<T>> {
      */
     public static Type<SlideStartHandler<?>> getType() {
         if (TYPE == null) {
-            TYPE = new Type<SlideStartHandler<?>>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -66,7 +66,7 @@ public class SlideStartEvent<T> extends GwtEvent<SlideStartHandler<T>> {
     }
 
     @Override
-    protected void dispatch(final SlideStartHandler<T> handler) {
+    protected void dispatch(SlideStartHandler<T> handler) {
         handler.onSlideStart(this);
     }
 
@@ -75,7 +75,7 @@ public class SlideStartEvent<T> extends GwtEvent<SlideStartHandler<T>> {
      *
      * @param value the new slider value
      */
-    protected SlideStartEvent(final T value) {
+    protected SlideStartEvent(T value) {
         this.value = value;
     }
 

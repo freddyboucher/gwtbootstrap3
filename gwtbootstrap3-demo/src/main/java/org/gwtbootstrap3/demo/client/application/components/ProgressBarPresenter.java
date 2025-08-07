@@ -44,9 +44,9 @@ public class ProgressBarPresenter extends Presenter<ProgressBarPresenter.MyView,
     }
 
     @Inject
-    public ProgressBarPresenter(final EventBus eventBus,
-                                final MyView view,
-                                final MyProxy proxy) {
+    public ProgressBarPresenter(EventBus eventBus,
+                                MyView view,
+                                MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

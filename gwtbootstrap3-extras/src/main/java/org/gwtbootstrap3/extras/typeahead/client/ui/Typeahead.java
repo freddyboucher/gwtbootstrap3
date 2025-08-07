@@ -55,13 +55,13 @@ import com.google.gwt.user.client.Event;
  */
 public class Typeahead<T> extends TextBox {
     private Collection<? extends Dataset<T>> datasets;
-    private boolean highlight = false;
+    private boolean highlight;
     private boolean hint = true;
     private int minLength = 1;
 
     public Typeahead() {
         List<T> empty = Collections.emptyList();
-        setDatasets(new CollectionDataset<T>(empty));
+        setDatasets(new CollectionDataset<>(empty));
     }
 
     /**
@@ -71,34 +71,34 @@ public class Typeahead<T> extends TextBox {
      *
      * @param dataset a dataset for providing suggestions
      */
-    public Typeahead(final Dataset<T> dataset) {
+    public Typeahead(Dataset<T> dataset) {
         setDatasets(dataset);
     }
 
-    public Typeahead(final Collection<? extends Dataset<T>> datasets) {
+    public Typeahead(Collection<? extends Dataset<T>> datasets) {
         setDatasets(datasets);
     }
 
-    public Typeahead(final Element e, final Dataset<T> dataset) {
+    public Typeahead(Element e, Dataset<T> dataset) {
         super(e);
         setDatasets(dataset);
     }
 
-    public Typeahead(final Element e, final Collection<? extends Dataset<T>> datasets) {
+    public Typeahead(Element e, Collection<? extends Dataset<T>> datasets) {
         super(e);
         setDatasets(datasets);
     }
     
-    public void setDatasets(final Dataset<T> dataset) {
-        this.datasets = Arrays.asList(dataset);
+    public void setDatasets(Dataset<T> dataset) {
+        datasets = Arrays.asList(dataset);
     }
 
-    public void setDatasets(final Collection<? extends Dataset<T>> datasets) {
+    public void setDatasets(Collection<? extends Dataset<T>> datasets) {
         this.datasets = datasets;
     }
 
     @Override
-    public void setValue(final String value, final boolean fireEvents) {
+    public void setValue(String value, boolean fireEvents) {
         setValueNative(getElement(), value);
         super.setValue(value, fireEvents);
     }
@@ -110,7 +110,7 @@ public class Typeahead<T> extends TextBox {
      *
      * @param highlight {@code true} to highlight pattern matches in suggestions
      */
-    public void setHighlight(final boolean highlight) {
+    public void setHighlight(boolean highlight) {
         this.highlight = highlight;
     }
 
@@ -119,7 +119,7 @@ public class Typeahead<T> extends TextBox {
      *
      * @param hint {@code true} to show a hint
      */
-    public void setHint(final boolean hint) {
+    public void setHint(boolean hint) {
         this.hint = hint;
     }
 
@@ -129,27 +129,27 @@ public class Typeahead<T> extends TextBox {
      *
      * @param minLength minimum required input length for matching
      */
-    public void setMinLength(final int minLength) {
+    public void setMinLength(int minLength) {
         this.minLength = minLength;
     }
 
-    public HandlerRegistration addTypeaheadOpenedHandler(final TypeaheadOpenedHandler<T> handler) {
+    public HandlerRegistration addTypeaheadOpenedHandler(TypeaheadOpenedHandler<T> handler) {
         return addHandler(handler, TypeaheadOpenedEvent.getType());
     }
 
-    public HandlerRegistration addTypeaheadClosedHandler(final TypeaheadClosedHandler<T> handler) {
+    public HandlerRegistration addTypeaheadClosedHandler(TypeaheadClosedHandler<T> handler) {
         return addHandler(handler, TypeaheadClosedEvent.getType());
     }
 
-    public HandlerRegistration addTypeaheadCursorChangededHandler(final TypeaheadCursorChangedHandler<T> handler) {
+    public HandlerRegistration addTypeaheadCursorChangededHandler(TypeaheadCursorChangedHandler<T> handler) {
         return addHandler(handler, TypeaheadCursorChangedEvent.getType());
     }
 
-    public HandlerRegistration addTypeaheadAutoCompletedHandler(final TypeaheadAutoCompletedHandler<T> handler) {
+    public HandlerRegistration addTypeaheadAutoCompletedHandler(TypeaheadAutoCompletedHandler<T> handler) {
         return addHandler(handler, TypeaheadAutoCompletedEvent.getType());
     }
 
-    public HandlerRegistration addTypeaheadSelectedHandler(final TypeaheadSelectedHandler<T> handler) {
+    public HandlerRegistration addTypeaheadSelectedHandler(TypeaheadSelectedHandler<T> handler) {
         return addHandler(handler, TypeaheadSelectedEvent.getType());
     }
 
@@ -158,7 +158,7 @@ public class Typeahead<T> extends TextBox {
      *
      * @param event the event
      */
-    private void onOpened(final Event event) {
+    private void onOpened(Event event) {
         TypeaheadOpenedEvent.fire(this, event);
     }
 
@@ -167,7 +167,7 @@ public class Typeahead<T> extends TextBox {
      *
      * @param event the event
      */
-    private void onClosed(final Event event) {
+    private void onClosed(Event event) {
         TypeaheadClosedEvent.fire(this, event);
     }
 
@@ -177,7 +177,7 @@ public class Typeahead<T> extends TextBox {
      * @param event the event
      * @param suggestion the suggestion object
      */
-    private void onCursorChanged(final Event event, final Suggestion<T> suggestion) {
+    private void onCursorChanged(Event event, Suggestion<T> suggestion) {
         TypeaheadCursorChangedEvent.fire(this, suggestion, event);
     }
 
@@ -187,7 +187,7 @@ public class Typeahead<T> extends TextBox {
      * @param event the event
      * @param suggestion the suggestion object
      */
-    private void onAutoCompleted(final Event event, final Suggestion<T> suggestion) {
+    private void onAutoCompleted(Event event, Suggestion<T> suggestion) {
         TypeaheadAutoCompletedEvent.fire(this, suggestion, event);
     }
 
@@ -197,7 +197,7 @@ public class Typeahead<T> extends TextBox {
      * @param event the event
      * @param suggestion the suggestion object
      */
-    private void onSelected(final Event event, final Suggestion<T> suggestion) {
+    private void onSelected(Event event, Suggestion<T> suggestion) {
         TypeaheadSelectedEvent.fire(this, suggestion, event);
     }
 

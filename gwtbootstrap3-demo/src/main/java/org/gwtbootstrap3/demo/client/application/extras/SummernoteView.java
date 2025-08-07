@@ -85,104 +85,104 @@ public class SummernoteView extends ViewImpl implements SummernotePresenter.MyVi
     @UiField FlowPanel logRow;
 
     @UiHandler("setCode")
-    void setCode(final ClickEvent event) {
+    void setCode(ClickEvent event) {
         apiTest.setCode("<b>This is custom code. </b><u>OH YA</u>");
     }
 
     @UiHandler("getCode")
-    void getCode(final ClickEvent event) {
+    void getCode(ClickEvent event) {
         Window.alert(apiTest.getCode());
     }
 
     @UiHandler("clear")
-    void clear(final ClickEvent event) {
+    void clear(ClickEvent event) {
         apiTest.clear();
     }
 
     @UiHandler("isEmpty")
-    void isEmpty(final ClickEvent event) {
+    void isEmpty(ClickEvent event) {
         Window.alert("" + apiTest.isEmpty());
     }
 
     @UiHandler("enable")
-    void enable(final ClickEvent event) {
+    void enable(ClickEvent event) {
         apiTest.setEnabled(true);
     }
 
     @UiHandler("disable")
-    void disable(final ClickEvent event) {
+    void disable(ClickEvent event) {
         apiTest.setEnabled(false);
     }
 
     @UiHandler("reset")
-    void reset(final ClickEvent event) {
+    void reset(ClickEvent event) {
         apiTest.reset();
     }
 
     @UiHandler("clearLogButton")
-    public void handleClearLog(final ClickEvent event) {
+    public void handleClearLog(ClickEvent event) {
         logRow.clear();
     }
 
     @UiHandler("languageBox")
-    void onChangeLanguage(final ChangeEvent event) {
+    void onChangeLanguage(ChangeEvent event) {
         String language = languageBox.getSelectedValue();
         languageNote.setLanguage(SummernoteLanguage.valueOf(language));
         languageNote.reconfigure();
     }
 
     @UiHandler("events")
-    void onSummernoteInit(final SummernoteInitEvent event) {
-        final Paragraph logEntry = new Paragraph();
+    void onSummernoteInit(SummernoteInitEvent event) {
+        Paragraph logEntry = new Paragraph();
         logEntry.setText("Init Event Fired!");
         logRow.add(logEntry);
     }
 
     @UiHandler("events")
-    void onSummernoteEnter(final SummernoteEnterEvent event) {
-        final Paragraph logEntry = new Paragraph();
+    void onSummernoteEnter(SummernoteEnterEvent event) {
+        Paragraph logEntry = new Paragraph();
         logEntry.setText("Enter Event Fired!");
         logRow.add(logEntry);
     }
 
     @UiHandler("events")
-    void onSummernoteFocus(final SummernoteFocusEvent event) {
-        final Paragraph logEntry = new Paragraph();
+    void onSummernoteFocus(SummernoteFocusEvent event) {
+        Paragraph logEntry = new Paragraph();
         logEntry.setText("Focus Event Fired!");
         logRow.add(logEntry);
     }
 
     @UiHandler("events")
-    void onSummernoteBlur(final SummernoteBlurEvent event) {
-        final Paragraph logEntry = new Paragraph();
+    void onSummernoteBlur(SummernoteBlurEvent event) {
+        Paragraph logEntry = new Paragraph();
         logEntry.setText("Blur Event Fired!");
         logRow.add(logEntry);
     }
 
     @UiHandler("events")
-    void onSummernoteKeyUp(final SummernoteKeyUpEvent event) {
-        final Paragraph logEntry = new Paragraph();
+    void onSummernoteKeyUp(SummernoteKeyUpEvent event) {
+        Paragraph logEntry = new Paragraph();
         logEntry.setText("Key Up Event Fired. The key code is:" + event.getNativeEvent().getKeyCode());
         logRow.add(logEntry);
     }
 
     @UiHandler("events")
-    void onSummernoteKeyDown(final SummernoteKeyDownEvent event) {
-        final Paragraph logEntry = new Paragraph();
+    void onSummernoteKeyDown(SummernoteKeyDownEvent event) {
+        Paragraph logEntry = new Paragraph();
         logEntry.setText("Key Down Event Fired. The key code is:" + event.getNativeEvent().getKeyCode());
         logRow.add(logEntry);
     }
 
     @UiHandler("events")
-    public void onSummernotePaste(final SummernotePasteEvent event) {
-        final Paragraph logEntry = new Paragraph();
+    public void onSummernotePaste(SummernotePasteEvent event) {
+        Paragraph logEntry = new Paragraph();
         logEntry.setText("Paste Event Fired!");
         logRow.add(logEntry);
     }
 
     @UiHandler("events")
-    public void onSummernoteImageUpload(final SummernoteImageUploadEvent event) {
-        final Paragraph logEntry = new Paragraph();
+    public void onSummernoteImageUpload(SummernoteImageUploadEvent event) {
+        Paragraph logEntry = new Paragraph();
         StringBuilder sb = new StringBuilder("Image Upload Event Fired:");
         JsArray<ImageFile> images = event.getImages();
         for (int i = 0; i < images.length(); i++) {
@@ -194,8 +194,8 @@ public class SummernoteView extends ViewImpl implements SummernotePresenter.MyVi
     }
 
     @UiHandler("events")
-    public void onSummernoteChange(final SummernoteChangeEvent event) {
-        final Paragraph logEntry = new Paragraph();
+    public void onSummernoteChange(SummernoteChangeEvent event) {
+        Paragraph logEntry = new Paragraph();
         logEntry.setText("Change Event Fired!");
         logRow.add(logEntry);
     }
@@ -204,7 +204,7 @@ public class SummernoteView extends ViewImpl implements SummernotePresenter.MyVi
     }
 
     @Inject
-    SummernoteView(final Binder uiBinder) {
+    SummernoteView(Binder uiBinder) {
 
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -232,7 +232,7 @@ public class SummernoteView extends ViewImpl implements SummernotePresenter.MyVi
             @Override
             public void onResponseReceived(Request request, Response response) {
                 String text = response.getText();
-                final JSONObject emojiUrls = JSONParser.parseStrict(text).isObject();
+                JSONObject emojiUrls = JSONParser.parseStrict(text).isObject();
                 GWT.log("Found " + emojiUrls.size() + " emojis");
                 hintEmoji.setHint(":([\\-+\\w]+)$", new DefaultHintHandler() {
 

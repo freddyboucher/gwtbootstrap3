@@ -85,7 +85,7 @@ public enum ColumnOffset implements Size, Style.HasCssName {
 
     private final String cssClass;
 
-    private ColumnOffset(final String cssClass) {
+    ColumnOffset(String cssClass) {
         this.cssClass = cssClass;
     }
 

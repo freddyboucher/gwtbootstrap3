@@ -28,7 +28,7 @@ import java.util.Collection;
  */
 public class StringDataset extends CollectionDataset<String> {
 
-    public StringDataset(final Collection<String> data) {
+    public StringDataset(Collection<String> data) {
         super(data);
     }
 }

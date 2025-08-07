@@ -33,7 +33,7 @@ public class GridSystemView extends ViewImpl implements GridSystemPresenter.MyVi
     }
 
     @Inject
-    GridSystemView(final Binder uiBinder) {
+    GridSystemView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

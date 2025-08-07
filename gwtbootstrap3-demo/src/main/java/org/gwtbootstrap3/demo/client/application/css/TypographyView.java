@@ -33,7 +33,7 @@ public class TypographyView extends ViewImpl implements TypographyPresenter.MyVi
     }
 
     @Inject
-    TypographyView(final Binder uiBinder) {
+    TypographyView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

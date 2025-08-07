@@ -33,7 +33,6 @@ public class FormPanel extends com.google.gwt.user.client.ui.FormPanel
         implements HasType<FormType>, HasResponsiveness {
 
     public FormPanel() {
-        super();
     }
 
     public FormPanel(Element element, boolean createIFrame) {
@@ -53,7 +52,7 @@ public class FormPanel extends com.google.gwt.user.client.ui.FormPanel
     }
 
     @Override
-    public void setType(final FormType type) {
+    public void setType(FormType type) {
         StyleHelper.addUniqueEnumStyleName(this, FormType.class, type);
     }
 
@@ -63,12 +62,12 @@ public class FormPanel extends com.google.gwt.user.client.ui.FormPanel
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 

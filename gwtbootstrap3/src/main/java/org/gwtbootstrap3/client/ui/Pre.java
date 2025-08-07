@@ -47,7 +47,7 @@ public class Pre extends AbstractTextWidget {
      * @param html HTML contents
      */
     @Override
-    public void setHTML(final String html) {
+    public void setHTML(String html) {
         getElement().setInnerHTML(SourceCodeHelper.parseCode(html).asString());
     }
 
@@ -56,7 +56,7 @@ public class Pre extends AbstractTextWidget {
      *
      * @param scrollable If true sets a max-height of 350px and provides a y-axis scrollbar
      */
-    public void setScrollable(final boolean scrollable) {
+    public void setScrollable(boolean scrollable) {
         if (scrollable) {
             addStyleName(Styles.PRE_SCROLLABLE);
         } else {

@@ -57,7 +57,7 @@ public class BlankValidator<T> extends AbstractValidator<T> {
     /** {@inheritDoc} */
     @Override
     public boolean isValid(T value) {
-        if (value instanceof Collection<?>) { return ((Collection<?>) value).size() > 0; }
+        if (value instanceof Collection<?>) { return !((Collection<?>) value).isEmpty(); }
         return value != null && !"".equals(value.toString());
     }
 

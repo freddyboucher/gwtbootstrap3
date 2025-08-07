@@ -81,8 +81,8 @@ public class RadioImplIE8 extends RadioImpl {
     }
 
     @Override
-    public void ensureDomEventHandlers(final Radio radio) {
-        final Handler handler = new Handler(radio);
+    public void ensureDomEventHandlers(Radio radio) {
+        Handler handler = new Handler(radio);
         radio.addClickHandler(handler);
         radio.addMouseUpHandler(handler);
         radio.addBlurHandler(handler);

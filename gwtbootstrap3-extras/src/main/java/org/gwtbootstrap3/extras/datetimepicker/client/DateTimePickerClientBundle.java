@@ -29,10 +29,10 @@ import com.google.gwt.resources.client.TextResource;
  */
 public interface DateTimePickerClientBundle extends ClientBundle {
 
-    static final DateTimePickerClientBundle INSTANCE = GWT.create(DateTimePickerClientBundle.class);
+    DateTimePickerClientBundle INSTANCE = GWT.create(DateTimePickerClientBundle.class);
 
-    static final String VERSION = "2.4.4";
-    static final String I18N_DIR = "resource/js/locales-" + VERSION + "/";
+    String VERSION = "2.4.4";
+    String I18N_DIR = "resource/js/locales-" + VERSION + "/";
 
     @Source("resource/js/bootstrap-datetimepicker-" + VERSION + ".min.cache.js")
     TextResource dateTimePicker();

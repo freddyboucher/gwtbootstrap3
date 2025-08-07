@@ -37,11 +37,8 @@ import org.gwtbootstrap3.client.ui.constants.IconType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.InputElement;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.i18n.shared.DirectionEstimator;
@@ -61,7 +58,7 @@ import com.google.gwt.user.client.Event;
 public class RadioButton extends Radio implements HasActive,
         HasType<ButtonType>, HasSize<ButtonSize>, HasIcon, HasIconPosition {
 
-    private final ActiveMixin<RadioButton> activeMixin = new ActiveMixin<RadioButton>(this);
+    private final ActiveMixin<RadioButton> activeMixin = new ActiveMixin<>(this);
 
     private IconPosition iconPosition = IconPosition.LEFT;
     private Icon icon;
@@ -219,21 +216,11 @@ public class RadioButton extends Radio implements HasActive,
         // Use a ClickHandler since Bootstrap's jQuery does not trigger native
         // change events:
         // http://learn.jquery.com/events/triggering-event-handlers/
-        addClickHandler(new ClickHandler() {
+        addClickHandler(event -> {
+            boolean oldValue = getValue();
 
-            @Override
-            public void onClick(ClickEvent event) {
-                final boolean oldValue = getValue();
-
-                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-                    @Override
-                    public void execute() {
-                        ValueChangeEvent.fireIfNotEqual(RadioButton.this,
-                                oldValue, getValue());
-                    }
-                });
-            }
-
+            Scheduler.get().scheduleDeferred(() -> ValueChangeEvent.fireIfNotEqual(this,
+                    oldValue, getValue()));
         });
     }
 
@@ -342,7 +329,7 @@ public class RadioButton extends Radio implements HasActive,
 
     /** {@inheritDoc} */
     @Override
-    public void setIconInverse(final boolean iconInverse) {
+    public void setIconInverse(boolean iconInverse) {
         getActualIcon().setInverse(iconInverse);
     }
 

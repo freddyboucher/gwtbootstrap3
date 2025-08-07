@@ -36,7 +36,7 @@ public enum ValidationState implements Style.HasCssName {
 
     private final String cssClass;
 
-    private ValidationState(final String cssClass) {
+    ValidationState(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -45,7 +45,7 @@ public enum ValidationState implements Style.HasCssName {
         return cssClass;
     }
 
-    public static ValidationState fromStyleName(final String styleName) {
+    public static ValidationState fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, ValidationState.class, NONE);
     }
 }

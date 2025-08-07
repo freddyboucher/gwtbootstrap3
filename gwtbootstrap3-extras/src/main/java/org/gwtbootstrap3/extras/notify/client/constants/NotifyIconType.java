@@ -35,7 +35,7 @@ public enum NotifyIconType implements Type {
 
     private final String type;
 
-    private NotifyIconType(final String type) {
+    NotifyIconType(String type) {
         this.type = type;
     }
 

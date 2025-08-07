@@ -85,7 +85,7 @@ public enum ColumnPush implements Size, Style.HasCssName {
 
     private final String cssClass;
 
-    private ColumnPush(final String cssClass) {
+    ColumnPush(String cssClass) {
         this.cssClass = cssClass;
     }
 

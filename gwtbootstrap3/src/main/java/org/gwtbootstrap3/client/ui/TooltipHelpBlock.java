@@ -40,7 +40,6 @@ public class TooltipHelpBlock extends Tooltip {
      * Constructor.
      */
     public TooltipHelpBlock() {
-        super();
         setPlacement(Placement.RIGHT);
         addTooltipClassName(TOOLTIP_DANGER_CLASS);
         // Create the help block.
@@ -57,15 +56,15 @@ public class TooltipHelpBlock extends Tooltip {
             }
 
             @Override
-            public void setHTML(final String html) {
+            public void setHTML(String html) {
                 setText(html);
-                TooltipHelpBlock.this.setIsHtml(true);
+                setIsHtml(true);
             }
 
             @Override
-            public void setText(final String value) {
+            public void setText(String value) {
                 String oldValue = TooltipHelpBlock.this.getTitle();
-                TooltipHelpBlock.this.setIsHtml(false);
+                setIsHtml(false);
                 TooltipHelpBlock.this.setTitle(value);
                 if (oldValue != null && !oldValue.equals(value)) {
                     DomEvent.fireNativeEvent(Document.get().createChangeEvent(), this);
@@ -100,7 +99,7 @@ public class TooltipHelpBlock extends Tooltip {
      *
      * @param iconType the new icon type
      */
-    public void setIconType(final IconType iconType) {
+    public void setIconType(IconType iconType) {
         ((HelpBlock) getWidget()).setIconType(iconType);
     }
 

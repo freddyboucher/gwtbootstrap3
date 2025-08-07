@@ -35,7 +35,7 @@ public class SlideEnabledEvent extends GwtEvent<SlideEnabledHandler> {
      *
      * @param source the source of the handlers
      */
-    public static void fire(final HasSlideEnabledHandlers source) {
+    public static void fire(HasSlideEnabledHandlers source) {
         if (TYPE != null) {
             SlideEnabledEvent event = new SlideEnabledEvent();
             source.fireEvent(event);
@@ -49,7 +49,7 @@ public class SlideEnabledEvent extends GwtEvent<SlideEnabledHandler> {
      */
     public static Type<SlideEnabledHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<SlideEnabledHandler>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -60,7 +60,7 @@ public class SlideEnabledEvent extends GwtEvent<SlideEnabledHandler> {
     }
 
     @Override
-    protected void dispatch(final SlideEnabledHandler handler) {
+    protected void dispatch(SlideEnabledHandler handler) {
         handler.onSlideEnabled(this);
     }
 

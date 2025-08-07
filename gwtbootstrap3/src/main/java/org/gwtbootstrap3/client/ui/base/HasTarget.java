@@ -28,7 +28,7 @@ package org.gwtbootstrap3.client.ui.base;
  * @see org.gwtbootstrap3.client.ui.constants.Attributes
  */
 public interface HasTarget {
-    public static final String BLANK = "_blank";
+    String BLANK = "_blank";
 
     /**
      * Set the target attribute of the object

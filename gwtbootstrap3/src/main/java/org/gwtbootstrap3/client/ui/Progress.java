@@ -32,14 +32,14 @@ import org.gwtbootstrap3.client.ui.html.Div;
  * @author Joshua Godi
  */
 public class Progress extends Div implements HasType<ProgressType>, HasActive {
-    private final ActiveMixin<Progress> activeMixin = new ActiveMixin<Progress>(this);
+    private final ActiveMixin<Progress> activeMixin = new ActiveMixin<>(this);
 
     public Progress() {
         setStyleName(Styles.PROGRESS);
     }
 
     @Override
-    public void setActive(final boolean active) {
+    public void setActive(boolean active) {
         activeMixin.setActive(active);
     }
 
@@ -49,7 +49,7 @@ public class Progress extends Div implements HasType<ProgressType>, HasActive {
     }
 
     @Override
-    public void setType(final ProgressType type) {
+    public void setType(ProgressType type) {
         StyleHelper.addUniqueEnumStyleName(this, ProgressType.class, type);
     }
 

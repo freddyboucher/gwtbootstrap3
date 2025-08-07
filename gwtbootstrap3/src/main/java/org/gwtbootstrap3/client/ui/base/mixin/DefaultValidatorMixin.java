@@ -35,7 +35,6 @@ import org.gwtbootstrap3.client.ui.form.validator.ValidatorWrapper;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.EditorError;
 import com.google.gwt.event.dom.client.BlurEvent;
-import com.google.gwt.event.dom.client.BlurHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.GwtEvent;
@@ -61,11 +60,11 @@ public class DefaultValidatorMixin<W extends Widget & HasValue<V> & Editor<V>, V
 
     private W inputWidget;
 
-    private Boolean valid = null;
+    private Boolean valid;
 
     private boolean validateOnBlur;
 
-    protected Set<ValidatorWrapper<V>> validators = new TreeSet<ValidatorWrapper<V>>();
+    protected Set<ValidatorWrapper<V>> validators = new TreeSet<>();
 
     /**
      * Instantiates a new abstract validator mixin.
@@ -83,21 +82,11 @@ public class DefaultValidatorMixin<W extends Widget & HasValue<V> & Editor<V>, V
     }
 
     protected HandlerRegistration setupBlurValidation() {
-        return inputWidget.addDomHandler(new BlurHandler() {
-            @Override
-            public void onBlur(BlurEvent event) {
-                validate(validateOnBlur);
-            }
-        }, BlurEvent.getType());
+        return inputWidget.addDomHandler(event -> validate(validateOnBlur), BlurEvent.getType());
     }
 
     protected HandlerRegistration setupValueChangeValidation() {
-        return inputWidget.addHandler(new ValueChangeHandler<V>() {
-            @Override
-            public void onValueChange(ValueChangeEvent<V> event) {
-                validate(false);
-            }
-        }, ValueChangeEvent.getType());
+        return inputWidget.addHandler((ValueChangeHandler<V>) event -> validate(false), ValueChangeEvent.getType());
     }
 
     @Override
@@ -108,7 +97,7 @@ public class DefaultValidatorMixin<W extends Widget & HasValue<V> & Editor<V>, V
     /** {@inheritDoc} */
     @Override
     public void addValidator(Validator<V> validator) {
-        validators.add(new ValidatorWrapper<V>(validator, validators.size()));
+        validators.add(new ValidatorWrapper<>(validator, validators.size()));
     }
 
     @Override
@@ -182,7 +171,7 @@ public class DefaultValidatorMixin<W extends Widget & HasValue<V> & Editor<V>, V
         Boolean oldValid = valid;
         valid = true;
         if (errorHandler != null && !validators.isEmpty()) {
-            List<EditorError> errors = new ArrayList<EditorError>();
+            List<EditorError> errors = new ArrayList<>();
             for (ValidatorWrapper<V> wrapper : validators) {
                 Validator<V> validator = wrapper.getValidator();
                 List<EditorError> result = validator.validate(inputWidget, inputWidget.getValue());
@@ -192,7 +181,7 @@ public class DefaultValidatorMixin<W extends Widget & HasValue<V> & Editor<V>, V
                 }
             }
             if (show) {
-                if (errors.size() > 0) {
+                if (!errors.isEmpty()) {
                     errorHandler.showErrors(errors);
                 } else {
                     errorHandler.clearErrors();

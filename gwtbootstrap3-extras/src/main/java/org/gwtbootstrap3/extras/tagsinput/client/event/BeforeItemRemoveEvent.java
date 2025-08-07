@@ -50,9 +50,9 @@ public class BeforeItemRemoveEvent<T> extends GwtEvent<BeforeItemRemoveHandler<T
      *
      * @param source the source of the handlers
      */
-    public static <T> void fire(final HasBeforeItemRemoveHandlers<T> source, T item) {
+    public static <T> void fire(HasBeforeItemRemoveHandlers<T> source, T item) {
         if (TYPE != null) {
-            BeforeItemRemoveEvent<T> event = new BeforeItemRemoveEvent<T>(item);
+            BeforeItemRemoveEvent<T> event = new BeforeItemRemoveEvent<>(item);
             source.fireEvent(event);
         }
     }
@@ -64,7 +64,7 @@ public class BeforeItemRemoveEvent<T> extends GwtEvent<BeforeItemRemoveHandler<T
      */
     public static Type<BeforeItemRemoveHandler<?>> getType() {
         if (TYPE == null) {
-            TYPE = new Type<BeforeItemRemoveHandler<?>>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }

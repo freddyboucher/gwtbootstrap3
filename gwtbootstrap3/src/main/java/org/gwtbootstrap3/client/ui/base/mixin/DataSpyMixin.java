@@ -31,12 +31,12 @@ import com.google.gwt.user.client.ui.UIObject;
  */
 public class DataSpyMixin<T extends UIObject & HasDataSpy> extends AbstractMixin implements HasDataSpy {
 
-    public DataSpyMixin(final T uiObject) {
+    public DataSpyMixin(T uiObject) {
         super(uiObject);
     }
 
     @Override
-    public void setDataSpy(final Spy spy) {
+    public void setDataSpy(Spy spy) {
         if (spy != null) {
             uiObject.getElement().setAttribute(Attributes.DATA_SPY, spy.getSpy());
         } else {
@@ -46,7 +46,7 @@ public class DataSpyMixin<T extends UIObject & HasDataSpy> extends AbstractMixin
 
     @Override
     public Spy getDataSpy() {
-        final String spy = uiObject.getElement().getAttribute(Attributes.DATA_SPY);
+        String spy = uiObject.getElement().getAttribute(Attributes.DATA_SPY);
         return spy != null ? Spy.valueOf(spy) : null;
     }
 }

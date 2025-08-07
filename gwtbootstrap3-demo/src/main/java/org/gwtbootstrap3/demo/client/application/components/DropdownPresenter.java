@@ -44,9 +44,9 @@ public class DropdownPresenter extends Presenter<DropdownPresenter.MyView, Dropd
     }
 
     @Inject
-    public DropdownPresenter(final EventBus eventBus,
-                             final MyView view,
-                             final MyProxy proxy) {
+    public DropdownPresenter(EventBus eventBus,
+                             MyView view,
+                             MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

@@ -33,7 +33,7 @@ import com.google.gwt.dom.client.Document;
  */
 public abstract class AbstractInputGroupAddon extends ComplexWidget {
 
-    protected AbstractInputGroupAddon(final String styleName) {
+    protected AbstractInputGroupAddon(String styleName) {
         setElement(Document.get().createSpanElement());
         setStyleName(styleName);
     }

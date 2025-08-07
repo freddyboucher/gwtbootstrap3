@@ -45,7 +45,7 @@ public class NavbarText extends ComplexWidget implements HasResponsiveness {
     }
 
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         NavbarPull navbarPull = NavbarPull.NONE;
 
         if (pull == Pull.LEFT) {
@@ -59,7 +59,7 @@ public class NavbarText extends ComplexWidget implements HasResponsiveness {
 
     @Override
     public Pull getPull() {
-        final NavbarPull navbarPull = NavbarPull.fromStyleName(getStyleName());
+        NavbarPull navbarPull = NavbarPull.fromStyleName(getStyleName());
 
         if (navbarPull == NavbarPull.NONE) {
             return Pull.NONE;
@@ -69,17 +69,17 @@ public class NavbarText extends ComplexWidget implements HasResponsiveness {
     }
 
     @Override
-    public void add(final Widget child) {
+    public void add(Widget child) {
         add(child, (Element) getElement());
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 }

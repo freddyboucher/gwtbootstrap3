@@ -26,6 +26,6 @@ import com.google.gwt.event.shared.EventHandler;
  * @author Matt Davis
  */
 public interface ClearDateHandler extends EventHandler {
-    void onClearDate(final ClearDateEvent evt);
+    void onClearDate(ClearDateEvent evt);
 }
 

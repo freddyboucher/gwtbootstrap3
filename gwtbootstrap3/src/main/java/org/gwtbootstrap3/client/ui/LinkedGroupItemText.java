@@ -32,14 +32,14 @@ import com.google.gwt.user.client.ui.HasWidgets;
  * @author Joshua Godi
  */
 public class LinkedGroupItemText extends ComplexWidget implements HasWidgets, HasText {
-    private final HTMLMixin<LinkedGroupItemText> htmlMixin = new HTMLMixin<LinkedGroupItemText>(this);
+    private final HTMLMixin<LinkedGroupItemText> htmlMixin = new HTMLMixin<>(this);
 
     public LinkedGroupItemText() {
         setElement(Document.get().createPElement());
         setStyleName(Styles.LIST_GROUP_ITEM_TEXT);
     }
 
-    public LinkedGroupItemText(final String html) {
+    public LinkedGroupItemText(String html) {
         this();
         setHTML(html);
     }
@@ -55,7 +55,7 @@ public class LinkedGroupItemText extends ComplexWidget implements HasWidgets, Ha
         return htmlMixin.getHTML();
     }
 
-    public void setHTML(final String html) {
+    public void setHTML(String html) {
         htmlMixin.setHTML(html);
     }
 
@@ -63,8 +63,8 @@ public class LinkedGroupItemText extends ComplexWidget implements HasWidgets, Ha
      * {@inheritDoc}
      */
     @Override
-    public void setText(final String text) {
-        this.htmlMixin.setText(text);
+    public void setText(String text) {
+        htmlMixin.setText(text);
     }
 
 

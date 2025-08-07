@@ -27,7 +27,7 @@ import com.google.gwt.resources.client.TextResource;
 
 public interface FullCalendarClientBundle extends ClientBundle {
 
-    public static final FullCalendarClientBundle INSTANCE = GWT.create(FullCalendarClientBundle.class);
+    FullCalendarClientBundle INSTANCE = GWT.create(FullCalendarClientBundle.class);
 
     @Source("resource/css/fullcalendar-2.3.1.cache.css")
     @CssResource.NotStrict

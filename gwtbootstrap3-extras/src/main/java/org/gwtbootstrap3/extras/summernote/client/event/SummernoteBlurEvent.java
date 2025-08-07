@@ -37,7 +37,7 @@ public class SummernoteBlurEvent extends GwtEvent<SummernoteBlurHandler> {
      *
      * @param source the source of the handlers
      */
-    public static void fire(final HasSummernoteBlurHandlers source) {
+    public static void fire(HasSummernoteBlurHandlers source) {
         if (TYPE != null) {
             SummernoteBlurEvent event = new SummernoteBlurEvent();
             source.fireEvent(event);
@@ -51,7 +51,7 @@ public class SummernoteBlurEvent extends GwtEvent<SummernoteBlurHandler> {
      */
     public static Type<SummernoteBlurHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<SummernoteBlurHandler>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -62,7 +62,7 @@ public class SummernoteBlurEvent extends GwtEvent<SummernoteBlurHandler> {
     }
 
     @Override
-    protected void dispatch(final SummernoteBlurHandler handler) {
+    protected void dispatch(SummernoteBlurHandler handler) {
         handler.onSummernoteBlur(this);
     }
 

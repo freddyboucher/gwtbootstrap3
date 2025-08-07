@@ -38,7 +38,7 @@ public enum DatePickerPosition {
 
     private final String position;
 
-    DatePickerPosition(final String position) {
+    DatePickerPosition(String position) {
         this.position = position;
     }
 

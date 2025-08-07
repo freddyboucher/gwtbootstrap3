@@ -28,7 +28,7 @@ import com.google.gwt.user.client.Event;
  */
 public class OutOfRangeEvent extends GwtEvent<OutOfRangeHandler> {
 
-    private static final Type<OutOfRangeHandler> TYPE = new Type<OutOfRangeHandler>();
+    private static final Type<OutOfRangeHandler> TYPE = new Type<>();
 
     private final Event nativeEvent;
 
@@ -36,7 +36,7 @@ public class OutOfRangeEvent extends GwtEvent<OutOfRangeHandler> {
         return TYPE;
     }
 
-    public OutOfRangeEvent(final Event nativeEvent) {
+    public OutOfRangeEvent(Event nativeEvent) {
         this.nativeEvent = nativeEvent;
     }
 
@@ -50,7 +50,7 @@ public class OutOfRangeEvent extends GwtEvent<OutOfRangeHandler> {
     }
 
     @Override
-    protected void dispatch(final OutOfRangeHandler handler) {
+    protected void dispatch(OutOfRangeHandler handler) {
         handler.onOutOfRange(this);
     }
 }

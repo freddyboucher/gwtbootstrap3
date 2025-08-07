@@ -52,22 +52,22 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
     private boolean loaded;
     private static Map<String, JavaScriptObject> languageScripts;
 
-    public FullCalendar(final String id, final ViewOption defaultView, final boolean editable) {
+    public FullCalendar(String id, ViewOption defaultView, boolean editable) {
         this(id, defaultView, null, editable);
     }
 
-    public FullCalendar(final String id, final ViewOption defaultView, final boolean editable, final Header header) {
+    public FullCalendar(String id, ViewOption defaultView, boolean editable, Header header) {
         this(id, defaultView, new CalendarConfig(header), editable);
     }
 
-    public FullCalendar(final String id, final ViewOption defaultView, final CalendarConfig config, final boolean editable) {
+    public FullCalendar(String id, ViewOption defaultView, CalendarConfig config, boolean editable) {
         getElement().setId(id);
-        this.currentView = defaultView == null ? ViewOption.month : defaultView;
+        currentView = defaultView == null ? ViewOption.month : defaultView;
         this.config = config;
         this.editable = editable;
         loaded = false;
         if (languageScripts == null) {
-            languageScripts = new HashMap<String, JavaScriptObject>();
+            languageScripts = new HashMap<>();
         }
     }
 
@@ -127,7 +127,7 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         DomEvent.fireNativeEvent(Document.get().createLoadEvent(), this);
     }
 
-    public void changeLangauge(final Language language) {
+    public void changeLangauge(Language language) {
         if (language != null) {
             if (config == null) {
                 config = new CalendarConfig();
@@ -138,7 +138,7 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         }
     }
 
-    public void changeTimezone(final String timezone) {
+    public void changeTimezone(String timezone) {
         if (timezone != null) {
             if (config == null) {
                 config = new CalendarConfig();
@@ -149,18 +149,18 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         }
     }
 
-    private void ensureInjected(final Language language) {
+    private void ensureInjected(Language language) {
         if (!languageScripts.isEmpty()) {
-            for (final JavaScriptObject script : languageScripts.values()) {
+            for (JavaScriptObject script : languageScripts.values()) {
                 try {
-                    final Element ele = (Element) script;
+                    Element ele = (Element) script;
                     ele.removeFromParent();
-                } catch (final Exception e) {
+                } catch (Exception e) {
                     // TODO: handle exception
                 }
             }
         }
-        final JavaScriptObject scriptElement = ScriptInjector.fromString(language.getResource().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+        JavaScriptObject scriptElement = ScriptInjector.fromString(language.getResource().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
         languageScripts.put(language.getCode(), scriptElement);
     }
 
@@ -209,17 +209,17 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         $wnd.jQuery('#' + id).fullCalendar(fullCalendarParams);
     }-*/;
 
-    public void addEvent(final Event event) {
+    public void addEvent(Event event) {
         if (loaded && event != null) {
             addEvent(getElement().getId(), event.toJavaScript());
         }
     }
 
-    public void addEvents(final List<Event> events) {
+    public void addEvents(List<Event> events) {
         if (loaded && events != null && !events.isEmpty()) {
             JsArray<JavaScriptObject> jsEvents = JavaScriptObject.createArray(events.size()).cast();
             int i = 0;
-            for (final Event evt : events) {
+            for (Event evt : events) {
                 jsEvents.set(i++, evt.toJavaScript());
             }
             addEventSource(getElement().getId(), jsEvents);
@@ -238,7 +238,7 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         $wnd.jQuery('#' + id).fullCalendar('renderEvent', event, true);
     }-*/;
 
-    public void setView(final ViewOption view) {
+    public void setView(ViewOption view) {
         if (view != null) {
             currentView = view;
             setView(getElement().getId(), view.name());
@@ -249,7 +249,7 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         $wnd.jQuery('#' + id).fullCalendar('changeView', viewName);
     }-*/;
 
-    public void goToDate(final Date d) {
+    public void goToDate(Date d) {
         if (d != null) {
             JsDate date = JsDate.create((double) d.getTime());
             goToDate(getElement().getId(), date);
@@ -261,11 +261,11 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
     }-*/;
 
     @Override
-    public HandlerRegistration addLoadHandler(final LoadHandler handler) {
-        return super.addDomHandler(handler, LoadEvent.getType());
+    public HandlerRegistration addLoadHandler(LoadHandler handler) {
+        return addDomHandler(handler, LoadEvent.getType());
     }
 
-    public JsArray<JavaScriptObject> getEvent(final String eventId) {
+    public JsArray<JavaScriptObject> getEvent(String eventId) {
         if (eventId != null) {
             return getEvent(getElement().getId(), eventId);
         }
@@ -276,7 +276,7 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         return $wnd.jQuery('#' + id).fullCalendar('clientEvents', eventId);
     }-*/;
 
-    public void removeEvent(final String eventId) {
+    public void removeEvent(String eventId) {
         if (eventId != null) {
             removeEvent(getElement().getId(), eventId);
         }
@@ -294,7 +294,7 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         $wnd.jQuery('#' + id).fullCalendar('removeEvents', eventId);
     }-*/;
 
-    public void updateEvent(final Event evt) {
+    public void updateEvent(Event evt) {
         if (evt != null && evt.getId() != null) {
             updateEvent(getElement().getId(), evt.toJavaScript());
         }
@@ -304,7 +304,7 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         $wnd.jQuery('#' + id).fullCalendar('updateEvent', event);
     }-*/;
 
-    public void addEventSource(final EventSource eventSource) {
+    public void addEventSource(EventSource eventSource) {
         if (eventSource != null) {
             addEventSource(getElement().getId(), eventSource.toJavaScript());
         }
@@ -314,7 +314,7 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         $wnd.jQuery('#' + id).fullCalendar('addEventSource', eventSource);
     }-*/;
 
-    public void removeEventSource(final EventSource eventSource) {
+    public void removeEventSource(EventSource eventSource) {
         if (eventSource != null) {
             removeEventSource(getElement().getId(), eventSource.toJavaScript());
         }
@@ -341,8 +341,8 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
     }-*/;
 
     public Date getDate() {
-        final JsDate jsDate = getDate(getElement().getId());
-        final long time = (long) jsDate.getTime();
+        JsDate jsDate = getDate(getElement().getId());
+        long time = (long) jsDate.getTime();
         return new Date(time);
     }
 
@@ -382,7 +382,7 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         $wnd.jQuery('#' + id).fullCalendar('render');
     }-*/;
 
-    public void setHeight(final int height) {
+    public void setHeight(int height) {
         if (height >= 0) {
             setHeight(getElement().getId(), height);
         }
@@ -392,7 +392,7 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         $wnd.jQuery('#' + id).fullCalendar('option', 'height', height);
     }-*/;
 
-    public void setContentHeight(final int height) {
+    public void setContentHeight(int height) {
         if (height >= 0) {
             setContentHeight(getElement().getId(), height);
         }
@@ -402,7 +402,7 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
         $wnd.jQuery('#' + id).fullCalendar('option', 'contentHeight', height);
     }-*/;
 
-    public void setAspectRatio(final double ratio) {
+    public void setAspectRatio(double ratio) {
         if (ratio > 0) {
             setAspectRatio(getElement().getId(), ratio);
         }

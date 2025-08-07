@@ -35,7 +35,7 @@ public class CarouselIndicators extends OrderedList {
     }
 
     @Override
-    public void add(final Widget child) {
+    public void add(Widget child) {
         if (!(child instanceof CarouselIndicator)) {
             throw new IllegalArgumentException("Children can only be of type CarouselIndicator");
         }

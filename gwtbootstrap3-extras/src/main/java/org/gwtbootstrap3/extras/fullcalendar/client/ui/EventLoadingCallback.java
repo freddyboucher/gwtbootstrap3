@@ -29,5 +29,5 @@ import com.google.gwt.core.client.JavaScriptObject;
  * @see http://arshaw.com/fullcalendar/docs/event_data/loading/
  */
 public interface EventLoadingCallback {
-    public void isLoading(boolean isLoading, JavaScriptObject viewObject);
+    void isLoading(boolean isLoading, JavaScriptObject viewObject);
 }

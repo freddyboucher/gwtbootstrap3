@@ -51,7 +51,7 @@ public class TagsInput extends SingleValueTagsInput<String> {
         super(e, dataset);
     }
 
-    private final AttributeMixin<TagsInput> attributeMixin = new AttributeMixin<TagsInput>(this);
+    private final AttributeMixin<TagsInput> attributeMixin = new AttributeMixin<>(this);
     
     @Override
     public void add(String tag) {

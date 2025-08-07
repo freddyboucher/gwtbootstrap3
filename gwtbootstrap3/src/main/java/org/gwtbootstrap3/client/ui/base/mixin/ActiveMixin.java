@@ -31,12 +31,12 @@ import com.google.gwt.user.client.ui.UIObject;
  */
 public class ActiveMixin<T extends UIObject & HasActive> extends AbstractMixin implements HasActive {
 
-    public ActiveMixin(final T uiObject) {
+    public ActiveMixin(T uiObject) {
         super(uiObject);
     }
 
     @Override
-    public void setActive(final boolean active) {
+    public void setActive(boolean active) {
         if (active) {
             uiObject.addStyleName(Styles.ACTIVE);
         } else {

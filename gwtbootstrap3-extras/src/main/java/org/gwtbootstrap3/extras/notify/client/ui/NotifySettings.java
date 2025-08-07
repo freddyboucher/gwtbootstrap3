@@ -75,7 +75,7 @@ public class NotifySettings extends JavaScriptObject {
      *
      * @param position one of STATIC, FIXED, RELATIVE, ABSOLUTE, or null
      */
-    public final void setPosition(final NotifyPosition position) {
+    public final void setPosition(NotifyPosition position) {
         setPosition((position != null) ? position.getPosition() : null);
     }
 
@@ -84,7 +84,7 @@ public class NotifySettings extends JavaScriptObject {
      *
      * @param position Notify's position to the container element
      */
-    private final native void setPosition(String position) /*-{
+    private native void setPosition(String position) /*-{
         this.position = position;
     }-*/;
 
@@ -94,7 +94,7 @@ public class NotifySettings extends JavaScriptObject {
      * @param type one of INFO, WARNING, DANGER, SUCCESS
      * @see NotifyType
      */
-    public final void setType(final NotifyType type) {
+    public final void setType(NotifyType type) {
         setType((type != null) ? type.getCssName() : NotifyType.INFO.getCssName());
     }
 
@@ -134,7 +134,7 @@ public class NotifySettings extends JavaScriptObject {
      * @param placement Notify's placement on screen
      * @see NotifyPlacement
      */
-    public final void setPlacement(final NotifyPlacement placement) {
+    public final void setPlacement(NotifyPlacement placement) {
         setNotifyPlacement((placement != null) ? placement : NotifyPlacement.TOP_RIGHT);
     }
 
@@ -143,7 +143,7 @@ public class NotifySettings extends JavaScriptObject {
      *
      * @param placement Notify's placement on screen
      */
-    private final native void setNotifyPlacement(final NotifyPlacement placement) /*-{
+    private native void setNotifyPlacement(NotifyPlacement placement) /*-{
         var from = placement.@org.gwtbootstrap3.extras.notify.client.constants.NotifyPlacement::getFrom()();
         var align = placement.@org.gwtbootstrap3.extras.notify.client.constants.NotifyPlacement::getAlign()();
         this.placement = { from: from, align: align };
@@ -253,7 +253,7 @@ public class NotifySettings extends JavaScriptObject {
      *
      * Default is enter = Animation.FADE_IN_DOWN, exit = Animation.FADE_OUT_UP
      *
-     * @see org.gwtbootstrap3.extras.animate.client.ui.constants.Animation
+     * @see Animation
      *
      * @param enter animation style when Notify enters the screen
      * @param exit  animation style when Notify exists the screen
@@ -280,11 +280,11 @@ public class NotifySettings extends JavaScriptObject {
      *
      * @param handler
      */
-    public final void setShowHandler(final NotifyShowHandler handler) {
+    public final void setShowHandler(NotifyShowHandler handler) {
         onShow((handler != null) ? handler : NotifyShowHandler.DEFAULT_SHOW_HANDLER);
     }
 
-    private final native void onShow(NotifyShowHandler handler) /*-{
+    private native void onShow(NotifyShowHandler handler) /*-{
         this.onShow = function() {
             handler.@org.gwtbootstrap3.extras.notify.client.event.NotifyShowHandler::onShow()();
         };
@@ -296,11 +296,11 @@ public class NotifySettings extends JavaScriptObject {
      *
      * @param handler
      */
-    public final void setShownHandler(final NotifyShownHandler handler) {
+    public final void setShownHandler(NotifyShownHandler handler) {
         onShown((handler != null) ? handler : NotifyShownHandler.DEFAULT_SHOWN_HANDLER);
     }
 
-    private final native void onShown(NotifyShownHandler handler) /*-{
+    private native void onShown(NotifyShownHandler handler) /*-{
         this.onShow = function() {
             handler.@org.gwtbootstrap3.extras.notify.client.event.NotifyShownHandler::onShown()();
         };
@@ -312,11 +312,11 @@ public class NotifySettings extends JavaScriptObject {
      *
      * @param handler
      */
-    public final void setCloseHandler(final NotifyCloseHandler handler) {
+    public final void setCloseHandler(NotifyCloseHandler handler) {
         onClose((handler != null) ? handler : NotifyCloseHandler.DEFAULT_CLOSE_HANDLER);
     }
 
-    private final native void onClose(NotifyCloseHandler handler) /*-{
+    private native void onClose(NotifyCloseHandler handler) /*-{
         this.onClose = function() {
             handler.@org.gwtbootstrap3.extras.notify.client.event.NotifyCloseHandler::onClose()();
         };
@@ -329,11 +329,11 @@ public class NotifySettings extends JavaScriptObject {
      *
      * @param handler
      */
-    public final void setClosedHandler(final NotifyClosedHandler handler) {
+    public final void setClosedHandler(NotifyClosedHandler handler) {
         onClosed((handler != null) ? handler : NotifyClosedHandler.DEFAULT_CLOSED_HANDLER);
     }
 
-    private final native void onClosed(NotifyClosedHandler handler) /*-{
+    private native void onClosed(NotifyClosedHandler handler) /*-{
         this.onClosed = function() {
             handler.@org.gwtbootstrap3.extras.notify.client.event.NotifyClosedHandler::onClosed()();
         };
@@ -358,7 +358,7 @@ public class NotifySettings extends JavaScriptObject {
      *
      * @param iconType Notify's icon type.
      */
-    private final native void setIconType(String iconType) /*-{
+    private native void setIconType(String iconType) /*-{
         this.icon_type = iconType;
     }-*/;
 

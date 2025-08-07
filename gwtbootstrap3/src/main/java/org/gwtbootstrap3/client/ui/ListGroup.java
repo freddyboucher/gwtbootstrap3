@@ -36,7 +36,7 @@ public class ListGroup extends UnorderedList {
     }
 
     @Override
-    public void add(final Widget child) {
+    public void add(Widget child) {
         if (!(child instanceof ListGroupItem)) {
             throw new IllegalArgumentException("Only ListGroupItems can be inside a ListGroup.");
         }

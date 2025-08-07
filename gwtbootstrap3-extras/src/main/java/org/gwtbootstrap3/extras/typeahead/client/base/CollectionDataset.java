@@ -31,7 +31,7 @@ import java.util.Collection;
 public class CollectionDataset<T> extends Dataset<T> {
     private Collection<T> data;
 
-    public CollectionDataset(final Collection<T> data) {
+    public CollectionDataset(Collection<T> data) {
         setData(data);
     }
 
@@ -39,7 +39,7 @@ public class CollectionDataset<T> extends Dataset<T> {
         return data;
     }
 
-    public void setData(final Collection<T> data) {
+    public void setData(Collection<T> data) {
         this.data = data;
     }
 
@@ -51,14 +51,14 @@ public class CollectionDataset<T> extends Dataset<T> {
      * @param datum a datum instance from this {@link Dataset}
      * @return the text representing the data
      */
-    public String getValue(final T datum) {
+    public String getValue(T datum) {
         return datum != null ? datum.toString() : "";
     }
 
     @Override
-    public void findMatches(final String query, final SuggestionCallback<T> callback) {
+    public void findMatches(String query, SuggestionCallback<T> callback) {
         String queryLower = query.toLowerCase();
-        Collection<Suggestion<T>> suggestions = new ArrayList<Suggestion<T>>();
+        Collection<Suggestion<T>> suggestions = new ArrayList<>();
         if (data != null) {
               for (T datum : data) {
                   String value = getValue(datum);

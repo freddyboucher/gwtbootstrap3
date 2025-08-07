@@ -131,7 +131,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
     protected SelectOptions options = SelectOptions.newOptions();
 
     protected SelectBase() {
-        this.selectElement = Document.get().createSelectElement();
+        selectElement = Document.get().createSelectElement();
         setElement(selectElement);
         setStyleName(SelectStyles.SELECT_PICKER);
         addStyleName(Styles.FORM_CONTROL);
@@ -210,7 +210,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param language
      */
-    public void setLanguage(final SelectLanguage language) {
+    public void setLanguage(SelectLanguage language) {
         this.language = (language == null) ? DEFAULT_LANGUAGE : language;
     }
 
@@ -228,7 +228,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param container specific element or selector, e.g., "body", ".my-container"
      */
-    public void setContainer(final String container) {
+    public void setContainer(String container) {
         if (container != null)
             attrMixin.setAttribute(CONTAINER, container);
         else
@@ -242,7 +242,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param handler
      */
-    public void setCountSelectedTextHandler(final CountSelectedTextHandler handler) {
+    public void setCountSelectedTextHandler(CountSelectedTextHandler handler) {
         options.setCountSelectedTextHandler(handler);
     }
 
@@ -254,7 +254,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @param dropdownAlignRight
      * @see DropdownAlignRight
      */
-    public void setDropdownAlignRight(final DropdownAlignRight dropdownAlignRight) {
+    public void setDropdownAlignRight(DropdownAlignRight dropdownAlignRight) {
         if (dropdownAlignRight != null)
             attrMixin.setAttribute(DROPDOWN_ALIGN_RIGHT, dropdownAlignRight.getValue());
         else
@@ -273,7 +273,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param dropupAuto
      */
-    public void setDropupAuto(final boolean dropupAuto) {
+    public void setDropupAuto(boolean dropupAuto) {
         if (!dropupAuto)
             attrMixin.setAttribute(DROPUP_AUTO, Boolean.toString(false));
         else
@@ -287,7 +287,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @param forceDropup
      * @see #setDropupAuto(boolean)
      */
-    public void setForceDropup(final boolean forceDropup) {
+    public void setForceDropup(boolean forceDropup) {
         if (forceDropup) {
             addStyleName(SelectStyles.DROPUP);
         } else {
@@ -303,7 +303,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param header
      */
-    public void setHeader(final String header) {
+    public void setHeader(String header) {
         if (header != null)
             attrMixin.setAttribute(HEADER, header);
         else
@@ -317,7 +317,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param hideDisabled
      */
-    public void setHideDisabled(final boolean hideDisabled) {
+    public void setHideDisabled(boolean hideDisabled) {
         if (hideDisabled)
             attrMixin.setAttribute(HIDE_DISABLED, Boolean.toString(true));
         else
@@ -332,7 +332,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param liveSearch
      */
-    public void setLiveSearch(final boolean liveSearch) {
+    public void setLiveSearch(boolean liveSearch) {
         if (liveSearch)
             attrMixin.setAttribute(LIVE_SEARCH, Boolean.toString(true));
         else
@@ -347,7 +347,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param liveSearchNormalize
      */
-    public void setLiveSearchNormalize(final boolean liveSearchNormalize) {
+    public void setLiveSearchNormalize(boolean liveSearchNormalize) {
         if (liveSearchNormalize)
             attrMixin.setAttribute(LIVE_SEARCH_NORMALIZE, Boolean.toString(true));
         else
@@ -362,7 +362,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @param liveSearchStyle
      * @see LiveSearchStyle
      */
-    public void setLiveSearchStyle(final LiveSearchStyle liveSearchStyle) {
+    public void setLiveSearchStyle(LiveSearchStyle liveSearchStyle) {
         if (liveSearchStyle != null)
             attrMixin.setAttribute(LIVE_SEARCH_STYLE, liveSearchStyle.getValue());
         else
@@ -376,7 +376,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param liveSearchPlaceholder
      */
-    public void setLiveSearchPlaceholder(final String liveSearchPlaceholder) {
+    public void setLiveSearchPlaceholder(String liveSearchPlaceholder) {
         if (liveSearchPlaceholder != null)
             attrMixin.setAttribute(LIVE_SEARCH_PLACEHOLDER, liveSearchPlaceholder);
         else
@@ -391,7 +391,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param mobile
      */
-    public void setMobile(final boolean mobile) {
+    public void setMobile(boolean mobile) {
         if (mobile)
             attrMixin.setAttribute(MOBILE, Boolean.toString(true));
         else
@@ -407,7 +407,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param selectOnTab
      */
-    public void setSelectOnTab(final boolean selectOnTab) {
+    public void setSelectOnTab(boolean selectOnTab) {
         if (selectOnTab)
             attrMixin.setAttribute(SELECT_ON_TAB, Boolean.toString(true));
         else
@@ -423,7 +423,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param showContent
      */
-    public void setShowContent(final boolean showContent) {
+    public void setShowContent(boolean showContent) {
         if (!showContent)
             attrMixin.setAttribute(SHOW_CONTENT, Boolean.toString(false));
         else
@@ -438,7 +438,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param showIcon
      */
-    public void setShowIcon(final boolean showIcon) {
+    public void setShowIcon(boolean showIcon) {
         if (!showIcon)
             attrMixin.setAttribute(SHOW_ICON, Boolean.toString(false));
         else
@@ -453,7 +453,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param showSubtext
      */
-    public void setShowSubtext(final boolean showSubtext) {
+    public void setShowSubtext(boolean showSubtext) {
         if (showSubtext)
             attrMixin.setAttribute(SHOW_SUBTEXT, Boolean.toString(true));
         else
@@ -468,7 +468,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @param size
      * @see MenuSize
      */
-    public void setMenuSize(final MenuSize size) {
+    public void setMenuSize(MenuSize size) {
         if (size != null)
             attrMixin.setAttribute(SIZE, size.getValue());
         else
@@ -483,7 +483,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param size
      */
-    public void setFixedMenuSize(final int size) {
+    public void setFixedMenuSize(int size) {
         attrMixin.setAttribute(SIZE, Integer.toString(size));
     }
 
@@ -494,7 +494,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * {@link #setStyle(String)}.
      */
     @Override
-    public void setType(final ButtonType type) {
+    public void setType(ButtonType type) {
         this.type = type;
         updateStyle();
     }
@@ -516,7 +516,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * {@link #setStyle(String)}.
      */
     @Override
-    public void setSize(final ButtonSize size) {
+    public void setSize(ButtonSize size) {
         this.size = size;
         updateStyle();
     }
@@ -555,7 +555,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param styleName
      */
-    public void setStyle(final String styleName) {
+    public void setStyle(String styleName) {
         if (styleName != null)
             attrMixin.setAttribute(STYLE, styleName);
         else
@@ -580,7 +580,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @param title
      * @see #setTitle(String)
      */
-    public void setPlaceholder(final String placeholder) {
+    public void setPlaceholder(String placeholder) {
         setTitle(placeholder);
     }
 
@@ -593,7 +593,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @see #setWidth(String)
      * @see SelectWidth
      */
-    public void setSelectWidth(final SelectWidth width) {
+    public void setSelectWidth(SelectWidth width) {
         setWidth((width != null) ? width.getValue() : null);
     }
 
@@ -603,7 +603,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @param cssWidth a CSS width with units, e.g. 100px
      */
     @Override
-    public void setWidth(final String cssWidth) {
+    public void setWidth(String cssWidth) {
         if (cssWidth != null)
             attrMixin.setAttribute(WIDTH, cssWidth);
         else
@@ -617,7 +617,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param padding
      */
-    public void setWindowPadding(final int padding) {
+    public void setWindowPadding(int padding) {
         attrMixin.setAttribute(WINDOW_PADDING, Integer.toString(padding));
     }
 
@@ -631,8 +631,8 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @param bottom
      * @param left
      */
-    public void setWindowPaddingTopRightBottomLeft(final int top, final int right,
-            final int bottom, final int left) {
+    public void setWindowPaddingTopRightBottomLeft(int top, int right,
+                                                   int bottom, int left) {
         JsArrayNumber array = JavaScriptObject.createArray(4).cast();
         array.push(top);
         array.push(right);
@@ -646,7 +646,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param showMenuArrow
      */
-    public void setShowMenuArrow(final boolean showMenuArrow) {
+    public void setShowMenuArrow(boolean showMenuArrow) {
         if (showMenuArrow) {
             addStyleName(SelectStyles.SHOW_MENU_ARROW);
         } else {
@@ -663,12 +663,12 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
     }
 
     @Override
-    public void setValue(final T value) {
+    public void setValue(T value) {
         setValue(value, false);
     }
 
     @Override
-    public void setValue(final T value, final boolean fireEvents) {
+    public void setValue(T value, boolean fireEvents) {
 
         T oldValue = fireEvents ? getValue() : null;
 
@@ -694,7 +694,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      *
      * @param value
      */
-    protected abstract void setSelectedValue(final T value);
+    protected abstract void setSelectedValue(T value);
 
     @Override
     public void setEnabled(boolean enabled) {
@@ -773,7 +773,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @param index
      * @return
      */
-    public boolean isItemSelected(final int index) {
+    public boolean isItemSelected(int index) {
         checkIndex(index);
         OptionElement item = selectElement.getOptions().getItem(index);
         Option option = itemMap.get(item);
@@ -786,13 +786,13 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @param index
      * @return
      */
-    public Option getItem(final int index) {
+    public Option getItem(int index) {
         checkIndex(index);
         OptionElement item = selectElement.getOptions().getItem(index);
         return itemMap.get(item);
     }
 
-    private void checkIndex(final int index) {
+    private void checkIndex(int index) {
         int max = getItemCount();
         if (index < 0 || index >= max) {
             throw new IndexOutOfBoundsException("Index should be in [0, " + max + "]");

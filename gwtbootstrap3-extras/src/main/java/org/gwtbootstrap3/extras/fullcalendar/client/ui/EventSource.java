@@ -32,25 +32,25 @@ import org.gwtbootstrap3.extras.fullcalendar.client.FullCalendarClientBundle;
  */
 public class EventSource implements IsJavaScriptObject {
 
-    private static boolean GCAL_ADDED = false;
+    private static boolean GCAL_ADDED;
     private JavaScriptObject eventSource;
 
-    public EventSource(final JavaScriptObject jso) {
+    public EventSource(JavaScriptObject jso) {
         eventSource = jso;
     }
 
-    public EventSource(final String url,
-                       final String color,
-                       final String backgroundColor,
-                       final String textColor,
-                       final String borderColor,
-                       final String className,
-                       final boolean isEditable,
-                       final boolean isStartEditable,
-                       final boolean isDurationEditable,
-                       final boolean allDayDefault,
-                       final boolean ignoreTimeZone,
-                       final boolean isGoogle//if true include google script file
+    public EventSource(String url,
+                       String color,
+                       String backgroundColor,
+                       String textColor,
+                       String borderColor,
+                       String className,
+                       boolean isEditable,
+                       boolean isStartEditable,
+                       boolean isDurationEditable,
+                       boolean allDayDefault,
+                       boolean ignoreTimeZone,
+                       boolean isGoogle//if true include google script file
     ) {
         if (isGoogle && !GCAL_ADDED) {
             GCAL_ADDED = true;
@@ -156,6 +156,6 @@ public class EventSource implements IsJavaScriptObject {
 
     @Override
     public JavaScriptObject toJavaScript() {
-        return this.eventSource;
+        return eventSource;
     }
 }

@@ -38,7 +38,7 @@ public class StringRadioGroup extends RadioGroupBase<String> {
      * @param name the name.
      */
     @UiConstructor
-    public StringRadioGroup(final String name) {
+    public StringRadioGroup(String name) {
         super(name, PassthroughParser.instance());
     }
 

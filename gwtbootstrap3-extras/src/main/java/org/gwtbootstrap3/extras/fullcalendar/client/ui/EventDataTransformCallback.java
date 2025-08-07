@@ -29,5 +29,5 @@ import com.google.gwt.core.client.JavaScriptObject;
  * @see http://arshaw.com/fullcalendar/docs/event_data/eventDataTransform/
  */
 public interface EventDataTransformCallback {
-    public void eventData(JavaScriptObject data);
+    void eventData(JavaScriptObject data);
 }

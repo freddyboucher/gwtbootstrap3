@@ -36,7 +36,7 @@ public class Strong extends AbstractTextWidget {
         super(Document.get().createElement(ElementTags.STRONG));
     }
 
-    public Strong(final String text) {
+    public Strong(String text) {
         this();
         setHTML(text);
     }

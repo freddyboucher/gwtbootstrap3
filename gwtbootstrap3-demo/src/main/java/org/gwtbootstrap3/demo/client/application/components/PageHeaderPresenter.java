@@ -44,9 +44,9 @@ public class PageHeaderPresenter extends Presenter<PageHeaderPresenter.MyView, P
     }
 
     @Inject
-    public PageHeaderPresenter(final EventBus eventBus,
-                               final MyView view,
-                               final MyProxy proxy) {
+    public PageHeaderPresenter(EventBus eventBus,
+                               MyView view,
+                               MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

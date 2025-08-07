@@ -62,7 +62,7 @@ public enum BootboxLocale {
 
     private final String locale;
 
-    private BootboxLocale(final String locale) {
+    BootboxLocale(String locale) {
         this.locale = locale;
     }
 

@@ -37,7 +37,7 @@ public class SummernoteFocusEvent extends GwtEvent<SummernoteFocusHandler> {
      *
      * @param source the source of the handlers
      */
-    public static void fire(final HasSummernoteFocusHandlers source) {
+    public static void fire(HasSummernoteFocusHandlers source) {
         if (TYPE != null) {
             SummernoteFocusEvent event = new SummernoteFocusEvent();
             source.fireEvent(event);
@@ -51,7 +51,7 @@ public class SummernoteFocusEvent extends GwtEvent<SummernoteFocusHandler> {
      */
     public static Type<SummernoteFocusHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<SummernoteFocusHandler>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -62,7 +62,7 @@ public class SummernoteFocusEvent extends GwtEvent<SummernoteFocusHandler> {
     }
 
     @Override
-    protected void dispatch(final SummernoteFocusHandler handler) {
+    protected void dispatch(SummernoteFocusHandler handler) {
         handler.onSummernoteFocus(this);
     }
 

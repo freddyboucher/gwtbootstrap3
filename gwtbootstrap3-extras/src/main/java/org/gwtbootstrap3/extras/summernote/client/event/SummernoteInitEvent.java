@@ -37,7 +37,7 @@ public class SummernoteInitEvent extends GwtEvent<SummernoteInitHandler> {
      *
      * @param source the source of the handlers
      */
-    public static void fire(final HasSummernoteInitHandlers source) {
+    public static void fire(HasSummernoteInitHandlers source) {
         if (TYPE != null) {
             SummernoteInitEvent event = new SummernoteInitEvent();
             source.fireEvent(event);
@@ -51,7 +51,7 @@ public class SummernoteInitEvent extends GwtEvent<SummernoteInitHandler> {
      */
     public static Type<SummernoteInitHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<SummernoteInitHandler>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -62,7 +62,7 @@ public class SummernoteInitEvent extends GwtEvent<SummernoteInitHandler> {
     }
 
     @Override
-    protected void dispatch(final SummernoteInitHandler handler) {
+    protected void dispatch(SummernoteInitHandler handler) {
         handler.onSummernoteInit(this);
     }
 

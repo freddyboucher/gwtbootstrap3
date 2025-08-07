@@ -37,7 +37,7 @@ public enum Placement implements Type, Style.HasCssName {
 
     private final String cssClass;
 
-    private Placement(final String cssClass) {
+    Placement(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -46,7 +46,7 @@ public enum Placement implements Type, Style.HasCssName {
         return cssClass;
     }
 
-    public static Placement fromStyleName(final String styleName) {
+    public static Placement fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, Placement.class, DEFAULT);
     }
 }

@@ -35,7 +35,7 @@ public enum FormType implements Type, Style.HasCssName {
 
     private final String cssClass;
 
-    private FormType(final String cssClass) {
+    FormType(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -44,7 +44,7 @@ public enum FormType implements Type, Style.HasCssName {
         return cssClass;
     }
 
-    public static FormType fromStyleName(final String styleName) {
+    public static FormType fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, FormType.class, DEFAULT);
     }
 }

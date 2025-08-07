@@ -34,7 +34,7 @@ public enum PaginationSize implements Size, Style.HasCssName {
 
     private final String cssClass;
 
-    private PaginationSize(final String cssClass) {
+    PaginationSize(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -43,7 +43,7 @@ public enum PaginationSize implements Size, Style.HasCssName {
         return cssClass;
     }
 
-    public static PaginationSize fromStyleName(final String styleName) {
+    public static PaginationSize fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, PaginationSize.class, NONE);
     }
 }

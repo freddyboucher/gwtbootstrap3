@@ -42,7 +42,7 @@ public class TextBox extends TextBoxBase {
         this(Document.get().createTextInputElement());
     }
 
-    public TextBox(final Element element) {
+    public TextBox(Element element) {
         this(element, PassthroughRenderer.instance(), PassthroughParser.instance());
     }
 
@@ -52,6 +52,6 @@ public class TextBox extends TextBoxBase {
     }
 
     public void clear() {
-        super.setValue(null);
+        setValue(null);
     }
 }

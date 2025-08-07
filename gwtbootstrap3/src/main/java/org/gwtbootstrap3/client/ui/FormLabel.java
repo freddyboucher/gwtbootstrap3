@@ -31,7 +31,6 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ChangeEvent;
-import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.DomEvent;
 
 /**
@@ -40,9 +39,9 @@ import com.google.gwt.event.dom.client.DomEvent;
  */
 public class FormLabel extends AbstractTextWidget {
 
-    private Element iconElement = null;
+    private Element iconElement;
 
-    private boolean showRequiredIndicator = false;
+    private boolean showRequiredIndicator;
 
     /**
      * Constructor.
@@ -50,17 +49,14 @@ public class FormLabel extends AbstractTextWidget {
     public FormLabel() {
         super(Document.get().createLabelElement());
         setStyleName(Styles.CONTROL_LABEL);
-        addHandler(new ChangeHandler() {
-            @Override
-            public void onChange(ChangeEvent event) {
-                if (iconElement != null) {
-                    iconElement.removeFromParent();
-                }
-                String html = getHTML();
-                if (showRequiredIndicator && html != null && !"".equals(html)) {
-                    iconElement = createIconElement();
-                    getElement().appendChild(iconElement);
-                }
+        addHandler(event -> {
+            if (iconElement != null) {
+                iconElement.removeFromParent();
+            }
+            String html = getHTML();
+            if (showRequiredIndicator && html != null && !"".equals(html)) {
+                iconElement = createIconElement();
+                getElement().appendChild(iconElement);
             }
         }, ChangeEvent.getType());
     }
@@ -90,7 +86,7 @@ public class FormLabel extends AbstractTextWidget {
         return showRequiredIndicator;
     }
 
-    public void setFor(final String f) {
+    public void setFor(String f) {
         if (f != null) {
             getElement().setAttribute(Attributes.FOR, f);
         } else {
@@ -100,7 +96,7 @@ public class FormLabel extends AbstractTextWidget {
 
     /** {@inheritDoc} */
     @Override
-    public void setHTML(final String html) {
+    public void setHTML(String html) {
         super.setHTML(html);
         DomEvent.fireNativeEvent(Document.get().createChangeEvent(), this);
     }
@@ -109,7 +105,7 @@ public class FormLabel extends AbstractTextWidget {
      * @param should this label show as required?
      */
     public void setShowRequiredIndicator(boolean required) {
-        this.showRequiredIndicator = required;
+        showRequiredIndicator = required;
         DomEvent.fireNativeEvent(Document.get().createChangeEvent(), this);
     }
 

@@ -22,8 +22,6 @@ package org.gwtbootstrap3.extras.gallery.client.ui;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.event.dom.client.LoadEvent;
-import com.google.gwt.event.dom.client.LoadHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -137,17 +135,14 @@ public class Gallery extends ComplexWidget {
     }
 
     @Override
-    public void add(final Widget child) {
+    public void add(Widget child) {
         if(child instanceof GalleryImage) {
-            ((GalleryImage) child).addLoadHandler(new LoadHandler() {
-                @Override
-                public void onLoad(LoadEvent event) {
-                    if(thumbnailWidth != null) {
-                        child.setWidth(thumbnailWidth);
-                    }
-                    if(thumbnailHeight != null) {
-                        child.setHeight(thumbnailHeight);
-                    }
+            ((GalleryImage) child).addLoadHandler(event -> {
+                if(thumbnailWidth != null) {
+                    child.setWidth(thumbnailWidth);
+                }
+                if(thumbnailHeight != null) {
+                    child.setHeight(thumbnailHeight);
                 }
             });
 
@@ -160,7 +155,7 @@ public class Gallery extends ComplexWidget {
     /**
      * Executed when the Gallery is initialized.
      */
-    public HandlerRegistration addGalleryOpenHandler(final GalleryOpenHandler handler) {
+    public HandlerRegistration addGalleryOpenHandler(GalleryOpenHandler handler) {
         return addHandler(handler, GalleryOpenEvent.getType());
     }
 
@@ -168,14 +163,14 @@ public class Gallery extends ComplexWidget {
      * Executed when the Gallery has been initialized
      * and the initialization transition has been completed.
      */
-    public HandlerRegistration addGalleryOpenedHandler(final GalleryOpenedHandler handler) {
+    public HandlerRegistration addGalleryOpenedHandler(GalleryOpenedHandler handler) {
         return addHandler(handler, GalleryOpenedEvent.getType());
     }
 
     /**
      * Executed when the Gallery is about to be closed.
      */
-    public HandlerRegistration addGalleryCloseHandler(final GalleryCloseHandler handler) {
+    public HandlerRegistration addGalleryCloseHandler(GalleryCloseHandler handler) {
         return addHandler(handler, GalleryCloseEvent.getType());
     }
 
@@ -183,28 +178,28 @@ public class Gallery extends ComplexWidget {
      * Executed when the Gallery has been closed and the closing
      * transition has been completed.
      */
-    public HandlerRegistration addGalleryClosedHandler(final GalleryClosedHandler handler) {
+    public HandlerRegistration addGalleryClosedHandler(GalleryClosedHandler handler) {
         return addHandler(handler, GalleryClosedEvent.getType());
     }
 
     /**
      * Executed on slide change.
      */
-    public HandlerRegistration addGallerySlideHandler(final GallerySlideHandler handler) {
+    public HandlerRegistration addGallerySlideHandler(GallerySlideHandler handler) {
         return addHandler(handler, GallerySlideEvent.getType());
     }
 
     /**
      * Executed after the slide change transition.
      */
-    public HandlerRegistration addGallerySlideEndHandler(final GallerySlideEndHandler handler) {
+    public HandlerRegistration addGallerySlideEndHandler(GallerySlideEndHandler handler) {
         return addHandler(handler, GallerySlideEndEvent.getType());
     }
 
     /**
      * Executed on slide content load.
      */
-    public HandlerRegistration addGallerySlideCompleteHandler(final GallerySlideCompleteHandler handler) {
+    public HandlerRegistration addGallerySlideCompleteHandler(GallerySlideCompleteHandler handler) {
         return addHandler(handler, GallerySlideCompleteEvent.getType());
     }
 
@@ -213,7 +208,7 @@ public class Gallery extends ComplexWidget {
      *
      * @param event the event
      */
-    private void onOpen(final Event event) {
+    private void onOpen(Event event) {
         GalleryOpenEvent.fire(this, event);
     }
 
@@ -222,7 +217,7 @@ public class Gallery extends ComplexWidget {
      *
      * @param event the event
      */
-    private void onOpened(final Event event) {
+    private void onOpened(Event event) {
         GalleryOpenedEvent.fire(this, event);
     }
 
@@ -231,7 +226,7 @@ public class Gallery extends ComplexWidget {
      *
      * @param event the event
      */
-    private void onClose(final Event event) {
+    private void onClose(Event event) {
         GalleryCloseEvent.fire(this, event);
     }
 
@@ -240,7 +235,7 @@ public class Gallery extends ComplexWidget {
      *
      * @param event the event
      */
-    private void onClosed(final Event event) {
+    private void onClosed(Event event) {
         GalleryClosedEvent.fire(this, event);
     }
 
@@ -249,7 +244,7 @@ public class Gallery extends ComplexWidget {
      *
      * @param event the event
      */
-    private void onSlide(final Event event, int index) {
+    private void onSlide(Event event, int index) {
         GallerySlideEvent.fire(this, event, index);
     }
 
@@ -258,7 +253,7 @@ public class Gallery extends ComplexWidget {
      *
      * @param event the event
      */
-    private void onSlideEnd(final Event event, int index) {
+    private void onSlideEnd(Event event, int index) {
         GallerySlideEndEvent.fire(this, event, index);
     }
 
@@ -267,7 +262,7 @@ public class Gallery extends ComplexWidget {
      *
      * @param event the event
      */
-    private void onSlideComplete(final Event event, int index) {
+    private void onSlideComplete(Event event, int index) {
         GallerySlideCompleteEvent.fire(this, event, index);
     }
 

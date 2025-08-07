@@ -29,11 +29,11 @@ import com.google.gwt.dom.client.NativeEvent;
  * @author Jeff Isenhart
  */
 public interface ClickAndHoverEventCallback {
-    public void eventClick(JavaScriptObject calendarEvent, NativeEvent event, JavaScriptObject viewObject);
+    void eventClick(JavaScriptObject calendarEvent, NativeEvent event, JavaScriptObject viewObject);
 
-    public void dayClick(JavaScriptObject moment, NativeEvent event, JavaScriptObject viewObject);
+    void dayClick(JavaScriptObject moment, NativeEvent event, JavaScriptObject viewObject);
 
-    public void eventMouseover(JavaScriptObject calendarEvent, NativeEvent event, JavaScriptObject viewObject);
+    void eventMouseover(JavaScriptObject calendarEvent, NativeEvent event, JavaScriptObject viewObject);
 
-    public void eventMouseout(JavaScriptObject calendarEvent, NativeEvent event, JavaScriptObject viewObject);
+    void eventMouseout(JavaScriptObject calendarEvent, NativeEvent event, JavaScriptObject viewObject);
 }

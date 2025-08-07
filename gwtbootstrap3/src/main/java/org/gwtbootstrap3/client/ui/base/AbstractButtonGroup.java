@@ -44,11 +44,11 @@ import com.google.gwt.user.client.ui.Widget;
 public abstract class AbstractButtonGroup extends FlowPanel implements HasName, HasSize<ButtonGroupSize>,
         HasDataToggle, HasJustified, HasPull, HasResponsiveness {
 
-    private final PullMixin<AbstractButtonGroup> pullMixin = new PullMixin<AbstractButtonGroup>(this);
-    private final DataToggleMixin<AbstractButtonGroup> toggleMixin = new DataToggleMixin<AbstractButtonGroup>(this);
+    private final PullMixin<AbstractButtonGroup> pullMixin = new PullMixin<>(this);
+    private final DataToggleMixin<AbstractButtonGroup> toggleMixin = new DataToggleMixin<>(this);
     private String name;
 
-    protected AbstractButtonGroup(final String styleName) {
+    protected AbstractButtonGroup(String styleName) {
         setStyleName(styleName);
     }
 
@@ -56,17 +56,17 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
      * Convenience method that will set the name of all child widgets that can have a name
      *
      * @param name Name of group
-     * @see #add(com.google.gwt.user.client.ui.Widget)
+     * @see #add(Widget)
      */
     @Override
-    public void setName(final String name) {
+    public void setName(String name) {
         this.name = name;
 
         if (name == null) {
             return;
         }
 
-        for (final Widget w : getChildren()) {
+        for (Widget w : getChildren()) {
             if (w instanceof HasName) {
                 ((HasName) w).setName(name);
             }
@@ -75,7 +75,7 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
 
     @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
     @Override
@@ -89,7 +89,7 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
     }
 
     @Override
-    public void setDataToggle(final Toggle toggle) {
+    public void setDataToggle(Toggle toggle) {
         toggleMixin.setDataToggle(toggle);
     }
 
@@ -106,7 +106,7 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
      * @param justified Stretch button group
      */
     @Override
-    public void setJustified(final boolean justified) {
+    public void setJustified(boolean justified) {
         if (justified) {
             addStyleName(Styles.BTN_GROUP_JUSTIFIED);
         } else {
@@ -120,7 +120,7 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
     }
 
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         pullMixin.setPull(pull);
     }
 
@@ -130,12 +130,12 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
@@ -144,7 +144,7 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
      *
      * @param dropUp display up or not
      */
-    public void setDropUp(final boolean dropUp) {
+    public void setDropUp(boolean dropUp) {
         if (dropUp) {
             addStyleName(Styles.DROP_UP);
         } else {
@@ -153,7 +153,7 @@ public abstract class AbstractButtonGroup extends FlowPanel implements HasName, 
     }
 
     @Override
-    public void add(final Widget w) {
+    public void add(Widget w) {
         super.add(w);
 
         if (name == null) {

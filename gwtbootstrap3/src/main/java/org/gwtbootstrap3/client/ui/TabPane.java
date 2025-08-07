@@ -42,10 +42,10 @@ import org.gwtbootstrap3.client.ui.html.Div;
  * </pre>
  *
  * @author Joshua Godi
- * @see org.gwtbootstrap3.client.ui.TabContent
+ * @see TabContent
  */
 public class TabPane extends Div implements HasActive {
-    private final ActiveMixin<TabPane> activeMixin = new ActiveMixin<TabPane>(this);
+    private final ActiveMixin<TabPane> activeMixin = new ActiveMixin<>(this);
 
     /**
      * Creates the default widget with the default styles
@@ -60,7 +60,7 @@ public class TabPane extends Div implements HasActive {
      *
      * @param fade true=fade content in/out, false=don't fade
      */
-    public void setFade(final boolean fade) {
+    public void setFade(boolean fade) {
         if (fade) {
             addStyleName(Styles.FADE);
         } else {
@@ -73,7 +73,7 @@ public class TabPane extends Div implements HasActive {
      *
      * @param in whether or not the first tab pane will be faded properly
      */
-    public void setIn(final boolean in) {
+    public void setIn(boolean in) {
         if (in) {
             addStyleName(Styles.IN);
         } else {
@@ -85,7 +85,7 @@ public class TabPane extends Div implements HasActive {
      * {@inheritDoc}
      */
     @Override
-    public void setActive(final boolean active) {
+    public void setActive(boolean active) {
         activeMixin.setActive(active);
     }
 

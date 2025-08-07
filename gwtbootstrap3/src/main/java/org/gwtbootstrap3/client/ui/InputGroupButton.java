@@ -58,7 +58,7 @@ public class InputGroupButton extends AbstractInputGroupAddon {
     }
 
     @Override
-    public void add(final Widget child) {
+    public void add(Widget child) {
         add(child, (Element) getElement());
     }
 }

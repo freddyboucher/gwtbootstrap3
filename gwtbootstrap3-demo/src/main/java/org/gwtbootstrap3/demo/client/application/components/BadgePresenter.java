@@ -44,9 +44,9 @@ public class BadgePresenter extends Presenter<BadgePresenter.MyView, BadgePresen
     }
 
     @Inject
-    public BadgePresenter(final EventBus eventBus,
-                          final MyView view,
-                          final MyProxy proxy) {
+    public BadgePresenter(EventBus eventBus,
+                          MyView view,
+                          MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

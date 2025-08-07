@@ -52,7 +52,7 @@ public class Pager extends UnorderedList implements HasResponsiveness {
         add(next);
     }
 
-    public void setAlignToSides(final boolean alignToSides) {
+    public void setAlignToSides(boolean alignToSides) {
         if (alignToSides) {
             previous.setStyleName(Styles.PREVIOUS);
             next.setStyleName(Styles.NEXT);
@@ -68,7 +68,7 @@ public class Pager extends UnorderedList implements HasResponsiveness {
      * @param clickHandler click handler
      * @return handler registration of the handler
      */
-    public HandlerRegistration addPreviousClickHandler(final ClickHandler clickHandler) {
+    public HandlerRegistration addPreviousClickHandler(ClickHandler clickHandler) {
         return previous.addClickHandler(clickHandler);
     }
 
@@ -78,48 +78,48 @@ public class Pager extends UnorderedList implements HasResponsiveness {
      * @param clickHandler click handler
      * @return handler registration of the handler
      */
-    public HandlerRegistration addNextClickHandler(final ClickHandler clickHandler) {
+    public HandlerRegistration addNextClickHandler(ClickHandler clickHandler) {
         return next.addClickHandler(clickHandler);
     }
 
-    public void setPreviousText(final String text) {
+    public void setPreviousText(String text) {
         previous.setText(text);
     }
 
-    public void setPreviousIcon(final IconType icon) {
+    public void setPreviousIcon(IconType icon) {
         previous.setIcon(icon);
     }
 
-    public void setPreviousIconSize(final IconSize iconSize) {
+    public void setPreviousIconSize(IconSize iconSize) {
         previous.setIconSize(iconSize);
     }
     
-    public void setPreviousEnabled(final boolean enabled) {
+    public void setPreviousEnabled(boolean enabled) {
         previous.setEnabled(enabled);
     }
     
-    public void setPreviousVisible(final boolean visible) {
+    public void setPreviousVisible(boolean visible) {
         previous.setVisible(visible);
     }
 
-    public void setNextText(final String text) {
+    public void setNextText(String text) {
         next.setText(text);
     }
 
-    public void setNextIcon(final IconType icon) {
+    public void setNextIcon(IconType icon) {
         next.setIcon(icon);
         next.setIconPosition(IconPosition.RIGHT);
     }
 
-    public void setNextIconSize(final IconSize iconSize) {
+    public void setNextIconSize(IconSize iconSize) {
         next.setIconSize(iconSize);
     }
     
-    public void setNextEnabled(final boolean enabled) {
+    public void setNextEnabled(boolean enabled) {
         next.setEnabled(enabled);
     }
     
-    public void setNextVisible(final boolean visible) {
+    public void setNextVisible(boolean visible) {
         next.setVisible(visible);
     }
 }

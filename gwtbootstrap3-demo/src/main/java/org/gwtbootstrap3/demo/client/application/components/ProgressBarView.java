@@ -33,7 +33,7 @@ public class ProgressBarView extends ViewImpl implements ProgressBarPresenter.My
     }
 
     @Inject
-    ProgressBarView(final Binder uiBinder) {
+    ProgressBarView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

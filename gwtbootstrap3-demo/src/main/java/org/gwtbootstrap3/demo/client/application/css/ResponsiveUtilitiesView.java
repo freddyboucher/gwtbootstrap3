@@ -33,7 +33,7 @@ public class ResponsiveUtilitiesView extends ViewImpl implements ResponsiveUtili
     }
 
     @Inject
-    ResponsiveUtilitiesView(final Binder uiBinder) {
+    ResponsiveUtilitiesView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

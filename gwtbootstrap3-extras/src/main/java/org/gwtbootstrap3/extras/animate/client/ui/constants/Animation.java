@@ -110,7 +110,7 @@ public enum Animation implements Style.HasCssName {
 
     private final String cssClass;
 
-    private Animation(final String cssClass) {
+    Animation(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -119,7 +119,7 @@ public enum Animation implements Style.HasCssName {
         return cssClass;
     }
 
-    public static Animation fromStyleName(final String styleName) {
+    public static Animation fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, Animation.class, NO_ANIMATION);
     }
 

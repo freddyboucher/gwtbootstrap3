@@ -34,7 +34,7 @@ public class FocusableMixin<T extends UIObject & Focusable> implements Focusable
 
     private final T uiObject;
 
-    public FocusableMixin(final T uiObject) {
+    public FocusableMixin(T uiObject) {
         this.uiObject = uiObject;
     }
 
@@ -44,14 +44,14 @@ public class FocusableMixin<T extends UIObject & Focusable> implements Focusable
     }
 
     @Override
-    public void setTabIndex(final int index) {
+    public void setTabIndex(int index) {
         uiObject.getElement().setTabIndex(index);
     }
 
     @Override
-    public void setAccessKey(final char key) {
-        final Element element = uiObject.getElement();
-        final String accessKey = Character.toString(key);
+    public void setAccessKey(char key) {
+        Element element = uiObject.getElement();
+        String accessKey = Character.toString(key);
 
         if (AnchorElement.is(element)) {
             AnchorElement.as(element).setAccessKey(accessKey);
@@ -63,7 +63,7 @@ public class FocusableMixin<T extends UIObject & Focusable> implements Focusable
     }
 
     @Override
-    public void setFocus(final boolean focused) {
+    public void setFocus(boolean focused) {
         if (focused) {
             uiObject.getElement().focus();
         } else {

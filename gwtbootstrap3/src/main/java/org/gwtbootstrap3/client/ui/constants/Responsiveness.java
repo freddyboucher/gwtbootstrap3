@@ -42,7 +42,7 @@ public enum Responsiveness implements Type, Style.HasCssName {
 
     private final String cssClass;
 
-    private Responsiveness(final String cssClass) {
+    Responsiveness(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -51,7 +51,7 @@ public enum Responsiveness implements Type, Style.HasCssName {
         return cssClass;
     }
 
-    public static Responsiveness fromStyleName(final String styleName) {
+    public static Responsiveness fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, Responsiveness.class, DEFAULT);
     }
 }

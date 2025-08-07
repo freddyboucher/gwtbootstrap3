@@ -79,14 +79,14 @@ import java.util.List;
 public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandlers, HasDoubleClickHandlers, HasHref, HasDataToggle, HasDataParent,
         HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, Focusable, HasDataTarget, HasTarget, HasPull, HasBadge {
 
-    private final PullMixin<Anchor> pullMixin = new PullMixin<Anchor>(this);
-    private final DataToggleMixin<Anchor> toggleMixin = new DataToggleMixin<Anchor>(this);
-    private final DataParentMixin<Anchor> parentMixin = new DataParentMixin<Anchor>(this);
-    private final IconTextMixin<Anchor> iconTextMixin = new IconTextMixin<Anchor>(this);
-    private final DataTargetMixin<Anchor> targetMixin = new DataTargetMixin<Anchor>(this);
-    private final AttributeMixin<Anchor> attributeMixin = new AttributeMixin<Anchor>(this);
-    private final FocusableMixin<Anchor> focusableMixin = new FocusableMixin<Anchor>(this);
-    private final EnabledMixin<Anchor> enabledMixin = new EnabledMixin<Anchor>(this);
+    private final PullMixin<Anchor> pullMixin = new PullMixin<>(this);
+    private final DataToggleMixin<Anchor> toggleMixin = new DataToggleMixin<>(this);
+    private final DataParentMixin<Anchor> parentMixin = new DataParentMixin<>(this);
+    private final IconTextMixin<Anchor> iconTextMixin = new IconTextMixin<>(this);
+    private final DataTargetMixin<Anchor> targetMixin = new DataTargetMixin<>(this);
+    private final AttributeMixin<Anchor> attributeMixin = new AttributeMixin<>(this);
+    private final FocusableMixin<Anchor> focusableMixin = new FocusableMixin<>(this);
+    private final EnabledMixin<Anchor> enabledMixin = new EnabledMixin<>(this);
     private String targetHistoryToken;
 
     /**
@@ -94,7 +94,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      *
      * @param href href for the anchor
      */
-    public Anchor(final String href) {
+    public Anchor(String href) {
         setElement(Document.get().createAnchorElement());
         setHref(href);
         iconTextMixin.addTextWidgetToParent();
@@ -106,7 +106,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * @param text text for the anchor
      * @param href href for the anchor
      */
-    public Anchor(final String text, final String href) {
+    public Anchor(String text, String href) {
         this(href);
         setText(text);
     }
@@ -122,7 +122,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public HandlerRegistration addClickHandler(final ClickHandler handler) {
+    public HandlerRegistration addClickHandler(ClickHandler handler) {
         return addDomHandler(handler, ClickEvent.getType());
     }
 
@@ -130,7 +130,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public HandlerRegistration addDoubleClickHandler(final DoubleClickHandler handler) {
+    public HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler) {
         return addDomHandler(handler, DoubleClickEvent.getType());
     }
 
@@ -138,7 +138,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setText(final String text) {
+    public void setText(String text) {
         iconTextMixin.setText(text);
     }
 
@@ -154,7 +154,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setIcon(final IconType iconType) {
+    public void setIcon(IconType iconType) {
         iconTextMixin.setIcon(iconType);
     }
 
@@ -170,7 +170,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setIconPosition(final IconPosition iconPosition) {
+    public void setIconPosition(IconPosition iconPosition) {
         iconTextMixin.setIconPosition(iconPosition);
     }
 
@@ -186,7 +186,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setIconSize(final IconSize iconSize) {
+    public void setIconSize(IconSize iconSize) {
         iconTextMixin.setIconSize(iconSize);
     }
 
@@ -202,7 +202,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setIconFlip(final IconFlip iconFlip) {
+    public void setIconFlip(IconFlip iconFlip) {
         iconTextMixin.setIconFlip(iconFlip);
     }
 
@@ -218,7 +218,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setIconRotate(final IconRotate iconRotate) {
+    public void setIconRotate(IconRotate iconRotate) {
         iconTextMixin.setIconRotate(iconRotate);
     }
 
@@ -234,7 +234,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setIconBordered(final boolean iconBordered) {
+    public void setIconBordered(boolean iconBordered) {
         iconTextMixin.setIconBordered(iconBordered);
     }
 
@@ -250,7 +250,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setIconInverse(final boolean iconInverse) {
+    public void setIconInverse(boolean iconInverse) {
         iconTextMixin.setIconInverse(iconInverse);
     }
 
@@ -266,7 +266,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setIconSpin(final boolean iconSpin) {
+    public void setIconSpin(boolean iconSpin) {
         iconTextMixin.setIconSpin(iconSpin);
     }
 
@@ -298,7 +298,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setIconFixedWidth(final boolean iconFixedWidth) {
+    public void setIconFixedWidth(boolean iconFixedWidth) {
         iconTextMixin.setIconFixedWidth(iconFixedWidth);
     }
 
@@ -314,7 +314,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setHref(final String href) {
+    public void setHref(String href) {
         AnchorElement.as(getElement()).setHref(href);
     }
 
@@ -330,9 +330,9 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setTargetHistoryToken(final String targetHistoryToken) {
+    public void setTargetHistoryToken(String targetHistoryToken) {
         this.targetHistoryToken = targetHistoryToken;
-        final String hash = History.encodeHistoryToken(targetHistoryToken);
+        String hash = History.encodeHistoryToken(targetHistoryToken);
         setHref("#" + hash);
     }
 
@@ -348,7 +348,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setDataParent(final String dataParent) {
+    public void setDataParent(String dataParent) {
         parentMixin.setDataParent(dataParent);
     }
 
@@ -364,7 +364,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setDataToggle(final Toggle toggle) {
+    public void setDataToggle(Toggle toggle) {
         toggleMixin.setDataToggle(toggle);
     }
 
@@ -388,7 +388,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setTabIndex(final int index) {
+    public void setTabIndex(int index) {
         focusableMixin.setTabIndex(index);
     }
 
@@ -396,7 +396,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setAccessKey(final char key) {
+    public void setAccessKey(char key) {
         focusableMixin.setAccessKey(key);
     }
 
@@ -404,7 +404,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setFocus(final boolean focused) {
+    public void setFocus(boolean focused) {
         focusableMixin.setFocus(focused);
     }
 
@@ -420,17 +420,17 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setHTML(final String html) {
+    public void setHTML(String html) {
         getElement().setInnerHTML(html);
     }
 
     @Override
-    public void setDataTargetWidgets(final List<Widget> widgets) {
+    public void setDataTargetWidgets(List<Widget> widgets) {
         targetMixin.setDataTargetWidgets(widgets);
     }
 
     @Override
-    public void setDataTargetWidget(final Widget widget) {
+    public void setDataTargetWidget(Widget widget) {
         targetMixin.setDataTargetWidget(widget);
     }
 
@@ -438,7 +438,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setDataTarget(final String dataTarget) {
+    public void setDataTarget(String dataTarget) {
         targetMixin.setDataTarget(dataTarget);
     }
 
@@ -454,7 +454,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setTarget(final String target) {
+    public void setTarget(String target) {
         attributeMixin.setAttribute(Attributes.TARGET, target);
     }
 
@@ -470,7 +470,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         pullMixin.setPull(pull);
     }
 
@@ -494,7 +494,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * {@inheritDoc}
      */
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         enabledMixin.setEnabled(enabled);
     }
 
@@ -539,7 +539,7 @@ public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandler
      * @param event dom event
      */
     @Override
-    public void onBrowserEvent(final Event event) {
+    public void onBrowserEvent(Event event) {
         switch (DOM.eventGetType(event)) {
             case Event.ONDBLCLICK:
             case Event.ONFOCUS:

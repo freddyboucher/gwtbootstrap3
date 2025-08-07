@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui.gwt;
  * #L%
  */
 
+import com.google.gwt.cell.client.Cell;
 import org.gwtbootstrap3.client.ui.constants.ButtonSize;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.IconType;
@@ -95,7 +96,7 @@ public class ButtonCell extends com.google.gwt.cell.client.ButtonCell implements
     }
 
     @Override
-    public void render(com.google.gwt.cell.client.Cell.Context context, SafeHtml data, SafeHtmlBuilder sb) {
+    public void render(Cell.Context context, SafeHtml data, SafeHtmlBuilder sb) {
         String cssClasses = new StringBuilder("btn") //
                 .append(" ") //
                 .append(type.getCssName()) //

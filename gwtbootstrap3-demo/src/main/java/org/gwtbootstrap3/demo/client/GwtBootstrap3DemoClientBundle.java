@@ -29,7 +29,7 @@ import com.google.gwt.resources.client.TextResource;
  */
 interface GwtBootstrap3DemoClientBundle extends ClientBundle {
 
-    static final GwtBootstrap3DemoClientBundle INSTANCE = GWT.create(GwtBootstrap3DemoClientBundle.class);
+    GwtBootstrap3DemoClientBundle INSTANCE = GWT.create(GwtBootstrap3DemoClientBundle.class);
 
     @Source("resource/js/prettify.js")
     TextResource prettify();

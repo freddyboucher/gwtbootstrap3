@@ -39,7 +39,7 @@ public class TitleFormat extends AbstractViewOptionFormat implements IsJavaScrip
         if (options == null) {
             options = getDefaultOptions();
         }
-        for (final ViewOptionHash option : options.keySet()) {
+        for (ViewOptionHash option : options.keySet()) {
             setFormat(option.name(), options.get(option));
         }
     }
@@ -48,7 +48,7 @@ public class TitleFormat extends AbstractViewOptionFormat implements IsJavaScrip
     /**
      * @see http://arshaw.com/fullcalendar/docs/text/titleFormat/
      */
-    protected void populateDefaultOptions(final Map<ViewOptionHash, String> options) {
+    protected void populateDefaultOptions(Map<ViewOptionHash, String> options) {
         options.put(ViewOptionHash.month, "MMMM yyyy");
         options.put(ViewOptionHash.week, "MMM d[ yyyy]{ '&#8212;'[ MMM] d yyyy}");
         options.put(ViewOptionHash.day, "dddd, MMM d, yyyy");

@@ -33,10 +33,10 @@ public class Breadcrumbs extends OrderedList {
         setStyleName(Styles.BREADCRUMB);
     }
 
-    public Breadcrumbs(final Widget... widgets) {
+    public Breadcrumbs(Widget... widgets) {
         this();
 
-        for (final Widget widget : widgets) {
+        for (Widget widget : widgets) {
             add(widget);
         }
     }
@@ -44,7 +44,7 @@ public class Breadcrumbs extends OrderedList {
     @Override
     protected void onAttach() {
         if (!isOrWasAttached() && getChildren().size() > 0) {
-            final Widget lastWidget = getChildren().get(getChildren().size() - 1);
+            Widget lastWidget = getChildren().get(getChildren().size() - 1);
             lastWidget.addStyleName(Styles.ACTIVE);
         }
 
@@ -55,7 +55,7 @@ public class Breadcrumbs extends OrderedList {
      * {@inheritDoc}
      */
     @Override
-    public void add(final Widget w) {
+    public void add(Widget w) {
         w.addStyleName(Styles.ACTIVE);
         super.add(w);
     }

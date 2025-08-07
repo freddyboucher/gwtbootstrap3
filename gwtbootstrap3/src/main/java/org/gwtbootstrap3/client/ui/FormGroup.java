@@ -51,7 +51,7 @@ public class FormGroup extends FormElementContainer implements HasSize<FormGroup
     }
 
     @Override
-    public void setValidationState(final ValidationState state) {
+    public void setValidationState(ValidationState state) {
         StyleHelper.addUniqueEnumStyleName(this, ValidationState.class, state);
     }
 

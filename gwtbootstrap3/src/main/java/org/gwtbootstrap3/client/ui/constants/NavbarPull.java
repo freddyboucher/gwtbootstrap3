@@ -35,7 +35,7 @@ public enum NavbarPull implements Style.HasCssName {
 
     private final String cssClass;
 
-    private NavbarPull(final String cssClass) {
+    NavbarPull(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -44,7 +44,7 @@ public enum NavbarPull implements Style.HasCssName {
         return cssClass;
     }
 
-    public static NavbarPull fromStyleName(final String styleName) {
+    public static NavbarPull fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, NavbarPull.class, NONE);
     }
 }

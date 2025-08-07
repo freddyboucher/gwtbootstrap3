@@ -69,7 +69,7 @@ public class BootstrapSelectView extends ViewImpl implements BootstrapSelectPres
     }
 
     @Inject
-    BootstrapSelectView(final Binder uiBinder) {
+    BootstrapSelectView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
         maxOptionsSelect.setMaxOptionsTextHandler(new MaxOptionsTextHandler() {
             @Override
@@ -248,7 +248,7 @@ public class BootstrapSelectView extends ViewImpl implements BootstrapSelectPres
     }
 
     private void addEventLog(boolean simple, String eventName, String logSuffix) {
-        final Paragraph logEntry = new Paragraph();
+        Paragraph logEntry = new Paragraph();
         logEntry.setHTML("<b>" + eventName + "</b> event fired on <b>"
                 + (simple ? "simple" : "multiple") + "</b> select! " + logSuffix);
         logRow.add(logEntry);

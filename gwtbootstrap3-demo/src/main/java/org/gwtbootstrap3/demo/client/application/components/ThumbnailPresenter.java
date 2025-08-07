@@ -44,9 +44,9 @@ public class ThumbnailPresenter extends Presenter<ThumbnailPresenter.MyView, Thu
     }
 
     @Inject
-    public ThumbnailPresenter(final EventBus eventBus,
-                              final MyView view,
-                              final MyProxy proxy) {
+    public ThumbnailPresenter(EventBus eventBus,
+                              MyView view,
+                              MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

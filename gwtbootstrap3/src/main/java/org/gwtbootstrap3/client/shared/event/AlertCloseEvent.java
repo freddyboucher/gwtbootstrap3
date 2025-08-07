@@ -28,7 +28,7 @@ import com.google.gwt.user.client.Event;
  */
 public class AlertCloseEvent extends GwtEvent<AlertCloseHandler> {
 
-    private static final Type<AlertCloseHandler> TYPE = new Type<AlertCloseHandler>();
+    private static final Type<AlertCloseHandler> TYPE = new Type<>();
 
     private final Event nativeEvent;
 
@@ -36,7 +36,7 @@ public class AlertCloseEvent extends GwtEvent<AlertCloseHandler> {
         return TYPE;
     }
 
-    public AlertCloseEvent(final Event nativeEvent) {
+    public AlertCloseEvent(Event nativeEvent) {
         this.nativeEvent = nativeEvent;
     }
 
@@ -50,7 +50,7 @@ public class AlertCloseEvent extends GwtEvent<AlertCloseHandler> {
     }
 
     @Override
-    protected void dispatch(final AlertCloseHandler handler) {
+    protected void dispatch(AlertCloseHandler handler) {
         handler.onClose(this);
     }
 }

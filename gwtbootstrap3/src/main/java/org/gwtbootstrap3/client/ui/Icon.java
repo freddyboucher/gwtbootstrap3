@@ -44,8 +44,8 @@ import com.google.gwt.uibinder.client.UiConstructor;
  * Simple put, an icon.
  *
  * @author Sven Jacobs
- * @see org.gwtbootstrap3.client.ui.constants.IconType
- * @see org.gwtbootstrap3.client.ui.constants.IconSize
+ * @see IconType
+ * @see IconSize
  */
 public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<IconSize>, HasEmphasis, HasClickHandlers {
 
@@ -55,13 +55,13 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
     }
 
     @UiConstructor
-    public Icon(final IconType type) {
+    public Icon(IconType type) {
         this();
         setType(type);
     }
 
     @Override
-    public void setType(final IconType type) {
+    public void setType(IconType type) {
         StyleHelper.addUniqueEnumStyleName(this, IconType.class, type);
     }
 
@@ -70,7 +70,7 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
         return IconType.fromStyleName(getStyleName());
     }
 
-    public void setBorder(final boolean border) {
+    public void setBorder(boolean border) {
         StyleHelper.toggleStyleName(this, border, Styles.ICON_BORDER);
     }
 
@@ -78,7 +78,7 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
         return StyleHelper.containsStyle(Styles.ICON_BORDER, getStyleName());
     }
 
-    public void setStackBase(final boolean stackBase) {
+    public void setStackBase(boolean stackBase) {
         StyleHelper.toggleStyleName(this, stackBase, Styles.ICON_STACK_BASE);
     }
 
@@ -86,7 +86,7 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
         return StyleHelper.containsStyle(Styles.ICON_STACK_BASE, getStyleName());
     }
 
-    public void setFixedWidth(final boolean fixedWidth) {
+    public void setFixedWidth(boolean fixedWidth) {
         StyleHelper.toggleStyleName(this, fixedWidth, Styles.ICON_FIXED_WIDTH);
     }
 
@@ -94,7 +94,7 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
         return StyleHelper.containsStyle(Styles.ICON_FIXED_WIDTH, getStyleName());
     }
 
-    public void setStackTop(final boolean stackTop) {
+    public void setStackTop(boolean stackTop) {
         StyleHelper.toggleStyleName(this, stackTop, Styles.ICON_STACK_TOP);
     }
 
@@ -102,7 +102,7 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
         return StyleHelper.containsStyle(Styles.ICON_STACK_TOP, getStyleName());
     }
 
-    public void setInverse(final boolean inverse) {
+    public void setInverse(boolean inverse) {
         StyleHelper.toggleStyleName(this, inverse, Styles.ICON_INVERSE);
     }
 
@@ -110,7 +110,7 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
         return StyleHelper.containsStyle(Styles.ICON_INVERSE, getStyleName());
     }
 
-    public void setSpin(final boolean spin) {
+    public void setSpin(boolean spin) {
         StyleHelper.toggleStyleName(this, spin, Styles.ICON_SPIN);
     }
 
@@ -118,7 +118,7 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
         return StyleHelper.containsStyle(Styles.ICON_SPIN, getStyleName());
     }
 
-    public void setPulse(final boolean pulse) {
+    public void setPulse(boolean pulse) {
         StyleHelper.toggleStyleName(this, pulse, Styles.ICON_PULSE);
     }
 
@@ -126,7 +126,7 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
         return StyleHelper.containsStyle(Styles.ICON_PULSE, getStyleName());
     }
 
-    public void setRotate(final IconRotate iconRotate) {
+    public void setRotate(IconRotate iconRotate) {
         if (iconRotate == null) {
             return;
         }
@@ -137,7 +137,7 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
         return IconRotate.fromStyleName(getStyleName());
     }
 
-    public void setFlip(final IconFlip iconFlip) {
+    public void setFlip(IconFlip iconFlip) {
         if (iconFlip == null) {
             return;
         }
@@ -150,7 +150,7 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
     }
 
     @Override
-    public void setSize(final IconSize iconSize) {
+    public void setSize(IconSize iconSize) {
         StyleHelper.addUniqueEnumStyleName(this, IconSize.class, iconSize);
     }
 
@@ -160,7 +160,7 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
     }
 
     @Override
-    public void setEmphasis(final Emphasis emphasis) {
+    public void setEmphasis(Emphasis emphasis) {
         StyleHelper.addUniqueEnumStyleName(this, Emphasis.class, emphasis);
     }
 
@@ -170,7 +170,7 @@ public class Icon extends ComplexWidget implements HasType<IconType>, HasSize<Ic
     }
 
     @Override
-    public HandlerRegistration addClickHandler(final ClickHandler handler) {
+    public HandlerRegistration addClickHandler(ClickHandler handler) {
         return addDomHandler(handler, ClickEvent.getType());
     }
 }

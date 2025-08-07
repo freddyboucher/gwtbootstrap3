@@ -27,8 +27,7 @@ import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.DomEvent;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.dom.client.HasLoadHandlers;
 import com.google.gwt.event.dom.client.LoadEvent;
@@ -63,7 +62,7 @@ public class GalleryImage extends ComplexWidget implements HasHref, HasLoadHandl
     }
 
     @Override
-    public void add(final Widget child) {
+    public void add(Widget child) {
         if(child instanceof Image) {
             if(image != null) {
                 image.removeFromParent();
@@ -74,21 +73,13 @@ public class GalleryImage extends ComplexWidget implements HasHref, HasLoadHandl
 
             super.add(image);
         } else if(child instanceof HasClickHandlers) {
-            ((HasClickHandlers) child).addClickHandler(new ClickHandler() {
-                @Override
-                public void onClick(ClickEvent event) {
-                    event.stopPropagation();
-                }
-            });
+            ((HasClickHandlers) child).addClickHandler(DomEvent::stopPropagation);
 
-            Scheduler.get().scheduleDeferred(new Command() {
-                @Override
-                public void execute() {
-                    Style style = child.getElement().getStyle();
-                    style.setPosition(Position.RELATIVE);
-                    style.setBottom((double) image.getHeight(), Unit.PX);
-                    style.setLeft(4, Unit.PX);
-                }
+            Scheduler.get().scheduleDeferred((Command) () -> {
+                Style style = child.getElement().getStyle();
+                style.setPosition(Position.RELATIVE);
+                style.setBottom(image.getHeight(), Unit.PX);
+                style.setLeft(4, Unit.PX);
             });
 
             super.add(child);
@@ -118,14 +109,11 @@ public class GalleryImage extends ComplexWidget implements HasHref, HasLoadHandl
         super.setHeight(height);
         image.setHeight(height);
 
-        Scheduler.get().scheduleDeferred(new Command() {
-            @Override
-            public void execute() {
-                for (Widget child : GalleryImage.this) {
-                    if (child instanceof HasClickHandlers && !(child instanceof Image)) {
-                        Style style = child.getElement().getStyle();
-                        style.setBottom((double) image.getHeight(), Unit.PX);
-                    }
+        Scheduler.get().scheduleDeferred((Command) () -> {
+            for (Widget child : this) {
+                if (child instanceof HasClickHandlers && !(child instanceof Image)) {
+                    Style style = child.getElement().getStyle();
+                    style.setBottom(image.getHeight(), Unit.PX);
                 }
             }
         });

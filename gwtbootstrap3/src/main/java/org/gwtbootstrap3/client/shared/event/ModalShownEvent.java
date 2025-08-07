@@ -30,7 +30,7 @@ import com.google.gwt.user.client.Event;
  */
 public class ModalShownEvent extends GwtEvent<ModalShownHandler> implements ModalEvent {
 
-    private static final Type<ModalShownHandler> TYPE = new Type<ModalShownHandler>();
+    private static final Type<ModalShownHandler> TYPE = new Type<>();
 
     private final Modal modal;
     private final Event nativeEvent;
@@ -39,7 +39,7 @@ public class ModalShownEvent extends GwtEvent<ModalShownHandler> implements Moda
         return TYPE;
     }
 
-    public ModalShownEvent(final Modal modal, final Event nativeEvent) {
+    public ModalShownEvent(Modal modal, Event nativeEvent) {
         this.modal = modal;
         this.nativeEvent = nativeEvent;
     }
@@ -60,7 +60,7 @@ public class ModalShownEvent extends GwtEvent<ModalShownHandler> implements Moda
     }
 
     @Override
-    protected void dispatch(final ModalShownHandler handler) {
+    protected void dispatch(ModalShownHandler handler) {
         handler.onShown(this);
     }
 }

@@ -29,7 +29,7 @@ abstract class AbstractMixin {
 
     UIObject uiObject;
 
-    AbstractMixin(final UIObject uiObject) {
+    AbstractMixin(UIObject uiObject) {
         this.uiObject = uiObject;
     }
 }

@@ -35,7 +35,7 @@ import com.google.gwt.core.client.JsArrayMixed;
 public class Toolbar {
 
     private static final String GROUP_PREFIX = "group_";
-    private static int GROUP_INDEX = 0;
+    private static int GROUP_INDEX;
     private List<JsArrayMixed> groups = new ArrayList<>(0);
 
     /**

@@ -20,8 +20,6 @@ package org.gwtbootstrap3.demo.client.application.components;
  * #L%
  */
 
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -52,33 +50,18 @@ public class ButtonGroupView extends ViewImpl implements ButtonGroupPresenter.My
     FlowPanel log;
 
     @Inject
-    ButtonGroupView(final Binder uiBinder) {
+    ButtonGroupView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
 
-        button1.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
-            @Override
-            public void onValueChange(final ValueChangeEvent<Boolean> event) {
-                log("Value of button1 changed to: " + event.getValue().toString());
-            }
-        });
+        button1.addValueChangeHandler(event -> log("Value of button1 changed to: " + event.getValue().toString()));
 
-        button2.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
-            @Override
-            public void onValueChange(final ValueChangeEvent<Boolean> event) {
-                log("Value of button2 changed to: " + event.getValue().toString());
-            }
-        });
+        button2.addValueChangeHandler(event -> log("Value of button2 changed to: " + event.getValue().toString()));
 
-        button3.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
-            @Override
-            public void onValueChange(final ValueChangeEvent<Boolean> event) {
-                log("Value of button3 changed to: " + event.getValue().toString());
-            }
-        });
+        button3.addValueChangeHandler(event -> log("Value of button3 changed to: " + event.getValue().toString()));
     }
 
-    private void log(final String msg) {
-        final Paragraph p = new Paragraph();
+    private void log(String msg) {
+        Paragraph p = new Paragraph();
         p.setText(msg);
         log.add(p);
     }

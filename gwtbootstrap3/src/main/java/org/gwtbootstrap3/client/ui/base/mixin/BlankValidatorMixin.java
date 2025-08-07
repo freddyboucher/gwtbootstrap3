@@ -67,7 +67,7 @@ public class BlankValidatorMixin<W extends Widget & HasValue<V> & Editor<V>, V> 
      * @return the blank validator
      */
     protected BlankValidator<V> createBlankValidator() {
-        return new BlankValidator<V>();
+        return new BlankValidator<>();
     }
 
     /**

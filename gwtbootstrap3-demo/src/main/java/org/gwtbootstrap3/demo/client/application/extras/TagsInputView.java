@@ -25,7 +25,6 @@ import java.util.List;
 
 import org.gwtbootstrap3.extras.tagsinput.client.callback.ItemTextCallback;
 import org.gwtbootstrap3.extras.tagsinput.client.callback.ItemValueCallback;
-import org.gwtbootstrap3.extras.tagsinput.client.callback.TagClassCallback;
 import org.gwtbootstrap3.extras.tagsinput.client.ui.MVTagsInput;
 import org.gwtbootstrap3.extras.tagsinput.client.ui.TagsInput;
 import org.gwtbootstrap3.extras.tagsinput.client.ui.base.SingleValueTagsInput;
@@ -78,7 +77,7 @@ public class TagsInputView extends ViewImpl implements TagsInputPresenter.MyView
     @UiField TagsInput categoryTagsInput;
     
     @Inject
-    public TagsInputView(final Binder uiBinder) {
+    public TagsInputView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 
@@ -94,7 +93,7 @@ public class TagsInputView extends ViewImpl implements TagsInputPresenter.MyView
     }
 
     private void createMarkupTagsInput() {
-        List<String> tags = new ArrayList<String>();
+        List<String> tags = new ArrayList<>();
         
         tags.add("Sydney");
         tags.add("Beijing");
@@ -106,7 +105,7 @@ public class TagsInputView extends ViewImpl implements TagsInputPresenter.MyView
     }
 
     private void createMultiValueTagsInput() {
-        List<String> tags = new ArrayList<String>();
+        List<String> tags = new ArrayList<>();
         
         tags.add("Sydney");
         tags.add("Beijing");
@@ -116,7 +115,7 @@ public class TagsInputView extends ViewImpl implements TagsInputPresenter.MyView
     }
     
     private void createTypeaheadTagsInput() {
-        List<String> suggestions = new ArrayList<String>();
+        List<String> suggestions = new ArrayList<>();
         
         suggestions.add("Belgrade");
         suggestions.add("Amsterdam");
@@ -142,33 +141,23 @@ public class TagsInputView extends ViewImpl implements TagsInputPresenter.MyView
     }
 
     private void createJOTagsInput() {        
-        final ItemValueCallback<Item> cbValue = new ItemValueCallback<Item>() {
-            @Override
-            public String getItemValue(Item item) {
-                return item.getValue().toString();
-            }
-        };
+        ItemValueCallback<Item> cbValue = item -> item.getValue().toString();
         
-        final ItemTextCallback<Item> cbText = new ItemTextCallback<Item>() {
-            @Override
-            public String getItemText(Item item) {
-                return item.getText();
-            }
-        };
+        ItemTextCallback<Item> cbText = Item::getText;
         
         joTagsInput.setItemValue(cbValue);
         joTagsInput.setItemText(cbText);
         joTagsInput.reconfigure();
 
         // Add tags
-        List<Item> tags = new ArrayList<Item>();
+        List<Item> tags = new ArrayList<>();
         tags.add(new Item("Belgrade", 1));
         tags.add(new Item("Amsterdam", 1));
         tags.add(new Item("London", 2));
         joTagsInput.add(tags);
         
         // Create suggestions
-        List<Item> suggestions = new ArrayList<Item>();
+        List<Item> suggestions = new ArrayList<>();
         suggestions.add(new Item("Belgrade", 4));
         suggestions.add(new Item("Athens", 5));
         CollectionDataset<Item> dataset = new CollectionDataset<Item>(suggestions) {
@@ -181,23 +170,20 @@ public class TagsInputView extends ViewImpl implements TagsInputPresenter.MyView
     }
 
     private void createCategoryTagsInput() {
-        categoryTagsInput.setTagClass(new TagClassCallback<String>() {
-            @Override
-            public String getTagClass(String item) {
-                switch(item) {
-                case "Belgrade":   return "label label-primary";
-                case "Amsterdam":  return "label label-danger label-important";
-                case "Washington": return "label label-success";
-                case "Sydney":     return "label label-default";
-                case "Beijing":    return "label label-warning";
-                case "Cairo":      return "label label-info";
-                default:           return "label label-info";
-                }
+        categoryTagsInput.setTagClass(item -> {
+            switch(item) {
+            case "Belgrade":   return "label label-primary";
+            case "Amsterdam":  return "label label-danger label-important";
+            case "Washington": return "label label-success";
+            case "Sydney":     return "label label-default";
+            case "Beijing":    return "label label-warning";
+            case "Cairo":      return "label label-info";
+            default:           return "label label-info";
             }
         });
         categoryTagsInput.reconfigure();
         
-        List<String> tags = new ArrayList<String>();
+        List<String> tags = new ArrayList<>();
         
         tags.add("Sydney");
         tags.add("Beijing");

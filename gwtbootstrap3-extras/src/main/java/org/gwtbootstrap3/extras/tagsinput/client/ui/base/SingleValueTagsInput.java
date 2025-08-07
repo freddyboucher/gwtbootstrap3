@@ -43,16 +43,16 @@ import com.google.gwt.event.shared.HandlerRegistration;
 public class SingleValueTagsInput<T> extends TagsInputBase<T> implements HasValueChangeHandlers<String> {
 
     public SingleValueTagsInput() {
-        this(new CollectionDataset<T>(Collections.<T>emptyList()));
+        this(new CollectionDataset<>(Collections.emptyList()));
     }
 
-    public SingleValueTagsInput(final Dataset<T> dataset) {
+    public SingleValueTagsInput(Dataset<T> dataset) {
         this(Arrays.asList(dataset));
         
         setDatasets(dataset);
     }
 
-    public SingleValueTagsInput(final Collection<? extends Dataset<T>> datasets) {
+    public SingleValueTagsInput(Collection<? extends Dataset<T>> datasets) {
         InputElement tagsInput = Document.get().createTextInputElement();
         tagsInput.setAttribute("data-role", "tagsinput");
         
@@ -61,17 +61,17 @@ public class SingleValueTagsInput<T> extends TagsInputBase<T> implements HasValu
         setDatasets(datasets);
     }
  
-    public SingleValueTagsInput(final Element e) {
-        this(e, new CollectionDataset<T>(Collections.<T>emptyList()));
+    public SingleValueTagsInput(Element e) {
+        this(e, new CollectionDataset<>(Collections.emptyList()));
     }
 
-    public SingleValueTagsInput(final Element e, final Dataset<T> dataset) {
+    public SingleValueTagsInput(Element e, Dataset<T> dataset) {
         this(e, Arrays.asList(dataset));
         
         setDatasets(dataset);
     }
 
-    public SingleValueTagsInput(final Element e, final Collection<? extends Dataset<T>> datasets) {
+    public SingleValueTagsInput(Element e, Collection<? extends Dataset<T>> datasets) {
         e.setAttribute("data-role", "tagsinput");
 
         setElement(e);

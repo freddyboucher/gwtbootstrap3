@@ -28,7 +28,7 @@ import com.google.gwt.user.client.Event;
  */
 public class ClearDateEvent extends GwtEvent<ClearDateHandler> {
 
-    private static final Type<ClearDateHandler> TYPE = new Type<ClearDateHandler>();
+    private static final Type<ClearDateHandler> TYPE = new Type<>();
 
     private final Event nativeEvent;
 
@@ -36,7 +36,7 @@ public class ClearDateEvent extends GwtEvent<ClearDateHandler> {
         return TYPE;
     }
 
-    public ClearDateEvent(final Event nativeEvent) {
+    public ClearDateEvent(Event nativeEvent) {
         this.nativeEvent = nativeEvent;
     }
 
@@ -50,7 +50,7 @@ public class ClearDateEvent extends GwtEvent<ClearDateHandler> {
     }
 
     @Override
-    protected void dispatch(final ClearDateHandler handler) {
+    protected void dispatch(ClearDateHandler handler) {
         handler.onClearDate(this);
     }
 }

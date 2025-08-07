@@ -42,7 +42,7 @@ public enum TooltipPosition implements Type {
 
     private final String position;
 
-    private TooltipPosition(final String position) {
+    TooltipPosition(String position) {
         this.position = position;
     }
 

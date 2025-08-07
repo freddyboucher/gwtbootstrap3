@@ -35,7 +35,7 @@ public enum InputSize implements Size, Style.HasCssName {
 
     private final String cssClass;
 
-    private InputSize(final String cssClass) {
+    InputSize(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -44,7 +44,7 @@ public enum InputSize implements Size, Style.HasCssName {
         return cssClass;
     }
 
-    public static InputSize fromStyleName(final String styleName) {
+    public static InputSize fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, InputSize.class, DEFAULT);
     }
 

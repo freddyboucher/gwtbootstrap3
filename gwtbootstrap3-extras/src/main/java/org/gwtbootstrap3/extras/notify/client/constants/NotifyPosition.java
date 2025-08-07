@@ -37,7 +37,7 @@ public enum NotifyPosition implements Type {
 
     private final String position;
 
-    private NotifyPosition(final String position) {
+    NotifyPosition(String position) {
         this.position = position;
     }
 

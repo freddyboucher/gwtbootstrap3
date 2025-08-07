@@ -27,7 +27,7 @@ public enum SizeType implements Size {
 
     private final String type;
 
-    private SizeType(final String type) {
+    SizeType(String type) {
         this.type = type;
     }
 

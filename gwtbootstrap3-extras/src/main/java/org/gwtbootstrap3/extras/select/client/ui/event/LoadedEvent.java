@@ -35,7 +35,7 @@ public class LoadedEvent extends GwtEvent<LoadedHandler> {
      *
      * @param source the source of the handlers
      */
-    public static void fire(final HasLoadedHandlers source) {
+    public static void fire(HasLoadedHandlers source) {
         if (TYPE != null) {
             LoadedEvent event = new LoadedEvent();
             source.fireEvent(event);
@@ -49,7 +49,7 @@ public class LoadedEvent extends GwtEvent<LoadedHandler> {
      */
     public static Type<LoadedHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<LoadedHandler>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -60,7 +60,7 @@ public class LoadedEvent extends GwtEvent<LoadedHandler> {
     }
 
     @Override
-    protected void dispatch(final LoadedHandler handler) {
+    protected void dispatch(LoadedHandler handler) {
         handler.onLoaded(this);
     }
 

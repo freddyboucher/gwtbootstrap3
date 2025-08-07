@@ -36,7 +36,7 @@ public class Italic extends AbstractTextWidget {
         super(Document.get().createElement(ElementTags.EM));
     }
 
-    public Italic(final String text) {
+    public Italic(String text) {
         this();
         setHTML(text);
     }

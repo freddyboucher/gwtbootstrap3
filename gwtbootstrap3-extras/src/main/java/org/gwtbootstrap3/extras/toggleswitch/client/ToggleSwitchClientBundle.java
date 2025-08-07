@@ -29,7 +29,7 @@ import com.google.gwt.resources.client.TextResource;
  */
 interface ToggleSwitchClientBundle extends ClientBundle {
 
-    static final ToggleSwitchClientBundle INSTANCE = GWT.create(ToggleSwitchClientBundle.class);
+    ToggleSwitchClientBundle INSTANCE = GWT.create(ToggleSwitchClientBundle.class);
 
     @Source("resource/js/bootstrap-switch-3.3.2.min.cache.js")
     TextResource toggleswitch();

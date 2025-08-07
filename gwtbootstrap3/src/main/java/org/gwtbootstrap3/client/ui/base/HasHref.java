@@ -25,8 +25,8 @@ package org.gwtbootstrap3.client.ui.base;
  */
 public interface HasHref {
     // Empty HREF to avoid issues when clicking!
-    public static final String EMPTY_HREF = "javascript:;";
-    public static final String HREF = "href";
+    String EMPTY_HREF = "javascript:;";
+    String HREF = "href";
 
     /**
      * Set's the HREF of the widget

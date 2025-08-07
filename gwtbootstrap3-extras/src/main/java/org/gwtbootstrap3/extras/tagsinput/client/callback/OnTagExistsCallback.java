@@ -38,5 +38,5 @@ public interface OnTagExistsCallback<T> {
      * @param item item that is adding
      * @param tag existing tag element
      */
-    public void onTagExists(T item, Element tag);
+    void onTagExists(T item, Element tag);
 }

@@ -20,22 +20,23 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.user.client.ui.HasText;
 import org.gwtbootstrap3.client.ui.base.AbstractAnchorListItem;
 
 /**
  * @author Joshua Godi
  */
-public class AnchorListItem extends AbstractAnchorListItem implements com.google.gwt.user.client.ui.HasText {
+public class AnchorListItem extends AbstractAnchorListItem implements HasText {
 
     public AnchorListItem() {
     }
 
-    public AnchorListItem(final String text) {
+    public AnchorListItem(String text) {
         setText(text);
     }
 
     @Override
-    public void setText(final String text) {
+    public void setText(String text) {
         anchor.setText(text);
     }
 

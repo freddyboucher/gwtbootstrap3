@@ -31,12 +31,12 @@ import com.google.gwt.user.client.ui.UIObject;
  */
 public class DataToggleMixin<T extends UIObject & HasDataToggle> extends AbstractMixin implements HasDataToggle {
 
-    public DataToggleMixin(final T uiObject) {
+    public DataToggleMixin(T uiObject) {
         super(uiObject);
     }
 
     @Override
-    public void setDataToggle(final Toggle toggle) {
+    public void setDataToggle(Toggle toggle) {
         if (toggle != null) {
             uiObject.getElement().setAttribute(Attributes.DATA_TOGGLE, toggle.getToggle());
         } else {
@@ -46,7 +46,7 @@ public class DataToggleMixin<T extends UIObject & HasDataToggle> extends Abstrac
 
     @Override
     public Toggle getDataToggle() {
-        final String toggle = uiObject.getElement().getAttribute(Attributes.DATA_TOGGLE);
+        String toggle = uiObject.getElement().getAttribute(Attributes.DATA_TOGGLE);
         return toggle != null ? Toggle.valueOf(toggle) : null;
     }
 }

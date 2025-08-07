@@ -35,7 +35,7 @@ public enum OrientationType implements Type {
 
     private final String type;
 
-    private OrientationType(final String type) {
+    OrientationType(String type) {
         this.type = type;
     }
 

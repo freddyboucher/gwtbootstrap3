@@ -29,7 +29,7 @@ import com.google.gwt.resources.client.TextResource;
  */
 public interface GwtBootstrap3ClientBundle extends ClientBundle {
 
-    static final GwtBootstrap3ClientBundle INSTANCE = GWT.create(GwtBootstrap3ClientBundle.class);
+    GwtBootstrap3ClientBundle INSTANCE = GWT.create(GwtBootstrap3ClientBundle.class);
 
     @Source("resource/js/gwtbootstrap3.js")
     TextResource gwtBootstrap3();

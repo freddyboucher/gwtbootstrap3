@@ -47,8 +47,8 @@ public class ValidatorWrapper<T> implements Comparable<ValidatorWrapper<T>> {
     public ValidatorWrapper(Validator<T> validator, int insertionOrder) {
         this.validator = validator;
         this.insertionOrder = insertionOrder;
-        this.name = validator.getClass().getName();
-        this.priority = validator.getPriority();
+        name = validator.getClass().getName();
+        priority = validator.getPriority();
     }
 
     /** {@inheritDoc} */

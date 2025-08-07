@@ -50,7 +50,7 @@ public class Select extends SelectBase<String> {
      *
      * @param showTick
      */
-    public void setShowTick(final boolean showTick) {
+    public void setShowTick(boolean showTick) {
         if (showTick)
             attrMixin.setAttribute(SHOW_TICK, Boolean.toString(true));
         else

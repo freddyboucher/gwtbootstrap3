@@ -30,7 +30,7 @@ public enum DatePickerStartView {
 
     private final int value;
 
-    DatePickerStartView(final int value) {
+    DatePickerStartView(int value) {
         this.value = value;
     }
 

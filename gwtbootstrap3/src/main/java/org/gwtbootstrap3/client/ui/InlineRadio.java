@@ -33,7 +33,7 @@ import com.google.gwt.user.client.DOM;
  * An inline radio button widget.
  *
  * @author Sven Jacobs
- * @see org.gwtbootstrap3.client.ui.Radio
+ * @see Radio
  */
 public class InlineRadio extends Radio {
 

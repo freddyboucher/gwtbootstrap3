@@ -39,40 +39,39 @@ import com.google.gwt.safehtml.shared.SafeUri;
 public class Image extends com.google.gwt.user.client.ui.Image implements HasType<ImageType>, HasResponsiveness,
         HasPull {
 
-    private final PullMixin<Image> pullMixin = new PullMixin<Image>(this);
+    private final PullMixin<Image> pullMixin = new PullMixin<>(this);
 
     public Image() {
-        super();
         setStyleName("");
     }
 
-    public Image(final ImageResource resource) {
+    public Image(ImageResource resource) {
         super(resource);
         setStyleName("");
     }
 
-    public Image(final SafeUri url, final int left, final int top, final int width, final int height) {
+    public Image(SafeUri url, int left, int top, int width, int height) {
         super(url, left, top, width, height);
         setStyleName("");
     }
 
-    public Image(final SafeUri url) {
+    public Image(SafeUri url) {
         super(url);
         setStyleName("");
     }
 
-    public Image(final String url, final int left, final int top, final int width, final int height) {
+    public Image(String url, int left, int top, int width, int height) {
         super(url, left, top, width, height);
         setStyleName("");
     }
 
-    public Image(final String url) {
+    public Image(String url) {
         super(url);
         setStyleName("");
     }
 
     @Override
-    public void setType(final ImageType type) {
+    public void setType(ImageType type) {
         StyleHelper.addEnumStyleName(this, type);
     }
 
@@ -82,25 +81,25 @@ public class Image extends com.google.gwt.user.client.ui.Image implements HasTyp
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
-    public void setResponsive(final boolean responsive) {
+    public void setResponsive(boolean responsive) {
         StyleHelper.toggleStyleName(this, responsive, Styles.IMG_RESPONSIVE);
     }
 
-    public void setAsMediaObject(final boolean asMediaObject) {
+    public void setAsMediaObject(boolean asMediaObject) {
         StyleHelper.toggleStyleName(this, asMediaObject, Styles.MEDIA_OBJECT);
     }
 
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         pullMixin.setPull(pull);
     }
 

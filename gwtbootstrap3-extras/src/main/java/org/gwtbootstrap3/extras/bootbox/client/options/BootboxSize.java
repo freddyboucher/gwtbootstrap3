@@ -31,7 +31,7 @@ public enum BootboxSize {
     
     private String size;
 
-    private BootboxSize(String size) {
+    BootboxSize(String size) {
         this.size=size;
     }
     

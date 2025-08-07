@@ -29,7 +29,7 @@ import com.google.gwt.resources.client.TextResource;
  */
 interface SliderClientBundle extends ClientBundle {
 
-    static final SliderClientBundle INSTANCE = GWT.create(SliderClientBundle.class);
+    SliderClientBundle INSTANCE = GWT.create(SliderClientBundle.class);
 
     @Source("resource/js/bootstrap-slider-9.2.0.min.cache.js")
     TextResource slider();

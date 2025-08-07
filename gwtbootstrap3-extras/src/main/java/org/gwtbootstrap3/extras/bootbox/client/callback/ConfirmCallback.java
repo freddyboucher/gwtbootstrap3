@@ -38,8 +38,5 @@ public interface ConfirmCallback extends Callback {
     /**
      * Default {@link ConfirmCallback} does nothing.
      */
-    static final ConfirmCallback DEFAULT_CONFIRM_CALLBACK = new ConfirmCallback() {
-        @Override
-        public void callback(boolean result) {}
-    };
+    ConfirmCallback DEFAULT_CONFIRM_CALLBACK = result -> {};
 }

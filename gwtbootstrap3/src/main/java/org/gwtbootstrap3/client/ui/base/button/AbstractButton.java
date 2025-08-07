@@ -90,16 +90,16 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
          *
          * @param state Text state
          */
-        public void reset(final String state) {
+        public void reset(String state) {
             button(getElement(), state);
         }
     }
 
     private final ButtonStateHandler buttonStateHandler = new ButtonStateHandler();
-    private final DataTargetMixin<AbstractButton> targetMixin = new DataTargetMixin<AbstractButton>(this);
-    private final ActiveMixin<AbstractButton> activeMixin = new ActiveMixin<AbstractButton>(this);
-    private final FocusableMixin<AbstractButton> focusableMixin = new FocusableMixin<AbstractButton>(this);
-    private final EnabledMixin<AbstractButton> enabledMixin = new EnabledMixin<AbstractButton>(this);
+    private final DataTargetMixin<AbstractButton> targetMixin = new DataTargetMixin<>(this);
+    private final ActiveMixin<AbstractButton> activeMixin = new ActiveMixin<>(this);
+    private final FocusableMixin<AbstractButton> focusableMixin = new FocusableMixin<>(this);
+    private final EnabledMixin<AbstractButton> enabledMixin = new EnabledMixin<>(this);
 
     /**
      * Creates button with DEFAULT type.
@@ -108,7 +108,7 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
         this(ButtonType.DEFAULT);
     }
 
-    protected AbstractButton(final ButtonType type) {
+    protected AbstractButton(ButtonType type) {
         setElement(createElement());
         setStyleName(Styles.BTN);
         setType(type);
@@ -120,12 +120,12 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     }
 
     @Override
-    public void setActive(final boolean active) {
+    public void setActive(boolean active) {
         activeMixin.setActive(active);
     }
 
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         enabledMixin.setEnabled(enabled);
     }
 
@@ -135,7 +135,7 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     }
 
     @Override
-    public HandlerRegistration addClickHandler(final ClickHandler handler) {
+    public HandlerRegistration addClickHandler(ClickHandler handler) {
         return addDomHandler(handler, ClickEvent.getType());
     }
 
@@ -145,7 +145,7 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
      * @param type Type of button
      */
     @Override
-    public void setType(final ButtonType type) {
+    public void setType(ButtonType type) {
         StyleHelper.addUniqueEnumStyleName(this, ButtonType.class, type);
     }
 
@@ -160,7 +160,7 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
      * @param size Size of button
      */
     @Override
-    public void setSize(final ButtonSize size) {
+    public void setSize(ButtonSize size) {
         StyleHelper.addUniqueEnumStyleName(this, ButtonSize.class, size);
     }
 
@@ -170,17 +170,17 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     }
 
     @Override
-    public void setDataTargetWidgets(final List<Widget> widgets) {
+    public void setDataTargetWidgets(List<Widget> widgets) {
         targetMixin.setDataTargetWidgets(widgets);
     }
 
     @Override
-    public void setDataTargetWidget(final Widget widget) {
+    public void setDataTargetWidget(Widget widget) {
         targetMixin.setDataTargetWidget(widget);
     }
 
     @Override
-    public void setDataTarget(final String dataTarget) {
+    public void setDataTarget(String dataTarget) {
         targetMixin.setDataTarget(dataTarget);
     }
 
@@ -195,47 +195,47 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     }
 
     @Override
-    public void setAccessKey(final char key) {
+    public void setAccessKey(char key) {
         focusableMixin.setAccessKey(key);
     }
 
     @Override
-    public void setFocus(final boolean focused) {
+    public void setFocus(boolean focused) {
         focusableMixin.setFocus(focused);
     }
 
     @Override
-    public void setTabIndex(final int index) {
+    public void setTabIndex(int index) {
         focusableMixin.setTabIndex(index);
     }
 
     @Override
-    public HandlerRegistration addMouseDownHandler(final MouseDownHandler handler) {
+    public HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
         return addDomHandler(handler, MouseDownEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addMouseMoveHandler(final MouseMoveHandler handler) {
+    public HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler) {
         return addDomHandler(handler, MouseMoveEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addMouseOutHandler(final MouseOutHandler handler) {
+    public HandlerRegistration addMouseOutHandler(MouseOutHandler handler) {
         return addDomHandler(handler, MouseOutEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addMouseOverHandler(final MouseOverHandler handler) {
+    public HandlerRegistration addMouseOverHandler(MouseOverHandler handler) {
         return addDomHandler(handler, MouseOverEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addMouseUpHandler(final MouseUpHandler handler) {
+    public HandlerRegistration addMouseUpHandler(MouseUpHandler handler) {
         return addDomHandler(handler, MouseUpEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addMouseWheelHandler(final MouseWheelHandler handler) {
+    public HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler) {
         return addDomHandler(handler, MouseWheelEvent.getType());
     }
 
@@ -244,7 +244,7 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
      *
      * @param block True for block level element
      */
-    public void setBlock(final boolean block) {
+    public void setBlock(boolean block) {
         if (block) {
             addStyleName(Styles.BTN_BLOCK);
         } else {
@@ -265,7 +265,7 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
      * @see org.gwtbootstrap3.client.ui.Modal
      * @see org.gwtbootstrap3.client.ui.Alert
      */
-    public void setDataDismiss(final ButtonDismiss dismiss) {
+    public void setDataDismiss(ButtonDismiss dismiss) {
         if (dismiss != null) {
             getElement().setAttribute(Attributes.DATA_DISMISS, dismiss.getDismiss());
         } else {
@@ -273,7 +273,7 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
         }
     }
 
-    public void setDataLoadingText(final String loadingText) {
+    public void setDataLoadingText(String loadingText) {
         if (loadingText != null) {
             getElement().setAttribute(Attributes.DATA_LOADING_TEXT, loadingText);
         } else {
@@ -290,7 +290,7 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
     }
 
     public void click() {
-        final NativeEvent event = Document.get().createClickEvent(0, 0, 0, 0, 0, false, false, false, false);
+        NativeEvent event = Document.get().createClickEvent(0, 0, 0, 0, 0, false, false, false, false);
         DomEvent.fireNativeEvent(event, this);
     }
 
@@ -298,7 +298,7 @@ public abstract class AbstractButton extends ComplexWidget implements HasEnabled
 
     // @formatter:off
 
-    private void button(final Element e, final String arg) {
+    private void button( Element e, String arg) {
         JQuery.jQuery(e).button(arg);
     }
 }

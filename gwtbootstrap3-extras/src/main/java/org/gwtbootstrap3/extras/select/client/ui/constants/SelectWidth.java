@@ -48,8 +48,8 @@ public enum SelectWidth {
 
     private String value;
 
-    private SelectWidth(String size) {
-        this.value = size;
+    SelectWidth(String size) {
+        value = size;
     }
 
     /**

@@ -56,7 +56,7 @@ public class Text extends Widget implements HasText {
      *
      * @param txt String text to display
      */
-    public Text(final String txt) {
+    public Text(String txt) {
         text = Document.get().createTextNode(txt);
         setElement(text.<Element>cast());
     }
@@ -65,7 +65,7 @@ public class Text extends Widget implements HasText {
      * {@inheritDoc}
      */
     @Override
-    public void setText(final String txt) {
+    public void setText(String txt) {
         text.setData(txt);
     }
 

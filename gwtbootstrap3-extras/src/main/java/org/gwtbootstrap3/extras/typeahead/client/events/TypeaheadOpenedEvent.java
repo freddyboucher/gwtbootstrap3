@@ -32,12 +32,12 @@ import org.gwtbootstrap3.extras.typeahead.client.ui.Typeahead;
  */
 public class TypeaheadOpenedEvent<T> extends GwtEvent<TypeaheadOpenedHandler<T>> {
 
-    public static <T> void fire(final Typeahead<T> source, final Event nativeEvent) {
-        TypeaheadOpenedEvent<T> event = new TypeaheadOpenedEvent<T>(source, nativeEvent);
+    public static <T> void fire(Typeahead<T> source, Event nativeEvent) {
+        TypeaheadOpenedEvent<T> event = new TypeaheadOpenedEvent<>(source, nativeEvent);
         source.fireEvent(event);
     }
 
-    private static final Type<TypeaheadOpenedHandler<?>> TYPE = new Type<TypeaheadOpenedHandler<?>>();
+    private static final Type<TypeaheadOpenedHandler<?>> TYPE = new Type<>();
 
     private final Typeahead<T> typeahead;
     private final Event nativeEvent;
@@ -46,7 +46,7 @@ public class TypeaheadOpenedEvent<T> extends GwtEvent<TypeaheadOpenedHandler<T>>
         return TYPE;
     }
 
-    private TypeaheadOpenedEvent(final Typeahead<T> typeahead, final Event nativeEvent) {
+    private TypeaheadOpenedEvent(Typeahead<T> typeahead, Event nativeEvent) {
         this.typeahead = typeahead;
         this.nativeEvent = nativeEvent;
     }
@@ -66,7 +66,7 @@ public class TypeaheadOpenedEvent<T> extends GwtEvent<TypeaheadOpenedHandler<T>>
     }
 
     @Override
-    protected void dispatch(final TypeaheadOpenedHandler<T> handler) {
+    protected void dispatch(TypeaheadOpenedHandler<T> handler) {
         handler.onOpened(this);
     }
 }

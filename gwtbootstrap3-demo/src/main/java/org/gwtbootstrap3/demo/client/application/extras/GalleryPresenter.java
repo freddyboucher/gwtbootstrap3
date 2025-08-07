@@ -44,9 +44,9 @@ public class GalleryPresenter extends Presenter<GalleryPresenter.MyView, Gallery
     }
 
     @Inject
-    public GalleryPresenter(final EventBus eventBus,
-                            final MyView view,
-                            final MyProxy proxy) {
+    public GalleryPresenter(EventBus eventBus,
+                            MyView view,
+                            MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

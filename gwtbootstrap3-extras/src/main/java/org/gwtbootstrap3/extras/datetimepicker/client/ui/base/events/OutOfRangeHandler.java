@@ -26,6 +26,6 @@ import com.google.gwt.event.shared.EventHandler;
  * @author Joshua Godi
  */
 public interface OutOfRangeHandler extends EventHandler {
-    void onOutOfRange(final OutOfRangeEvent evt);
+    void onOutOfRange(OutOfRangeEvent evt);
 }
 

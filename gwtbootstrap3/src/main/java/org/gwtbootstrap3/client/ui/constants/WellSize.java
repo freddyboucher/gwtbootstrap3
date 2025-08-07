@@ -35,7 +35,7 @@ public enum WellSize implements Size, Style.HasCssName {
 
     private final String cssClass;
 
-    private WellSize(final String cssClass) {
+    WellSize(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -44,7 +44,7 @@ public enum WellSize implements Size, Style.HasCssName {
         return cssClass;
     }
 
-    public static WellSize fromStyleName(final String styleName) {
+    public static WellSize fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, WellSize.class, DEFAULT);
     }
 }

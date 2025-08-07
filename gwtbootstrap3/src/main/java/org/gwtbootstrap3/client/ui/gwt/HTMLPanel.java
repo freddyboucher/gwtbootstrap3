@@ -47,24 +47,24 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implements HasId, HasDataSpy, HasDataTarget, HasResponsiveness, HasInlineStyle, HasContextualBackground {
 
-    private final DataSpyMixin<HTMLPanel> spyMixin = new DataSpyMixin<HTMLPanel>(this);
-    private final DataTargetMixin<HTMLPanel> targetMixin = new DataTargetMixin<HTMLPanel>(this);
-    private final IdMixin<HTMLPanel> idMixin = new IdMixin<HTMLPanel>(this);
+    private final DataSpyMixin<HTMLPanel> spyMixin = new DataSpyMixin<>(this);
+    private final DataTargetMixin<HTMLPanel> targetMixin = new DataTargetMixin<>(this);
+    private final IdMixin<HTMLPanel> idMixin = new IdMixin<>(this);
 
-    public HTMLPanel(final String html) {
+    public HTMLPanel(String html) {
         super(html);
     }
 
-    public HTMLPanel(final SafeHtml safeHtml) {
+    public HTMLPanel(SafeHtml safeHtml) {
         super(safeHtml);
     }
 
-    public HTMLPanel(final String tag, final String html) {
+    public HTMLPanel(String tag, String html) {
         super(tag, html);
     }
 
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         idMixin.setId(id);
     }
 
@@ -74,7 +74,7 @@ public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implement
     }
 
     @Override
-    public void setDataSpy(final Spy spy) {
+    public void setDataSpy(Spy spy) {
         spyMixin.setDataSpy(spy);
     }
 
@@ -84,17 +84,17 @@ public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implement
     }
 
     @Override
-    public void setDataTargetWidgets(final List<Widget> widgets) {
+    public void setDataTargetWidgets(List<Widget> widgets) {
         targetMixin.setDataTargetWidgets(widgets);
     }
 
     @Override
-    public void setDataTargetWidget(final Widget widget) {
+    public void setDataTargetWidget(Widget widget) {
         targetMixin.setDataTargetWidget(widget);
     }
 
     @Override
-    public void setDataTarget(final String dataTarget) {
+    public void setDataTarget(String dataTarget) {
         targetMixin.setDataTarget(dataTarget);
     }
 
@@ -104,52 +104,52 @@ public class HTMLPanel extends com.google.gwt.user.client.ui.HTMLPanel implement
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
     @Override
-    public void setMarginTop(final double margin) {
+    public void setMarginTop(double margin) {
         getElement().getStyle().setMarginTop(margin, Style.Unit.PX);
     }
 
     @Override
-    public void setMarginLeft(final double margin) {
+    public void setMarginLeft(double margin) {
         getElement().getStyle().setMarginLeft(margin, Style.Unit.PX);
     }
 
     @Override
-    public void setMarginRight(final double margin) {
+    public void setMarginRight(double margin) {
         getElement().getStyle().setMarginRight(margin, Style.Unit.PX);
     }
 
     @Override
-    public void setMarginBottom(final double margin) {
+    public void setMarginBottom(double margin) {
         getElement().getStyle().setMarginBottom(margin, Style.Unit.PX);
     }
 
     @Override
-    public void setPaddingTop(final double padding) {
+    public void setPaddingTop(double padding) {
         getElement().getStyle().setPaddingTop(padding, Style.Unit.PX);
     }
 
     @Override
-    public void setPaddingLeft(final double padding) {
+    public void setPaddingLeft(double padding) {
         getElement().getStyle().setPaddingLeft(padding, Style.Unit.PX);
     }
 
     @Override
-    public void setPaddingRight(final double padding) {
+    public void setPaddingRight(double padding) {
         getElement().getStyle().setPaddingRight(padding, Style.Unit.PX);
     }
 
     @Override
-    public void setPaddingBottom(final double padding) {
+    public void setPaddingBottom(double padding) {
         getElement().getStyle().setPaddingBottom(padding, Style.Unit.PX);
     }
 

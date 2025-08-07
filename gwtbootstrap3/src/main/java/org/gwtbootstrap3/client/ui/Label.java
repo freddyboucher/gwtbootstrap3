@@ -61,16 +61,16 @@ public class Label extends AbstractTextWidget implements HasType<LabelType>, Has
         setType(LabelType.DEFAULT);
     }
 
-    public Label(final LabelType type) {
+    public Label(LabelType type) {
         this();
         setType(type);
     }
 
-    public Label(final String text) {
+    public Label(String text) {
         this(LabelType.DEFAULT, text);
     }
 
-    public Label(final LabelType type, final String text) {
+    public Label(LabelType type, String text) {
         this(type);
         setText(text);
     }
@@ -81,7 +81,7 @@ public class Label extends AbstractTextWidget implements HasType<LabelType>, Has
      * @param type Type of label
      */
     @Override
-    public void setType(final LabelType type) {
+    public void setType(LabelType type) {
         StyleHelper.addUniqueEnumStyleName(this, LabelType.class, type);
     }
 
@@ -91,37 +91,37 @@ public class Label extends AbstractTextWidget implements HasType<LabelType>, Has
     }
 
     @Override
-    public HandlerRegistration addClickHandler(final ClickHandler handler) {
+    public HandlerRegistration addClickHandler(ClickHandler handler) {
         return addDomHandler(handler, ClickEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addMouseDownHandler(final MouseDownHandler handler) {
+    public HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
         return addDomHandler(handler, MouseDownEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addMouseMoveHandler(final MouseMoveHandler handler) {
+    public HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler) {
         return addDomHandler(handler, MouseMoveEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addMouseOutHandler(final MouseOutHandler handler) {
+    public HandlerRegistration addMouseOutHandler(MouseOutHandler handler) {
         return addDomHandler(handler, MouseOutEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addMouseOverHandler(final MouseOverHandler handler) {
+    public HandlerRegistration addMouseOverHandler(MouseOverHandler handler) {
         return addDomHandler(handler, MouseOverEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addMouseUpHandler(final MouseUpHandler handler) {
+    public HandlerRegistration addMouseUpHandler(MouseUpHandler handler) {
         return addDomHandler(handler, MouseUpEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addMouseWheelHandler(final MouseWheelHandler handler) {
+    public HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler) {
         return addDomHandler(handler, MouseWheelEvent.getType());
     }
 }

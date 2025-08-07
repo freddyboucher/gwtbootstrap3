@@ -59,7 +59,7 @@ public class CalendarConfig {
         this(null);
     }
 
-    public CalendarConfig(final Header header) {
+    public CalendarConfig(Header header) {
         if (header != null) {
             setGeneralDisplay(new GeneralDisplay(header));
         }
@@ -69,7 +69,7 @@ public class CalendarConfig {
         return selectable;
     }
 
-    public void setSelectable(final boolean selectable) {
+    public void setSelectable(boolean selectable) {
         this.selectable = selectable;
     }
 
@@ -77,28 +77,28 @@ public class CalendarConfig {
         return selectHelper;
     }
 
-    public void setSelectHelper(final boolean selectHelper) {
+    public void setSelectHelper(boolean selectHelper) {
         this.selectHelper = selectHelper;
     }
 
-    public void setButtonText(final ButtonText bt) {
-        this.buttonText = bt;
+    public void setButtonText(ButtonText bt) {
+        buttonText = bt;
     }
 
     public ButtonText getButtonText() {
         return buttonText;
     }
 
-    public void setMonthNames(final MonthNames mn) {
-        this.monthNames = mn;
+    public void setMonthNames(MonthNames mn) {
+        monthNames = mn;
     }
 
     public MonthNames getMonthNames() {
         return monthNames;
     }
 
-    public void setDayNames(final DayNames dn) {
-        this.dayNames = dn;
+    public void setDayNames(DayNames dn) {
+        dayNames = dn;
     }
 
     public DayNames getDayNames() {
@@ -109,7 +109,7 @@ public class CalendarConfig {
         return renderConfig;
     }
 
-    public void setRenderHandler(final EventRenderConfig renderConfig) {
+    public void setRenderHandler(EventRenderConfig renderConfig) {
         this.renderConfig = renderConfig;
     }
 
@@ -117,7 +117,7 @@ public class CalendarConfig {
         return columnFormat;
     }
 
-    public void setColumnFormat(final ColumnFormat columnFormat) {
+    public void setColumnFormat(ColumnFormat columnFormat) {
         this.columnFormat = columnFormat;
     }
 
@@ -125,7 +125,7 @@ public class CalendarConfig {
         return timeFormat;
     }
 
-    public void setTimeFormat(final TimeFormat timeFormat) {
+    public void setTimeFormat(TimeFormat timeFormat) {
         this.timeFormat = timeFormat;
     }
 
@@ -133,7 +133,7 @@ public class CalendarConfig {
         return titleFormat;
     }
 
-    public void setTitleFormat(final TitleFormat titleFormat) {
+    public void setTitleFormat(TitleFormat titleFormat) {
         this.titleFormat = titleFormat;
     }
 
@@ -141,7 +141,7 @@ public class CalendarConfig {
         return weekNumberTitle;
     }
 
-    public void setWeekNumberTitle(final String weekNumberTitle) {
+    public void setWeekNumberTitle(String weekNumberTitle) {
         this.weekNumberTitle = weekNumberTitle;
     }
 
@@ -149,7 +149,7 @@ public class CalendarConfig {
         return agendaOptions;
     }
 
-    public void setAgendaOptions(final AgendaOptions agendaOptions) {
+    public void setAgendaOptions(AgendaOptions agendaOptions) {
         this.agendaOptions = agendaOptions;
     }
 
@@ -157,7 +157,7 @@ public class CalendarConfig {
         return generalDisplay;
     }
 
-    public void setGeneralDisplay(final GeneralDisplay generalDisplay) {
+    public void setGeneralDisplay(GeneralDisplay generalDisplay) {
         this.generalDisplay = generalDisplay;
     }
 
@@ -165,7 +165,7 @@ public class CalendarConfig {
         return eventConfig;
     }
 
-    public void setEventConfig(final EventDataConfig eventConfig) {
+    public void setEventConfig(EventDataConfig eventConfig) {
         this.eventConfig = eventConfig;
     }
 
@@ -173,7 +173,7 @@ public class CalendarConfig {
         return clickHoverConfig;
     }
 
-    public void setClickHoverConfig(final ClickAndHoverConfig clickHoverConfig) {
+    public void setClickHoverConfig(ClickAndHoverConfig clickHoverConfig) {
         this.clickHoverConfig = clickHoverConfig;
     }
     
@@ -181,7 +181,7 @@ public class CalendarConfig {
         return selectConfig;
     }
 
-    public void setSelectConfig(final SelectConfig selectConfig) {
+    public void setSelectConfig(SelectConfig selectConfig) {
         this.selectConfig = selectConfig;
     }
 
@@ -189,7 +189,7 @@ public class CalendarConfig {
         return dragResizeConfig;
     }
 
-    public void setDragResizeConfig(final DragAndResizeConfig dragResizeConfig) {
+    public void setDragResizeConfig(DragAndResizeConfig dragResizeConfig) {
         this.dragResizeConfig = dragResizeConfig;
     }
 
@@ -197,7 +197,7 @@ public class CalendarConfig {
         return langauge;
     }
 
-    public void setLangauge(final Language langauge) {
+    public void setLangauge(Language langauge) {
         this.langauge = langauge;
     }
 
@@ -210,14 +210,14 @@ public class CalendarConfig {
      *
      * @param timezone
      */
-    public void setTimezone(final String timezone) {
+    public void setTimezone(String timezone) {
         this.timezone = timezone;
     }
     public boolean isUnselectAuto() {
         return unselectAuto;
     }
 
-    public void setUnselectAuto(final boolean unselectAuto) {
+    public void setUnselectAuto(boolean unselectAuto) {
         this.unselectAuto = unselectAuto;
     }
 
@@ -225,7 +225,7 @@ public class CalendarConfig {
         return unselectCancel;
     }
 
-    public void setUnselectCancel(final String unselectCancel) {
+    public void setUnselectCancel(String unselectCancel) {
         this.unselectCancel = unselectCancel;
     }
 
@@ -233,7 +233,7 @@ public class CalendarConfig {
         return selectOverlap;
     }
 
-    public void setSelectOverlap(final boolean selectOverlap) {
+    public void setSelectOverlap(boolean selectOverlap) {
         this.selectOverlap = selectOverlap;
     }
 
@@ -241,13 +241,12 @@ public class CalendarConfig {
         return selectContraint;
     }
 
-    public void setSelectContraint(final String selectContraint) {
+    public void setSelectContraint(String selectContraint) {
         this.selectContraint = selectContraint;
     }
     
     public JsArray<JavaScriptObject> getJavaScriptParameters() {
-        @SuppressWarnings("unchecked")
-        final JsArray<JavaScriptObject> params = (JsArray<JavaScriptObject>) JsArray.createArray();
+        @SuppressWarnings("unchecked") JsArray<JavaScriptObject> params = (JsArray<JavaScriptObject>) JsArray.createArray();
         setParameter(params, getGeneralDisplay());
         setParameter(params, getButtonText());
         setParameter(params, getMonthNames());
@@ -264,7 +263,7 @@ public class CalendarConfig {
         return params;
     }
 
-    private void setParameter(final JsArray<JavaScriptObject> params, final IsJavaScriptObject isJS) {
+    private void setParameter(JsArray<JavaScriptObject> params, IsJavaScriptObject isJS) {
         if (isJS != null) {
             params.push(isJS.toJavaScript());
         }

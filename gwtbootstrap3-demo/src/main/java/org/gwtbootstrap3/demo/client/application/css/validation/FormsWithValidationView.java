@@ -41,8 +41,6 @@ import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.EditorError;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -92,27 +90,19 @@ public class FormsWithValidationView extends ViewImpl implements FormsWithValida
     protected TextBox yesNoTextBox;
 
     @Inject
-    FormsWithValidationView(final Binder uiBinder, CredentialsEditor editor) {
+    FormsWithValidationView(Binder uiBinder, CredentialsEditor editor) {
         initWidget(uiBinder.createAndBindUi(this));
         body.add(editor);
         DRIVER.initialize(editor);
         form.setSubmitOnEnter(true);
-        submitOnEnterToggle.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
-
-            @Override
-            public void onValueChange(ValueChangeEvent<Boolean> event) {
-                boolean on = event.getValue();
-                form.setSubmitOnEnter(on);
-            }
+        submitOnEnterToggle.addValueChangeHandler(event -> {
+            boolean on = event.getValue();
+            form.setSubmitOnEnter(on);
         });
-        validateOnBlurToggle.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
-
-            @Override
-            public void onValueChange(ValueChangeEvent<Boolean> event) {
-                boolean on = event.getValue();
-                allowBlankTextBox.setValidateOnBlur(on);
-                yesNoTextBox.setValidateOnBlur(on);
-            }
+        validateOnBlurToggle.addValueChangeHandler(event -> {
+            boolean on = event.getValue();
+            allowBlankTextBox.setValidateOnBlur(on);
+            yesNoTextBox.setValidateOnBlur(on);
         });
 
         yesNoTextBox.addValidator(new org.gwtbootstrap3.client.ui.form.validator.Validator<String>() {
@@ -124,7 +114,7 @@ public class FormsWithValidationView extends ViewImpl implements FormsWithValida
 
             @Override
             public List<EditorError> validate(Editor<String> editor, String value) {
-                List<EditorError> result = new ArrayList<EditorError>();
+                List<EditorError> result = new ArrayList<>();
                 String valueStr = value == null ? "" : value;
                 if (!("Yes".equalsIgnoreCase(valueStr) || "No".equalsIgnoreCase(valueStr))) {
                     result.add(new BasicEditorError(yesNoTextBox, value, "Must be \"Yes\" or \"No\""));
@@ -157,8 +147,8 @@ public class FormsWithValidationView extends ViewImpl implements FormsWithValida
 
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
         Set<ConstraintViolation<Credentials>> violations = validator.validate(creds, Default.class);
-        if (violations.size() > 0) {
-            DRIVER.setConstraintViolations(new ArrayList<ConstraintViolation<?>>(violations));
+        if (!violations.isEmpty()) {
+            DRIVER.setConstraintViolations(new ArrayList<>(violations));
         }
 
         if (!DRIVER.hasErrors()) {

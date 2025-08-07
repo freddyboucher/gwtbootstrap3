@@ -88,7 +88,7 @@ class SelectOptions extends JavaScriptObject {
         return options;
     }
 
-    private final native void init(String iconBase, String tickIcon) /*-{
+    private native void init(String iconBase, String tickIcon) /*-{
         this.iconBase = iconBase;
         this.tickIcon = tickIcon;
     }-*/;

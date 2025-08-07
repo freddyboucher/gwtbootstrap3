@@ -36,7 +36,7 @@ public class HiddenEvent extends GwtEvent<HiddenHandler> {
      *
      * @param source the source of the handlers
      */
-    public static void fire(final HasHiddenHandlers source) {
+    public static void fire(HasHiddenHandlers source) {
         if (TYPE != null) {
             HiddenEvent event = new HiddenEvent();
             source.fireEvent(event);
@@ -50,7 +50,7 @@ public class HiddenEvent extends GwtEvent<HiddenHandler> {
      */
     public static Type<HiddenHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<HiddenHandler>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -61,7 +61,7 @@ public class HiddenEvent extends GwtEvent<HiddenHandler> {
     }
 
     @Override
-    protected void dispatch(final HiddenHandler handler) {
+    protected void dispatch(HiddenHandler handler) {
         handler.onHidden(this);
     }
 

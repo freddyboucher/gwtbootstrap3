@@ -35,18 +35,18 @@ import com.google.gwt.dom.client.ParagraphElement;
  */
 public class Paragraph extends HTMLPanel implements HasAlignment, HasEmphasis {
 
-    private final HTMLMixin<Paragraph> textMixin = new HTMLMixin<Paragraph>(this);
+    private final HTMLMixin<Paragraph> textMixin = new HTMLMixin<>(this);
 
     public Paragraph() {
         this("");
     }
 
-    public Paragraph(final String html) {
+    public Paragraph(String html) {
         super(ParagraphElement.TAG, html);
         setHTML(html);
     }
 
-    public void setText(final String text) {
+    public void setText(String text) {
         textMixin.setText(text);
     }
 
@@ -58,12 +58,12 @@ public class Paragraph extends HTMLPanel implements HasAlignment, HasEmphasis {
         return textMixin.getHTML();
     }
 
-    public void setHTML(final String html) {
+    public void setHTML(String html) {
         textMixin.setHTML(html);
     }
 
     @Override
-    public void setAlignment(final Alignment alignment) {
+    public void setAlignment(Alignment alignment) {
         StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
     }
 
@@ -73,7 +73,7 @@ public class Paragraph extends HTMLPanel implements HasAlignment, HasEmphasis {
     }
 
     @Override
-    public void setEmphasis(final Emphasis emphasis) {
+    public void setEmphasis(Emphasis emphasis) {
         StyleHelper.addUniqueEnumStyleName(this, Emphasis.class, emphasis);
     }
 

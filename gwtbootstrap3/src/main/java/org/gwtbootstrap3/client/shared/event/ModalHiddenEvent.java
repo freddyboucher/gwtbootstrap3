@@ -30,7 +30,7 @@ import com.google.gwt.user.client.Event;
  */
 public class ModalHiddenEvent extends GwtEvent<ModalHiddenHandler> implements ModalEvent {
 
-    private static final Type<ModalHiddenHandler> TYPE = new Type<ModalHiddenHandler>();
+    private static final Type<ModalHiddenHandler> TYPE = new Type<>();
 
     private final Modal modal;
     private final Event nativeEvent;
@@ -39,7 +39,7 @@ public class ModalHiddenEvent extends GwtEvent<ModalHiddenHandler> implements Mo
         return TYPE;
     }
 
-    public ModalHiddenEvent(final Modal modal, final Event nativeEvent) {
+    public ModalHiddenEvent(Modal modal, Event nativeEvent) {
         this.modal = modal;
         this.nativeEvent = nativeEvent;
     }
@@ -60,7 +60,7 @@ public class ModalHiddenEvent extends GwtEvent<ModalHiddenHandler> implements Mo
     }
 
     @Override
-    protected void dispatch(final ModalHiddenHandler handler) {
+    protected void dispatch(ModalHiddenHandler handler) {
         handler.onHidden(this);
     }
 }

@@ -42,8 +42,8 @@ public class InputToggleButtonGwt extends BaseGwt {
     @Override
     public <T extends UIObject & HasName> void checkName(T button) {
         final String name = "name";
-        final Element label = button.getElement();
-        final InputElement input = InputElement.as(label.getFirstChildElement());
+        Element label = button.getElement();
+        InputElement input = InputElement.as(label.getFirstChildElement());
         button.setName(name);
         assertEquals(name, button.getName());
         assertEquals(name, input.getName());
@@ -52,8 +52,8 @@ public class InputToggleButtonGwt extends BaseGwt {
     @Override
     public <T extends UIObject & HasFormValue> void checkFormValue(T button) {
         final String formValue = "formValue";
-        final Element label = button.getElement();
-        final InputElement input = InputElement.as(label.getFirstChildElement());
+        Element label = button.getElement();
+        InputElement input = InputElement.as(label.getFirstChildElement());
         button.setFormValue(formValue);
         assertEquals(formValue, button.getFormValue());
         assertEquals(formValue, input.getValue());
@@ -61,8 +61,8 @@ public class InputToggleButtonGwt extends BaseGwt {
 
     @Override
     public <T extends UIObject & HasValue<Boolean>> void checkValue(T button) {
-        final Element label = button.getElement();
-        final InputElement input = InputElement.as(label.getFirstChildElement());
+        Element label = button.getElement();
+        InputElement input = InputElement.as(label.getFirstChildElement());
         button.setValue(true);
         assertTrue(button.getValue());
         assertTrue(input.isChecked());
@@ -73,8 +73,8 @@ public class InputToggleButtonGwt extends BaseGwt {
 
     @Override
     public <T extends UIObject & HasEnabled> void checkEnabled(T button) {
-        final Element label = button.getElement();
-        final InputElement input = InputElement.as(label.getFirstChildElement());
+        Element label = button.getElement();
+        InputElement input = InputElement.as(label.getFirstChildElement());
         assertFalse(label.hasClassName(Styles.DISABLED));
         assertFalse(label.hasAttribute(Styles.DISABLED));
         assertFalse(input.isDisabled());

@@ -30,7 +30,7 @@ import com.google.gwt.user.client.Event;
  */
 public class TooltipHideEvent extends GwtEvent<TooltipHideHandler> implements TooltipEvent {
 
-    private static final Type<TooltipHideHandler> TYPE = new Type<TooltipHideHandler>();
+    private static final Type<TooltipHideHandler> TYPE = new Type<>();
 
     private final Tooltip tooltip;
     private final Event nativeEvent;
@@ -39,7 +39,7 @@ public class TooltipHideEvent extends GwtEvent<TooltipHideHandler> implements To
         return TYPE;
     }
 
-    public TooltipHideEvent(final Tooltip tooltip, final Event nativeEvent) {
+    public TooltipHideEvent(Tooltip tooltip, Event nativeEvent) {
         this.tooltip = tooltip;
         this.nativeEvent = nativeEvent;
     }
@@ -60,7 +60,7 @@ public class TooltipHideEvent extends GwtEvent<TooltipHideHandler> implements To
     }
 
     @Override
-    protected void dispatch(final TooltipHideHandler handler) {
+    protected void dispatch(TooltipHideHandler handler) {
         handler.onHide(this);
     }
 }

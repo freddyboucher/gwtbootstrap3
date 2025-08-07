@@ -52,21 +52,21 @@ public class Input extends ValueBoxBase<String> implements HasInputType {
     }
 
     @UiConstructor
-    public Input(final InputType type) {
+    public Input(InputType type) {
         this();
         setType(type);
     }
 
-    public void setMin(final String min) {
+    public void setMin(String min) {
         getElement().setAttribute(MIN, min);
     }
 
-    public void setMax(final String max) {
+    public void setMax(String max) {
         getElement().setAttribute(MAX, max);
     }
 
     @Override
-    public void setType(final InputType inputType) {
+    public void setType(InputType inputType) {
         getElement().setAttribute(TYPE, inputType.getType());
     }
 
@@ -77,7 +77,7 @@ public class Input extends ValueBoxBase<String> implements HasInputType {
     }
 
     @Override
-    public void setPlaceholder(final String placeHolder) {
+    public void setPlaceholder(String placeHolder) {
         getElement().setAttribute(PLACEHOLDER, placeHolder != null ? placeHolder : "");
     }
 

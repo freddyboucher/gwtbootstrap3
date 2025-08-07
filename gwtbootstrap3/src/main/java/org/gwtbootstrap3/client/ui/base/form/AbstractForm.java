@@ -8,13 +8,11 @@ import org.gwtbootstrap3.client.ui.form.validator.HasValidators;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.FormElement;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
-import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -73,7 +71,7 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
          */
         public static Type<SubmitCompleteHandler> getType() {
             if (TYPE == null) {
-                TYPE = new Type<SubmitCompleteHandler>();
+                TYPE = new Type<>();
             }
             return TYPE;
         }
@@ -86,7 +84,7 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
          * @param resultsHtml the results from submitting the form
          */
         protected SubmitCompleteEvent(String resultsHtml) {
-            this.resultHtml = resultsHtml;
+            resultHtml = resultsHtml;
         }
 
         @Override
@@ -142,19 +140,19 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
          */
         public static Type<SubmitHandler> getType() {
             if (TYPE == null) {
-                TYPE = new Type<SubmitHandler>();
+                TYPE = new Type<>();
             }
             return TYPE;
         }
 
-        private boolean canceled = false;
+        private boolean canceled;
 
         /**
          * Cancel the form submit. Firing this will prevent a subsequent
          * {@link AbstractForm.SubmitCompleteEvent} from being fired.
          */
         public void cancel() {
-            this.canceled = true;
+            canceled = true;
         }
 
         @Override
@@ -209,7 +207,7 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
 
     interface IFrameTemplate extends SafeHtmlTemplates {
 
-        static final IFrameTemplate INSTANCE = GWT.create(IFrameTemplate.class);
+        IFrameTemplate INSTANCE = GWT.create(IFrameTemplate.class);
 
         @Template("<iframe src=\"javascript:''\" name='{0}' tabindex='-1' title='Form submit helper frame'"
                 + "style='position:absolute;width:0;height:0;border:0'>")
@@ -218,7 +216,7 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
 
     private static final String FORM = "form";
 
-    private static int formId = 0;
+    private static int formId;
 
     private static final FormPanelImpl impl = GWT.create(FormPanelImpl.class);
 
@@ -256,8 +254,7 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
         FormElement.as(element);
 
         if (createIFrame) {
-            assert getTarget() == null || getTarget().trim()
-                    .length() == 0 : "Cannot create target iframe if the form's target is already set.";
+            assert getTarget() == null || getTarget().trim().isEmpty() : "Cannot create target iframe if the form's target is already set.";
 
             // We use the module name as part of the unique ID to ensure that
             // ids are
@@ -351,7 +348,7 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
      * @param action
      *            the form's action
      */
-    public void setAction(final String action) {
+    public void setAction(String action) {
         getFormElement().setAction(action);
     }
 
@@ -383,7 +380,7 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
      * @param method
      *            the form's method
      */
-    public void setMethod(final String method) {
+    public void setMethod(String method) {
         getFormElement().setMethod(method);
     }
 
@@ -479,13 +476,7 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
         // because clients that detach the form panel when submission is
         // complete can cause some browsers (i.e. Mozilla) to go into an
         // 'infinite loading' state. See issue 916.
-        Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-
-            @Override
-            public void execute() {
-                fireEvent(new SubmitCompleteEvent(impl.getContents(synthesizedFrame)));
-            }
-        });
+        Scheduler.get().scheduleDeferred(() -> fireEvent(new SubmitCompleteEvent(impl.getContents(synthesizedFrame))));
     }
 
     private void setTarget(String target) {
@@ -517,7 +508,7 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
      * @return the children with validators
      */
     protected List<HasValidators<?>> getChildrenWithValidators(Widget widget) {
-        List<HasValidators<?>> result = new ArrayList<HasValidators<?>>();
+        List<HasValidators<?>> result = new ArrayList<>();
         if (widget != null) {
             if (widget instanceof HasValidators<?>) {
                 result.add((HasValidators<?>) widget);
@@ -534,18 +525,15 @@ public abstract class AbstractForm extends FormElementContainer implements FormP
         return result;
     }
 
-    private HandlerRegistration submitOnEnterRegistration = null;
+    private HandlerRegistration submitOnEnterRegistration;
 
     public void setSubmitOnEnter(boolean submitOnEnter) {
         if (submitOnEnter) {
             if (submitOnEnterRegistration == null)
-                submitOnEnterRegistration = addDomHandler(new KeyPressHandler() {
-                    @Override
-                    public void onKeyPress(KeyPressEvent event) {
-                        if (event.getNativeEvent().getKeyCode() == KeyCodes.KEY_ENTER) {
-                            if (validate()) {
-                                fireSubmitEvent();
-                            }
+                submitOnEnterRegistration = addDomHandler(event -> {
+                    if (event.getNativeEvent().getKeyCode() == KeyCodes.KEY_ENTER) {
+                        if (validate()) {
+                            fireSubmitEvent();
                         }
                     }
                 }, KeyPressEvent.getType());

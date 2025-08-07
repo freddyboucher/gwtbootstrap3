@@ -39,7 +39,7 @@ public enum NotifyPlacement implements Type {
     private final String from;
     private final String align;
 
-    private NotifyPlacement(final String from, final String align) {
+    NotifyPlacement(String from, String align) {
         this.from = from;
         this.align = align;
     }

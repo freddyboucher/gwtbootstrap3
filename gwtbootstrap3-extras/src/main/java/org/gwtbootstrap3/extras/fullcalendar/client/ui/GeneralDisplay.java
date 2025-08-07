@@ -34,7 +34,7 @@ public class GeneralDisplay implements IsJavaScriptObject {
         this(new Header());
     }
 
-    public GeneralDisplay(final Header header) {
+    public GeneralDisplay(Header header) {
         newInstance();
         if (header != null) {
             setHeader(header.toJavaScript());
@@ -93,7 +93,7 @@ public class GeneralDisplay implements IsJavaScriptObject {
         return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.GeneralDisplay::general.isRTL = rtl;
     }-*/;
 
-    public void setHeader(final Header header) {
+    public void setHeader(Header header) {
         setHeader(header == null ? null : header.toJavaScript());
     }
 
@@ -107,10 +107,10 @@ public class GeneralDisplay implements IsJavaScriptObject {
         return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.GeneralDisplay::general.weekends = weekends;
     }-*/;
 
-    public void setHiddenDays(final int... days) {
+    public void setHiddenDays(int... days) {
         if (days != null) {
-            final JsArrayInteger intArr = (JsArrayInteger) JsArrayInteger.createArray();
-            for (final int i : days) {
+            JsArrayInteger intArr = (JsArrayInteger) JsArrayInteger.createArray();
+            for (int i : days) {
                 assert i >= 0 && i <= 6;
                 intArr.push(i);
             }

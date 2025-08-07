@@ -34,7 +34,7 @@ import com.google.gwt.i18n.client.LocalizableResource.DefaultLocale;
 @DefaultLocale("en")
 public interface ValidationMessages extends ConstantsWithLookup {
 
-    public static class Keys {
+    class Keys {
 
         public static final String BLANK = "org.gwtbootstrap3.validation.Blank.message";
 

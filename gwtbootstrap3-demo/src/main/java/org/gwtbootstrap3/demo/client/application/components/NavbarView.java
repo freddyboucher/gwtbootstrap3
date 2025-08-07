@@ -33,7 +33,7 @@ public class NavbarView extends ViewImpl implements NavbarPresenter.MyView {
     }
 
     @Inject
-    NavbarView(final Binder uiBinder) {
+    NavbarView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

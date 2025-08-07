@@ -28,7 +28,7 @@ import com.google.gwt.resources.client.TextResource;
  * @author Joshua Godi
  */
 public interface RespondClientBundle extends ClientBundle {
-    static final RespondClientBundle INSTANCE = GWT.create(RespondClientBundle.class);
+    RespondClientBundle INSTANCE = GWT.create(RespondClientBundle.class);
 
     @Source("resource/js/html5shiv-3.7.0.min.cache.js")
     TextResource html5Shiv();

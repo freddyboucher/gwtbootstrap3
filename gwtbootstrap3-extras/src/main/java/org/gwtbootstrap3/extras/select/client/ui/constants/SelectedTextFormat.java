@@ -47,7 +47,7 @@ public enum SelectedTextFormat {
 
     private String format;
 
-    private SelectedTextFormat(String format) {
+    SelectedTextFormat(String format) {
         this.format = format;
     }
 

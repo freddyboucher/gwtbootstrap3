@@ -36,7 +36,7 @@ public class ShownEvent extends GwtEvent<ShownHandler> {
      *
      * @param source the source of the handlers
      */
-    public static void fire(final HasShownHandlers source) {
+    public static void fire(HasShownHandlers source) {
         if (TYPE != null) {
             ShownEvent event = new ShownEvent();
             source.fireEvent(event);
@@ -50,7 +50,7 @@ public class ShownEvent extends GwtEvent<ShownHandler> {
      */
     public static Type<ShownHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<ShownHandler>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -61,7 +61,7 @@ public class ShownEvent extends GwtEvent<ShownHandler> {
     }
 
     @Override
-    protected void dispatch(final ShownHandler handler) {
+    protected void dispatch(ShownHandler handler) {
         handler.onShown(this);
     }
 

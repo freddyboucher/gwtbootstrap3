@@ -75,9 +75,9 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
         return checkBox;
     }
 
-    private final IdMixin<SimpleCheckBox> idMixin = new IdMixin<SimpleCheckBox>(this);
-    private final PullMixin<SimpleCheckBox> pullMixin = new PullMixin<SimpleCheckBox>(this);
-    private final EnabledMixin<SimpleCheckBox> enabledMixin = new EnabledMixin<SimpleCheckBox>(this);
+    private final IdMixin<SimpleCheckBox> idMixin = new IdMixin<>(this);
+    private final PullMixin<SimpleCheckBox> pullMixin = new PullMixin<>(this);
+    private final EnabledMixin<SimpleCheckBox> enabledMixin = new EnabledMixin<>(this);
 
     /**
      * Creates a new simple checkbox.
@@ -117,7 +117,7 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
      * {@inheritDoc}
      */
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         idMixin.setId(id);
     }
 
@@ -133,7 +133,7 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
      * {@inheritDoc}
      */
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
@@ -141,7 +141,7 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
      * {@inheritDoc}
      */
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
@@ -149,7 +149,7 @@ public class SimpleCheckBox extends com.google.gwt.user.client.ui.SimpleCheckBox
      * {@inheritDoc}
      */
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         pullMixin.setPull(pull);
     }
 

@@ -37,7 +37,6 @@ import org.gwtbootstrap3.client.ui.constants.Placement;
 import org.gwtbootstrap3.client.ui.constants.Trigger;
 
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Timer;
@@ -65,29 +64,29 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
 
     // Defaults from http://getbootstrap.com/javascript/#tooltips
     private boolean isAnimated = true;
-    private boolean isHTML = false;
+    private boolean isHTML;
     private Placement placement = Placement.TOP;
     private Trigger trigger = Trigger.HOVER;
     private String title = "";
-    private int hideDelayMs = 0;
-    private int showDelayMs = 0;
-    private String container = null;
-    private String selector = null;
+    private int hideDelayMs;
+    private int showDelayMs;
+    private String container;
+    private String selector;
     private String viewportSelector = "body";
-    private int viewportPadding = 0;
+    private int viewportPadding;
 
     private String tooltipClassNames = "tooltip";
     private String tooltipArrowClassNames = "tooltip-arrow";
     private String tooltipInnerClassNames = "tooltip-inner";
 
     private final static String DEFAULT_TEMPLATE = "<div class=\"{0}\"><div class=\"{1}\"></div><div class=\"{2}\"></div></div>";
-    private String alternateTemplate = null;
+    private String alternateTemplate;
 
     protected Widget widget;
     private String id;
     private final String dataTarget;
-    protected boolean initialized = false;
-    private boolean showing = false;
+    protected boolean initialized;
+    private boolean showing;
 
     /**
      * Creates the empty Tooltip
@@ -101,7 +100,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      *
      * @param title title for the tooltip
      */
-    public AbstractTooltip(String dataTarget, final String title) {
+    public AbstractTooltip(String dataTarget, String title) {
         this(dataTarget);
         setTitle(title);
     }
@@ -111,7 +110,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      *
      * @param w widget for the tooltip
      */
-    public AbstractTooltip(String dataTarget, final Widget w) {
+    public AbstractTooltip(String dataTarget, Widget w) {
         this(dataTarget);
         setWidget(w);
     }
@@ -122,7 +121,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * @param w widget for the tooltip
      * @param title title for the tooltip
      */
-    public AbstractTooltip(String dataTarget, final Widget w, final String title) {
+    public AbstractTooltip(String dataTarget, Widget w, String title) {
         this(dataTarget);
         setWidget(w);
         setTitle(title);
@@ -132,7 +131,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * {@inheritDoc}
      */
     @Override
-    public void add(final Widget child) {
+    public void add(Widget child) {
         if (getWidget() != null) {
             throw new IllegalStateException("Can only contain one child widget");
         }
@@ -145,7 +144,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * @param hiddenHandler HiddenHandler to handle the hidden event
      * @return HandlerRegistration of the handler
      */
-    public HandlerRegistration addHiddenHandler(final HiddenHandler hiddenHandler) {
+    public HandlerRegistration addHiddenHandler(HiddenHandler hiddenHandler) {
         return widget.addHandler(hiddenHandler, HiddenEvent.getType());
     }
 
@@ -155,7 +154,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * @param hideHandler HideHandler to handle the hide event
      * @return HandlerRegistration of the handler
      */
-    public HandlerRegistration addHideHandler(final HideHandler hideHandler) {
+    public HandlerRegistration addHideHandler(HideHandler hideHandler) {
         return widget.addHandler(hideHandler, HideEvent.getType());
     }
 
@@ -165,7 +164,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * @param showHandler ShowHandler to handle the show event
      * @return HandlerRegistration of the handler
      */
-    public HandlerRegistration addShowHandler(final ShowHandler showHandler) {
+    public HandlerRegistration addShowHandler(ShowHandler showHandler) {
         return widget.addHandler(showHandler, ShowEvent.getType());
     }
 
@@ -175,7 +174,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * @param shownHandler ShownHandler to handle the shown event
      * @return HandlerRegistration of the handler
      */
-    public HandlerRegistration addShownHandler(final ShownHandler shownHandler) {
+    public HandlerRegistration addShownHandler(ShownHandler shownHandler) {
         return widget.addHandler(shownHandler, ShownEvent.getType());
     }
 
@@ -185,7 +184,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * @param tooltipArrowClassName a tooltip arrow div class name
      */
     public void addTooltipArrowClassName(String tooltipArrowClassName) {
-        this.tooltipArrowClassNames += " " + tooltipArrowClassName;
+        tooltipArrowClassNames += " " + tooltipArrowClassName;
     }
 
     /**
@@ -194,7 +193,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * @param tooltipClassName a tooltip div class name
      */
     public void addTooltipClassName(String tooltipClassName) {
-        this.tooltipClassNames += " " + tooltipClassName;
+        tooltipClassNames += " " + tooltipClassName;
     }
 
     /**
@@ -203,7 +202,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * @param tooltipInnerClassName a tooltip inner div class name
      */
     public void addTooltipInnerClassName(String tooltipInnerClassName) {
-        this.tooltipInnerClassNames += " " + tooltipInnerClassName;
+        tooltipInnerClassNames += " " + tooltipInnerClassName;
     }
 
     /** {@inheritDoc} */
@@ -213,26 +212,16 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
     }
 
     // @formatter:off
-    protected void bindJavaScriptEvents(final Element e) {
+    protected void bindJavaScriptEvents( Element e) {
         JQuery tooltip = JQuery.jQuery(e);
-        tooltip.on("show." + dataTarget, (evt) -> {
-            onShow(evt);
-        });
-        tooltip.on("shown." + dataTarget, (evt) -> {
-            onShown(evt);
-        });
-        tooltip.on("hide." + dataTarget, (evt) -> {
-            onHide(evt);
-        });
-        tooltip.on("hidden." + dataTarget, (evt) -> {
-            onHidden(evt);
-        });
-        tooltip.on("inserted." + dataTarget, (evt) -> {
-            onInserted(evt);
-        });
+        tooltip.on("show." + dataTarget, this::onShow);
+        tooltip.on("shown." + dataTarget, this::onShown);
+        tooltip.on("hide." + dataTarget, this::onHide);
+        tooltip.on("hidden." + dataTarget, this::onHidden);
+        tooltip.on("inserted." + dataTarget, this::onInserted);
     }
     
-    protected abstract void call(final String arg);
+    protected abstract void call( String arg);
 
     /** {@inheritDoc} */
     @Override
@@ -247,7 +236,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
             String trigger, int showDelay, int hideDelay, String container, String template, String viewportSelector,
             int viewportPadding) {
         e.setAttribute("data-animation", Boolean.toString(animation));
-        e.setAttribute("data-delay", "{ \"show\": " + Integer.toString(showDelay) + ", \"hide\": " + Integer.toString(hideDelay) + " }");
+        e.setAttribute("data-delay", "{ \"show\": " + showDelay + ", \"hide\": " + hideDelay + " }");
         e.setAttribute("data-html", Boolean.toString(html));
         e.setAttribute("data-placement", getPlacementCssName());
         e.setAttribute("data-template", template);
@@ -429,7 +418,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
 
             boolean hasElement = widget != null;
 
-            Widget returned = null;
+            Widget returned  ;
 
             /** {@inheritDoc} */
             @Override
@@ -462,9 +451,9 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * it's recommended to add an event handler to the tooltip.
      *
      * @param evt Event
-     * @see org.gwtbootstrap3.client.shared.event.HiddenEvent
+     * @see HiddenEvent
      */
-    protected void onHidden(final Event evt) {
+    protected void onHidden( Event evt) {
         showing = false;
         widget.fireEvent(new HiddenEvent(evt));
     }
@@ -474,9 +463,9 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * it's recommended to add an event handler to the tooltip.
      *
      * @param evt Event
-     * @see org.gwtbootstrap3.client.shared.event.HideEvent
+     * @see HideEvent
      */
-    protected void onHide(final Event evt) {
+    protected void onHide( Event evt) {
         widget.fireEvent(new HideEvent(evt));
     }
 
@@ -485,9 +474,9 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * it's recommended to add an event handler to the tooltip.
      *
      * @param evt Event
-     * @see org.gwtbootstrap3.client.shared.event.InsertedEvent
+     * @see InsertedEvent
      */
-    protected void onInserted(final Event evt) {
+    protected void onInserted( Event evt) {
         widget.fireEvent(new InsertedEvent(evt));
     }
 
@@ -496,9 +485,9 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * it's recommended to add an event handler to the tooltip.
      *
      * @param evt Event
-     * @see org.gwtbootstrap3.client.shared.event.ShowEvent
+     * @see ShowEvent
      */
-    protected void onShow(final Event evt) {
+    protected void onShow( Event evt) {
         widget.fireEvent(new ShowEvent(evt));
     }
 
@@ -509,7 +498,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      * @param evt Event
      * @see ShownEvent
      */
-    protected void onShown(final Event evt) {
+    protected void onShown( Event evt) {
         showing = true;
         widget.fireEvent(new ShownEvent(evt));
     }
@@ -560,7 +549,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
 
     /** {@inheritDoc} */
     @Override
-    public boolean remove(final Widget w) {
+    public boolean remove( Widget w) {
         // Validate.
         if (widget != w) {
             return false;
@@ -587,7 +576,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
 
     /** {@inheritDoc} */
     @Override
-    public void setContainer(final String container) {
+    public void setContainer( String container) {
         this.container = container;
         if (initialized) {
             updateString(widget.getElement(), "container", container);
@@ -596,7 +585,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
 
     /** {@inheritDoc} */
     @Override
-    public void setHideDelayMs(final int hideDelayMs) {
+    public void setHideDelayMs( int hideDelayMs) {
         this.hideDelayMs = hideDelayMs;
         if (initialized) {
             updateDelay(widget.getElement(), showDelayMs, hideDelayMs);
@@ -608,7 +597,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      *
      * @param text String display string in HTML format
      */
-    public void setHtml(final SafeHtml html) {
+    public void setHtml( SafeHtml html) {
         setIsHtml(true);
         if (html == null) {
             setTitle("");
@@ -619,7 +608,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
 
     /** {@inheritDoc} */
     @Override
-    public void setId(final String id) {
+    public void setId( String id) {
         this.id = id;
         if (widget != null) {
             widget.getElement().setId(id);
@@ -635,7 +624,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
 
     /** {@inheritDoc} */
     @Override
-    public void setIsAnimated(final boolean isAnimated) {
+    public void setIsAnimated( boolean isAnimated) {
         this.isAnimated = isAnimated;
         if (initialized) {
             updateBool(widget.getElement(), "animation", isAnimated);
@@ -644,7 +633,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
 
     /** {@inheritDoc} */
     @Override
-    public void setIsHtml(final boolean isHTML) {
+    public void setIsHtml( boolean isHTML) {
         this.isHTML = isHTML;
         if (initialized) {
             updateBool(widget.getElement(), "html", isHTML);
@@ -654,7 +643,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
 
     /** {@inheritDoc} */
     @Override
-    public void setPlacement(final Placement placement) {
+    public void setPlacement( Placement placement) {
         this.placement = placement;
         if (initialized) {
             updateString(widget.getElement(), "placement", getPlacementCssName());
@@ -675,7 +664,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
 
     /** {@inheritDoc} */
     @Override
-    public void setShowDelayMs(final int showDelayMs) {
+    public void setShowDelayMs( int showDelayMs) {
         this.showDelayMs = showDelayMs;
         if (initialized) {
             updateDelay(widget.getElement(), showDelayMs, hideDelayMs);
@@ -697,7 +686,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
      *
      * @param title String display string
      */
-    public void setTitle(final String title) {
+    public void setTitle( String title) {
         this.title = title;
         if (initialized) {
             updateString(widget.getElement(), "title", this.title);
@@ -736,7 +725,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
 
     /** {@inheritDoc} */
     @Override
-    public void setTrigger(final Trigger trigger) {
+    public void setTrigger( Trigger trigger) {
         this.trigger = trigger;
         if (initialized) {
             updateString(widget.getElement(), "trigger",
@@ -750,7 +739,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
     public void setViewportPadding(int viewportPadding) {
         this.viewportPadding = viewportPadding;
         if (initialized) {
-            updateViewport(getWidget().getElement(), this.viewportSelector, this.viewportPadding);
+            updateViewport(getWidget().getElement(), viewportSelector, this.viewportPadding);
         }
     }
 
@@ -760,19 +749,19 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
     public void setViewportSelector(String viewportSelector) {
         this.viewportSelector = viewportSelector;
         if (initialized) {
-            updateViewport(getWidget().getElement(), this.viewportSelector, this.viewportPadding);
+            updateViewport(getWidget().getElement(), this.viewportSelector, viewportPadding);
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setWidget(final IsWidget w) {
+    public void setWidget( IsWidget w) {
         setWidget(w.asWidget());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setWidget(final Widget w) {
+    public void setWidget( Widget w) {
         // Validate
         if (w == widget) {
             return;
@@ -795,13 +784,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
         }
 
         // When we attach it, configure the tooltip
-        widget.addAttachHandler(new AttachEvent.Handler() {
-
-            @Override
-            public void onAttachOrDetach(final AttachEvent event) {
-                init();
-            }
-        });
+        widget.addAttachHandler(event-> init());
     }
 
     /**

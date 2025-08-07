@@ -28,5 +28,5 @@ package org.gwtbootstrap3.extras.tagsinput.client.callback;
  * @param <T> type of item
  */
 public interface ItemValueCallback<T> {
-    public String getItemValue(T item);
+    String getItemValue(T item);
 }

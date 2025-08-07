@@ -35,11 +35,11 @@ import com.google.gwt.dom.client.Element;
  *
  * @author Sven Jacobs
  * @see AbstractButton
- * @see org.gwtbootstrap3.client.ui.constants.Toggle
+ * @see Toggle
  */
 public abstract class AbstractToggleButton extends AbstractIconButton implements HasDataToggle {
 
-    private final DataToggleMixin<AbstractToggleButton> toggleMixin = new DataToggleMixin<AbstractToggleButton>(this);
+    private final DataToggleMixin<AbstractToggleButton> toggleMixin = new DataToggleMixin<>(this);
     private final Text separator = new Text(" ");
     private final Caret caret = new Caret();
 
@@ -47,7 +47,7 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
         this(ButtonType.DEFAULT);
     }
 
-    protected AbstractToggleButton(final ButtonType type) {
+    protected AbstractToggleButton(ButtonType type) {
         setType(type);
         iconTextMixin.addTextWidgetToParent();
     }
@@ -56,7 +56,7 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
      * Toggles the display of the caret for the button
      * @param toggleCaret show/hide the caret for the button
      */
-    public void setToggleCaret(final boolean toggleCaret) {
+    public void setToggleCaret(boolean toggleCaret) {
         caret.setVisible(toggleCaret);
     }
 
@@ -69,22 +69,19 @@ public abstract class AbstractToggleButton extends AbstractIconButton implements
      * @param toggle Kind of toggle
      */
     @Override
-    public void setDataToggle(final Toggle toggle) {
+    public void setDataToggle(Toggle toggle) {
         toggleMixin.setDataToggle(toggle);
 
         // We defer to make sure the elements are available to manipulate their position
-        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-            @Override
-            public void execute() {
-                separator.removeFromParent();
-                caret.removeFromParent();
+        Scheduler.get().scheduleDeferred(() -> {
+            separator.removeFromParent();
+            caret.removeFromParent();
 
-                if (toggle == Toggle.DROPDOWN) {
-                    addStyleName(Styles.DROPDOWN_TOGGLE);
+            if (toggle == Toggle.DROPDOWN) {
+                addStyleName(Styles.DROPDOWN_TOGGLE);
 
-                    add(separator, (Element) getElement());
-                    add(caret, (Element) getElement());
-                }
+                add(separator, (Element) getElement());
+                add(caret, (Element) getElement());
             }
         });
     }

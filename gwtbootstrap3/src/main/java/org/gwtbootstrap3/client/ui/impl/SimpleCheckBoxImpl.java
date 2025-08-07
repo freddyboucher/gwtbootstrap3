@@ -22,21 +22,12 @@ package org.gwtbootstrap3.client.ui.impl;
 
 import org.gwtbootstrap3.client.ui.SimpleCheckBox;
 
-import com.google.gwt.event.dom.client.ChangeEvent;
-import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 
 public class SimpleCheckBoxImpl {
 
-    public void ensureDomEventHandlers(final SimpleCheckBox simpleCheckBox) {
-        simpleCheckBox.addChangeHandler(new ChangeHandler() {
-
-            @Override
-            public void onChange(ChangeEvent event) {
-                ValueChangeEvent.fire(simpleCheckBox, simpleCheckBox.getValue());
-            }
-
-        });
+    public void ensureDomEventHandlers(SimpleCheckBox simpleCheckBox) {
+        simpleCheckBox.addChangeHandler(event -> ValueChangeEvent.fire(simpleCheckBox, simpleCheckBox.getValue()));
     }
 
 }

@@ -26,7 +26,7 @@ package org.gwtbootstrap3.extras.datetimepicker.client.ui.base.constants;
  * Day of the week start. SUNDAY - SATURDAY
  *
  * @author Joshua Godi
- * @see org.gwtbootstrap3.extras.datetimepicker.client.ui.base.constants.DateTimePickerDayOfWeek
+ * @see DateTimePickerDayOfWeek
  */
 public interface HasWeekStart {
     void setWeekStart(DateTimePickerDayOfWeek weekStart);

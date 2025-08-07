@@ -60,7 +60,7 @@ public class Tooltip extends AbstractTooltip {
      *
      * @param title title for the tooltip
      */
-    public Tooltip(final String title) {
+    public Tooltip(String title) {
         this();
         setTitle(title);
     }
@@ -70,7 +70,7 @@ public class Tooltip extends AbstractTooltip {
      *
      * @param w widget for the tooltip
      */
-    public Tooltip(final Widget w) {
+    public Tooltip(Widget w) {
         this();
         setWidget(w);
     }
@@ -81,7 +81,7 @@ public class Tooltip extends AbstractTooltip {
      * @param w widget for the tooltip
      * @param title title for the tooltip
      */
-    public Tooltip(final Widget w, final String title) {
+    public Tooltip(Widget w, String title) {
         this();
         setWidget(w);
         setTitle(title);
@@ -93,7 +93,7 @@ public class Tooltip extends AbstractTooltip {
      * @param e the {@link Element}.
      * @param arg the arg
      */
-    private void call(final Element e, final String arg) {
+    private void call(Element e, String arg) {
         JQuery.jQuery(e).tooltip(arg);
     }
 

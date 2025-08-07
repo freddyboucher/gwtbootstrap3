@@ -20,14 +20,13 @@ package org.gwtbootstrap3.demo.client.application.javascript;
  * #L%
  */
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.client.ui.Popover;
 
 /**
  * @author Joshua Godi
@@ -35,7 +34,7 @@ import org.gwtbootstrap3.client.ui.Button;
 public class PopoverView extends ViewImpl implements PopoverPresenter.MyView {
 
     @UiField
-    org.gwtbootstrap3.client.ui.Popover forcePopover;
+    Popover forcePopover;
     @UiField
     Button forceShowButton;
     @UiField
@@ -45,21 +44,11 @@ public class PopoverView extends ViewImpl implements PopoverPresenter.MyView {
     }
 
     @Inject
-    PopoverView(final Binder uiBinder) {
+    PopoverView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
 
-        forceHideButton.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(final ClickEvent event) {
-                forcePopover.hide();
-            }
-        });
+        forceHideButton.addClickHandler(event -> forcePopover.hide());
 
-        forceShowButton.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(final ClickEvent event) {
-                forcePopover.show();
-            }
-        });
+        forceShowButton.addClickHandler(event -> forcePopover.show());
     }
 }

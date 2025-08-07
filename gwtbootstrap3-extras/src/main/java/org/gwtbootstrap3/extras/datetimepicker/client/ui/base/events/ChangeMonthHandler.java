@@ -26,5 +26,5 @@ import com.google.gwt.event.shared.EventHandler;
  * @author Joshua Godi
  */
 public interface ChangeMonthHandler extends EventHandler {
-    void onChangeMonth(final ChangeMonthEvent evt);
+    void onChangeMonth(ChangeMonthEvent evt);
 }

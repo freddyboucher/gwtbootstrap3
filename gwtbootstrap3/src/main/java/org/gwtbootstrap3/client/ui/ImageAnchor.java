@@ -30,7 +30,7 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  * An anchor that contains an image as the click action, used in Media Objects
  *
  * @author Joshua Godi
- * @see org.gwtbootstrap3.client.ui.MediaList
+ * @see MediaList
  */
 public class ImageAnchor extends Anchor implements HasType<ImageType> {
     private final Image image = new Image();
@@ -46,7 +46,7 @@ public class ImageAnchor extends Anchor implements HasType<ImageType> {
      * {@inheritDoc}
      */
     @Override
-    public void setType(final ImageType type) {
+    public void setType(ImageType type) {
         StyleHelper.addEnumStyleName(this, type);
     }
 
@@ -63,7 +63,7 @@ public class ImageAnchor extends Anchor implements HasType<ImageType> {
      *
      * @param responsive boolean, whether or not the image has the responsive styles
      */
-    public void setResponsive(final boolean responsive) {
+    public void setResponsive(boolean responsive) {
         StyleHelper.toggleStyleName(this, responsive, Styles.IMG_RESPONSIVE);
     }
 
@@ -72,7 +72,7 @@ public class ImageAnchor extends Anchor implements HasType<ImageType> {
      *
      * @param asMediaObject boolean, whether or not the image has the media object styles
      */
-    public void setAsMediaObject(final boolean asMediaObject) {
+    public void setAsMediaObject(boolean asMediaObject) {
         StyleHelper.toggleStyleName(this, asMediaObject, Styles.MEDIA_OBJECT);
     }
 
@@ -81,7 +81,7 @@ public class ImageAnchor extends Anchor implements HasType<ImageType> {
      *
      * @param url String image url
      */
-    public void setUrl(final String url) {
+    public void setUrl(String url) {
         image.setUrl(url);
     }
 
@@ -99,7 +99,7 @@ public class ImageAnchor extends Anchor implements HasType<ImageType> {
      *
      * @param alt String image alt text
      */
-    public void setAlt(final String alt) {
+    public void setAlt(String alt) {
         image.setAltText(alt);
     }
 

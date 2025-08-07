@@ -45,7 +45,7 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class NavbarCollapseButton extends Composite implements HasDataTarget, HasResponsiveness, HasPull {
 
-    private final PullMixin<NavbarCollapseButton> pullMixin = new PullMixin<NavbarCollapseButton>(this);
+    private final PullMixin<NavbarCollapseButton> pullMixin = new PullMixin<>(this);
     private final Button button;
 
     public NavbarCollapseButton() {
@@ -61,17 +61,17 @@ public class NavbarCollapseButton extends Composite implements HasDataTarget, Ha
     }
 
     @Override
-    public void setDataTargetWidgets(final List<Widget> widgets) {
+    public void setDataTargetWidgets(List<Widget> widgets) {
         button.setDataTargetWidgets(widgets);
     }
 
     @Override
-    public void setDataTargetWidget(final Widget widget) {
+    public void setDataTargetWidget(Widget widget) {
         button.setDataTargetWidget(widget);
     }
 
     @Override
-    public void setDataTarget(final String dataTarget) {
+    public void setDataTarget(String dataTarget) {
         button.setDataTarget(dataTarget);
     }
 
@@ -81,17 +81,17 @@ public class NavbarCollapseButton extends Composite implements HasDataTarget, Ha
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         pullMixin.setPull(pull);
     }
 
@@ -101,7 +101,7 @@ public class NavbarCollapseButton extends Composite implements HasDataTarget, Ha
     }
 
     private Span newBarIcon() {
-        final Span span = new Span();
+        Span span = new Span();
         span.setStyleName(Styles.ICON_BAR);
         return span;
     }

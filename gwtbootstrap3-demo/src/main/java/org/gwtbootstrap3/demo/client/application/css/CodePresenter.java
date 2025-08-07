@@ -41,9 +41,9 @@ public class CodePresenter extends Presenter<CodePresenter.MyView, CodePresenter
     }
 
     @Inject
-    public CodePresenter(final EventBus eventBus,
-                         final MyView view,
-                         final MyProxy proxy) {
+    public CodePresenter(EventBus eventBus,
+                         MyView view,
+                         MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

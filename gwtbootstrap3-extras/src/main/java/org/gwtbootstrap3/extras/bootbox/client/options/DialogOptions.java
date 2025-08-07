@@ -32,7 +32,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 public class DialogOptions extends JavaScriptObject {
 
     private static final String BUTTON_PREFIX = "bootbox_btn_";
-    private static int BUTTON_INDEX = 0;
+    private static int BUTTON_INDEX;
 
     protected DialogOptions() {
     }
@@ -43,13 +43,13 @@ public class DialogOptions extends JavaScriptObject {
      * @param message
      * @return
      */
-    public static DialogOptions newOptions(final String message) {
+    public static DialogOptions newOptions(String message) {
         DialogOptions options = JavaScriptObject.createObject().cast();
         options.setMessage(message);
         return options;
     }
 
-    final native void setMessage(final String message) /*-{
+    final native void setMessage(String message) /*-{
         this.message = message;
     }-*/;
 
@@ -58,7 +58,7 @@ public class DialogOptions extends JavaScriptObject {
      *
      * @param title
      */
-    public final native void setTitle(final String title) /*-{
+    public final native void setTitle(String title) /*-{
         this.title = title;
     }-*/;
 
@@ -68,12 +68,12 @@ public class DialogOptions extends JavaScriptObject {
      *
      * @param locale
      */
-    public final void setLocale(final BootboxLocale locale) {
+    public final void setLocale(BootboxLocale locale) {
         BootboxLocale l = (locale != null) ? locale : BootboxLocale.getDefault();
         setLocale(l.getLocale());
     }
 
-    private final native void setLocale(final String locale) /*-{
+    private native void setLocale(String locale) /*-{
         this.locale = locale;
     }-*/;
 
@@ -85,7 +85,7 @@ public class DialogOptions extends JavaScriptObject {
      *
      * @param callback
      */
-    public final native void setOnEscape(final SimpleCallback callback) /*-{
+    public final native void setOnEscape(SimpleCallback callback) /*-{
         if (callback) {
             this.onEscape = function() {
                 callback.@org.gwtbootstrap3.extras.bootbox.client.callback.SimpleCallback::callback()();
@@ -102,7 +102,7 @@ public class DialogOptions extends JavaScriptObject {
      *
      * @param show
      */
-    public final native void setShow(final boolean show) /*-{
+    public final native void setShow(boolean show) /*-{
         this.show = show;
     }-*/;
 
@@ -118,7 +118,7 @@ public class DialogOptions extends JavaScriptObject {
      *
      * @param backdrop
      */
-    public final native void setBackdrop(final Boolean backdrop) /*-{
+    public final native void setBackdrop(Boolean backdrop) /*-{
         if (backdrop == null)
             this.backdrop = undefined;
         else
@@ -132,7 +132,7 @@ public class DialogOptions extends JavaScriptObject {
      *
      * @param closeButton
      */
-    public final native void setCloseButton(final boolean closeButton) /*-{
+    public final native void setCloseButton(boolean closeButton) /*-{
         this.closeButton = closeButton;
     }-*/;
 
@@ -143,7 +143,7 @@ public class DialogOptions extends JavaScriptObject {
      *
      * @param animate
      */
-    public final native void setAnimate(final boolean animate) /*-{
+    public final native void setAnimate(boolean animate) /*-{
         this.animate = animate;
     }-*/;
 
@@ -154,7 +154,7 @@ public class DialogOptions extends JavaScriptObject {
      *
      * @param className
      */
-    public final native void setClassName(final String className) /*-{
+    public final native void setClassName(String className) /*-{
         this.className = className;
     }-*/;
 
@@ -165,7 +165,7 @@ public class DialogOptions extends JavaScriptObject {
      *
      * @param size
      */
-    public final native void setSize(final BootboxSize size) /*-{
+    public final native void setSize(BootboxSize size) /*-{
         if (size)
             this.size = size.@org.gwtbootstrap3.extras.bootbox.client.options.BootboxSize::getSize()();
         else
@@ -213,7 +213,7 @@ public class DialogOptions extends JavaScriptObject {
             callback != null ? callback : SimpleCallback.DEFAULT_SIMPLE_CALLBACK);
     }
 
-    private final native void addButton(String name, String label, String className, SimpleCallback callback) /*-{
+    private native void addButton(String name, String label, String className, SimpleCallback callback) /*-{
         this.buttons = this.buttons || {};
         this.buttons[name] = {
             label: label,

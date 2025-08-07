@@ -51,7 +51,7 @@ public class PageHeader extends Div implements HasText, HasSubText {
     }
 
     @Override
-    public void setText(final String text) {
+    public void setText(String text) {
         heading = text;
         render();
     }
@@ -62,7 +62,7 @@ public class PageHeader extends Div implements HasText, HasSubText {
     }
 
     @Override
-    public void setSubText(final String subText) {
+    public void setSubText(String subText) {
         this.subText = subText;
         render();
     }
@@ -73,7 +73,7 @@ public class PageHeader extends Div implements HasText, HasSubText {
     }
 
     private void render() {
-        final SafeHtmlBuilder builder = new SafeHtmlBuilder();
+        SafeHtmlBuilder builder = new SafeHtmlBuilder();
 
         builder.appendHtmlConstant("<h1>");
         builder.appendEscaped(heading == null ? "" : heading);

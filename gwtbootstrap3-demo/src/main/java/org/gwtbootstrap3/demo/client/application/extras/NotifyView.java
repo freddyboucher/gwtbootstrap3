@@ -55,17 +55,17 @@ public class NotifyView extends ViewImpl implements NotifyPresenter.MyView {
     Button template;
 
     @UiHandler("basicNotify")
-    public void handleBasicNotify(final ClickEvent event) {
+    public void handleBasicNotify(ClickEvent event) {
         Notify.notify("Message");
     }
 
     @UiHandler("basicNotifyWithTitleIcon")
-    public void handleBasicNotifyWithTitleIcon(final ClickEvent event) {
+    public void handleBasicNotifyWithTitleIcon(ClickEvent event) {
         Notify.notify("Title", "Message", IconType.SMILE_O);
     }
 
     @UiHandler("showProgressbar")
-    public void handleShowProgressbar(final ClickEvent event) {
+    public void handleShowProgressbar(ClickEvent event) {
         NotifySettings settings = NotifySettings.newSettings();
         settings.setShowProgressbar(true);
         settings.setPauseOnMouseOver(true);
@@ -73,7 +73,7 @@ public class NotifyView extends ViewImpl implements NotifyPresenter.MyView {
     }
 
     @UiHandler("changeBackgroundAndDismiss")
-    public void handleChangeBackgroundAndDismiss(final ClickEvent event) {
+    public void handleChangeBackgroundAndDismiss(ClickEvent event) {
         NotifySettings settings = NotifySettings.newSettings();
         settings.setType(NotifyType.SUCCESS);
         settings.setAllowDismiss(false);
@@ -81,14 +81,14 @@ public class NotifyView extends ViewImpl implements NotifyPresenter.MyView {
     }
 
     @UiHandler("positionAndLink")
-    public void handlePositionAndFormatting(final ClickEvent event) {
+    public void handlePositionAndFormatting(ClickEvent event) {
         NotifySettings settings = NotifySettings.newSettings();
         settings.setPlacement(NotifyPlacement.TOP_CENTER);
         Notify.notify("Title", "Message", IconType.SMILE_O, "https://github.com/gwtbootstrap3/gwtbootstrap3", settings);
     }
 
     @UiHandler("animationAndOffset")
-    public void handleAnimationAndOffset(final ClickEvent event) {
+    public void handleAnimationAndOffset(ClickEvent event) {
         NotifySettings settings = NotifySettings.newSettings();
         settings.setAnimation(Animation.TADA, Animation.LIGHTSPEED_OUT);
         settings.setOffset(200, 140);
@@ -96,7 +96,7 @@ public class NotifyView extends ViewImpl implements NotifyPresenter.MyView {
     }
 
     @UiHandler("template")
-    public void handleTemplate(final ClickEvent event) {
+    public void handleTemplate(ClickEvent event) {
         NotifySettings settings = NotifySettings.newSettings();
         settings.setTemplate("<div data-notify=\"container\" class=\"alert\" role=\"alert\">\n" +
                 "\t\t<button type=\"button\" class=\"close\" data-notify=\"dismiss\">\n" +
@@ -116,7 +116,7 @@ public class NotifyView extends ViewImpl implements NotifyPresenter.MyView {
     }
 
     @Inject
-    NotifyView(final Binder uiBinder) {
+    NotifyView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

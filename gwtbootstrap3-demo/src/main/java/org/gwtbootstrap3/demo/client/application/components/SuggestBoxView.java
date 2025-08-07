@@ -80,7 +80,7 @@ public class SuggestBoxView extends ViewImpl implements SuggestBoxPresenter.MyVi
     protected SuggestBox country2;
 
     @Inject
-    public SuggestBoxView(final Binder uiBinder) {
+    public SuggestBoxView(Binder uiBinder) {
         MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
         oracle.addAll(Arrays.asList(COUNTRIES));
         country = new SuggestBox(oracle);

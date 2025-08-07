@@ -33,7 +33,7 @@ public class WellView extends ViewImpl implements WellPresenter.MyView {
     }
 
     @Inject
-    WellView(final Binder uiBinder) {
+    WellView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

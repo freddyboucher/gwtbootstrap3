@@ -75,15 +75,15 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      */
     private boolean enabled = true;
 
-    private boolean hasInitHandler = false;
-    private boolean hasEnterHandler = false;
-    private boolean hasFocusHandler = false;
-    private boolean hasBlurHandler = false;
-    private boolean hasKeyUpHandler = false;
-    private boolean hasKeyDownHandler = false;
-    private boolean hasPasteHandler = false;
-    private boolean hasUploadImageHandler = false;
-    private boolean hasChangeHandler = false;
+    private boolean hasInitHandler;
+    private boolean hasEnterHandler;
+    private boolean hasFocusHandler;
+    private boolean hasBlurHandler;
+    private boolean hasKeyUpHandler;
+    private boolean hasKeyDownHandler;
+    private boolean hasPasteHandler;
+    private boolean hasUploadImageHandler;
+    private boolean hasChangeHandler;
 
     /**
      *
@@ -98,7 +98,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param height
      */
-    public void setDefaultHeight(final int height) {
+    public void setDefaultHeight(int height) {
         options.setHeight(height);
     }
 
@@ -107,7 +107,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param maxHeight
      */
-    public void setMaxHeight(final int maxHeight) {
+    public void setMaxHeight(int maxHeight) {
         options.setMaxHeight(maxHeight);
     }
 
@@ -116,7 +116,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param minHeight
      */
-    public void setMinHeight(final int minHeight) {
+    public void setMinHeight(int minHeight) {
         options.setMinHeight(minHeight);
     }
 
@@ -127,7 +127,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param showToolbar
      */
-    public void setShowToolbar(final boolean showToolbar) {
+    public void setShowToolbar(boolean showToolbar) {
         options.setShowToolbar(showToolbar);
     }
 
@@ -143,7 +143,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param toolbar
      */
-    public void setToolbar(final Toolbar toolbar) {
+    public void setToolbar(Toolbar toolbar) {
         options.setToolbar(toolbar);
     }
 
@@ -152,7 +152,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param focus if <code>true</code>, focus on the editor
      */
-    public void setHasFocus(final boolean focus) {
+    public void setHasFocus(boolean focus) {
         options.setFocus(focus);
     }
 
@@ -161,7 +161,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param placeholder placeholder of the editor
      */
-    public void setPlaceholder(final String placeholder) {
+    public void setPlaceholder(String placeholder) {
         options.setPlaceholder(placeholder);
     }
 
@@ -171,7 +171,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      * @param fontNames customized font names
      * @see SummernoteFontName
      */
-    public void setFontNames(final SummernoteFontName... fontNames) {
+    public void setFontNames(SummernoteFontName... fontNames) {
         JsArrayString array = JavaScriptObject.createArray().cast();
         for (SummernoteFontName fontName : fontNames) {
             array.push(fontName.getName());
@@ -188,7 +188,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param fontNames
      */
-    public void setFontNamesIgnoreCheck(final SummernoteFontName... fontNames) {
+    public void setFontNamesIgnoreCheck(SummernoteFontName... fontNames) {
         JsArrayString array = JavaScriptObject.createArray().cast();
         for (SummernoteFontName fontName : fontNames) {
             array.push(fontName.getName());
@@ -205,7 +205,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param airMode if <code>true</code>, the air mode is turn on
     */
-    public void setAirMode(final boolean airMode) {
+    public void setAirMode(boolean airMode) {
         options.setAirMode(airMode);
     }
 
@@ -216,7 +216,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param shortcuts if <code>false</code>, disable custom shortcuts
      */
-    public void setShortcuts(final boolean shortcuts) {
+    public void setShortcuts(boolean shortcuts) {
         options.setShortcuts(shortcuts);
     }
 
@@ -228,7 +228,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param dialogsInBody if <code>true</code>, place dialogs in &lt;body&gt;
      */
-    public void setDialogsInBody(final boolean dialogsInBody) {
+    public void setDialogsInBody(boolean dialogsInBody) {
         options.setDialogsInBody(dialogsInBody);
     }
 
@@ -240,7 +240,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param dialogsFade if <code>true</code>, turn on dialogs fading effect
      */
-    public void setDialogsFade(final boolean dialogsFade) {
+    public void setDialogsFade(boolean dialogsFade) {
         options.setDialogsFade(dialogsFade);
     }
 
@@ -251,7 +251,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param disableDragAndDrop if <code>true</code>, disable drag and drop
      */
-    public void setDisableDragAndDrop(final boolean disableDragAndDrop) {
+    public void setDisableDragAndDrop(boolean disableDragAndDrop) {
         options.setDisableDragAndDrop(disableDragAndDrop);
     }
 
@@ -271,7 +271,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param language supported editor language
      */
-    public void setLanguage(final SummernoteLanguage language) {
+    public void setLanguage(SummernoteLanguage language) {
         options.setLanguage(language);
         this.language = language;
     }
@@ -286,55 +286,55 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
     }
 
     @Override
-    public HandlerRegistration addSummernoteInitHandler(final SummernoteInitHandler handler) {
+    public HandlerRegistration addSummernoteInitHandler(SummernoteInitHandler handler) {
         hasInitHandler = true;
         return addHandler(handler, SummernoteInitEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSummernoteEnterHandler(final SummernoteEnterHandler handler) {
+    public HandlerRegistration addSummernoteEnterHandler(SummernoteEnterHandler handler) {
         hasEnterHandler = true;
         return addHandler(handler, SummernoteEnterEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSummernoteFocusHandler(final SummernoteFocusHandler handler) {
+    public HandlerRegistration addSummernoteFocusHandler(SummernoteFocusHandler handler) {
         hasFocusHandler = true;
         return addHandler(handler, SummernoteFocusEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSummernoteBlurHandler(final SummernoteBlurHandler handler) {
+    public HandlerRegistration addSummernoteBlurHandler(SummernoteBlurHandler handler) {
         hasBlurHandler = true;
         return addHandler(handler, SummernoteBlurEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSummernoteKeyUpHandler(final SummernoteKeyUpHandler handler) {
+    public HandlerRegistration addSummernoteKeyUpHandler(SummernoteKeyUpHandler handler) {
         hasKeyUpHandler = true;
         return addHandler(handler, SummernoteKeyUpEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSummernoteKeyDownHandler(final SummernoteKeyDownHandler handler) {
+    public HandlerRegistration addSummernoteKeyDownHandler(SummernoteKeyDownHandler handler) {
         hasKeyDownHandler = true;
         return addHandler(handler, SummernoteKeyDownEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSummernotePasteHandler(final SummernotePasteHandler handler) {
+    public HandlerRegistration addSummernotePasteHandler(SummernotePasteHandler handler) {
         hasPasteHandler = true;
         return addHandler(handler, SummernotePasteEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSummernoteImageUploadHandler(final SummernoteImageUploadHandler handler) {
+    public HandlerRegistration addSummernoteImageUploadHandler(SummernoteImageUploadHandler handler) {
         hasUploadImageHandler = true;
         return addHandler(handler, SummernoteImageUploadEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSummernoteChangeHandler(final SummernoteChangeHandler handler) {
+    public HandlerRegistration addSummernoteChangeHandler(SummernoteChangeHandler handler) {
         hasChangeHandler = true;
         return addHandler(handler, SummernoteChangeEvent.getType());
     }
@@ -356,7 +356,7 @@ public class SummernoteBase extends Div implements HasAllSummernoteHandlers, Has
      *
      * @param code
      */
-    public void setCode(final String code) {
+    public void setCode(String code) {
         if (isAttached()) {
             setCode(getElement(), code);
         } else {

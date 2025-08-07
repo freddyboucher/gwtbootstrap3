@@ -28,7 +28,7 @@ import com.google.gwt.user.client.Event;
  */
 public class ChangeMonthEvent extends GwtEvent<ChangeMonthHandler> {
 
-    private static final Type<ChangeMonthHandler> TYPE = new Type<ChangeMonthHandler>();
+    private static final Type<ChangeMonthHandler> TYPE = new Type<>();
 
     private final Event nativeEvent;
 
@@ -36,7 +36,7 @@ public class ChangeMonthEvent extends GwtEvent<ChangeMonthHandler> {
         return TYPE;
     }
 
-    public ChangeMonthEvent(final Event nativeEvent) {
+    public ChangeMonthEvent(Event nativeEvent) {
         this.nativeEvent = nativeEvent;
     }
 
@@ -50,7 +50,7 @@ public class ChangeMonthEvent extends GwtEvent<ChangeMonthHandler> {
     }
 
     @Override
-    protected void dispatch(final ChangeMonthHandler handler) {
+    protected void dispatch(ChangeMonthHandler handler) {
         handler.onChangeMonth(this);
     }
 }

@@ -76,9 +76,9 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
         return radioButton;
     }
 
-    private final IdMixin<SimpleRadioButton> idMixin = new IdMixin<SimpleRadioButton>(this);
-    private final PullMixin<SimpleRadioButton> pullMixin = new PullMixin<SimpleRadioButton>(this);
-    private final EnabledMixin<SimpleRadioButton> enabledMixin = new EnabledMixin<SimpleRadioButton>(this);
+    private final IdMixin<SimpleRadioButton> idMixin = new IdMixin<>(this);
+    private final PullMixin<SimpleRadioButton> pullMixin = new PullMixin<>(this);
+    private final EnabledMixin<SimpleRadioButton> enabledMixin = new EnabledMixin<>(this);
 
     /**
      * Creates a new radio associated with a particular group name. All radio
@@ -127,7 +127,7 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
      * {@inheritDoc}
      */
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         idMixin.setId(id);
     }
 
@@ -143,7 +143,7 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
      * {@inheritDoc}
      */
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
@@ -151,7 +151,7 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
      * {@inheritDoc}
      */
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
@@ -159,7 +159,7 @@ public class SimpleRadioButton extends com.google.gwt.user.client.ui.SimpleRadio
      * {@inheritDoc}
      */
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         pullMixin.setPull(pull);
     }
 

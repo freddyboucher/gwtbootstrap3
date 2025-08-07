@@ -33,7 +33,7 @@ public class BadgeView extends ViewImpl implements BadgePresenter.MyView {
     }
 
     @Inject
-    BadgeView(final Binder uiBinder) {
+    BadgeView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

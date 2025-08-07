@@ -36,7 +36,7 @@ public enum TableType implements Type, Style.HasCssName {
 
     private final String cssClass;
 
-    private TableType(final String cssClass) {
+    TableType(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -45,7 +45,7 @@ public enum TableType implements Type, Style.HasCssName {
         return cssClass;
     }
 
-    public static TableType fromStyleName(final String styleName) {
+    public static TableType fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, TableType.class, DEFAULT);
     }
 }

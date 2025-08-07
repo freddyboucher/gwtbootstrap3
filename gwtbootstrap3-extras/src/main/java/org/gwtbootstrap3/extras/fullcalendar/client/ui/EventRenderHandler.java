@@ -30,5 +30,5 @@ import com.google.gwt.dom.client.Element;
  * @see http://arshaw.com/fullcalendar/docs/event_rendering/eventRender/
  */
 public interface EventRenderHandler {
-    public void render(JavaScriptObject evt, Element ele);
+    void render(JavaScriptObject evt, Element ele);
 }

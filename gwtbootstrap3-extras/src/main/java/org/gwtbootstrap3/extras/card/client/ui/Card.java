@@ -41,7 +41,7 @@ public class Card extends Div {
     }
 
     @Override
-    public void add(final Widget child) {
+    public void add(Widget child) {
         card.add(child);
     }
 }

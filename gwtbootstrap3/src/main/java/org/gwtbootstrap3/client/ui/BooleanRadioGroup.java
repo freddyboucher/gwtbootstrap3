@@ -38,7 +38,7 @@ public class BooleanRadioGroup extends RadioGroupBase<Boolean> {
      * @param name the name.
      */
     @UiConstructor
-    public BooleanRadioGroup(final String name) {
+    public BooleanRadioGroup(String name) {
         super(name, BooleanParser.instance());
     }
 

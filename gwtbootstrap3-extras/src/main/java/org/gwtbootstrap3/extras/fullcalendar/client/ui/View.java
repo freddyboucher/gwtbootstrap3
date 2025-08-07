@@ -34,7 +34,7 @@ public class View {
     /**
      * @param jso
      */
-    public View(final JavaScriptObject jso) {
+    public View(JavaScriptObject jso) {
         view = jso;
     }
 
@@ -85,6 +85,6 @@ public class View {
     }-*/;
 
     public JavaScriptObject toJavaScript() {
-        return this.view;
+        return view;
     }
 }

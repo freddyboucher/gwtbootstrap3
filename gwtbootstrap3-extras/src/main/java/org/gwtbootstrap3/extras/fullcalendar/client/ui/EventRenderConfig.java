@@ -26,7 +26,7 @@ public class EventRenderConfig implements IsJavaScriptObject {
 
     private JavaScriptObject config;
 
-    public EventRenderConfig(final EventRenderHandler callback) {
+    public EventRenderConfig(EventRenderHandler callback) {
         newInstance(callback);
     }
 

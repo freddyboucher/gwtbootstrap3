@@ -38,7 +38,7 @@ public enum SelectionType implements Type {
 
     private final String type;
 
-    private SelectionType(final String type) {
+    SelectionType(String type) {
         this.type = type;
     }
 

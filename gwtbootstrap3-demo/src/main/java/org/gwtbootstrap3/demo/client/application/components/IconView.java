@@ -33,7 +33,7 @@ public class IconView extends ViewImpl implements IconPresenter.MyView {
     }
 
     @Inject
-    IconView(final Binder uiBinder) {
+    IconView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

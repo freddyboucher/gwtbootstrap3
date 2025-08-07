@@ -42,7 +42,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
  */
 public class ListItem extends AbstractListItem implements HasWidgets, HasText, HasClickHandlers {
 
-    private Text text = null;
+    private Text text;
 
     /**
      * Creates a default list item element
@@ -55,14 +55,14 @@ public class ListItem extends AbstractListItem implements HasWidgets, HasText, H
      *
      * @param text desired text for list item
      */
-    public ListItem(final String text) {
+    public ListItem(String text) {
         this();
         setText(text);
     }
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addClickHandler(final ClickHandler handler) {
+    public HandlerRegistration addClickHandler(ClickHandler handler) {
         return addDomHandler(handler, ClickEvent.getType());
     }
 
@@ -86,7 +86,7 @@ public class ListItem extends AbstractListItem implements HasWidgets, HasText, H
 
     /** {@inheritDoc} */
     @Override
-    public void setText(final String text) {
+    public void setText(String text) {
         if (this.text == null) {
             this.text = new Text(text);
             add(this.text);

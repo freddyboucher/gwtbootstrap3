@@ -44,7 +44,7 @@ public class AnimatePresenter extends Presenter<AnimatePresenter.MyView, Animate
     }
 
     @Inject
-    public AnimatePresenter(final EventBus eventBus, final MyView view, final MyProxy proxy) {
+    public AnimatePresenter(EventBus eventBus, MyView view, MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

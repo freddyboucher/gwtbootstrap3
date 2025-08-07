@@ -41,9 +41,9 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Joshua Godi
  */
 public class PanelHeader extends Div implements HasWidgets, HasText, HasDataToggle, HasDataTarget, HasDataParent {
-    private final DataParentMixin<PanelHeader> parentMixin = new DataParentMixin<PanelHeader>(this);
-    private final DataTargetMixin<PanelHeader> targetMixin = new DataTargetMixin<PanelHeader>(this);
-    private final DataToggleMixin<PanelHeader> toggleMixin = new DataToggleMixin<PanelHeader>(this);
+    private final DataParentMixin<PanelHeader> parentMixin = new DataParentMixin<>(this);
+    private final DataTargetMixin<PanelHeader> targetMixin = new DataTargetMixin<>(this);
+    private final DataToggleMixin<PanelHeader> toggleMixin = new DataToggleMixin<>(this);
     private final Text text = new Text();
 
     public PanelHeader() {
@@ -62,18 +62,18 @@ public class PanelHeader extends Div implements HasWidgets, HasText, HasDataTogg
      * {@inheritDoc}
      */
     @Override
-    public void setText(final String text) {
+    public void setText(String text) {
         this.text.setText(text);
         insert(this.text, 0);
     }
 
     @Override
-    public void setDataTargetWidgets(final List<Widget> widgets) {
+    public void setDataTargetWidgets(List<Widget> widgets) {
         targetMixin.setDataTargetWidgets(widgets);
     }
 
     @Override
-    public void setDataTargetWidget(final Widget widget) {
+    public void setDataTargetWidget(Widget widget) {
         targetMixin.setDataTargetWidget(widget);
     }
 
@@ -81,7 +81,7 @@ public class PanelHeader extends Div implements HasWidgets, HasText, HasDataTogg
      * {@inheritDoc}
      */
     @Override
-    public void setDataTarget(final String dataTarget) {
+    public void setDataTarget(String dataTarget) {
         targetMixin.setDataTarget(dataTarget);
     }
 
@@ -97,7 +97,7 @@ public class PanelHeader extends Div implements HasWidgets, HasText, HasDataTogg
      * {@inheritDoc}
      */
     @Override
-    public void setDataToggle(final Toggle toggle) {
+    public void setDataToggle(Toggle toggle) {
         toggleMixin.setDataToggle(toggle);
     }
 
@@ -113,7 +113,7 @@ public class PanelHeader extends Div implements HasWidgets, HasText, HasDataTogg
      * {@inheritDoc}
      */
     @Override
-    public void setDataParent(final String dataParent) {
+    public void setDataParent(String dataParent) {
         parentMixin.setDataParent(dataParent);
     }
 

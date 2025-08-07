@@ -26,7 +26,7 @@ import com.google.gwt.resources.client.TextResource;
 
 public interface NotifyClientBundle extends ClientBundle {
 
-    static final NotifyClientBundle INSTANCE = GWT.create(NotifyClientBundle.class);
+    NotifyClientBundle INSTANCE = GWT.create(NotifyClientBundle.class);
 
     @Source("resource/js/bootstrap-notify-3.1.3.min.cache.js")
     TextResource notifyJS();

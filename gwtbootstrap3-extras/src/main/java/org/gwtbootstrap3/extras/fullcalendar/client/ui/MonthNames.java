@@ -56,16 +56,16 @@ public class MonthNames implements IsJavaScriptObject {
      * @param longNames
      * @param shortNames
      */
-    public void localize(final String[] longNames, final String[] shortNames) {
+    public void localize(String[] longNames, String[] shortNames) {
         assert longNames != null && longNames.length == 12;
         assert shortNames != null && shortNames.length == 12;
-        final JsArrayString longOnes = (JsArrayString) JsArrayString.createArray();
-        for (final String name : longNames) {
+        JsArrayString longOnes = (JsArrayString) JsArrayString.createArray();
+        for (String name : longNames) {
             longOnes.push(name);
         }
 
-        final JsArrayString shortOnes = (JsArrayString) JsArrayString.createArray();
-        for (final String name : shortNames) {
+        JsArrayString shortOnes = (JsArrayString) JsArrayString.createArray();
+        for (String name : shortNames) {
             shortOnes.push(name);
         }
         localize(longOnes, shortOnes);

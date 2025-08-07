@@ -40,15 +40,15 @@ public class Event implements IsJavaScriptObject {
     private static final DateTimeFormat RFC_2822_FORMAT = DateTimeFormat.getFormat(PredefinedFormat.RFC_2822);
     private JavaScriptObject event;
 
-    public Event(final String id, final String title) {
+    public Event(String id, String title) {
         newEvent(id, title, true, true, true);
     }
 
-    public Event(final JavaScriptObject jso) {
+    public Event(JavaScriptObject jso) {
         event = jso;
     }
 
-    public Event(final String id, final String title, final boolean isEditable, final boolean isStartEditable, final boolean isDurationEditable) {
+    public Event(String id, String title, boolean isEditable, boolean isStartEditable, boolean isDurationEditable) {
         newEvent(id, title, isEditable, isStartEditable, isDurationEditable);
     }
 
@@ -88,7 +88,7 @@ public class Event implements IsJavaScriptObject {
         return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.allDay;
     }-*/;
 
-    public void setStart(final Date d) {
+    public void setStart(Date d) {
         if (d != null) {
             setStart(getDateAsISO8601(d));
         }
@@ -99,7 +99,7 @@ public class Event implements IsJavaScriptObject {
         theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start = start;
     }-*/;
 
-    public native void setStart(final JavaScriptObject start) /*-{
+    public native void setStart(JavaScriptObject start) /*-{
         var theInstance = this;
         theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start = start;
     }-*/;
@@ -115,7 +115,7 @@ public class Event implements IsJavaScriptObject {
 
     public Date getStartFromYearMonthDay() {
         Date iso = null;
-        final String isoString = getISOStart();
+        String isoString = getISOStart();
         if (isoString != null && isoString.length() >= 10) {
             iso = DateTimeFormat.getFormat("yyyy-MM-dd").parse(isoString.substring(0, 10));
         }
@@ -131,7 +131,7 @@ public class Event implements IsJavaScriptObject {
 
     }-*/;
 
-    public void setEnd(final Date d) {
+    public void setEnd(Date d) {
         if (d != null) {
             setEnd(getDateAsISO8601(d));
         }
@@ -142,7 +142,7 @@ public class Event implements IsJavaScriptObject {
         theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end = end;
     }-*/;
 
-    public native void setEnd(final JavaScriptObject end) /*-{
+    public native void setEnd(JavaScriptObject end) /*-{
         var theInstance = this;
         theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end = end;
     }-*/;
@@ -165,7 +165,7 @@ public class Event implements IsJavaScriptObject {
 
     public Date getEndFromYearMonthDay() {
         Date iso = null;
-        final String isoString = getISOEnd();
+        String isoString = getISOEnd();
         if (isoString != null && isoString.length() >= 10) {
             iso = DateTimeFormat.getFormat("yyyy-MM-dd").parse(isoString.substring(0, 10));
         }
@@ -309,24 +309,24 @@ public class Event implements IsJavaScriptObject {
         return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.description;
     }-*/;
 
-    public static String getDateAsRFC_2822(final Date d) {
+    public static String getDateAsRFC_2822(Date d) {
         return d == null ? "" : RFC_2822_FORMAT.format(d);
     }
 
-    public static String getDateAsISO8601(final Date d) {
+    public static String getDateAsISO8601(Date d) {
         return d == null ? "" : ISO_8601_FORMAT.format(d);
     }
 
-    public static String getDateAsUnixTimestamp(final Date d) {
+    public static String getDateAsUnixTimestamp(Date d) {
         if (d == null) {
             return "";
         }
-        final int iTimeStamp = (int) (d.getTime() * .001);
+        int iTimeStamp = (int) (d.getTime() * .001);
         return "" + iTimeStamp;
     }
 
     @Override
     public JavaScriptObject toJavaScript() {
-        return this.event;
+        return event;
     }
 }

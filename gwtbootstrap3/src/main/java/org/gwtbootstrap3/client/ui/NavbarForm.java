@@ -38,8 +38,8 @@ public class NavbarForm extends AbstractForm implements HasPull {
     }
 
     @Override
-    public void setPull(final Pull pull) {
-        final NavbarPull navbarPull;
+    public void setPull(Pull pull) {
+        NavbarPull navbarPull;
 
         if (pull == Pull.LEFT) {
             navbarPull = NavbarPull.LEFT;
@@ -52,7 +52,7 @@ public class NavbarForm extends AbstractForm implements HasPull {
 
     @Override
     public Pull getPull() {
-        final NavbarPull navbarPull = NavbarPull.fromStyleName(getStyleName());
+        NavbarPull navbarPull = NavbarPull.fromStyleName(getStyleName());
 
         if (navbarPull == NavbarPull.NONE) {
             return Pull.NONE;

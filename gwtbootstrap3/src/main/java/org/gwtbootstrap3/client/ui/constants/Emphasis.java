@@ -38,7 +38,7 @@ public enum Emphasis implements Style.HasCssName {
 
     private final String cssClass;
 
-    private Emphasis(final String cssClass) {
+    Emphasis(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -47,7 +47,7 @@ public enum Emphasis implements Style.HasCssName {
         return cssClass;
     }
 
-    public static Emphasis fromStyleName(final String styleName) {
+    public static Emphasis fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, Emphasis.class, DEFAULT);
     }
 }

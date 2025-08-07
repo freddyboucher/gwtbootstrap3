@@ -40,9 +40,9 @@ public class SlideStopEvent<T> extends GwtEvent<SlideStopHandler<T>> {
      * @param source the source of the handlers
      * @param value the new slider value
      */
-    public static <T> void fire(final HasSlideStopHandlers<T> source, final T value) {
+    public static <T> void fire(HasSlideStopHandlers<T> source, T value) {
         if (TYPE != null) {
-            SlideStopEvent<T> event = new SlideStopEvent<T>(value);
+            SlideStopEvent<T> event = new SlideStopEvent<>(value);
             source.fireEvent(event);
         }
     }
@@ -54,7 +54,7 @@ public class SlideStopEvent<T> extends GwtEvent<SlideStopHandler<T>> {
      */
     public static Type<SlideStopHandler<?>> getType() {
         if (TYPE == null) {
-            TYPE = new Type<SlideStopHandler<?>>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -66,7 +66,7 @@ public class SlideStopEvent<T> extends GwtEvent<SlideStopHandler<T>> {
     }
 
     @Override
-    protected void dispatch(final SlideStopHandler<T> handler) {
+    protected void dispatch(SlideStopHandler<T> handler) {
         handler.onSlideStop(this);
     }
 
@@ -75,7 +75,7 @@ public class SlideStopEvent<T> extends GwtEvent<SlideStopHandler<T>> {
      *
      * @param value the new slider value
      */
-    protected SlideStopEvent(final T value) {
+    protected SlideStopEvent(T value) {
         this.value = value;
     }
 

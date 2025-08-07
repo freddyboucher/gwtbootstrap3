@@ -30,7 +30,7 @@ import com.google.gwt.user.client.ui.UIObject;
  */
 public class HTMLMixin<T extends UIObject> extends TextMixin<T> {
 
-    public HTMLMixin(final T uiObject) {
+    public HTMLMixin(T uiObject) {
         super(uiObject);
     }
 
@@ -38,7 +38,7 @@ public class HTMLMixin<T extends UIObject> extends TextMixin<T> {
         return uiObject.getElement().getInnerHTML();
     }
 
-    public void setHTML(final String html) {
+    public void setHTML(String html) {
         try {
             uiObject.getElement().setInnerHTML(html);
         } catch (Exception e) {

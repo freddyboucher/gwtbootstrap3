@@ -37,7 +37,7 @@ public enum NotifyUrlTarget implements Type {
 
     private final String target;
 
-    private NotifyUrlTarget(final String target) {
+    NotifyUrlTarget(String target) {
         this.target = target;
     }
 

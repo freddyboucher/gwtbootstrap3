@@ -30,7 +30,6 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
 import com.gwtplatform.mvp.client.proxy.NavigationEvent;
-import com.gwtplatform.mvp.client.proxy.NavigationHandler;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 import org.gwtbootstrap3.client.ui.NavbarCollapse;
 
@@ -53,26 +52,18 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     public static final NestedSlot TYPE_SetMainContent = new NestedSlot();
 
     @Inject
-    ApplicationPresenter(final EventBus eventBus,
-                         final MyView view,
-                         final MyProxy proxy) {
+    ApplicationPresenter(EventBus eventBus,
+                         MyView view,
+                         MyProxy proxy) {
         super(eventBus, view, proxy, RevealType.Root);
 
         // need to reset display because display is not reloaded every time (like conventional web site)
-        eventBus.addHandler(NavigationEvent.getType(), new NavigationHandler() {
-            @Override
-            public void onNavigation(NavigationEvent navigationEvent) {
-                Scheduler.get().scheduleDeferred(new Command() {
-                    @Override
-                    public void execute() {
-                        // Making the window scroll to top on every page change
-                        Window.scrollTo(0, 0);
-                        // and collapse any nav menus
-                        hideNavbarCollapse();
-                    }
-                });
-            }
-        });
+        eventBus.addHandler(NavigationEvent.getType(), navigationEvent -> Scheduler.get().scheduleDeferred((Command) () -> {
+            // Making the window scroll to top on every page change
+            Window.scrollTo(0, 0);
+            // and collapse any nav menus
+            hideNavbarCollapse();
+        }));
     }
 
     private void hideNavbarCollapse() {

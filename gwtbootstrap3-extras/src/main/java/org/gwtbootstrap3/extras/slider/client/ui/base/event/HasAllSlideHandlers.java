@@ -35,31 +35,31 @@ public interface HasAllSlideHandlers<T> extends HasSlideHandlers<T>,
     /**
      * The {@link SlideEvent} name
      */
-    static final String SLIDE_EVENT = "slide";
+    String SLIDE_EVENT = "slide";
 
     /**
      * The {@link SlideStartEvent} name
      */
-    static final String SLIDE_START_EVENT = "slideStart";
+    String SLIDE_START_EVENT = "slideStart";
 
     /**
      * The {@link SlideStopEvent} name
      */
-    static final String SLIDE_STOP_EVENT = "slideStop";
+    String SLIDE_STOP_EVENT = "slideStop";
 
     /**
      * The {@link ValueChangeEvent} name
      */
-    static final String SLIDE_CHANGE_EVENT = "change";
+    String SLIDE_CHANGE_EVENT = "change";
 
     /**
      * The {@link SlideEnabledEvent} name
      */
-    static final String SLIDE_ENABLED_EVENT = "slideEnabled";
+    String SLIDE_ENABLED_EVENT = "slideEnabled";
 
     /**
      * The {@link SlideDisabledEvent} name
      */
-    static final String SLIDE_DISABLED_EVENT = "slideDisabled";
+    String SLIDE_DISABLED_EVENT = "slideDisabled";
 
 }

@@ -44,9 +44,9 @@ public class TooltipPresenter extends Presenter<TooltipPresenter.MyView, Tooltip
     }
 
     @Inject
-    public TooltipPresenter(final EventBus eventBus,
-                            final MyView view,
-                            final MyProxy proxy) {
+    public TooltipPresenter(EventBus eventBus,
+                            MyView view,
+                            MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

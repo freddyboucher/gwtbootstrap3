@@ -29,10 +29,10 @@ import com.google.gwt.resources.client.TextResource;
  */
 public interface SelectClientBundle extends ClientBundle {
 
-    static final SelectClientBundle INSTANCE = GWT.create(SelectClientBundle.class);
+    SelectClientBundle INSTANCE = GWT.create(SelectClientBundle.class);
 
-    static final String VERSION = "1.12.4";
-    static final String I18N_DIR = "resource/js/i18n.cache." + VERSION + "/";
+    String VERSION = "1.12.4";
+    String I18N_DIR = "resource/js/i18n.cache." + VERSION + "/";
 
     @Source("resource/js/bootstrap-select-" + VERSION + ".min.cache.js")
     TextResource select();

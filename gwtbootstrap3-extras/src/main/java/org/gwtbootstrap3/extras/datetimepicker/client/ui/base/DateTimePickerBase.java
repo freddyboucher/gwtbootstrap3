@@ -86,7 +86,6 @@ import com.google.gwt.editor.client.EditorError;
 import com.google.gwt.editor.client.HasEditorErrors;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.event.dom.client.BlurEvent;
-import com.google.gwt.event.dom.client.BlurHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -110,7 +109,7 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     static class DatePickerValidatorMixin extends BlankValidatorMixin<DateTimePickerBase, Date> {
 
-        private boolean showing = false;
+        private boolean showing;
 
         public void setShowing(boolean showing) {
             this.showing = showing;
@@ -122,19 +121,14 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
         @Override
         protected com.google.web.bindery.event.shared.HandlerRegistration setupBlurValidation() {
-            return getInputWidget().addDomHandler(new BlurHandler() {
-                @Override
-                public void onBlur(BlurEvent event) {
-                    getInputWidget().validate(!showing && getValidateOnBlur());
-                }
-            }, BlurEvent.getType());
+            return getInputWidget().addDomHandler(event -> getInputWidget().validate(!showing && getValidateOnBlur()), BlurEvent.getType());
         }
 
     }
 
     // Check http://www.gwtproject.org/javadoc/latest/com/google/gwt/i18n/client/DateTimeFormat.html
     // for more information on syntax
-    private static final Map<Character, Character> DATE_TIME_FORMAT_MAP = new HashMap<Character, Character>();
+    private static final Map<Character, Character> DATE_TIME_FORMAT_MAP = new HashMap<>();
     static {
         DATE_TIME_FORMAT_MAP.put('h', 'H'); // 12/24 hours
         DATE_TIME_FORMAT_MAP.put('H', 'h'); // 12/24 hours
@@ -148,7 +142,7 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
     private DateTimeFormat dateTimeFormat;
     private final DateTimeFormat startEndDateFormat = DateTimeFormat.getFormat("yyyy-MM-dd");
     private LeafValueEditor<Date> editor;
-    private final ErrorHandlerMixin<Date> errorHandlerMixin = new ErrorHandlerMixin<Date>(this);
+    private final ErrorHandlerMixin<Date> errorHandlerMixin = new ErrorHandlerMixin<>(this);
     private final DatePickerValidatorMixin validatorMixin = new DatePickerValidatorMixin(this,
                                                                                          errorHandlerMixin.getErrorHandler());
 
@@ -159,18 +153,18 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
     private DateTimePickerFormatViewType formatViewType = DateTimePickerFormatViewType.DATE_TIME;
     private DateTimePickerDayOfWeek weekStart = DateTimePickerDayOfWeek.SUNDAY;
     private DateTimePickerDayOfWeek[] daysOfWeekDisabled = {};
-    private boolean autoClose = false;
+    private boolean autoClose;
     private DateTimePickerView startView = DateTimePickerView.MONTH;
     private DateTimePickerView minView = DateTimePickerView.HOUR;
     private DateTimePickerView maxView = DateTimePickerView.DECADE;
-    private boolean showTodayButton = false;
-    private boolean showClearButton = false;
-    private boolean highlightToday = false;
+    private boolean showTodayButton;
+    private boolean showClearButton;
+    private boolean highlightToday;
     private boolean keyboardNavigation = true;
     private boolean forceParse = true;
     private int minuteStep = 5;
     private DateTimePickerView viewSelect = DateTimePickerView.HOUR;
-    private boolean showMeridian = false;
+    private boolean showMeridian;
     private DateTimePickerLanguage language = DateTimePickerLanguage.EN;
     private DateTimePickerPosition position = DateTimePickerPosition.BOTTOM_RIGHT;
 
@@ -184,13 +178,13 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
         return textBox;
     }
 
-    public void setAlignment(final ValueBoxBase.TextAlignment align) {
+    public void setAlignment(ValueBoxBase.TextAlignment align) {
         textBox.setAlignment(align);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setPlaceholder(final String placeHolder) {
+    public void setPlaceholder(String placeHolder) {
         textBox.setPlaceholder(placeHolder);
     }
 
@@ -200,7 +194,7 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
         return textBox.getPlaceholder();
     }
 
-    public void setReadOnly(final boolean readOnly) {
+    public void setReadOnly(boolean readOnly) {
         textBox.setReadOnly(readOnly);
     }
 
@@ -217,13 +211,13 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     /** {@inheritDoc} */
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         textBox.setEnabled(enabled);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         textBox.setId(id);
     }
 
@@ -235,7 +229,7 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     /** {@inheritDoc} */
     @Override
-    public void setName(final String name) {
+    public void setName(String name) {
         textBox.setName(name);
     }
 
@@ -247,19 +241,19 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     /** {@inheritDoc} */
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setLanguage(final DateTimePickerLanguage language) {
+    public void setLanguage(DateTimePickerLanguage language) {
         this.language = language;
 
         // Inject the JS for the language
@@ -277,7 +271,7 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     /** {@inheritDoc} */
     @Override
-    public void setPosition(final DateTimePickerPosition position) {
+    public void setPosition(DateTimePickerPosition position) {
         this.position = position;
     }
 
@@ -310,26 +304,26 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     /** {@inheritDoc} */
     @Override
-    public void setAutoClose(final boolean autoClose) {
+    public void setAutoClose(boolean autoClose) {
         this.autoClose = autoClose;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onShow(final Event e) {
+    public void onShow(Event e) {
         validatorMixin.setShowing(true);
         fireEvent(new ShowEvent(e));
     }
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addShowHandler(final ShowHandler showHandler) {
+    public HandlerRegistration addShowHandler(ShowHandler showHandler) {
         return addHandler(showHandler, ShowEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onHide(final Event e) {
+    public void onHide(Event e) {
         validatorMixin.setShowing(false);
         validate(getValidateOnBlur());
         fireEvent(new HideEvent(e));
@@ -337,76 +331,76 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addHideHandler(final HideHandler hideHandler) {
+    public HandlerRegistration addHideHandler(HideHandler hideHandler) {
         return addHandler(hideHandler, HideEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onChangeDate(final Event e) {
+    public void onChangeDate(Event e) {
         fireEvent(new ChangeDateEvent(e));
-        ValueChangeEvent.fire(DateTimePickerBase.this, getValue());
+        ValueChangeEvent.fire(this, getValue());
         hide();
     }
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addChangeDateHandler(final ChangeDateHandler changeDateHandler) {
+    public HandlerRegistration addChangeDateHandler(ChangeDateHandler changeDateHandler) {
         return addHandler(changeDateHandler, ChangeDateEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onChangeYear(final Event e) {
+    public void onChangeYear(Event e) {
         fireEvent(new ChangeYearEvent(e));
     }
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addChangeYearHandler(final ChangeYearHandler changeYearHandler) {
+    public HandlerRegistration addChangeYearHandler(ChangeYearHandler changeYearHandler) {
         return addHandler(changeYearHandler, ChangeYearEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onChangeMonth(final Event e) {
+    public void onChangeMonth(Event e) {
         fireEvent(new ChangeMonthEvent(e));
     }
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addChangeMonthHandler(final ChangeMonthHandler changeMonthHandler) {
+    public HandlerRegistration addChangeMonthHandler(ChangeMonthHandler changeMonthHandler) {
         return addHandler(changeMonthHandler, ChangeMonthEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onOutOfRange(final Event e) {
+    public void onOutOfRange(Event e) {
         fireEvent(new OutOfRangeEvent(e));
     }
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addOutOfRangeHandler(final OutOfRangeHandler outOfRangeHandler) {
+    public HandlerRegistration addOutOfRangeHandler(OutOfRangeHandler outOfRangeHandler) {
         return addHandler(outOfRangeHandler, OutOfRangeEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setDaysOfWeekDisabled(final DateTimePickerDayOfWeek... daysOfWeekDisabled) {
+    public void setDaysOfWeekDisabled(DateTimePickerDayOfWeek... daysOfWeekDisabled) {
         setDaysOfWeekDisabled(getElement(), toDaysOfWeekDisabledString(daysOfWeekDisabled));
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setEndDate(final Date endDate) {
+    public void setEndDate(Date endDate) {
         // Has to be in the format YYYY-MM-DD
         setEndDate(startEndDateFormat.format(endDate));
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setEndDate(final String endDate) {
+    public void setEndDate(String endDate) {
         // Has to be in the format YYYY-MM-DD
         setEndDate(getElement(), endDate);
     }
@@ -419,32 +413,32 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     /** {@inheritDoc} */
     @Override
-    public void setForceParse(final boolean forceParse) {
+    public void setForceParse(boolean forceParse) {
         this.forceParse = forceParse;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setHighlightToday(final boolean highlightToday) {
+    public void setHighlightToday(boolean highlightToday) {
         this.highlightToday = highlightToday;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setHasKeyboardNavigation(final boolean hasKeyboardNavigation) {
-        this.keyboardNavigation = hasKeyboardNavigation;
+    public void setHasKeyboardNavigation(boolean hasKeyboardNavigation) {
+        keyboardNavigation = hasKeyboardNavigation;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setMaxView(final DateTimePickerView dateTimePickerView) {
-        this.maxView = dateTimePickerView;
+    public void setMaxView(DateTimePickerView dateTimePickerView) {
+        maxView = dateTimePickerView;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setMinView(final DateTimePickerView dateTimePickerView) {
-        this.minView = dateTimePickerView;
+    public void setMinView(DateTimePickerView dateTimePickerView) {
+        minView = dateTimePickerView;
 
         // We keep the view select the same as the min view
         if (viewSelect != minView) {
@@ -454,39 +448,39 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     /** {@inheritDoc} */
     @Override
-    public void setMinuteStep(final int minuteStep) {
+    public void setMinuteStep(int minuteStep) {
         this.minuteStep = minuteStep;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setShowMeridian(final boolean showMeridian) {
+    public void setShowMeridian(boolean showMeridian) {
         this.showMeridian = showMeridian;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setShowTodayButton(final boolean showTodayButton) {
+    public void setShowTodayButton(boolean showTodayButton) {
         this.showTodayButton = showTodayButton;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setShowClearButton(final boolean showClearButton) {
+    public void setShowClearButton(boolean showClearButton) {
         this.showClearButton = showClearButton;
     }
 
 
     /** {@inheritDoc} */
     @Override
-    public void setStartDate(final Date startDate) {
+    public void setStartDate(Date startDate) {
         // Has to be in the format YYYY-MM-DD
         setStartDate(startEndDateFormat.format(startDate));
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setStartDate(final String startDate) {
+    public void setStartDate(String startDate) {
         // Has to be in the format YYYY-MM-DD
         setStartDate(getElement(), startDate);
     }
@@ -499,14 +493,14 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     /** {@inheritDoc} */
     @Override
-    public void setStartView(final DateTimePickerView dateTimePickerView) {
-        this.startView = dateTimePickerView;
+    public void setStartView(DateTimePickerView dateTimePickerView) {
+        startView = dateTimePickerView;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setViewSelect(final DateTimePickerView dateTimePickerView) {
-        this.viewSelect = dateTimePickerView;
+    public void setViewSelect(DateTimePickerView dateTimePickerView) {
+        viewSelect = dateTimePickerView;
 
         // We keep the min view the same as the view select
         if (viewSelect != minView) {
@@ -516,7 +510,7 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     /** {@inheritDoc} */
     @Override
-    public void setWeekStart(final DateTimePickerDayOfWeek weekStart) {
+    public void setWeekStart(DateTimePickerDayOfWeek weekStart) {
         this.weekStart = weekStart;
     }
 
@@ -526,7 +520,7 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
      * @param format date time format using GWT notation
      * @return date time format using bootstrap notation
      */
-    private static String toBootstrapDateFormat(final String format) {
+    private static String toBootstrapDateFormat(String format) {
         String bootstrap_format = format;
 
         // Replace long day name "EEEE" with "DD"
@@ -568,14 +562,14 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
      *
      * @param format date time format in GWT notation
      */
-    public void setGWTFormat(final String format) {
+    public void setGWTFormat(String format) {
         this.format = toBootstrapDateFormat(format);
 
         // Get the old value
-        final Date oldValue = getValue();
+        Date oldValue = getValue();
 
         // Make the new DateTimeFormat
-        this.dateTimeFormat = DateTimeFormat.getFormat(format);
+        dateTimeFormat = DateTimeFormat.getFormat(format);
 
         if (oldValue != null) {
             setValue(oldValue);
@@ -584,11 +578,11 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     /** {@inheritDoc} */
     @Override
-    public void setFormat(final String format) {
+    public void setFormat(String format) {
         this.format = format;
 
         // Get the old value
-        final Date oldValue = getValue();
+        Date oldValue = getValue();
 
         // Make the new DateTimeFormat
         setDateTimeFormat(format);
@@ -598,15 +592,15 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
         }
     }
 
-    private void setDateTimeFormat(final String format) {
-        final StringBuilder fb = new StringBuilder(format);
+    private void setDateTimeFormat(String format) {
+        StringBuilder fb = new StringBuilder(format);
         for (int i = 0; i < fb.length(); i++) {
             if (DATE_TIME_FORMAT_MAP.containsKey(fb.charAt(i))) {
                 fb.setCharAt(i, DATE_TIME_FORMAT_MAP.get(fb.charAt(i)));
             }
         }
 
-        this.dateTimeFormat = DateTimeFormat.getFormat(fb.toString());
+        dateTimeFormat = DateTimeFormat.getFormat(fb.toString());
     }
 
     /**
@@ -625,7 +619,7 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
     public Date getValue() {
         try {
             return dateTimeFormat != null && textBox.getValue() != null ? dateTimeFormat.parse(textBox.getValue()) : null;
-        } catch (final Exception e) {
+        } catch (Exception e) {
             return null;
         }
     }
@@ -636,31 +630,26 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addValueChangeHandler(final ValueChangeHandler<Date> dateValueChangeHandler) {
-        textBox.addValueChangeHandler(new ValueChangeHandler<String>() {
-            @Override
-            public void onValueChange(ValueChangeEvent<String> event) {
-                ValueChangeEvent.fire(DateTimePickerBase.this, getValue());
-            }
-        });
+    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Date> dateValueChangeHandler) {
+        textBox.addValueChangeHandler(event -> ValueChangeEvent.fire(this, getValue()));
         return addHandler(dateValueChangeHandler, ValueChangeEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setValue(final Date value) {
+    public void setValue(Date value) {
         setValue(value, false);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setValue(final Date value, final boolean fireEvents) {
+    public void setValue(Date value, boolean fireEvents) {
         errorHandlerMixin.clearErrors();
         textBox.setValue(value != null ? dateTimeFormat.format(value) : null);
         update(textBox.getElement());
 
         if (fireEvents) {
-            ValueChangeEvent.fire(DateTimePickerBase.this, value);
+            ValueChangeEvent.fire(this, value);
         }
     }
 
@@ -682,14 +671,14 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
         getElement().setAttribute("data-date-format", format);
 
         // If configuring not for the first time, datetimepicker must be removed first.
-        this.remove(getElement());
+        remove(getElement());
 
         configure(getElement(), format, formatViewType.getValue(), weekStart.getValue(), toDaysOfWeekDisabledString(daysOfWeekDisabled),
                   autoClose, startView.getValue(), minView.getValue(), maxView.getValue(), showTodayButton, showClearButton, highlightToday,
                   keyboardNavigation, forceParse, minuteStep, viewSelect.getValue(), showMeridian, language.getCode(), position.getPosition());
     }
 
-    protected void execute(final String cmd) {
+    protected void execute(String cmd) {
         execute(getElement(), cmd);
     }
 
@@ -769,14 +758,14 @@ public class DateTimePickerBase extends Widget implements HasEnabled, HasReadOnl
             });
     }-*/;
 
-    protected String toDaysOfWeekDisabledString(final DateTimePickerDayOfWeek... dateTimePickerDayOfWeeks) {
-        this.daysOfWeekDisabled = dateTimePickerDayOfWeeks;
+    protected String toDaysOfWeekDisabledString(DateTimePickerDayOfWeek... dateTimePickerDayOfWeeks) {
+        daysOfWeekDisabled = dateTimePickerDayOfWeeks;
 
-        final StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
         if (dateTimePickerDayOfWeeks != null) {
             int i = 0;
-            for (final DateTimePickerDayOfWeek dayOfWeek : dateTimePickerDayOfWeeks) {
+            for (DateTimePickerDayOfWeek dayOfWeek : dateTimePickerDayOfWeeks) {
                 builder.append(dayOfWeek.getValue());
 
                 i++;

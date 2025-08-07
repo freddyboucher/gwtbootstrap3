@@ -22,22 +22,13 @@ package org.gwtbootstrap3.client.ui.impl;
 
 import org.gwtbootstrap3.client.ui.SimpleRadioButton;
 
-import com.google.gwt.event.dom.client.ChangeEvent;
-import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 
 public class SimpleRadioButtonImpl {
 
-    public void ensureDomEventHandlers(final SimpleRadioButton simpleRadioButton) {
-        simpleRadioButton.addChangeHandler(new ChangeHandler() {
-
-            @Override
-            public void onChange(ChangeEvent event) {
-                ValueChangeEvent.fire(simpleRadioButton,
-                        simpleRadioButton.getValue());
-            }
-
-        });
+    public void ensureDomEventHandlers(SimpleRadioButton simpleRadioButton) {
+        simpleRadioButton.addChangeHandler(event -> ValueChangeEvent.fire(simpleRadioButton,
+                simpleRadioButton.getValue()));
     }
 
 }

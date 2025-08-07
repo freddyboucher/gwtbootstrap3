@@ -40,14 +40,14 @@ public class RadioGroupBlankValidatorMixin<W extends RadioGroupBase<V>, V> exten
      * @param inputWidget the input widget
      * @param errorHandler the error handler
      */
-    public RadioGroupBlankValidatorMixin(final W inputWidget, final ErrorHandler errorHandler) {
+    public RadioGroupBlankValidatorMixin(W inputWidget, ErrorHandler errorHandler) {
         super(inputWidget, errorHandler);
     }
 
     /** {@inheritDoc} */
     @Override
     protected BlankValidator<V> createBlankValidator() {
-        return new RadioGroupBlankValidator<V>(getInputWidget());
+        return new RadioGroupBlankValidator<>(getInputWidget());
     }
 
 }

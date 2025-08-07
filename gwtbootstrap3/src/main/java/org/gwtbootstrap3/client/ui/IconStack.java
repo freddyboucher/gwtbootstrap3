@@ -48,13 +48,13 @@ public class IconStack extends ComplexPanel implements HasSize<IconSize>, HasRes
      * @param icon Icon
      * @param base Bottom icon or not
      */
-    public void add(final Icon icon, final boolean base) {
+    public void add(Icon icon, boolean base) {
         icon.setStackBase(base);
         add(icon);
     }
 
     @Override
-    public void add(final Widget child) {
+    public void add(Widget child) {
         if (!(child instanceof Icon)) {
             throw new IllegalArgumentException("An IconStack can only have children that are of type Icon.");
         }
@@ -63,12 +63,12 @@ public class IconStack extends ComplexPanel implements HasSize<IconSize>, HasRes
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 

@@ -26,7 +26,7 @@ import org.gwtbootstrap3.client.ui.constants.InputType;
  * @author Joshua Godi
  */
 public interface HasInputType {
-    public static final String TYPE = "type";
+    String TYPE = "type";
 
     void setType(InputType inputType);
 

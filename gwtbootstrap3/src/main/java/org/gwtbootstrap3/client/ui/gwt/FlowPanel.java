@@ -40,12 +40,12 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implements HasDataSpy, HasId, HasDataTarget, HasResponsiveness {
 
-    private final DataSpyMixin<FlowPanel> spyMixin = new DataSpyMixin<FlowPanel>(this);
-    private final IdMixin<FlowPanel> idMixin = new IdMixin<FlowPanel>(this);
-    private final DataTargetMixin<FlowPanel> targetMixin = new DataTargetMixin<FlowPanel>(this);
+    private final DataSpyMixin<FlowPanel> spyMixin = new DataSpyMixin<>(this);
+    private final IdMixin<FlowPanel> idMixin = new IdMixin<>(this);
+    private final DataTargetMixin<FlowPanel> targetMixin = new DataTargetMixin<>(this);
 
     @Override
-    public void setDataSpy(final Spy spy) {
+    public void setDataSpy(Spy spy) {
         spyMixin.setDataSpy(spy);
     }
 
@@ -55,17 +55,17 @@ public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implement
     }
 
     @Override
-    public void setDataTargetWidgets(final List<Widget> widgets) {
+    public void setDataTargetWidgets(List<Widget> widgets) {
         targetMixin.setDataTargetWidgets(widgets);
     }
 
     @Override
-    public void setDataTargetWidget(final Widget widget) {
+    public void setDataTargetWidget(Widget widget) {
         targetMixin.setDataTargetWidget(widget);
     }
 
     @Override
-    public void setDataTarget(final String dataTarget) {
+    public void setDataTarget(String dataTarget) {
         targetMixin.setDataTarget(dataTarget);
     }
 
@@ -75,7 +75,7 @@ public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implement
     }
 
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         idMixin.setId(id);
     }
 
@@ -85,12 +85,12 @@ public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implement
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 }

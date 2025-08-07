@@ -70,7 +70,7 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
      * @return <code>true</code> if the option is selected
      */
     public boolean isSelected() {
-        return isDivider() ? false : getSelectElement().isSelected();
+        return !isDivider() && getSelectElement().isSelected();
     }
 
     /**
@@ -79,11 +79,11 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
      * @param selected
      */
     public void setSelected(boolean selected) {
-        getSelectElement().setSelected(isDivider() ? false : selected);
+        getSelectElement().setSelected(!isDivider() && selected);
     }
 
     @Override
-    public void setName(final String name) {
+    public void setName(String name) {
         if (name != null)
             attrMixin.setAttribute(NAME, name);
         else
@@ -97,7 +97,7 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
     }
 
     @Override
-    public void setValue(final String value) {
+    public void setValue(String value) {
         if (value != null)
             attrMixin.setAttribute(VALUE, value);
         else
@@ -120,7 +120,7 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
     }
 
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         enabledMixin.setEnabled(enabled);
     }
 
@@ -129,7 +129,7 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
      *
      * @param tokens
      */
-    public void setTokens(final String tokens) {
+    public void setTokens(String tokens) {
         if (tokens != null)
             attrMixin.setAttribute(TOKENS, tokens);
         else
@@ -151,7 +151,7 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
      *
      * @param divider
      */
-    public void setDivider(final boolean divider) {
+    public void setDivider(boolean divider) {
         if (divider)
             attrMixin.setAttribute(DIVIDER, Boolean.toString(true));
         else
@@ -172,7 +172,7 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
      *
      * @param subtext
      */
-    public void setSubtext(final String subtext) {
+    public void setSubtext(String subtext) {
         if (subtext != null)
             attrMixin.setAttribute(SUBTEXT, subtext);
         else
@@ -194,7 +194,7 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
      *
      * @param iconType
      */
-    public void setIcon(final IconType iconType) {
+    public void setIcon(IconType iconType) {
         if (iconType != null)
             attrMixin.setAttribute(ICON, iconType.getCssName());
         else
@@ -215,7 +215,7 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
      *
      * @param content
      */
-    public void setContent(final String content) {
+    public void setContent(String content) {
         if (content != null)
             attrMixin.setAttribute(CONTENT, content);
         else
@@ -239,7 +239,7 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
      *
      * @param hidden
      */
-    public void setHidden(final boolean hidden) {
+    public void setHidden(boolean hidden) {
         if (hidden)
             attrMixin.setAttribute(HIDDEN, Boolean.toString(true));
         else

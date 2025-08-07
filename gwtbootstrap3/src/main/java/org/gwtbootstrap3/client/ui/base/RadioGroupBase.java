@@ -63,16 +63,16 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
 public class RadioGroupBase<T> extends FlowPanel implements HasName, HasValue<T>, LeafValueEditor<T>,
         HasEditorErrors<T>, HasErrorHandler, HasValidators<T>, HasBlankValidator<T> {
 
-    private final ErrorHandlerMixin<T> errorHandlerMixin = new ErrorHandlerMixin<T>(this);
+    private final ErrorHandlerMixin<T> errorHandlerMixin = new ErrorHandlerMixin<>(this);
 
-    private String name = null;
+    private String name;
 
     private final Parser<T> parser;
 
-    private final BlankValidatorMixin<RadioGroupBase<T>, T> validatorMixin = new RadioGroupBlankValidatorMixin<RadioGroupBase<T>, T>(
+    private final BlankValidatorMixin<RadioGroupBase<T>, T> validatorMixin = new RadioGroupBlankValidatorMixin<>(
             this, errorHandlerMixin.getErrorHandler());
 
-    private final Map<Radio, HandlerRegistration> valueChangedRegistrations = new HashMap<Radio, HandlerRegistration>();
+    private final Map<Radio, HandlerRegistration> valueChangedRegistrations = new HashMap<>();
 
     /**
      * Constructor.
@@ -80,32 +80,31 @@ public class RadioGroupBase<T> extends FlowPanel implements HasName, HasValue<T>
      * @param name the name
      * @param parser the parser
      */
-    public RadioGroupBase(final String name, final Parser<T> parser) {
-        super();
+    public RadioGroupBase(String name, Parser<T> parser) {
         this.name = name;
         this.parser = parser;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void add(final Widget w) {
+    public void add(Widget w) {
         super.add(w);
         updateChildren();
     }
 
     @Override
-    public HandlerRegistration addValidationChangedHandler(final ValidationChangedHandler handler) {
+    public HandlerRegistration addValidationChangedHandler(ValidationChangedHandler handler) {
         return validatorMixin.addValidationChangedHandler(handler);
     }
 
     @Override
-    public void addValidator(final Validator<T> validator) {
+    public void addValidator(Validator<T> validator) {
         validatorMixin.addValidator(validator);
     }
 
     /** {@inheritDoc} */
     @Override
-    public com.google.gwt.event.shared.HandlerRegistration addValueChangeHandler(final ValueChangeHandler<T> handler) {
+    public com.google.gwt.event.shared.HandlerRegistration addValueChangeHandler(ValueChangeHandler<T> handler) {
         return addHandler(handler, ValueChangeEvent.getType());
     }
 
@@ -153,10 +152,10 @@ public class RadioGroupBase<T> extends FlowPanel implements HasName, HasValue<T>
      * @param c the current children
      * @return the radio children
      */
-    protected Set<Radio> getRadioChildren(final Widget widget, final Set<Radio> c) {
+    protected Set<Radio> getRadioChildren(Widget widget, Set<Radio> c) {
         Set<Radio> children = c;
         if (children == null) {
-            children = new HashSet<Radio>();
+            children = new HashSet<>();
         }
         if (widget instanceof Radio) {
             children.add((Radio) widget);
@@ -187,7 +186,7 @@ public class RadioGroupBase<T> extends FlowPanel implements HasName, HasValue<T>
             if (child.getValue()) {
                 try {
                     return parser.parse(child.getFormValue());
-                } catch (ParseException e) {
+                } catch (ParseException ignored) {
                 }
             }
         }
@@ -196,21 +195,21 @@ public class RadioGroupBase<T> extends FlowPanel implements HasName, HasValue<T>
 
     /** {@inheritDoc} */
     @Override
-    public void insert(final IsWidget w, final int beforeIndex) {
+    public void insert(IsWidget w, int beforeIndex) {
         super.insert(w, beforeIndex);
         updateChildren();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void insert(final Widget w, final int beforeIndex) {
+    public void insert(Widget w, int beforeIndex) {
         super.insert(w, beforeIndex);
         updateChildren();
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean removeValidator(final Validator<T> validator) {
+    public boolean removeValidator(Validator<T> validator) {
         return validatorMixin.removeValidator(validator);
     }
 
@@ -223,70 +222,65 @@ public class RadioGroupBase<T> extends FlowPanel implements HasName, HasValue<T>
 
     /** {@inheritDoc} */
     @Override
-    public void setAllowBlank(final boolean allowBlank) {
+    public void setAllowBlank(boolean allowBlank) {
         validatorMixin.setAllowBlank(allowBlank);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setErrorHandler(final ErrorHandler handler) {
+    public void setErrorHandler(ErrorHandler handler) {
         errorHandlerMixin.setErrorHandler(handler);
         validatorMixin.setErrorHandler(handler);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setErrorHandlerType(final ErrorHandlerType type) {
+    public void setErrorHandlerType(ErrorHandlerType type) {
         errorHandlerMixin.setErrorHandlerType(type);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setName(final String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
     @Override
-    public void setValidateOnBlur(final boolean validateOnBlur) {
+    public void setValidateOnBlur(boolean validateOnBlur) {
         validatorMixin.setValidateOnBlur(validateOnBlur);
     }
 
     @Override
-    public void setValidators(@SuppressWarnings("unchecked") final Validator<T>... validators) {
+    public void setValidators(@SuppressWarnings("unchecked") Validator<T>... validators) {
         validatorMixin.setValidators(validators);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setValue(final T value) {
+    public void setValue(T value) {
         setValue(value, false);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setValue(final T value, final boolean fireEvents) {
+    public void setValue(T value, boolean fireEvents) {
         for (Radio child : getRadioChildren()) {
             try {
                 if (value != null && value.equals(parser.parse(child.getFormValue()))) {
                     child.setValue(true, fireEvents);
                 }
-            } catch (ParseException e) {
+            } catch (ParseException ignored) {
             }
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void showErrors(final List<EditorError> errors) {
+    public void showErrors(List<EditorError> errors) {
         errorHandlerMixin.showErrors(errors);
     }
 
-    private ValueChangeHandler<Boolean> changeHandler = new ValueChangeHandler<Boolean>() {
-        @Override
-        public void onValueChange(ValueChangeEvent<Boolean> event) {
-            ValueChangeEvent.fire(RadioGroupBase.this, getValue());
-        }
-    };
+    private ValueChangeHandler<Boolean> changeHandler = event -> ValueChangeEvent.fire(this, getValue());
 
     /**
      * Update the radio children names.
@@ -309,7 +303,7 @@ public class RadioGroupBase<T> extends FlowPanel implements HasName, HasValue<T>
 
     /** {@inheritDoc} */
     @Override
-    public boolean validate(final boolean show) {
+    public boolean validate(boolean show) {
         return validatorMixin.validate(show);
     }
 

@@ -42,12 +42,12 @@ public class ButtonsView extends ViewImpl implements ButtonsPresenter.MyView {
     Button button;
 
     @Inject
-    ButtonsView(final Binder uiBinder) {
+    ButtonsView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 
     @UiHandler("button")
-    public void onButtonClick(final ClickEvent event) {
+    public void onButtonClick(ClickEvent event) {
         button.state().loading();
 
         new Timer() {

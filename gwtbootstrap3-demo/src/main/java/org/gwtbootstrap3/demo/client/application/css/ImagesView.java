@@ -33,7 +33,7 @@ public class ImagesView extends ViewImpl implements ImagesPresenter.MyView {
     }
 
     @Inject
-    ImagesView(final Binder uiBinder) {
+    ImagesView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

@@ -44,17 +44,17 @@ import com.google.gwt.user.client.ui.HasEnabled;
 public abstract class AbstractListItem extends ComplexWidget implements HasEnabled, HasPull, HasActive,
         HasResponsiveness, HasId {
 
-    private final ActiveMixin<AbstractListItem> activeMixin = new ActiveMixin<AbstractListItem>(this);
-    private final PullMixin<AbstractListItem> pullMixin = new PullMixin<AbstractListItem>(this);
-    private final IdMixin<AbstractListItem> idMixin = new IdMixin<AbstractListItem>(this);
-    private final EnabledMixin<AbstractListItem> enabledMixin = new EnabledMixin<AbstractListItem>(this);
+    private final ActiveMixin<AbstractListItem> activeMixin = new ActiveMixin<>(this);
+    private final PullMixin<AbstractListItem> pullMixin = new PullMixin<>(this);
+    private final IdMixin<AbstractListItem> idMixin = new IdMixin<>(this);
+    private final EnabledMixin<AbstractListItem> enabledMixin = new EnabledMixin<>(this);
 
     protected AbstractListItem() {
         setElement(Document.get().createLIElement());
     }
 
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         enabledMixin.setEnabled(enabled);
     }
 
@@ -64,7 +64,7 @@ public abstract class AbstractListItem extends ComplexWidget implements HasEnabl
     }
 
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         pullMixin.setPull(pull);
     }
 
@@ -74,7 +74,7 @@ public abstract class AbstractListItem extends ComplexWidget implements HasEnabl
     }
 
     @Override
-    public void setActive(final boolean active) {
+    public void setActive(boolean active) {
         activeMixin.setActive(active);
     }
 
@@ -84,17 +84,17 @@ public abstract class AbstractListItem extends ComplexWidget implements HasEnabl
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         idMixin.setId(id);
     }
 

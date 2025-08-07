@@ -20,8 +20,6 @@ package org.gwtbootstrap3.demo.client.application.css;
  * #L%
  */
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
@@ -50,35 +48,15 @@ public class FormsView extends ViewImpl implements FormsPresenter.MyView {
     }
 
     @Inject
-    FormsView(final Binder uiBinder) {
+    FormsView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
 
-        none.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(final ClickEvent event) {
-                formGroup.setValidationState(ValidationState.NONE);
-            }
-        });
+        none.addClickHandler(event -> formGroup.setValidationState(ValidationState.NONE));
 
-        success.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(final ClickEvent event) {
-                formGroup.setValidationState(ValidationState.SUCCESS);
-            }
-        });
+        success.addClickHandler(event -> formGroup.setValidationState(ValidationState.SUCCESS));
 
-        warning.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(final ClickEvent event) {
-                formGroup.setValidationState(ValidationState.WARNING);
-            }
-        });
+        warning.addClickHandler(event -> formGroup.setValidationState(ValidationState.WARNING));
 
-        error.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(final ClickEvent event) {
-                formGroup.setValidationState(ValidationState.ERROR);
-            }
-        });
+        error.addClickHandler(event -> formGroup.setValidationState(ValidationState.ERROR));
     }
 }

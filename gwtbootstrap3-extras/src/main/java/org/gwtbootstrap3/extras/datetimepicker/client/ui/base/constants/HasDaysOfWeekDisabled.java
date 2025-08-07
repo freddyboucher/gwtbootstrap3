@@ -27,7 +27,7 @@ package org.gwtbootstrap3.extras.datetimepicker.client.ui.base.constants;
  * Multiple values should be comma-separated. Example: disable weekends: SUNDAY, MONDAY.
  *
  * @author Joshua Godi
- * @see org.gwtbootstrap3.extras.datetimepicker.client.ui.base.constants.DateTimePickerDayOfWeek
+ * @see DateTimePickerDayOfWeek
  */
 public interface HasDaysOfWeekDisabled {
     void setDaysOfWeekDisabled(DateTimePickerDayOfWeek... daysOfWeekDisabled);

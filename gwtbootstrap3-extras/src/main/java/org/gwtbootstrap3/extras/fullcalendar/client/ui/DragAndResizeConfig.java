@@ -29,7 +29,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 public class DragAndResizeConfig implements IsJavaScriptObject {
     private JavaScriptObject script;
 
-    public DragAndResizeConfig(final DragAndResizeCallback handler) {
+    public DragAndResizeConfig(DragAndResizeCallback handler) {
         if (handler != null) {
             newInstance(handler);
         }

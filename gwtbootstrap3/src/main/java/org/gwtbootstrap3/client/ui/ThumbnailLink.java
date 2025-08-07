@@ -63,8 +63,8 @@ import com.google.gwt.user.client.ui.Focusable;
 public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, HasDoubleClickHandlers, HasHref,
         HasDataToggle, HasTargetHistoryToken, Focusable, HasTarget {
 
-    private final DataToggleMixin<ThumbnailLink> toggleMixin = new DataToggleMixin<ThumbnailLink>(this);
-    private final AttributeMixin<ThumbnailLink> attributeMixin = new AttributeMixin<ThumbnailLink>(this);
+    private final DataToggleMixin<ThumbnailLink> toggleMixin = new DataToggleMixin<>(this);
+    private final AttributeMixin<ThumbnailLink> attributeMixin = new AttributeMixin<>(this);
     private final FocusableMixin<ThumbnailLink> focusableMixin;
     private String targetHistoryToken;
 
@@ -73,10 +73,10 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
      *
      * @param href String href to use
      */
-    public ThumbnailLink(final String href) {
+    public ThumbnailLink(String href) {
         setElement(Document.get().createAnchorElement());
         setHref(href);
-        focusableMixin = new FocusableMixin<ThumbnailLink>(this);
+        focusableMixin = new FocusableMixin<>(this);
     }
 
     /**
@@ -90,7 +90,7 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
      * {@inheritDoc}
      */
     @Override
-    public HandlerRegistration addClickHandler(final ClickHandler handler) {
+    public HandlerRegistration addClickHandler(ClickHandler handler) {
         return addDomHandler(handler, ClickEvent.getType());
     }
 
@@ -98,7 +98,7 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
      * {@inheritDoc}
      */
     @Override
-    public HandlerRegistration addDoubleClickHandler(final DoubleClickHandler handler) {
+    public HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler) {
         return addDomHandler(handler, DoubleClickEvent.getType());
     }
 
@@ -106,7 +106,7 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
      * {@inheritDoc}
      */
     @Override
-    public void setHref(final String href) {
+    public void setHref(String href) {
         AnchorElement.as(getElement()).setHref(href);
     }
 
@@ -122,9 +122,9 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
      * {@inheritDoc}
      */
     @Override
-    public void setTargetHistoryToken(final String targetHistoryToken) {
+    public void setTargetHistoryToken(String targetHistoryToken) {
         this.targetHistoryToken = targetHistoryToken;
-        final String hash = History.encodeHistoryToken(targetHistoryToken);
+        String hash = History.encodeHistoryToken(targetHistoryToken);
         setHref("#" + hash);
     }
 
@@ -140,7 +140,7 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
      * {@inheritDoc}
      */
     @Override
-    public void setDataToggle(final Toggle toggle) {
+    public void setDataToggle(Toggle toggle) {
         toggleMixin.setDataToggle(toggle);
     }
 
@@ -164,7 +164,7 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
      * {@inheritDoc}
      */
     @Override
-    public void setTabIndex(final int index) {
+    public void setTabIndex(int index) {
         focusableMixin.setTabIndex(index);
     }
 
@@ -172,7 +172,7 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
      * {@inheritDoc}
      */
     @Override
-    public void setAccessKey(final char key) {
+    public void setAccessKey(char key) {
         focusableMixin.setAccessKey(key);
     }
 
@@ -180,7 +180,7 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
      * {@inheritDoc}
      */
     @Override
-    public void setFocus(final boolean focused) {
+    public void setFocus(boolean focused) {
         focusableMixin.setFocus(focused);
     }
 
@@ -188,7 +188,7 @@ public class ThumbnailLink extends ComplexWidget implements HasClickHandlers, Ha
      * {@inheritDoc}
      */
     @Override
-    public void setTarget(final String target) {
+    public void setTarget(String target) {
         attributeMixin.setAttribute(Attributes.TARGET, target);
     }
 

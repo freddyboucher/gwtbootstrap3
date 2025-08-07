@@ -29,7 +29,7 @@ import com.google.gwt.resources.client.TextResource;
  */
 interface BootboxClientBundle extends ClientBundle {
 
-    static final BootboxClientBundle INSTANCE = GWT.create(BootboxClientBundle.class);
+    BootboxClientBundle INSTANCE = GWT.create(BootboxClientBundle.class);
 
     @Source("resource/js/bootbox-4.4.0.min.cache.js")
     TextResource bootbox();

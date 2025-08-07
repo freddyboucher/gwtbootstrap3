@@ -33,7 +33,7 @@ public class PaginationView extends ViewImpl implements PaginationPresenter.MyVi
     }
 
     @Inject
-    PaginationView(final Binder uiBinder) {
+    PaginationView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

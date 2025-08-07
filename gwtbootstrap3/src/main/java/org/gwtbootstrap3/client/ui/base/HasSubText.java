@@ -26,7 +26,7 @@ package org.gwtbootstrap3.client.ui.base;
  * @author Sven Jacobs
  */
 public interface HasSubText {
-    void setSubText(final String subText);
+    void setSubText(String subText);
 
     String getSubText();
 }

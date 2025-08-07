@@ -37,7 +37,7 @@ import com.google.gwt.editor.client.EditorError;
  */
 public abstract class AbstractValidator<T> implements Validator<T> {
 
-    private String invalidMessageOverride = null;
+    private String invalidMessageOverride;
 
     private String messageKey;
 
@@ -78,7 +78,7 @@ public abstract class AbstractValidator<T> implements Validator<T> {
      * @return the list
      */
     public List<EditorError> createErrorList(Editor<T> editor, T value, String messageKey) {
-        List<EditorError> result = new ArrayList<EditorError>();
+        List<EditorError> result = new ArrayList<>();
         result.add(new BasicEditorError(editor, value, getInvalidMessage(messageKey)));
         return result;
     }
@@ -105,7 +105,7 @@ public abstract class AbstractValidator<T> implements Validator<T> {
     /** {@inheritDoc} */
     @Override
     public final List<EditorError> validate(Editor<T> editor, T value) {
-        List<EditorError> result = new ArrayList<EditorError>();
+        List<EditorError> result = new ArrayList<>();
         if (!isValid(value)) {
             result.add(new BasicEditorError(editor, value, getInvalidMessage(messageKey)));
         }

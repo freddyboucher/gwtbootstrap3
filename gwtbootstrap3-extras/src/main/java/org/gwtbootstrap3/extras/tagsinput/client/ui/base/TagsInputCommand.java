@@ -27,14 +27,14 @@ package org.gwtbootstrap3.extras.tagsinput.client.ui.base;
  */
 interface TagsInputCommand {
 
-    static final String ADD = "add";
-    static final String REMOVE = "remove";
-    static final String REMOVE_ALL = "removeAll";
-    static final String FOCUS = "focus";
-    static final String INPUT = "input";
-    static final String REFRESH = "refresh";
-    static final String DESTROY = "destroy";
+    String ADD = "add";
+    String REMOVE = "remove";
+    String REMOVE_ALL = "removeAll";
+    String FOCUS = "focus";
+    String INPUT = "input";
+    String REFRESH = "refresh";
+    String DESTROY = "destroy";
     
-    static final String VALUE = "val";
-    static final String ITEMS = "items";
+    String VALUE = "val";
+    String ITEMS = "items";
 }

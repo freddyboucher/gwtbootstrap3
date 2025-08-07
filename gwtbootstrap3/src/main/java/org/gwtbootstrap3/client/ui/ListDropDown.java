@@ -63,7 +63,7 @@ public class ListDropDown extends AbstractListItem {
     }
 
     @Override
-    public void add(final Widget child) {
+    public void add(Widget child) {
         if (child instanceof AbstractToggleButton) {
             if (!(child instanceof AnchorButton)) {
                 throw new IllegalArgumentException("Only buttons of type AnchorButton can be added to ListDropDown");

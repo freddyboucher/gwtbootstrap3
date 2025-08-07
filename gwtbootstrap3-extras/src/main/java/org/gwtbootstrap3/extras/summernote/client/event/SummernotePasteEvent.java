@@ -38,7 +38,7 @@ public class SummernotePasteEvent extends GwtEvent<SummernotePasteHandler> {
      *
      * @param source the source of the handlers
      */
-    public static void fire(final HasSummernotePasteHandlers source) {
+    public static void fire(HasSummernotePasteHandlers source) {
         if (TYPE != null) {
             SummernotePasteEvent event = new SummernotePasteEvent();
             source.fireEvent(event);
@@ -52,7 +52,7 @@ public class SummernotePasteEvent extends GwtEvent<SummernotePasteHandler> {
      */
     public static Type<SummernotePasteHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<SummernotePasteHandler>();
+            TYPE = new Type<>();
         }
         return TYPE;
     }
@@ -63,7 +63,7 @@ public class SummernotePasteEvent extends GwtEvent<SummernotePasteHandler> {
     }
 
     @Override
-    protected void dispatch(final SummernotePasteHandler handler) {
+    protected void dispatch(SummernotePasteHandler handler) {
         handler.onSummernotePaste(this);
     }
 

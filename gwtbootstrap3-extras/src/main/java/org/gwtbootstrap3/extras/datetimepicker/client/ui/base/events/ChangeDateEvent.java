@@ -28,7 +28,7 @@ import com.google.gwt.user.client.Event;
  */
 public class ChangeDateEvent extends GwtEvent<ChangeDateHandler> {
 
-    private static final Type<ChangeDateHandler> TYPE = new Type<ChangeDateHandler>();
+    private static final Type<ChangeDateHandler> TYPE = new Type<>();
 
     private final Event nativeEvent;
 
@@ -36,7 +36,7 @@ public class ChangeDateEvent extends GwtEvent<ChangeDateHandler> {
         return TYPE;
     }
 
-    public ChangeDateEvent(final Event nativeEvent) {
+    public ChangeDateEvent(Event nativeEvent) {
         this.nativeEvent = nativeEvent;
     }
 
@@ -50,7 +50,7 @@ public class ChangeDateEvent extends GwtEvent<ChangeDateHandler> {
     }
 
     @Override
-    protected void dispatch(final ChangeDateHandler handler) {
+    protected void dispatch(ChangeDateHandler handler) {
         handler.onChangeDate(this);
     }
 }

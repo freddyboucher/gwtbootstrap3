@@ -31,18 +31,18 @@ import com.google.gwt.dom.client.SpanElement;
  */
 public class Span extends HTMLPanel {
 
-    private final HTMLMixin<Span> textMixin = new HTMLMixin<Span>(this);
+    private final HTMLMixin<Span> textMixin = new HTMLMixin<>(this);
 
     public Span() {
         super(SpanElement.TAG, "");
     }
 
-    public Span(final String html) {
+    public Span(String html) {
         this();
         setHTML(html);
     }
 
-    public void setText(final String text) {
+    public void setText(String text) {
         textMixin.setText(text);
     }
 
@@ -54,7 +54,7 @@ public class Span extends HTMLPanel {
         return textMixin.getHTML();
     }
 
-    public void setHTML(final String html) {
+    public void setHTML(String html) {
         textMixin.setHTML(html);
     }
 }

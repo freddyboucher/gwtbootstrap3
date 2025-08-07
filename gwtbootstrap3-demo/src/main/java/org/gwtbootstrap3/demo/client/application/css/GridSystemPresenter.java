@@ -41,9 +41,9 @@ public class GridSystemPresenter extends Presenter<GridSystemPresenter.MyView, G
     }
 
     @Inject
-    public GridSystemPresenter(final EventBus eventBus,
-                               final MyView view,
-                               final MyProxy proxy) {
+    public GridSystemPresenter(EventBus eventBus,
+                               MyView view,
+                               MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

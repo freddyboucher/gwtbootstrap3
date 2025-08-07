@@ -28,8 +28,6 @@ import org.gwtbootstrap3.client.ui.base.ValueBoxBase;
 import org.gwtbootstrap3.client.ui.constants.ValidationState;
 
 import com.google.gwt.editor.client.EditorError;
-import com.google.gwt.event.logical.shared.AttachEvent;
-import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -52,13 +50,13 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class DefaultErrorHandler implements ErrorHandler {
 
-    private boolean initialized = false;
+    private boolean initialized;
 
     private final Widget inputWidget;
 
-    private HelpBlock validationStateHelpBlock = null;
+    private HelpBlock validationStateHelpBlock;
 
-    private HasValidationState validationStateParent = null;
+    private HasValidationState validationStateParent;
 
     /**
      * Default error handler.
@@ -66,15 +64,9 @@ public class DefaultErrorHandler implements ErrorHandler {
      * @param parent the parent of this error handler.
      */
     public DefaultErrorHandler(Widget widget) {
-        super();
         assert widget != null;
-        this.inputWidget = widget;
-        this.inputWidget.addAttachHandler(new Handler() {
-            @Override
-            public void onAttachOrDetach(AttachEvent event) {
-                init();
-            }
-        });
+        inputWidget = widget;
+        inputWidget.addAttachHandler(event -> init());
     }
 
     /** {@inheritDoc} */

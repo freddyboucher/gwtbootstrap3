@@ -35,12 +35,12 @@ public class TimeFormat extends AbstractViewOptionFormat implements IsJavaScript
         this("h(:mm)t", null);
     }
 
-    public TimeFormat(final String defaultValue, Map<ViewOptionHash, String> options) {
+    public TimeFormat(String defaultValue, Map<ViewOptionHash, String> options) {
         newInstance(defaultValue);
         if (options == null) {
             options = getDefaultOptions();
         }
-        for (final ViewOptionHash option : options.keySet()) {
+        for (ViewOptionHash option : options.keySet()) {
             setFormat(option.name(), options.get(option));
         }
     }
@@ -49,7 +49,7 @@ public class TimeFormat extends AbstractViewOptionFormat implements IsJavaScript
     /**
      * @see http://arshaw.com/fullcalendar/docs/text/timeFormat/
      */
-    protected void populateDefaultOptions(final Map<ViewOptionHash, String> options) {
+    protected void populateDefaultOptions(Map<ViewOptionHash, String> options) {
         options.put(ViewOptionHash.agenda, "h:mm{ - h:mm}");
     }
 

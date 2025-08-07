@@ -44,9 +44,9 @@ public class CardPresenter extends Presenter<CardPresenter.MyView, CardPresenter
     }
 
     @Inject
-    public CardPresenter(final EventBus eventBus,
-                         final MyView view,
-                         final MyProxy proxy) {
+    public CardPresenter(EventBus eventBus,
+                         MyView view,
+                         MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
     }
 }

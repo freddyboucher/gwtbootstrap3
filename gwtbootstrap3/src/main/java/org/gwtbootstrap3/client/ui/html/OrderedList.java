@@ -43,18 +43,18 @@ public class OrderedList extends ComplexWidget {
      *
      * @param widgets widgets to be added
      */
-    public OrderedList(final AbstractListItem... widgets) {
+    public OrderedList(AbstractListItem... widgets) {
         this();
-        for (final AbstractListItem li : widgets) {
+        for (AbstractListItem li : widgets) {
             add(li);
         }
     }
 
-    public void setUnstyled(final boolean unstyled) {
+    public void setUnstyled(boolean unstyled) {
         setStyleName(Styles.UNSTYLED, unstyled);
     }
 
-    public void setInline(final boolean inline) {
+    public void setInline(boolean inline) {
         if (inline) {
             addStyleName(Styles.LIST_INLINE);
         }

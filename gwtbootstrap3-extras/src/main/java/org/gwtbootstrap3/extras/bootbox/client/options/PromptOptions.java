@@ -42,7 +42,7 @@ public class PromptOptions extends DialogOptions {
      * @param message
      * @return
      */
-    public static final PromptOptions newOptions(final String message) {
+    public static final PromptOptions newOptions(String message) {
         PromptOptions options = JavaScriptObject.createObject().cast();
         options.setMessage(message);
         options.setCallback(PromptCallback.DEFAULT_PROMPT_CALLBACK);

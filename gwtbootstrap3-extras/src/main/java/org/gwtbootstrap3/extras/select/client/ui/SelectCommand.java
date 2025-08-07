@@ -28,16 +28,16 @@ package org.gwtbootstrap3.extras.select.client.ui;
  */
 interface SelectCommand {
 
-    static final String VAL = "val";
-    static final String SELECT_ALL = "selectAll";
-    static final String DESELECT_ALL = "deselectAll";
-    static final String RENDER = "render";
-    static final String MOBILE = "mobile";
-    static final String SET_STYLE = "setStyle";
-    static final String REFRESH = "refresh";
-    static final String TOGGLE = "toggle";
-    static final String HIDE = "hide";
-    static final String SHOW = "show";
-    static final String DESTROY = "destroy";
+    String VAL = "val";
+    String SELECT_ALL = "selectAll";
+    String DESELECT_ALL = "deselectAll";
+    String RENDER = "render";
+    String MOBILE = "mobile";
+    String SET_STYLE = "setStyle";
+    String REFRESH = "refresh";
+    String TOGGLE = "toggle";
+    String HIDE = "hide";
+    String SHOW = "show";
+    String DESTROY = "destroy";
 
 }

@@ -33,12 +33,12 @@ import org.gwtbootstrap3.extras.typeahead.client.ui.Typeahead;
  */
 public class TypeaheadCursorChangedEvent<T> extends GwtEvent<TypeaheadCursorChangedHandler<T>> {
 
-    public static <T> void fire(final Typeahead<T> source, final Suggestion<T> suggestion, final Event nativeEvent) {
-        TypeaheadCursorChangedEvent<T> event = new TypeaheadCursorChangedEvent<T>(source, suggestion, nativeEvent);
+    public static <T> void fire(Typeahead<T> source, Suggestion<T> suggestion, Event nativeEvent) {
+        TypeaheadCursorChangedEvent<T> event = new TypeaheadCursorChangedEvent<>(source, suggestion, nativeEvent);
         source.fireEvent(event);
     }
 
-    private static final Type<TypeaheadCursorChangedHandler<?>> TYPE = new Type<TypeaheadCursorChangedHandler<?>>();
+    private static final Type<TypeaheadCursorChangedHandler<?>> TYPE = new Type<>();
 
     private final Typeahead<T> typeahead;
     private final Suggestion<T> suggestion;
@@ -48,7 +48,7 @@ public class TypeaheadCursorChangedEvent<T> extends GwtEvent<TypeaheadCursorChan
         return TYPE;
     }
 
-    private TypeaheadCursorChangedEvent(final Typeahead<T> typeahead, final Suggestion<T> suggestion, final Event nativeEvent) {
+    private TypeaheadCursorChangedEvent(Typeahead<T> typeahead, Suggestion<T> suggestion, Event nativeEvent) {
         this.typeahead = typeahead;
         this.suggestion = suggestion;
         this.nativeEvent = nativeEvent;
@@ -73,7 +73,7 @@ public class TypeaheadCursorChangedEvent<T> extends GwtEvent<TypeaheadCursorChan
     }
 
     @Override
-    protected void dispatch(final TypeaheadCursorChangedHandler<T> handler) {
+    protected void dispatch(TypeaheadCursorChangedHandler<T> handler) {
         handler.onCursorChanged(this);
     }
 }

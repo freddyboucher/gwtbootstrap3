@@ -57,13 +57,13 @@ public class DropDownHeader extends Widget implements HasText, HasResponsiveness
         setStyleName(Styles.DROPDOWN_HEADER);
     }
 
-    public DropDownHeader(final String text) {
+    public DropDownHeader(String text) {
         this();
         setText(text);
     }
 
     @Override
-    public void setText(final String text) {
+    public void setText(String text) {
         getElement().setInnerText(text);
     }
 
@@ -73,12 +73,12 @@ public class DropDownHeader extends Widget implements HasText, HasResponsiveness
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 }

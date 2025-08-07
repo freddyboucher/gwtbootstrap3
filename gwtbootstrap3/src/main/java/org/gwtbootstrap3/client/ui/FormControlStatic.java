@@ -35,7 +35,7 @@ public class FormControlStatic extends AbstractTextWidget {
         setStyleName(Styles.FORM_CONTROL_STATIC);
     }
 
-    public FormControlStatic(final String text) {
+    public FormControlStatic(String text) {
         this();
         setText(text);
     }

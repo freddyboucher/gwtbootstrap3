@@ -29,10 +29,10 @@ import com.google.gwt.resources.client.TextResource;
  */
 public interface DatePickerClientBundle extends ClientBundle {
 
-    static final DatePickerClientBundle INSTANCE = GWT.create(DatePickerClientBundle.class);
+    DatePickerClientBundle INSTANCE = GWT.create(DatePickerClientBundle.class);
 
-    static final String VERSION = "1.6.4";
-    static final String LOCALES_DIR = "resource/js/locales.cache." + VERSION + "/";
+    String VERSION = "1.6.4";
+    String LOCALES_DIR = "resource/js/locales.cache." + VERSION + "/";
 
     @Source("resource/js/bootstrap-datepicker-" + VERSION + ".min.cache.js")
     TextResource datePicker();

@@ -80,7 +80,7 @@ public abstract class SliderBase<T> extends Widget implements
     private LeafValueEditor<T> editor;
     private boolean sliderNamespaceAvailable = true;
 
-    private final AttributeMixin<SliderBase<T>> attributeMixin = new AttributeMixin<SliderBase<T>>(this);
+    private final AttributeMixin<SliderBase<T>> attributeMixin = new AttributeMixin<>(this);
 
     protected SliderBase() {
         setElement(Document.get().createTextInputElement());
@@ -89,7 +89,7 @@ public abstract class SliderBase<T> extends Widget implements
     @Override
     protected void onLoad() {
         super.onLoad();
-        final JavaScriptObject options = JavaScriptObject.createObject();
+        JavaScriptObject options = JavaScriptObject.createObject();
         if (formatterCallback != null) {
             setFormatterOption(options);
         }
@@ -116,7 +116,7 @@ public abstract class SliderBase<T> extends Widget implements
      * Sets the id of the slider element when it's created.
      */
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         updateSlider(SliderOption.ID, id);
     }
 
@@ -134,7 +134,7 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param min
      */
-    public void setMin(final double min) {
+    public void setMin(double min) {
         updateSlider(SliderOption.MIN, min);
     }
 
@@ -147,7 +147,7 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param max
      */
-    public void setMax(final double max) {
+    public void setMax(double max) {
         updateSlider(SliderOption.MAX, max);
     }
 
@@ -160,7 +160,7 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param step
      */
-    public void setStep(final double step) {
+    public void setStep(double step) {
         updateSlider(SliderOption.STEP, step);
     }
 
@@ -175,7 +175,7 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param precision
      */
-    public void setPrecision(final double precision) {
+    public void setPrecision(double precision) {
         updateSlider(SliderOption.PRECISION, precision);
     }
 
@@ -189,7 +189,7 @@ public abstract class SliderBase<T> extends Widget implements
      * @param orientation
      * @see OrientationType
      */
-    public void setOrientation(final OrientationType orientation) {
+    public void setOrientation(OrientationType orientation) {
         updateSlider(SliderOption.ORIENTATION, orientation.getType());
     }
 
@@ -203,7 +203,7 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param range
      */
-    protected void setRange(final boolean range) {
+    protected void setRange(boolean range) {
         updateSlider(SliderOption.RANGE, range);
     }
 
@@ -217,7 +217,7 @@ public abstract class SliderBase<T> extends Widget implements
      * @param selection
      * @see SelectionType
      */
-    public void setSelection(final SelectionType selection) {
+    public void setSelection(SelectionType selection) {
         updateSlider(SliderOption.SELECTION, selection.getType());
     }
 
@@ -231,7 +231,7 @@ public abstract class SliderBase<T> extends Widget implements
      * @param tooltip
      * @see TooltipType
      */
-    public void setTooltip(final TooltipType tooltip) {
+    public void setTooltip(TooltipType tooltip) {
         updateSlider(SliderOption.TOOLTIP, tooltip.getType());
     }
 
@@ -245,7 +245,7 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param tooltipSplit
      */
-    public void setTooltipSplit(final boolean tooltipSplit) {
+    public void setTooltipSplit(boolean tooltipSplit) {
         updateSlider(SliderOption.TOOLTIP_SPLIT, tooltipSplit);
     }
 
@@ -261,7 +261,7 @@ public abstract class SliderBase<T> extends Widget implements
      * @param position
      * @see TooltipPosition
      */
-    public void setTooltipPosition(final TooltipPosition position) {
+    public void setTooltipPosition(TooltipPosition position) {
         updateSlider(SliderOption.TOOLTIP_POSITION, position.getPosition());
     }
 
@@ -275,7 +275,7 @@ public abstract class SliderBase<T> extends Widget implements
      * @param handle
      * @see HandleType
      */
-    public void setHandle(final HandleType handle) {
+    public void setHandle(HandleType handle) {
         updateSlider(SliderOption.HANDLE, handle.getType());
     }
 
@@ -288,7 +288,7 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param reversed
      */
-    public void setReversed(final boolean reversed) {
+    public void setReversed(boolean reversed) {
         updateSlider(SliderOption.REVERSED, reversed);
     }
 
@@ -301,7 +301,7 @@ public abstract class SliderBase<T> extends Widget implements
     }
 
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         if (isAttached()) {
             if (enabled) {
                 sliderCommand(getElement(), SliderCommand.ENABLE);
@@ -318,7 +318,7 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param formatterCallback
      */
-    public void setFormatter(final FormatterCallback<T> formatterCallback) {
+    public void setFormatter(FormatterCallback<T> formatterCallback) {
         this.formatterCallback = formatterCallback;
         if (isAttached()) {
             setFormatter(getElement());
@@ -333,7 +333,7 @@ public abstract class SliderBase<T> extends Widget implements
      */
     protected abstract void setFormatter(Element element);
 
-    protected String formatTooltip(final T value) {
+    protected String formatTooltip(T value) {
         if (formatterCallback != null)
             return formatterCallback.formatTooltip(value);
         return format(value);
@@ -346,7 +346,7 @@ public abstract class SliderBase<T> extends Widget implements
      * @param value
      * @return
      */
-    protected abstract String format(final T value);
+    protected abstract String format(T value);
 
     public boolean isNaturalArrowKeys() {
         return getBooleanAttribute(SliderOption.NATURAL_ARROW_KEYS, false);
@@ -363,12 +363,12 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param naturalArrowKeys
      */
-    public void setNaturalArrowKeys(final boolean naturalArrowKeys) {
+    public void setNaturalArrowKeys(boolean naturalArrowKeys) {
         updateSlider(SliderOption.NATURAL_ARROW_KEYS, naturalArrowKeys);
     }
 
     public List<Double> getTicks() {
-        return getNumberArrayAttribute(SliderOption.TICKS, Collections.<Double>emptyList());
+        return getNumberArrayAttribute(SliderOption.TICKS, Collections.emptyList());
     }
 
     /**
@@ -379,12 +379,12 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param ticks
      */
-    public void setTicks(final List<Double> ticks) {
+    public void setTicks(List<Double> ticks) {
         updateSliderForNumberArray(SliderOption.TICKS, ticks);
     }
 
     public List<Double> getTicksPositions() {
-        return getNumberArrayAttribute(SliderOption.TICKS_POSITIONS, Collections.<Double>emptyList());
+        return getNumberArrayAttribute(SliderOption.TICKS_POSITIONS, Collections.emptyList());
     }
 
     /**
@@ -393,12 +393,12 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param ticksPositions
      */
-    public void setTicksPositions(final List<Double> ticksPositions) {
+    public void setTicksPositions(List<Double> ticksPositions) {
         updateSliderForNumberArray(SliderOption.TICKS_POSITIONS, ticksPositions);
     }
 
     public List<String> getTicksLabels() {
-        return getStringArrayAttribute(SliderOption.TICKS_LABELS, Collections.<String>emptyList());
+        return getStringArrayAttribute(SliderOption.TICKS_LABELS, Collections.emptyList());
     }
 
     /**
@@ -408,7 +408,7 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param ticksLabels
      */
-    public void setTicksLabels(final List<String> ticksLabels) {
+    public void setTicksLabels(List<String> ticksLabels) {
         updateSliderForStringArray(SliderOption.TICKS_LABELS, ticksLabels);
     }
 
@@ -422,7 +422,7 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param ticksSnapBounds
      */
-    public void setTicksSnapBounds(final double ticksSnapBounds) {
+    public void setTicksSnapBounds(double ticksSnapBounds) {
         updateSlider(SliderOption.TICKS_SNAP_BOUNDS, ticksSnapBounds);
     }
 
@@ -436,7 +436,7 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param focus
      */
-    public void setFocusHandle(final boolean focus) {
+    public void setFocusHandle(boolean focus) {
         updateSlider(SliderOption.FOCUS, focus);
     }
 
@@ -450,12 +450,12 @@ public abstract class SliderBase<T> extends Widget implements
      * @param scale
      * @see ScaleType
      */
-    public void setScale(final ScaleType scale) {
+    public void setScale(ScaleType scale) {
         updateSlider(SliderOption.SCALE, scale.getType());
     }
 
     @Override
-    public void setVisible(final boolean visible) {
+    public void setVisible(boolean visible) {
         if (isAttached()) {
             setVisible(getElement(getElement()), visible);
         } else {
@@ -472,22 +472,22 @@ public abstract class SliderBase<T> extends Widget implements
     }
 
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
     @Override
-    public void setValue(final T value) {
+    public void setValue(T value) {
         setValue(value, false);
     }
 
     @Override
-    public void setValue(final T value, final boolean fireEvents) {
+    public void setValue(T value, boolean fireEvents) {
 
         T oldValue = fireEvents ? getValue() : null;
 
@@ -588,32 +588,32 @@ public abstract class SliderBase<T> extends Widget implements
     }
 
     @Override
-    public HandlerRegistration addValueChangeHandler(final ValueChangeHandler<T> handler) {
+    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<T> handler) {
         return addHandler(handler, ValueChangeEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSlideHandler(final SlideHandler<T> handler) {
+    public HandlerRegistration addSlideHandler(SlideHandler<T> handler) {
         return addHandler(handler, SlideEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSlideStartHandler(final SlideStartHandler<T> handler) {
+    public HandlerRegistration addSlideStartHandler(SlideStartHandler<T> handler) {
         return addHandler(handler, SlideStartEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSlideStopHandler(final SlideStopHandler<T> handler) {
+    public HandlerRegistration addSlideStopHandler(SlideStopHandler<T> handler) {
         return addHandler(handler, SlideStopEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSlideEnabledHandler(final SlideEnabledHandler handler) {
+    public HandlerRegistration addSlideEnabledHandler(SlideEnabledHandler handler) {
         return addHandler(handler, SlideEnabledEvent.getType());
     }
 
     @Override
-    public HandlerRegistration addSlideDisabledHandler(final SlideDisabledHandler handler) {
+    public HandlerRegistration addSlideDisabledHandler(SlideDisabledHandler handler) {
         return addHandler(handler, SlideDisabledEvent.getType());
     }
 
@@ -685,7 +685,7 @@ public abstract class SliderBase<T> extends Widget implements
         }
         String value = attributeMixin.getAttribute(option.getDataAttribute());
         if (value != null && !value.isEmpty()) {
-            return Boolean.valueOf(value);
+            return Boolean.parseBoolean(value);
         }
         return defaultValue;
     }
@@ -696,7 +696,7 @@ public abstract class SliderBase<T> extends Widget implements
         }
         String value = attributeMixin.getAttribute(option.getDataAttribute());
         if (value != null && !value.isEmpty()) {
-            return Double.valueOf(value);
+            return Double.parseDouble(value);
         }
         return defaultValue;
     }
@@ -734,7 +734,7 @@ public abstract class SliderBase<T> extends Widget implements
         }
 
         // Put array to list
-        List<Double> list = new ArrayList<Double>(array.length());
+        List<Double> list = new ArrayList<>(array.length());
         for (int i = 0; i < array.length(); i++) {
             list.add(array.get(i));
         }
@@ -760,7 +760,7 @@ public abstract class SliderBase<T> extends Widget implements
         }
 
         // Put array to list
-        List<String> list = new ArrayList<String>(array.length());
+        List<String> list = new ArrayList<>(array.length());
         for (int i = 0; i < array.length(); i++) {
             list.add(array.get(i));
         }
@@ -787,14 +787,14 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param event the native event
      */
-    protected abstract void onSlide(final Event event);
+    protected abstract void onSlide(Event event);
 
     /**
      * Fires a {@link SlideEvent} event.
      *
      * @param value the new slide value
      */
-    protected void fireSlideEvent(final T value) {
+    protected void fireSlideEvent(T value) {
         SlideEvent.fire(this, value);
     }
 
@@ -803,14 +803,14 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param event the native event
      */
-    protected abstract void onSlideStart(final Event event);
+    protected abstract void onSlideStart(Event event);
 
     /**
      * Fires a {@link SlideStartEvent} event.
      *
      * @param value the new slide value
      */
-    protected void fireSlideStartEvent(final T value) {
+    protected void fireSlideStartEvent(T value) {
         SlideStartEvent.fire(this, value);
     }
 
@@ -819,14 +819,14 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param event the native event
      */
-    protected abstract void onSlideStop(final Event event);
+    protected abstract void onSlideStop(Event event);
 
     /**
      * Fires a {@link SlideStopEvent} event.
      *
      * @param value the new slide value
      */
-    protected void fireSlideStopEvent(final T value) {
+    protected void fireSlideStopEvent(T value) {
         SlideStopEvent.fire(this, value);
     }
 
@@ -835,14 +835,14 @@ public abstract class SliderBase<T> extends Widget implements
      *
      * @param event the native event
      */
-    protected abstract void onSlideChange(final Event event);
+    protected abstract void onSlideChange(Event event);
 
     /**
      * Fires a {@link ValueChangeEvent} event.
      *
      * @param value the new slide value
      */
-    protected void fireChangeEvent(final T value) {
+    protected void fireChangeEvent(T value) {
         ValueChangeEvent.fire(this, value);
     }
 

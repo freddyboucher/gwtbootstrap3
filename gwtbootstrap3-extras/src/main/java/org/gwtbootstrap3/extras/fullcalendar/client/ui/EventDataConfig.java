@@ -49,7 +49,7 @@ public class EventDataConfig implements IsJavaScriptObject {
         };
     }-*/;
 
-    public void addEventDataTransformCallback(final EventDataTransformCallback callback) {
+    public void addEventDataTransformCallback(EventDataTransformCallback callback) {
         if (callback != null) {
             addTransformCallback(callback);
         }
@@ -62,7 +62,7 @@ public class EventDataConfig implements IsJavaScriptObject {
         }
     }-*/;
 
-    public void addEventLoadingCallback(final EventLoadingCallback callback) {
+    public void addEventLoadingCallback(EventLoadingCallback callback) {
         if (callback != null) {
             addLoadingCallback(callback);
         }

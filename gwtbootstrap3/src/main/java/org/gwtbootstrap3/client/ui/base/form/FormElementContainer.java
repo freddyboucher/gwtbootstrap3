@@ -36,7 +36,7 @@ import com.google.gwt.user.client.ui.Widget;
  * widgets that may contain form input elements.
  * <p/>
  * Input elements styleName is adjusted during
- * {@link #add(com.google.gwt.user.client.ui.Widget)}.
+ * {@link #add(Widget)}.
  *
  * @author Sven Jacobs
  * @author Joshua Godi
@@ -45,7 +45,7 @@ public abstract class FormElementContainer extends ComplexPanel implements HasRe
 
     /** {@inheritDoc} */
     @Override
-    public void add(final Widget w) {
+    public void add(Widget w) {
         if (w instanceof ListBox || w instanceof FileUpload) {
             w.addStyleName(Styles.FORM_CONTROL);
         }
@@ -54,13 +54,13 @@ public abstract class FormElementContainer extends ComplexPanel implements HasRe
 
     /** {@inheritDoc} */
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 

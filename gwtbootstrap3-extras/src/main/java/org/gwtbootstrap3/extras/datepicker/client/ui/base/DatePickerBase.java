@@ -82,7 +82,6 @@ import com.google.gwt.editor.client.EditorError;
 import com.google.gwt.editor.client.HasEditorErrors;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.event.dom.client.BlurEvent;
-import com.google.gwt.event.dom.client.BlurHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -106,7 +105,7 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     static class DatePickerValidatorMixin extends BlankValidatorMixin<DatePickerBase, Date> {
 
-        private boolean showing = false;
+        private boolean showing;
 
         public void setShowing(boolean showing) {
             this.showing = showing;
@@ -118,19 +117,14 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
         @Override
         protected com.google.web.bindery.event.shared.HandlerRegistration setupBlurValidation() {
-            return getInputWidget().addDomHandler(new BlurHandler() {
-                @Override
-                public void onBlur(BlurEvent event) {
-                    getInputWidget().validate(!showing && getValidateOnBlur());
-                }
-            }, BlurEvent.getType());
+            return getInputWidget().addDomHandler(event -> getInputWidget().validate(!showing && getValidateOnBlur()), BlurEvent.getType());
         }
 
     }
 
     // Check http://www.gwtproject.org/javadoc/latest/com/google/gwt/i18n/client/DateTimeFormat.html
     // for more information on syntax
-    private static final Map<Character, Character> DATE_TIME_FORMAT_MAP = new HashMap<Character, Character>();
+    private static final Map<Character, Character> DATE_TIME_FORMAT_MAP = new HashMap<>();
 
     static {
         DATE_TIME_FORMAT_MAP.put('m', 'M'); // months
@@ -140,7 +134,7 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
     private DateTimeFormat dateTimeFormat;
     private final DateTimeFormat startEndDateFormat = DateTimeFormat.getFormat("MM-dd-yyyy");
     private LeafValueEditor<Date> editor;
-    private final ErrorHandlerMixin<Date> errorHandlerMixin = new ErrorHandlerMixin<Date>(this);
+    private final ErrorHandlerMixin<Date> errorHandlerMixin = new ErrorHandlerMixin<>(this);
     private final DatePickerValidatorMixin validatorMixin = new DatePickerValidatorMixin(this,
             errorHandlerMixin.getErrorHandler());
 
@@ -150,19 +144,19 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
     private String format = "mm/dd/yyyy";
     private DatePickerDayOfWeek weekStart = DatePickerDayOfWeek.SUNDAY;
     private DatePickerDayOfWeek[] daysOfWeekDisabled = {};
-    private boolean autoClose = false;
+    private boolean autoClose;
     private DatePickerMinView startView = DatePickerMinView.DAY;
     private DatePickerMinView minView = DatePickerMinView.DAY;
 
-    private boolean showTodayButton = false;
-    private boolean showClearButton = false;
-    private boolean highlightToday = false;
+    private boolean showTodayButton;
+    private boolean showClearButton;
+    private boolean highlightToday;
     private boolean keyboardNavigation = true;
     private boolean forceParse = true;
 
     private DatePickerMinView viewSelect = DatePickerMinView.DAY;
 
-    private Widget container = null;
+    private Widget container;
     private DatePickerLanguage language = DatePickerLanguage.EN;
     private DatePickerPosition position = DatePickerPosition.AUTO;
 
@@ -172,7 +166,7 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
         setFormat(format);
     }
 
-    public void setContainer(final Widget container) {
+    public void setContainer(Widget container) {
         this.container = container;
     }
 
@@ -184,13 +178,13 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
         return textBox;
     }
 
-    public void setAlignment(final ValueBoxBase.TextAlignment align) {
+    public void setAlignment(ValueBoxBase.TextAlignment align) {
         textBox.setAlignment(align);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setPlaceholder(final String placeHolder) {
+    public void setPlaceholder(String placeHolder) {
         textBox.setPlaceholder(placeHolder);
     }
 
@@ -200,7 +194,7 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
         return textBox.getPlaceholder();
     }
 
-    public void setReadOnly(final boolean readOnly) {
+    public void setReadOnly(boolean readOnly) {
         textBox.setReadOnly(readOnly);
     }
 
@@ -216,13 +210,13 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     /** {@inheritDoc} */
     @Override
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(boolean enabled) {
         textBox.setEnabled(enabled);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setId(final String id) {
+    public void setId(String id) {
         textBox.setId(id);
     }
 
@@ -234,7 +228,7 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     /** {@inheritDoc} */
     @Override
-    public void setName(final String name) {
+    public void setName(String name) {
         textBox.setName(name);
     }
 
@@ -246,19 +240,19 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     /** {@inheritDoc} */
     @Override
-    public void setVisibleOn(final DeviceSize deviceSize) {
+    public void setVisibleOn(DeviceSize deviceSize) {
         StyleHelper.setVisibleOn(this, deviceSize);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setHiddenOn(final DeviceSize deviceSize) {
+    public void setHiddenOn(DeviceSize deviceSize) {
         StyleHelper.setHiddenOn(this, deviceSize);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setLanguage(final DatePickerLanguage language) {
+    public void setLanguage(DatePickerLanguage language) {
         this.language = language;
 
         // Inject the JS for the language
@@ -275,7 +269,7 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     /** {@inheritDoc} */
     @Override
-    public void setPosition(final DatePickerPosition position) {
+    public void setPosition(DatePickerPosition position) {
         this.position = position;
     }
 
@@ -308,26 +302,26 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     /** {@inheritDoc} */
     @Override
-    public void setAutoClose(final boolean autoClose) {
+    public void setAutoClose(boolean autoClose) {
         this.autoClose = autoClose;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onShow(final Event e) {
+    public void onShow(Event e) {
         validatorMixin.setShowing(true);
         fireEvent(new ShowEvent(e));
     }
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addShowHandler(final ShowHandler showHandler) {
+    public HandlerRegistration addShowHandler(ShowHandler showHandler) {
         return addHandler(showHandler, ShowEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onHide(final Event e) {
+    public void onHide(Event e) {
         validatorMixin.setShowing(false);
         validate(getValidateOnBlur());
         fireEvent(new HideEvent(e));
@@ -335,74 +329,74 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addHideHandler(final HideHandler hideHandler) {
+    public HandlerRegistration addHideHandler(HideHandler hideHandler) {
         return addHandler(hideHandler, HideEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onChangeDate(final Event e) {
+    public void onChangeDate(Event e) {
         fireEvent(new ChangeDateEvent(e));
     }
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addChangeDateHandler(final ChangeDateHandler changeDateHandler) {
+    public HandlerRegistration addChangeDateHandler(ChangeDateHandler changeDateHandler) {
         return addHandler(changeDateHandler, ChangeDateEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onChangeYear(final Event e) {
+    public void onChangeYear(Event e) {
         fireEvent(new ChangeYearEvent(e));
     }
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addChangeYearHandler(final ChangeYearHandler changeYearHandler) {
+    public HandlerRegistration addChangeYearHandler(ChangeYearHandler changeYearHandler) {
         return addHandler(changeYearHandler, ChangeYearEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onChangeMonth(final Event e) {
+    public void onChangeMonth(Event e) {
         fireEvent(new ChangeMonthEvent(e));
     }
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addChangeMonthHandler(final ChangeMonthHandler changeMonthHandler) {
+    public HandlerRegistration addChangeMonthHandler(ChangeMonthHandler changeMonthHandler) {
         return addHandler(changeMonthHandler, ChangeMonthEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onClearDate(final Event e) {
+    public void onClearDate(Event e) {
         fireEvent(new ClearDateEvent(e));
     }
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addClearDateHandler(final ClearDateHandler clearDateHandler) {
+    public HandlerRegistration addClearDateHandler(ClearDateHandler clearDateHandler) {
         return addHandler(clearDateHandler, ClearDateEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setDaysOfWeekDisabled(final DatePickerDayOfWeek... daysOfWeekDisabled) {
+    public void setDaysOfWeekDisabled(DatePickerDayOfWeek... daysOfWeekDisabled) {
         setDaysOfWeekDisabled(getElement(), toDaysOfWeekDisabledString(daysOfWeekDisabled));
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setEndDate(final Date endDate) {
+    public void setEndDate(Date endDate) {
         // Has to be in the format YYYY-MM-DD
         setEndDate(startEndDateFormat.format(endDate));
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setEndDate(final String endDate) {
+    public void setEndDate(String endDate) {
         // Has to be in the format YYYY-MM-DD
         setEndDate(getElement(), endDate);
     }
@@ -415,26 +409,26 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     /** {@inheritDoc} */
     @Override
-    public void setForceParse(final boolean forceParse) {
+    public void setForceParse(boolean forceParse) {
         this.forceParse = forceParse;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setHighlightToday(final boolean highlightToday) {
+    public void setHighlightToday(boolean highlightToday) {
         this.highlightToday = highlightToday;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setHasKeyboardNavigation(final boolean hasKeyboardNavigation) {
-        this.keyboardNavigation = hasKeyboardNavigation;
+    public void setHasKeyboardNavigation(boolean hasKeyboardNavigation) {
+        keyboardNavigation = hasKeyboardNavigation;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setMinView(final DatePickerMinView datePickerMinView) {
-        this.minView = datePickerMinView;
+    public void setMinView(DatePickerMinView datePickerMinView) {
+        minView = datePickerMinView;
 
         // We keep the view select the same as the min view
         if (viewSelect != minView) {
@@ -444,26 +438,26 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     /** {@inheritDoc} */
     @Override
-    public void setShowTodayButton(final boolean showTodayButton) {
+    public void setShowTodayButton(boolean showTodayButton) {
         this.showTodayButton = showTodayButton;
     }
 
     /** {@inheritDoc} */
     @Override
     public void setShowClearButton(boolean showClearbutton) {
-        this.showClearButton = showClearbutton;
+        showClearButton = showClearbutton;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setStartDate(final Date startDate) {
+    public void setStartDate(Date startDate) {
         // Has to be in the format DD-MM-YYYY
         setStartDate(startEndDateFormat.format(startDate));
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setStartDate(final String startDate) {
+    public void setStartDate(String startDate) {
         // Has to be in the format DD-MM-YYYY
         setStartDate(getElement(), startDate);
     }
@@ -476,14 +470,14 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     /** {@inheritDoc} */
     @Override
-    public void setStartView(final DatePickerMinView datePickerMinView) {
-        this.startView = datePickerMinView;
+    public void setStartView(DatePickerMinView datePickerMinView) {
+        startView = datePickerMinView;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setViewSelect(final DatePickerMinView datePickerMinView) {
-        this.viewSelect = datePickerMinView;
+    public void setViewSelect(DatePickerMinView datePickerMinView) {
+        viewSelect = datePickerMinView;
 
         // We keep the min view the same as the view select
         if (viewSelect != minView) {
@@ -493,7 +487,7 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     /** {@inheritDoc} */
     @Override
-    public void setWeekStart(final DatePickerDayOfWeek weekStart) {
+    public void setWeekStart(DatePickerDayOfWeek weekStart) {
         this.weekStart = weekStart;
     }
 
@@ -503,7 +497,7 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
      * @param format date format using GWT notation
      * @return date format using bootstrap notation
      */
-    private static String toBootstrapDateFormat(final String format) {
+    private static String toBootstrapDateFormat(String format) {
         String bootstrap_format = format;
 
         // Replace long day name "EEEE" with "DD"
@@ -536,14 +530,14 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
      *
      * @param format date format in GWT notation
      */
-    public void setGWTFormat(final String format) {
+    public void setGWTFormat(String format) {
         this.format = toBootstrapDateFormat(format);
 
         // Get the old value
-        final Date oldValue = getValue();
+        Date oldValue = getValue();
 
         // Make the new DateTimeFormat
-        this.dateTimeFormat = DateTimeFormat.getFormat(format);
+        dateTimeFormat = DateTimeFormat.getFormat(format);
 
         if (oldValue != null) {
             setValue(oldValue);
@@ -552,11 +546,11 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     /** {@inheritDoc} */
     @Override
-    public void setFormat(final String format) {
+    public void setFormat(String format) {
         this.format = format;
 
         // Get the old value
-        final Date oldValue = getValue();
+        Date oldValue = getValue();
 
         // Make the new DateTimeFormat
         setDateTimeFormat(format);
@@ -566,15 +560,15 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
         }
     }
 
-    private void setDateTimeFormat(final String format) {
-        final StringBuilder fb = new StringBuilder(format);
+    private void setDateTimeFormat(String format) {
+        StringBuilder fb = new StringBuilder(format);
         for (int i = 0; i < fb.length(); i++) {
             if (DATE_TIME_FORMAT_MAP.containsKey(fb.charAt(i))) {
                 fb.setCharAt(i, DATE_TIME_FORMAT_MAP.get(fb.charAt(i)));
             }
         }
 
-        this.dateTimeFormat = DateTimeFormat.getFormat(fb.toString());
+        dateTimeFormat = DateTimeFormat.getFormat(fb.toString());
     }
 
     /** {@inheritDoc} */
@@ -582,7 +576,7 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
     public Date getValue() {
         try {
             return dateTimeFormat != null && textBox.getValue() != null ? dateTimeFormat.parse(textBox.getValue()) : null;
-        } catch (final Exception e) {
+        } catch (Exception e) {
             return null;
         }
     }
@@ -593,31 +587,26 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
 
     /** {@inheritDoc} */
     @Override
-    public HandlerRegistration addValueChangeHandler(final ValueChangeHandler<Date> dateValueChangeHandler) {
-        textBox.addValueChangeHandler(new ValueChangeHandler<String>() {
-            @Override
-            public void onValueChange(ValueChangeEvent<String> event) {
-                ValueChangeEvent.fire(DatePickerBase.this, getValue());
-            }
-        });
+    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Date> dateValueChangeHandler) {
+        textBox.addValueChangeHandler(event -> ValueChangeEvent.fire(this, getValue()));
         return addHandler(dateValueChangeHandler, ValueChangeEvent.getType());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setValue(final Date value) {
+    public void setValue(Date value) {
         setValue(value, false);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setValue(final Date value, final boolean fireEvents) {
+    public void setValue(Date value, boolean fireEvents) {
         errorHandlerMixin.clearErrors();
         textBox.setValue(value != null ? dateTimeFormat.format(value) : null);
         update(textBox.getElement());
 
         if (fireEvents) {
-            ValueChangeEvent.fire(DatePickerBase.this, value);
+            ValueChangeEvent.fire(this, value);
         }
     }
 
@@ -644,24 +633,24 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
         // If the user hasn't specified the container, default to the widget's parent
         // This makes sure the modal scroll with the content correctly
         if (container == null) {
-            configure(this, this.getParent());
+            configure(this, getParent());
         } else {
             configure(this, container);
         }
     }
 
-    protected void configure(final Widget w, final Widget container) {
+    protected void configure(Widget w, Widget container) {
         w.getElement().setAttribute("data-date-format", format);
 
         // If configuring not for the first time, datepicker must be removed first.
-        this.remove(w.getElement());
+        remove(w.getElement());
 
         configure(w.getElement(), container.getElement(), format, weekStart.getValue(), toDaysOfWeekDisabledString(daysOfWeekDisabled), autoClose,
                 startView.getValue(), minView.getValue(), showTodayButton, showClearButton, highlightToday, keyboardNavigation, forceParse, viewSelect.getValue(),
                 language.getCode(), position.getPosition());
     }
 
-    protected void execute(final String cmd) {
+    protected void execute(String cmd) {
         execute(getElement(), cmd);
     }
 
@@ -748,14 +737,14 @@ public class DatePickerBase extends Widget implements HasEnabled, HasId, HasResp
             });
     }-*/;
 
-    protected String toDaysOfWeekDisabledString(final DatePickerDayOfWeek... datePickerDayOfWeeks) {
-        this.daysOfWeekDisabled = datePickerDayOfWeeks;
+    protected String toDaysOfWeekDisabledString(DatePickerDayOfWeek... datePickerDayOfWeeks) {
+        daysOfWeekDisabled = datePickerDayOfWeeks;
 
-        final StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
         if (datePickerDayOfWeeks != null) {
             int i = 0;
-            for (final DatePickerDayOfWeek dayOfWeek : datePickerDayOfWeeks) {
+            for (DatePickerDayOfWeek dayOfWeek : datePickerDayOfWeeks) {
                 builder.append(dayOfWeek.getValue());
 
                 i++;

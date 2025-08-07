@@ -49,17 +49,17 @@ public class TabView extends ViewImpl implements TabPresenter.MyView {
     Button tab9Button;
 
     @UiHandler("tab7Button")
-    public void handleTab7(final ClickEvent event) {
+    public void handleTab7(ClickEvent event) {
         tab7ListItem.showTab();
     }
 
     @UiHandler("tab8Button")
-    public void handleTab8(final ClickEvent event) {
+    public void handleTab8(ClickEvent event) {
         tab8ListItem.showTab();
     }
 
     @UiHandler("tab9Button")
-    public void handleTab9(final ClickEvent event) {
+    public void handleTab9(ClickEvent event) {
         tab9ListItem.showTab();
     }
 
@@ -67,7 +67,7 @@ public class TabView extends ViewImpl implements TabPresenter.MyView {
     }
 
     @Inject
-    TabView(final Binder uiBinder) {
+    TabView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

@@ -41,35 +41,35 @@ public class DataTargetMixin<T extends UIObject & HasDataTarget> extends Abstrac
      * @param element The element being examined.
      * @see Document#createUniqueId()
      */
-    private void ensureId(final Element element) {
-        final String id = element.getId();
+    private void ensureId(Element element) {
+        String id = element.getId();
         if (id == null || id.isEmpty()) {
             element.setId(Document.get().createUniqueId());
         }
     }
 
-    public DataTargetMixin(final T uiObject) {
+    public DataTargetMixin(T uiObject) {
         super(uiObject);
     }
 
     @Override
-    public void setDataTargetWidget(final Widget widget) {
-        final Element element = widget.getElement();
+    public void setDataTargetWidget(Widget widget) {
+        Element element = widget.getElement();
         ensureId(element);
-        this.setDataTarget("#" + element.getId());
+        setDataTarget("#" + element.getId());
     }
 
     @Override
-    public void setDataTargetWidgets(final List<Widget> widgets) {
-        final String styleName = Document.get().createUniqueId();
-        for (final Widget widget : widgets) {
+    public void setDataTargetWidgets(List<Widget> widgets) {
+        String styleName = Document.get().createUniqueId();
+        for (Widget widget : widgets) {
             widget.addStyleName(styleName);
         }
-        this.setDataTarget("." + styleName);
+        setDataTarget("." + styleName);
     }
 
     @Override
-    public void setDataTarget(final String dataTarget) {
+    public void setDataTarget(String dataTarget) {
         if (dataTarget != null) {
             uiObject.getElement().setAttribute(Attributes.DATA_TARGET, dataTarget);
         } else {

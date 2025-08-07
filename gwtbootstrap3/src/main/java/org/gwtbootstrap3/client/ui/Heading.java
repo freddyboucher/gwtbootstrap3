@@ -89,7 +89,7 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEm
      * @param size size of the heading
      */
     @UiConstructor
-    public Heading(final HeadingSize size) {
+    public Heading(HeadingSize size) {
         setElement(Document.get().createHElement(size.getHeadingSize()));
     }
 
@@ -99,7 +99,7 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEm
      * @param size size of the heading
      * @param text text for the heading
      */
-    public Heading(final HeadingSize size, final String text) {
+    public Heading(HeadingSize size, String text) {
         this(size);
         setText(text);
     }
@@ -111,7 +111,7 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEm
      * @param text    text for the heading
      * @param subText subtext for the heading
      */
-    public Heading(final HeadingSize size, final String text, final String subText) {
+    public Heading(HeadingSize size, String text, String subText) {
         this(size, text);
         setSubText(subText);
     }
@@ -124,7 +124,7 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEm
      * @param subText the subtext of the heading
      */
     @Override
-    public void setSubText(final String subText) {
+    public void setSubText(String subText) {
         // Force a space between the heading and the subText
         this.subText.setText(" " + subText);
         add(this.subText);
@@ -152,7 +152,7 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEm
      * {@inheritDoc}
      */
     @Override
-    public void setText(final String text) {
+    public void setText(String text) {
         this.text.setText(text);
         insert(this.text, 0);
     }
@@ -161,7 +161,7 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEm
      * {@inheritDoc}
      */
     @Override
-    public void setEmphasis(final Emphasis emphasis) {
+    public void setEmphasis(Emphasis emphasis) {
         StyleHelper.addUniqueEnumStyleName(this, Emphasis.class, emphasis);
     }
 
@@ -177,7 +177,7 @@ public class Heading extends ComplexWidget implements HasWidgets, HasText, HasEm
      * {@inheritDoc}
      */
     @Override
-    public void setAlignment(final Alignment alignment) {
+    public void setAlignment(Alignment alignment) {
         StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
     }
 

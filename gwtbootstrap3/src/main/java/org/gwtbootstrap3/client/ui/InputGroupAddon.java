@@ -65,7 +65,7 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     }
 
     @Override
-    public void setText(final String text) {
+    public void setText(String text) {
         iconTextMixin.setText(text);
     }
 
@@ -75,7 +75,7 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     }
 
     @Override
-    public void setIcon(final IconType iconType) {
+    public void setIcon(IconType iconType) {
         iconTextMixin.setIcon(iconType);
     }
 
@@ -85,7 +85,7 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     }
 
     @Override
-    public void setIconPosition(final IconPosition iconPosition) {
+    public void setIconPosition(IconPosition iconPosition) {
         iconTextMixin.setIconPosition(iconPosition);
     }
 
@@ -95,7 +95,7 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     }
 
     @Override
-    public void setIconSize(final IconSize iconSize) {
+    public void setIconSize(IconSize iconSize) {
         iconTextMixin.setIconSize(iconSize);
     }
 
@@ -105,7 +105,7 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     }
 
     @Override
-    public void setIconFlip(final IconFlip iconFlip) {
+    public void setIconFlip(IconFlip iconFlip) {
         iconTextMixin.setIconFlip(iconFlip);
     }
 
@@ -115,7 +115,7 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     }
 
     @Override
-    public void setIconRotate(final IconRotate iconRotate) {
+    public void setIconRotate(IconRotate iconRotate) {
         iconTextMixin.setIconRotate(iconRotate);
     }
 
@@ -125,7 +125,7 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     }
 
     @Override
-    public void setIconBordered(final boolean iconBordered) {
+    public void setIconBordered(boolean iconBordered) {
         iconTextMixin.setIconBordered(iconBordered);
     }
 
@@ -136,7 +136,7 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
 
     /** {@inheritDoc} */
     @Override
-    public void setIconInverse(final boolean iconInverse) {
+    public void setIconInverse(boolean iconInverse) {
         iconTextMixin.setIconInverse(iconInverse);
     }
 
@@ -147,7 +147,7 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     }
 
     @Override
-    public void setIconSpin(final boolean iconSpin) {
+    public void setIconSpin(boolean iconSpin) {
         iconTextMixin.setIconSpin(iconSpin);
     }
 
@@ -167,7 +167,7 @@ public class InputGroupAddon extends AbstractInputGroupAddon implements HasText,
     }
 
     @Override
-    public void setIconFixedWidth(final boolean iconFixedWidth) {
+    public void setIconFixedWidth(boolean iconFixedWidth) {
         iconTextMixin.setIconFixedWidth(iconFixedWidth);
     }
 

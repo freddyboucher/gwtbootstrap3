@@ -38,7 +38,7 @@ public enum DateTimePickerView {
 
     private final int value;
 
-    DateTimePickerView(final int value) {
+    DateTimePickerView(int value) {
         this.value = value;
     }
 

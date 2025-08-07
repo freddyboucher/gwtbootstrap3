@@ -65,9 +65,9 @@ enum SliderOption {
     /**
      * @param name the option name
      */
-    private SliderOption(final String name) {
+    SliderOption(String name) {
         this.name = name;
-        this.dataAttrName = name.replaceAll("_", "-");
+        dataAttrName = name.replaceAll("_", "-");
     }
 
     /**

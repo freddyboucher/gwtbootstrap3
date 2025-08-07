@@ -63,7 +63,7 @@ public enum ToolbarButton {
 
     private final String id;
 
-    private ToolbarButton(String id) {
+    ToolbarButton(String id) {
         this.id = id;
     }
 

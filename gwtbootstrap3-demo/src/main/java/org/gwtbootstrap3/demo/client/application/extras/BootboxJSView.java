@@ -23,9 +23,6 @@ package org.gwtbootstrap3.demo.client.application.extras;
 import org.gwtbootstrap3.client.ui.ListBox;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
-import org.gwtbootstrap3.extras.bootbox.client.callback.ConfirmCallback;
-import org.gwtbootstrap3.extras.bootbox.client.callback.PromptCallback;
-import org.gwtbootstrap3.extras.bootbox.client.callback.SimpleCallback;
 import org.gwtbootstrap3.extras.bootbox.client.options.AlertOptions;
 import org.gwtbootstrap3.extras.bootbox.client.options.BootboxLocale;
 import org.gwtbootstrap3.extras.bootbox.client.options.BootboxSize;
@@ -51,28 +48,23 @@ public class BootboxJSView extends ViewImpl implements BootboxJSPresenter.MyView
     @UiField ListBox localeBox;
 
     @UiHandler("localeBox")
-    void onChangeLanguage(final ChangeEvent event) {
+    void onChangeLanguage(ChangeEvent event) {
         String locale = localeBox.getSelectedValue();
         Bootbox.setLocale(BootboxLocale.valueOf(locale));
     }
 
     @UiHandler("alertButton")
-    void handleAlertButton(final ClickEvent event) {
+    void handleAlertButton(ClickEvent event) {
         Bootbox.alert("Hello World");
     }
 
     @UiHandler("alertCallbackButton")
-    void handleAlertCallbackButton(final ClickEvent event) {
-        Bootbox.alert("Alert With Callback", new SimpleCallback() {
-            @Override
-            public void callback() {
-                Window.alert("My Alert Callback");
-            }
-        });
+    void handleAlertCallbackButton(ClickEvent event) {
+        Bootbox.alert("Alert With Callback", () -> Window.alert("My Alert Callback"));
     }
 
     @UiHandler("alertOptionsButton")
-    void handleAlertOptionsButton(final ClickEvent event) {
+    void handleAlertOptionsButton(ClickEvent event) {
         AlertOptions options = AlertOptions.newOptions("Alert With Options");
         options.setSize(BootboxSize.LARGE);
         options.setAnimate(false);
@@ -83,55 +75,35 @@ public class BootboxJSView extends ViewImpl implements BootboxJSPresenter.MyView
     }
 
     @UiHandler("confirmButton")
-    void handleConfirmButton(final ClickEvent event) {
-        Bootbox.confirm("Hello World", new ConfirmCallback() {
-            @Override
-            public void callback(final boolean result) {
-                Window.alert("Return: " + result);
-            }
-        });
+    void handleConfirmButton(ClickEvent event) {
+        Bootbox.confirm("Hello World", result -> Window.alert("Return: " + result));
     }
 
     @UiHandler("confirmOptionsButton")
-    void handleConfirmOptionsButton(final ClickEvent event) {
+    void handleConfirmOptionsButton(ClickEvent event) {
         ConfirmOptions options = ConfirmOptions.newOptions("Confirm With Options");
         options.setSize(BootboxSize.SMALL);
         options.setAnimate(false);
         options.setBackdrop(false);
         options.setTitle("Custome Confirm Title");
         options.setCloseButton(false);
-        options.setCallback(new ConfirmCallback() {
-            @Override
-            public void callback(final boolean result) {
-                Window.alert("Return: " + result);
-            }
-        });
+        options.setCallback(result -> Window.alert("Return: " + result));
         Bootbox.confirm(options);
     }
 
     @UiHandler("promptButton")
-    void handlePromptButton(final ClickEvent event) {
-        Bootbox.prompt("Hello World", new PromptCallback() {
-            @Override
-            public void callback(final String result) {
-                Window.alert("Return: " + result);
-            }
-        });
+    void handlePromptButton(ClickEvent event) {
+        Bootbox.prompt("Hello World", result -> Window.alert("Return: " + result));
     }
 
     @UiHandler("promptOptionsButton")
-    void handlePromptOptionsButton(final ClickEvent event) {
+    void handlePromptOptionsButton(ClickEvent event) {
         PromptOptions options = PromptOptions.newOptions("Prompt With Options");
         options.setAnimate(false);
         options.setBackdrop(false);
         options.setTitle("Custome Prompt Title");
         options.setCloseButton(false);
-        options.setCallback(new PromptCallback() {
-            @Override
-            public void callback(String result) {
-                Window.alert("Return: " + result);
-            }
-        });
+        options.setCallback(result -> Window.alert("Return: " + result));
         Bootbox.prompt(options);
     }
 
@@ -139,24 +111,9 @@ public class BootboxJSView extends ViewImpl implements BootboxJSPresenter.MyView
     void handleDialogButton(ClickEvent event) {
         DialogOptions options = DialogOptions.newOptions("I am a custom dialog");
         options.setTitle("Custom title");
-        options.setOnEscape(new SimpleCallback() {
-            @Override
-            public void callback() {
-                Window.alert("On Escape!");
-            }
-        });
-        options.addButton("Success!", ButtonType.SUCCESS.getCssName(), new SimpleCallback() {
-            @Override
-            public void callback() {
-                Window.alert("Success callback!");
-            }
-        });
-        options.addButton("Danger!", ButtonType.DANGER.getCssName(), new SimpleCallback() {
-            @Override
-            public void callback() {
-                Window.alert("Danger callback!");
-            }
-        });
+        options.setOnEscape(() -> Window.alert("On Escape!"));
+        options.addButton("Success!", ButtonType.SUCCESS.getCssName(), () -> Window.alert("Success callback!"));
+        options.addButton("Danger!", ButtonType.DANGER.getCssName(), () -> Window.alert("Danger callback!"));
         options.addButton("Click ME!");
         Bootbox.dialog(options);
     }
@@ -165,7 +122,7 @@ public class BootboxJSView extends ViewImpl implements BootboxJSPresenter.MyView
     }
 
     @Inject
-    BootboxJSView(final Binder uiBinder) {
+    BootboxJSView(Binder uiBinder) {
 
         initWidget(uiBinder.createAndBindUi(this));
 

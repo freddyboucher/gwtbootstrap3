@@ -26,10 +26,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
-import org.gwtbootstrap3.client.shared.event.HideEvent;
-import org.gwtbootstrap3.client.shared.event.HideHandler;
-import org.gwtbootstrap3.client.shared.event.ShowEvent;
-import org.gwtbootstrap3.client.shared.event.ShowHandler;
 import org.gwtbootstrap3.client.ui.PanelCollapse;
 
 /**
@@ -43,22 +39,12 @@ public class CollapseView extends ViewImpl implements CollapsePresenter.MyView {
     PanelCollapse collapseOne;
 
     @Inject
-    CollapseView(final Binder uiBinder) {
+    CollapseView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
 
         // Add handlers
-        collapseOne.addShowHandler(new ShowHandler() {
-            @Override
-            public void onShow(ShowEvent showEvent) {
-                Window.alert("SHOW ONE");
-            }
-        });
+        collapseOne.addShowHandler(showEvent -> Window.alert("SHOW ONE"));
 
-        collapseOne.addHideHandler(new HideHandler() {
-            @Override
-            public void onHide(HideEvent hideEvent) {
-                Window.alert("HIDE ONE");
-            }
-        });
+        collapseOne.addHideHandler(hideEvent -> Window.alert("HIDE ONE"));
     }
 }

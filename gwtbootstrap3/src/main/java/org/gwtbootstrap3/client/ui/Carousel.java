@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.Element;
 import org.gwtbootstrap3.client.shared.event.CarouselSlidEvent;
 import org.gwtbootstrap3.client.shared.event.CarouselSlidHandler;
 import org.gwtbootstrap3.client.shared.event.CarouselSlideEvent;
@@ -78,15 +79,15 @@ public class Carousel extends Div {
         unbindJavaScriptEvents(getElement());
     }
 
-    public void setInterval(final int interval) {
+    public void setInterval(int interval) {
         this.interval = interval;
     }
 
-    public void setPause(final String pause) {
+    public void setPause(String pause) {
         this.pause = pause;
     }
 
-    public void setWrap(final boolean wrap) {
+    public void setWrap(boolean wrap) {
         this.wrap = wrap;
     }
 
@@ -107,7 +108,7 @@ public class Carousel extends Div {
     /**
      * Causes the carousel to jump to that slide
      */
-    public void jumpToSlide(final int slideNumber) {
+    public void jumpToSlide(int slideNumber) {
         fireMethod(getElement(), slideNumber);
     }
 
@@ -125,11 +126,11 @@ public class Carousel extends Div {
         fireMethod(getElement(), NEXT);
     }
 
-    public HandlerRegistration addSlideHandler(final CarouselSlideHandler carouselSlideHandler) {
+    public HandlerRegistration addSlideHandler(CarouselSlideHandler carouselSlideHandler) {
         return addHandler(carouselSlideHandler, CarouselSlideEvent.getType());
     }
 
-    public HandlerRegistration addSlidHandler(final CarouselSlidHandler slidHandler) {
+    public HandlerRegistration addSlidHandler(CarouselSlidHandler slidHandler) {
         return addHandler(slidHandler, CarouselSlidEvent.getType());
     }
 
@@ -138,7 +139,7 @@ public class Carousel extends Div {
      *
      * @param evt event
      */
-    private void onSlide(final Event evt) {
+    private void onSlide(Event evt) {
         fireEvent(new CarouselSlideEvent(this, evt));
     }
 
@@ -147,36 +148,32 @@ public class Carousel extends Div {
      *
      * @param evt event
      */
-    private void onSlid(final Event evt) {
+    private void onSlid(Event evt) {
         fireEvent(new CarouselSlidEvent(this, evt));
     }
 
-    private void bindJavaScriptEvents(final com.google.gwt.dom.client.Element e) {
+    private void bindJavaScriptEvents(Element e) {
         JQuery carousel = JQuery.jQuery(e);
 
-        carousel.on("slide.bs.carousel", (evt) -> {
-            onSlide(evt);
-        });
+        carousel.on("slide.bs.carousel", this::onSlide);
 
-        carousel.on("slid.bs.carousel", (evt) -> {
-            onSlid(evt);
-        });
+        carousel.on("slid.bs.carousel", this::onSlid);
     }
 
-    private void unbindJavaScriptEvents(final com.google.gwt.dom.client.Element e) {
+    private void unbindJavaScriptEvents(Element e) {
         JQuery.jQuery(e).off("slide.bs.carousel");
         JQuery.jQuery(e).off("slid.bs.carousel");
     }
 
     @JsMethod
-    private static native void carousel(final com.google.gwt.dom.client.Element e, final int interval, final String pause,
-                                 final boolean wrap);
+    private static native void carousel(Element e, int interval, String pause,
+                                        boolean wrap);
 
-    private void fireMethod(final com.google.gwt.dom.client.Element e, String method) {
+    private void fireMethod(Element e, String method) {
         JQuery.jQuery(e).carousel(method);
     }
 
-    private void fireMethod(final com.google.gwt.dom.client.Element e, int slideNumber) {
+    private void fireMethod(Element e, int slideNumber) {
         JQuery.jQuery(e).carousel(slideNumber);
     }
 }

@@ -38,7 +38,7 @@ import org.gwtbootstrap3.client.ui.html.UnorderedList;
 public class DropDownMenu extends UnorderedList implements HasPull {
     private static final String MENU = "menu";
 
-    private final PullMixin<DropDownMenu> pullMixin = new PullMixin<DropDownMenu>(this);
+    private final PullMixin<DropDownMenu> pullMixin = new PullMixin<>(this);
 
     public DropDownMenu() {
         setStyleName(Styles.DROPDOWN_MENU);
@@ -46,7 +46,7 @@ public class DropDownMenu extends UnorderedList implements HasPull {
     }
 
     @Override
-    public void setPull(final Pull pull) {
+    public void setPull(Pull pull) {
         pullMixin.setPull(pull);
     }
 

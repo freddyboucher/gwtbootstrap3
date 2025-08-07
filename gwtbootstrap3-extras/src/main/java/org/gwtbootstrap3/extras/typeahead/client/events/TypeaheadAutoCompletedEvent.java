@@ -33,12 +33,12 @@ import org.gwtbootstrap3.extras.typeahead.client.ui.Typeahead;
  */
 public class TypeaheadAutoCompletedEvent<T> extends GwtEvent<TypeaheadAutoCompletedHandler<T>> {
 
-    public static <T> void fire(final Typeahead<T> source, final Suggestion<T> suggestion, final Event nativeEvent) {
-        TypeaheadAutoCompletedEvent<T> event = new TypeaheadAutoCompletedEvent<T>(source, suggestion, nativeEvent);
+    public static <T> void fire(Typeahead<T> source, Suggestion<T> suggestion, Event nativeEvent) {
+        TypeaheadAutoCompletedEvent<T> event = new TypeaheadAutoCompletedEvent<>(source, suggestion, nativeEvent);
         source.fireEvent(event);
     }
 
-    private static final Type<TypeaheadAutoCompletedHandler<?>> TYPE = new Type<TypeaheadAutoCompletedHandler<?>>();
+    private static final Type<TypeaheadAutoCompletedHandler<?>> TYPE = new Type<>();
 
     private final Typeahead<T> typeahead;
     private final Suggestion<T> suggestion;
@@ -48,7 +48,7 @@ public class TypeaheadAutoCompletedEvent<T> extends GwtEvent<TypeaheadAutoComple
         return TYPE;
     }
 
-    private TypeaheadAutoCompletedEvent(final Typeahead<T> typeahead, final Suggestion<T> suggestion, final  Event nativeEvent) {
+    private TypeaheadAutoCompletedEvent(Typeahead<T> typeahead, Suggestion<T> suggestion, Event nativeEvent) {
         this.typeahead = typeahead;
         this.suggestion = suggestion;
         this.nativeEvent = nativeEvent;
@@ -73,7 +73,7 @@ public class TypeaheadAutoCompletedEvent<T> extends GwtEvent<TypeaheadAutoComple
     }
 
     @Override
-    protected void dispatch(final TypeaheadAutoCompletedHandler<T> handler) {
+    protected void dispatch(TypeaheadAutoCompletedHandler<T> handler) {
         handler.onAutoCompleted(this);
     }
 }

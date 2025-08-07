@@ -37,7 +37,7 @@ public abstract class BaseGwt extends GWTTestCase {
      * Specifies a module to use when running this test case. The returned
      * module must include the source for this class.
      *
-     * @see com.google.gwt.junit.client.GWTTestCase#getModuleName()
+     * @see GWTTestCase#getModuleName()
      */
     @Override
     public String getModuleName() {
@@ -45,7 +45,7 @@ public abstract class BaseGwt extends GWTTestCase {
     }
 
     public <T extends UIObject & HasActive> void checkActive(T button) {
-        final Element label = button.getElement();
+        Element label = button.getElement();
         assertFalse(label.hasClassName(Styles.ACTIVE));
         button.setActive(true);
         assertTrue(label.hasClassName(Styles.ACTIVE));
@@ -73,7 +73,7 @@ public abstract class BaseGwt extends GWTTestCase {
     }
 
     public <T extends UIObject & HasEnabled> void checkEnabled(T button) {
-        final Element label = button.getElement();
+        Element label = button.getElement();
         assertFalse(label.hasClassName(Styles.DISABLED));
         assertFalse(label.hasAttribute(Styles.DISABLED));
         button.setEnabled(false);

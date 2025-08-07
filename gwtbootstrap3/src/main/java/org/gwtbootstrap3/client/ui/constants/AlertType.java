@@ -37,7 +37,7 @@ public enum AlertType implements Type, Style.HasCssName {
 
     private final String cssClass;
 
-    private AlertType(final String cssClass) {
+    AlertType(String cssClass) {
         this.cssClass = cssClass;
     }
 
@@ -46,7 +46,7 @@ public enum AlertType implements Type, Style.HasCssName {
         return cssClass;
     }
 
-    public static AlertType fromStyleName(final String styleName) {
+    public static AlertType fromStyleName(String styleName) {
         return EnumHelper.fromStyleName(styleName, AlertType.class, DEFAULT);
     }
 }

@@ -49,7 +49,7 @@ public class Badge extends ComplexWidget implements HasWidgets, HasText {
         setStyleName(Styles.BADGE);
     }
 
-    public Badge(final String text) {
+    public Badge(String text) {
         this();
         setText(text);
     }
@@ -66,7 +66,7 @@ public class Badge extends ComplexWidget implements HasWidgets, HasText {
      * {@inheritDoc}
      */
     @Override
-    public void setText(final String text) {
+    public void setText(String text) {
         this.text.setText(text);
         insert(this.text, 0);
     }

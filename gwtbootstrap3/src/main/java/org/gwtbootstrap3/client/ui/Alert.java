@@ -48,8 +48,8 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
  *
  * @author Sven Jacobs
  * @author Joshua Godi
- * @see org.gwtbootstrap3.client.shared.event.AlertCloseEvent
- * @see org.gwtbootstrap3.client.shared.event.AlertClosedEvent
+ * @see AlertCloseEvent
+ * @see AlertClosedEvent
  */
 public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType>, HasResponsiveness {
     private static final String CLOSE = "close";
@@ -81,7 +81,7 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
      *
      * @param text text for the alert
      */
-    public Alert(final String text) {
+    public Alert(String text) {
         this();
         setText(text);
     }
@@ -92,7 +92,7 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
      * @param text text for the alert
      * @param type type for the alert
      */
-    public Alert(final String text, final AlertType type) {
+    public Alert(String text, AlertType type) {
         this(text);
         setType(type);
     }
@@ -125,7 +125,7 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
      * {@inheritDoc}
      */
     @Override
-    public void setText(final String text) {
+    public void setText(String text) {
         this.text.setText(text);
         insert(this.text, 0);
     }
@@ -134,7 +134,7 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
      * {@inheritDoc}
      */
     @Override
-    public void setType(final AlertType type) {
+    public void setType(AlertType type) {
         StyleHelper.addUniqueEnumStyleName(this, AlertType.class, type);
     }
 
@@ -151,7 +151,7 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
      *
      * @param dismissable Adds close button when {@code true}
      */
-    public void setDismissable(final boolean dismissable) {
+    public void setDismissable(boolean dismissable) {
         if (dismissable) {
             insert(closeButton, (Element) getElement(), 0, true);
             addStyleName(Styles.ALERT_DISMISSABLE);
@@ -175,7 +175,7 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
      *
      * @param fade The alert will fade on close before it is removed when {@code true}
      */
-    public void setFade(final boolean fade) {
+    public void setFade(boolean fade) {
         if (fade) {
             addStyleName(Styles.FADE);
             addStyleName(Styles.IN);
@@ -206,7 +206,7 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
      *
      * @param evt event
      */
-    protected void onClose(final Event evt) {
+    protected void onClose(Event evt) {
         fireEvent(new AlertCloseEvent(evt));
     }
 
@@ -215,7 +215,7 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
      *
      * @param evt event
      */
-    protected void onClosed(final Event evt) {
+    protected void onClosed(Event evt) {
         fireEvent(new AlertClosedEvent(evt));
     }
 
@@ -225,7 +225,7 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
      * @param handler handler for event
      * @return handler registration for the handler
      */
-    public HandlerRegistration addCloseHandler(final AlertCloseHandler handler) {
+    public HandlerRegistration addCloseHandler(AlertCloseHandler handler) {
         return addHandler(handler, AlertCloseEvent.getType());
     }
 
@@ -235,28 +235,24 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
      * @param handler handler for event
      * @return handler registration for the handler
      */
-    public HandlerRegistration addClosedHandler(final AlertClosedHandler handler) {
+    public HandlerRegistration addClosedHandler(AlertClosedHandler handler) {
         return addHandler(handler, AlertClosedEvent.getType());
     }
 
     // @formatter:off
-    private void alert(final Element e, final String arg) {
+    private void alert( Element e, String arg) {
         JQuery.jQuery(e).alert(arg);
     }
 
-    private void bindJavaScriptEvents(final Element e) {
+    private void bindJavaScriptEvents( Element e) {
         JQuery alert = JQuery.jQuery(e);
 
-        alert.on("close.bs.alert", (evt) -> {
-            onClose(evt);
-        });
+        alert.on("close.bs.alert", this::onClose);
 
-        alert.on("closed.bs.alert", (evt) -> {
-            onClosed(evt);
-        });
+        alert.on("closed.bs.alert", this::onClosed);
     }
 
-    private void unbindJavaScriptEvents(final Element e) {
+    private void unbindJavaScriptEvents( Element e) {
         JQuery.jQuery(e).off("close.bs.alert");
         JQuery.jQuery(e).off("closed.bs.alert");
     }

@@ -39,7 +39,7 @@ public class FieldMatchValidator<T> extends AbstractValidator<T> {
      *
      * @param verifyField the verify field
      */
-    public FieldMatchValidator(final HasValue<T> verifyField) {
+    public FieldMatchValidator(HasValue<T> verifyField) {
         this(verifyField, new Object[0]);
     }
 
@@ -49,7 +49,7 @@ public class FieldMatchValidator<T> extends AbstractValidator<T> {
      * @param verifyField the verify field
      * @param invalidMessageArgs the invalid message args
      */
-    public FieldMatchValidator(final HasValue<T> verifyField, final Object... invalidMessageArgs) {
+    public FieldMatchValidator(HasValue<T> verifyField, Object... invalidMessageArgs) {
         super(Keys.FIELD_MATCH, invalidMessageArgs);
         this.verifyField = verifyField;
         assert this.verifyField != null;
@@ -61,7 +61,7 @@ public class FieldMatchValidator<T> extends AbstractValidator<T> {
      * @param verifyField the field to verify matches with this one.
      * @param invalidMessageOverride the invalid message override
      */
-    public FieldMatchValidator(final HasValue<T> verifyField, final String invalidMessageOverride) {
+    public FieldMatchValidator(HasValue<T> verifyField, String invalidMessageOverride) {
         super(invalidMessageOverride);
         this.verifyField = verifyField;
         assert this.verifyField != null;

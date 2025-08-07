@@ -40,30 +40,30 @@ public interface HasAllTagsInputEvents<T> extends HasItemAddedOnInitHandlers<T>,
     /**
      * The {@link ItemAddedOnInitEvent} name
      */
-    static final String ITEM_ADDED_ON_INIT_EVENT = "itemAddedOnInit";
+    String ITEM_ADDED_ON_INIT_EVENT = "itemAddedOnInit";
 
     /**
      * The {@link BeforeItemAddEvent} name
      */
-    static final String BEFORE_ITEM_ADD_EVENT = "beforeItemAdd";
+    String BEFORE_ITEM_ADD_EVENT = "beforeItemAdd";
 
     /**
      * The {@link ItemAddedEvent} name
      */
-    static final String ITEM_ADDED_EVENT = "itemAdded";
+    String ITEM_ADDED_EVENT = "itemAdded";
 
     /**
      * The {@link BeforeItemRemoveEvent} name
      */
-    static final String BEFORE_ITEM_REMOVE_EVENT = "beforeItemRemove";
+    String BEFORE_ITEM_REMOVE_EVENT = "beforeItemRemove";
 
     /**
      * The {@link ItemRemovedEvent} name
      */
-    static final String ITEM_REMOVED_EVENT = "itemRemoved";
+    String ITEM_REMOVED_EVENT = "itemRemoved";
 
     /**
      * The {@link ItemChangedEvent} name
      */
-    static final String ITEM_CHANGED_EVENT = "change";
+    String ITEM_CHANGED_EVENT = "change";
 }

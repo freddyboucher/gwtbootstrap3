@@ -33,7 +33,7 @@ public class ListGroupView extends ViewImpl implements ListGroupPresenter.MyView
     }
 
     @Inject
-    ListGroupView(final Binder uiBinder) {
+    ListGroupView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

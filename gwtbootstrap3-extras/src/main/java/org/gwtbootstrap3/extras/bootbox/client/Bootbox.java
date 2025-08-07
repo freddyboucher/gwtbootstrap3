@@ -118,7 +118,7 @@ public class Bootbox {
      *
      * @param options the dialog options.
      */
-    public static native void dialog(final DialogOptions options) /*-{
+    public static native void dialog(DialogOptions options) /*-{
         $wnd.bootbox.dialog(options);
     }-*/;
 
@@ -152,7 +152,7 @@ public class Bootbox {
      *
      * @param locale if <code>null</code>, defaults to {@link BootboxLocale#EN}.
      */
-    public static void setLocale(final BootboxLocale locale) {
+    public static void setLocale(BootboxLocale locale) {
         BootboxLocale l = (locale != null) ? locale : BootboxLocale.getDefault();
         setLocale(l.getLocale());
     }
