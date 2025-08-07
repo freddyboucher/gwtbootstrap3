@@ -88,7 +88,6 @@
                 </b:PanelHeader>
                 <b:PanelBody>
                     <gallery:Gallery ui:field="gallery" thumbnailWidth="100px" thumbnailHeight="100px">
-                        <gallery:GalleryImage url="https://farm1.static.flickr.com/655/21391422043_68c98789bf_b.jpg" />
                         <gallery:GalleryImage url="https://farm1.static.flickr.com/582/21830878218_f7e24ec74d_b.jpg" />
                         <gallery:GalleryImage url="https://farm6.static.flickr.com/5707/21832711448_02e33b3b3b_b.jpg" />
                         <gallery:GalleryImage url="https://farm1.static.flickr.com/567/22011206725_9d0b3dc1ae_b.jpg" />
@@ -97,24 +96,19 @@
                         <gallery:GalleryImage url="https://farm6.static.flickr.com/5686/21997628766_9845a40fdc_b.jpg" />
                         <gallery:GalleryImage url="https://farm6.static.flickr.com/5637/21393309814_17ca189d39_b.jpg" />
                         <gallery:GalleryImage url="https://farm1.static.flickr.com/660/22018439171_06358ee107_b.jpg" />
-                        <gallery:GalleryImage url="https://farm6.static.flickr.com/5757/21829896778_e9febcfec8_b.jpg" />
                         <gallery:GalleryImage url="https://farm6.static.flickr.com/5799/21837884439_b5cfe23d60_b.jpg" />
                         <gallery:GalleryImage url="https://farm1.static.flickr.com/616/21833374820_2c2a1ee5a7_b.jpg" />
                         <gallery:GalleryImage url="https://farm6.static.flickr.com/5834/21998184436_d4a185b1f3_b.jpg" />
                         <gallery:GalleryImage url="https://farm6.static.flickr.com/5799/21837884439_b5cfe23d60_b.jpg" />
                         <gallery:GalleryImage url="https://farm1.static.flickr.com/699/22010791525_c810cdace3_b.jpg" />
-                        <gallery:GalleryImage url="https://farm6.static.flickr.com/5682/21388276414_85064b87da_b.jpg" />
                         <gallery:GalleryImage url="https://farm6.static.flickr.com/5747/22018426185_b438d4f59e_b.jpg" />
-                        <gallery:GalleryImage url="https://farm1.static.flickr.com/592/21390068924_ed57f5d9f4_b.jpg" />
                         <gallery:GalleryImage url="https://farm6.static.flickr.com/5727/21831177010_5f24ca7722_b.jpg" />
                         <gallery:GalleryImage url="https://farm1.static.flickr.com/577/22004465542_d9169779ce_b.jpg" />
-                        <gallery:GalleryImage url="https://farm1.static.flickr.com/612/21825410320_a9e880f4d3_b.jpg" />
                     </gallery:Gallery>
                 </b:PanelBody>
                 <b:PanelFooter>
                     <d:PrettyPre addStyleNames="lang-xml">
                         &lt;gallery:Gallery ui:field="gallery" thumbnailWidth="100px" thumbnailHeight="100px"&gt;\n
-                        \s\s\s\s&lt;gallery:GalleryImage url="https://farm1.static.flickr.com/655/21391422043_68c98789bf_b.jpg" /&gt;\n
                         \s\s\s\s&lt;gallery:GalleryImage url="https://farm1.static.flickr.com/582/21830878218_f7e24ec74d_b.jpg" /&gt;\n
                         \s\s\s\s&lt;gallery:GalleryImage url="https://farm6.static.flickr.com/5707/21832711448_02e33b3b3b_b.jpg" /&gt;\n
                         \s\s\s\s&lt;gallery:GalleryImage url="https://farm1.static.flickr.com/567/22011206725_9d0b3dc1ae_b.jpg" /&gt;\n
@@ -123,7 +117,6 @@
                         \s\s\s\s&lt;gallery:GalleryImage url="https://farm6.static.flickr.com/5686/21997628766_9845a40fdc_b.jpg" /&gt;\n
                         \s\s\s\s&lt;gallery:GalleryImage url="https://farm6.static.flickr.com/5637/21393309814_17ca189d39_b.jpg" /&gt;\n
                         \s\s\s\s&lt;gallery:GalleryImage url="https://farm1.static.flickr.com/660/22018439171_06358ee107_b.jpg" /&gt;\n
-                        \s\s\s\s&lt;gallery:GalleryImage url="https://farm6.static.flickr.com/5757/21829896778_e9febcfec8_b.jpg" /&gt;\n
                         \s\s\s\s&lt;gallery:GalleryImage url="https://farm6.static.flickr.com/5799/21837884439_b5cfe23d60_b.jpg" /&gt;\n
                         \s\s\s\s&lt;gallery:GalleryImage url="https://farm1.static.flickr.com/616/21833374820_2c2a1ee5a7_b.jpg" /&gt;\n
                         &lt;gallery:Gallery/&gt;
@@ -146,7 +139,7 @@
                         <gallery:GalleryImage url="https://farm6.static.flickr.com/5707/21832711448_02e33b3b3b_b.jpg">
                             <b:Anchor ui:field="delete2" icon="CLOSE" color="white" />
                         </gallery:GalleryImage>
-                        <gallery:GalleryImage url="https://farm1.static.flickr.com/655/21391422043_68c98789bf_b.jpg">
+                        <gallery:GalleryImage url="https://farm1.static.flickr.com/577/22004465542_d9169779ce_b.jpg">
                             <b:Anchor ui:field="delete3" icon="CLOSE" color="white" />
                         </gallery:GalleryImage>
                         <gallery:GalleryImage url="https://farm1.static.flickr.com/567/22011206725_9d0b3dc1ae_b.jpg">
