@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -9,6 +10,7 @@
     </parent>
 
     <artifactId>gwtbootstrap3-extras</artifactId>
+    <packaging>gwt-lib</packaging>
     <name>GwtBootstrap3 Extras</name>
     <description>Extra, third-party widgets/components for GwtBootstrap3</description>
 
@@ -31,19 +33,13 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>net.ltgt.gwt.maven</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
+                <extensions>true</extensions>
                 <configuration>
-                    <validateOnly>true</validateOnly>
+                    <moduleName>org.gwtbootstrap3.extras.select.Select</moduleName>
+                    <moduleTemplate>src/main/resources/org/gwtbootstrap3/extras/select/Select.gwt.xml</moduleTemplate>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
