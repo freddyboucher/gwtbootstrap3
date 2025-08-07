@@ -11,7 +11,6 @@
     <artifactId>gwtbootstrap3</artifactId>
     <name>GwtBootstrap3</name>
     <description>GWT wrapper for the Bootstrap front-end framework</description>
-    <url>http://gwtbootstrap3.org</url>
 
     <dependencies>
         <dependency>
