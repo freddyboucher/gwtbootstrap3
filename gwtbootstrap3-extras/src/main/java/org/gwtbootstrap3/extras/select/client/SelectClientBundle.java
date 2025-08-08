@@ -31,20 +31,20 @@ public interface SelectClientBundle extends ClientBundle {
 
     SelectClientBundle INSTANCE = GWT.create(SelectClientBundle.class);
 
-    String VERSION = "1.12.4";
+    String VERSION = "1.13.18";
     String I18N_DIR = "resource/js/i18n.cache." + VERSION + "/";
 
     @Source("resource/js/bootstrap-select-" + VERSION + ".min.cache.js")
     TextResource select();
+
+    @Source(I18N_DIR + "defaults-am_ET.min.js")
+    TextResource am();
 
     @Source(I18N_DIR + "defaults-ar_AR.min.js")
     TextResource ar();
 
     @Source(I18N_DIR + "defaults-bg_BG.min.js")
     TextResource bg();
-
-    @Source(I18N_DIR + "defaults-cro_CRO.min.js")
-    TextResource cro();
 
     @Source(I18N_DIR + "defaults-cs_CZ.min.js")
     TextResource cs();
@@ -64,6 +64,9 @@ public interface SelectClientBundle extends ClientBundle {
     @Source(I18N_DIR + "defaults-es_ES.min.js")
     TextResource es_ES();
 
+    @Source(I18N_DIR + "defaults-et_EE.min.js")
+    TextResource et();
+
     @Source(I18N_DIR + "defaults-eu.min.js")
     TextResource eu();
 
@@ -76,6 +79,9 @@ public interface SelectClientBundle extends ClientBundle {
     @Source(I18N_DIR + "defaults-fr_FR.min.js")
     TextResource fr();
 
+    @Source(I18N_DIR + "defaults-hr_HR.min.js")
+    TextResource hr();
+
     @Source(I18N_DIR + "defaults-hu_HU.min.js")
     TextResource hu();
 
@@ -85,11 +91,20 @@ public interface SelectClientBundle extends ClientBundle {
     @Source(I18N_DIR + "defaults-it_IT.min.js")
     TextResource it();
 
+    @Source(I18N_DIR + "defaults-ja_JP.min.js")
+    TextResource ja();
+
+    @Source(I18N_DIR + "defaults-kh_KM.min.js")
+    TextResource kh();
+
     @Source(I18N_DIR + "defaults-ko_KR.min.js")
     TextResource ko();
 
     @Source(I18N_DIR + "defaults-lt_LT.min.js")
     TextResource lt();
+
+    @Source(I18N_DIR + "defaults-lv_LV.min.js")
+    TextResource lv();
 
     @Source(I18N_DIR + "defaults-nb_NO.min.js")
     TextResource nb();
@@ -118,14 +133,23 @@ public interface SelectClientBundle extends ClientBundle {
     @Source(I18N_DIR + "defaults-sl_SI.min.js")
     TextResource sl();
 
+    @Source(I18N_DIR + "defaults-sr_SP.min.js")
+    TextResource sr();
+
     @Source(I18N_DIR + "defaults-sv_SE.min.js")
     TextResource sv();
+
+    @Source(I18N_DIR + "defaults-th_TH.min.js")
+    TextResource th();
 
     @Source(I18N_DIR + "defaults-tr_TR.min.js")
     TextResource tr();
 
     @Source(I18N_DIR + "defaults-ua_UA.min.js")
     TextResource ua();
+
+    @Source(I18N_DIR + "defaults-vi_VN.min.js")
+    TextResource vi();
 
     @Source(I18N_DIR + "defaults-zh_CN.min.js")
     TextResource zh_CN();

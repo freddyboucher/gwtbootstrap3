@@ -82,7 +82,8 @@ public class Select extends SelectBase<String> {
     }-*/;
 
     private native void setValue(Element e, String value) /*-{
-        $wnd.jQuery(e).selectpicker('val', value);
+        $wnd.jQuery(e).val(value);
+        $wnd.jQuery(e).selectpicker('render');
     }-*/;
 
 }

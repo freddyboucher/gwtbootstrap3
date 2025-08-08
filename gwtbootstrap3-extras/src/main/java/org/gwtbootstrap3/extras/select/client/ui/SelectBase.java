@@ -76,6 +76,7 @@ import java.util.stream.StreamSupport;
 
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.*;
 
+
 /**
  * Bootstrap select widget base
  *
@@ -551,6 +552,17 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
         return attrMixin.getAttribute(STYLE);
     }
 
+    public void setStyleBase(String styleName) {
+        if (styleName != null)
+            attrMixin.setAttribute(STYLE_BASE, styleName);
+        else
+            attrMixin.removeAttribute(STYLE_BASE);
+    }
+
+    public String getStyleBase() {
+        return attrMixin.getAttribute(STYLE_BASE);
+    }
+
     /**
      * Set the specified width to the select.<br>
      * <br>
@@ -702,7 +714,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
         if (!isAttached()) {
             return selectElement;
         }
-        return getElement().getParentElement().getFirstChildElement();
+        return getElement().getNextSiblingElement();
     }
 
     /**
@@ -879,11 +891,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
             @org.gwtbootstrap3.extras.select.client.ui.event.LoadedEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasLoadedHandlers;)(select);
         });
         $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::CHANGED_EVENT, function (event, clickedIndex, newValue, oldValue) {
-            console.log(clickedIndex);
-            // This avoid to fire twice the onValueChange !!!
-            if (clickedIndex !== undefined) {
-                select.@org.gwtbootstrap3.extras.select.client.ui.SelectBase::onValueChange()();
-            }
+            select.@org.gwtbootstrap3.extras.select.client.ui.SelectBase::onValueChange()();
         });
         $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::SHOW_EVENT, function (event) {
             @org.gwtbootstrap3.extras.select.client.ui.event.ShowEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasShowHandlers;)(select);

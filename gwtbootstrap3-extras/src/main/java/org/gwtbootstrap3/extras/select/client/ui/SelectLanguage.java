@@ -27,7 +27,6 @@ public enum SelectLanguage {
 
     AR("ar", SelectClientBundle.INSTANCE.ar()),
     BG("bg", SelectClientBundle.INSTANCE.bg()),
-    CRO("cro", SelectClientBundle.INSTANCE.cro()),
     CS("cs", SelectClientBundle.INSTANCE.cs()),
     DA("da", SelectClientBundle.INSTANCE.da()),
     DE("de", SelectClientBundle.INSTANCE.de()),

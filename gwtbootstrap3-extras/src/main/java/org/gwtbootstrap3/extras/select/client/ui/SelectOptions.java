@@ -60,6 +60,7 @@ class SelectOptions extends JavaScriptObject {
     static final String SHOW_TICK = DATA_PREFIX + "show-tick";
     static final String SIZE = DATA_PREFIX + "size";
     static final String STYLE = DATA_PREFIX + "style";
+    static final String STYLE_BASE = DATA_PREFIX + "style-base";
     static final String TITLE = DATA_PREFIX + "title";
     static final String WIDTH = DATA_PREFIX + "width";
     static final String WINDOW_PADDING = DATA_PREFIX + "window-padding";
