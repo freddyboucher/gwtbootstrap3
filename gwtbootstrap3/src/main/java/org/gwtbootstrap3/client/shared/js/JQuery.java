@@ -80,6 +80,10 @@ public class JQuery {
      */
     public native JQuery off(String events);
 
+    public native JQuery find(String selector);
+
+    public native String text();
+
     /**
      * Bootstrap alert() method
      * @param method the method string
