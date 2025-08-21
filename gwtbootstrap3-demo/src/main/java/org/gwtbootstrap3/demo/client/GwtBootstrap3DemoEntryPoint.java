@@ -21,7 +21,9 @@ package org.gwtbootstrap3.demo.client;
  */
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.ScriptInjector;
+import com.google.web.bindery.event.shared.UmbrellaException;
 
 /**
  * @author Sven Jacobs
@@ -30,6 +32,12 @@ public class GwtBootstrap3DemoEntryPoint implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
+        GWT.setUncaughtExceptionHandler(e -> {
+            while (e instanceof UmbrellaException) {
+                e = e.getCause();
+            }
+            GWT.log(e.getMessage(), e);
+        });
         ScriptInjector.fromString(GwtBootstrap3DemoClientBundle.INSTANCE.prettify().getText())
                 .setWindow(ScriptInjector.TOP_WINDOW)
                 .inject();
