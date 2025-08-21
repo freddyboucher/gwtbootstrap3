@@ -19,24 +19,17 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * limitations under the License.
  * #L%
  */
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.ACTIONS_BOX;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.DESELECT_ALL_TEXT;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.MAX_OPTIONS;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.MULTIPLE_SEPARATOR;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.NONE_SELECTED_TEXT;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SELECTED_TEXT_FORMAT;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SELECT_ALL_TEXT;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map.Entry;
-
-import org.gwtbootstrap3.extras.select.client.ui.constants.SelectedTextFormat;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.OptionElement;
+import org.gwtbootstrap3.extras.select.client.ui.constants.SelectedTextFormat;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.*;
 
 /**
  * Multiple select box.
@@ -141,21 +134,6 @@ public class MultipleSelect extends SelectBase<List<String>> {
     }
 
     /**
-     * Sets the text that is displayed when a multiple select
-     * has no selected options.<br>
-     * <br>
-     * Defaults to <code>Nothing Selected</code>.
-     *
-     * @param noneSelectedText
-     */
-    public void setNoneSelectedText(String noneSelectedText) {
-        if (noneSelectedText != null)
-            attrMixin.setAttribute(NONE_SELECTED_TEXT, noneSelectedText);
-        else
-            attrMixin.removeAttribute(NONE_SELECTED_TEXT);
-    }
-
-    /**
      * Specifies how the selection is displayed with a multiple select.<br>
      * <br>
      * Defaults to {@link SelectedTextFormat#VALUES}.
@@ -195,13 +173,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
     }
 
     private List<String> getSelectedValues() {
-        List<String> allSelected = new ArrayList<>(0);
-        for (Entry<OptionElement, Option> entry : itemMap.entrySet()) {
-            Option opt = entry.getValue();
-            if (opt.isSelected())
-                allSelected.add(opt.getValue());
-        }
-        return allSelected;
+        return getItems().stream().filter(Option::isSelected).map(Option::getValue).collect(Collectors.toList());
     }
 
     @Override
@@ -213,11 +185,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
             }
             setValue(getElement(), arr);
         } else {
-            for (Entry<OptionElement, Option> entry : itemMap.entrySet()) {
-                Option opt = entry.getValue();
-                boolean selected = value.contains(opt.getValue());
-                opt.setSelected(selected);
-            }
+            getItems().forEach(item -> item.setSelected(value.contains(item.getValue())));
         }
     }
 
@@ -228,13 +196,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
      * @return the selected items list
      */
     public List<Option> getSelectedItems() {
-        List<Option> items = new ArrayList<>(0);
-        for (Entry<OptionElement, Option> entry : itemMap.entrySet()) {
-            Option opt = entry.getValue();
-            if (opt.isSelected())
-                items.add(opt);
-        }
-        return items;
+        return getItems().stream().filter(Option::isSelected).collect(Collectors.toList());
     }
 
     /**
@@ -256,9 +218,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
             String cmd = selected ? SelectCommand.SELECT_ALL : SelectCommand.DESELECT_ALL;
             command(getElement(), cmd);
         } else {
-            for (Entry<OptionElement, Option> entry : itemMap.entrySet()) {
-                entry.getValue().setSelected(selected);
-            }
+            getItems().forEach(item -> item.setSelected(selected));
         }
     }
 

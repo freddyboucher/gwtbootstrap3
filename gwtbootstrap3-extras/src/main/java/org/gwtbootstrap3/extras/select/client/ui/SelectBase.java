@@ -20,37 +20,34 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * #L%
  */
 
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.CONTAINER;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.DROPDOWN_ALIGN_RIGHT;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.DROPUP_AUTO;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.HEADER;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.HIDE_DISABLED;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.LIVE_SEARCH;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.LIVE_SEARCH_NORMALIZE;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.LIVE_SEARCH_PLACEHOLDER;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.LIVE_SEARCH_STYLE;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.MOBILE;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SELECT_ON_TAB;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SHOW_CONTENT;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SHOW_ICON;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SHOW_SUBTEXT;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SIZE;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.STYLE;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.WIDTH;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.WINDOW_PADDING;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArrayNumber;
+import com.google.gwt.core.client.JsonUtils;
+import com.google.gwt.core.client.ScriptInjector;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.OptionElement;
+import com.google.gwt.dom.client.SelectElement;
+import com.google.gwt.editor.client.IsEditor;
+import com.google.gwt.editor.client.LeafValueEditor;
+import com.google.gwt.editor.client.adapters.TakesValueEditor;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.ui.Focusable;
+import com.google.gwt.user.client.ui.HasEnabled;
+import com.google.gwt.user.client.ui.HasValue;
+import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.impl.FocusImpl;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.HasSize;
 import org.gwtbootstrap3.client.ui.base.HasType;
 import org.gwtbootstrap3.client.ui.base.mixin.AttributeMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
-import org.gwtbootstrap3.client.ui.constants.*;
+import org.gwtbootstrap3.client.ui.constants.ButtonSize;
+import org.gwtbootstrap3.client.ui.constants.ButtonType;
+import org.gwtbootstrap3.client.ui.constants.InputSize;
+import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.extras.select.client.ui.constants.DropdownAlignRight;
 import org.gwtbootstrap3.extras.select.client.ui.constants.LiveSearchStyle;
 import org.gwtbootstrap3.extras.select.client.ui.constants.MenuSize;
@@ -72,26 +69,12 @@ import org.gwtbootstrap3.extras.select.client.ui.event.ShowHandler;
 import org.gwtbootstrap3.extras.select.client.ui.event.ShownEvent;
 import org.gwtbootstrap3.extras.select.client.ui.event.ShownHandler;
 
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArrayNumber;
-import com.google.gwt.core.client.JsonUtils;
-import com.google.gwt.core.client.ScriptInjector;
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.NodeList;
-import com.google.gwt.dom.client.OptionElement;
-import com.google.gwt.dom.client.SelectElement;
-import com.google.gwt.editor.client.IsEditor;
-import com.google.gwt.editor.client.LeafValueEditor;
-import com.google.gwt.editor.client.adapters.TakesValueEditor;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.ui.Focusable;
-import com.google.gwt.user.client.ui.HasEnabled;
-import com.google.gwt.user.client.ui.HasValue;
-import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.client.ui.impl.FocusImpl;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
+import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.*;
 
 /**
  * Bootstrap select widget base
@@ -118,7 +101,6 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
     private SelectLanguage language = DEFAULT_LANGUAGE;
 
     protected final SelectElement selectElement;
-    protected final Map<OptionElement, Option> itemMap = new HashMap<>(0);
     protected final AttributeMixin<SelectBase<T>> attrMixin = new AttributeMixin<>(this);
     private final EnabledMixin<SelectBase<T>> enabledMixin = new EnabledMixin<>(this);
     private final FocusImpl focusImpl = FocusImpl.getFocusImplForWidget();
@@ -133,6 +115,21 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
         setElement(selectElement);
         setStyleName(SelectStyles.SELECT_PICKER);
         addStyleName(Styles.FORM_CONTROL);
+    }
+
+    /**
+     * Sets the text that is displayed when a multiple select
+     * has no selected options.<br>
+     * <br>
+     * Defaults to <code>Nothing Selected</code>.
+     *
+     * @param noneSelectedText
+     */
+    public void setNoneSelectedText(String noneSelectedText) {
+        if (noneSelectedText != null)
+            attrMixin.setAttribute(NONE_SELECTED_TEXT, noneSelectedText);
+        else
+            attrMixin.removeAttribute(NONE_SELECTED_TEXT);
     }
 
     /**
@@ -163,44 +160,18 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
 
     @Override
     public void add(Widget child) {
+        if (!(child instanceof Option) && !(child instanceof OptGroup)) {
+            throw new IllegalArgumentException("Only Option or OptGroup widgets can be added");
+        }
         super.add(child);
-        updateItemMap(child, true);
     }
 
     @Override
     public void insert(Widget child, int beforeIndex) {
+        if (!(child instanceof Option) && !(child instanceof OptGroup)) {
+            throw new IllegalArgumentException("Only Option or OptGroup widgets can be added");
+        }
         super.insert(child, beforeIndex);
-        updateItemMap(child, true);
-    }
-
-    @Override
-    public boolean remove(Widget w) {
-        boolean removed = super.remove(w);
-        if (removed) {
-            updateItemMap(w, false);
-        }
-        return removed;
-    }
-
-    void updateItemMap(Widget widget, boolean toAdd) {
-        // Option ==> update with this option
-        if (widget instanceof Option) {
-            Option option = (Option) widget;
-            if (toAdd)
-                itemMap.put(option.getSelectElement(), option);
-            else
-                itemMap.remove(option.getSelectElement());
-        } else if (widget instanceof OptGroup) {
-            // OptGroup ==> update with all optGroup options
-            OptGroup optGroup = (OptGroup) widget;
-            if (toAdd)
-                itemMap.putAll(optGroup.getItemMap());
-            else
-                for (Entry<OptionElement, Option> entry : optGroup.getItemMap().entrySet()) {
-                    OptionElement optElem = entry.getKey();
-                    itemMap.remove(optElem);
-                }
-        }
     }
 
     /**
@@ -581,19 +552,6 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
     }
 
     /**
-     * Set the default placeholder text when nothing is selected.
-     * This works for both multiple and standard select boxes.<br>
-     * <br>
-     * Defaults to <code>null</code>.
-     *
-     * @param title
-     * @see #setTitle(String)
-     */
-    public void setPlaceholder(String placeholder) {
-        setTitle(placeholder);
-    }
-
-    /**
      * Set the specified width to the select.<br>
      * <br>
      * Defaults to {@link SelectWidth#NONE}.
@@ -740,7 +698,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
         focusImpl.setTabIndex(getFocusElement(), index);
     }
 
-    private Element getFocusElement() {
+    protected Element getFocusElement() {
         if (!isAttached()) {
             return selectElement;
         }
@@ -762,15 +720,13 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @return the item list
      */
     public List<Option> getItems() {
-        List<Option> selectedItems = new ArrayList<>(0);
-        NodeList<OptionElement> items = selectElement.getOptions();
-        for (int i = 0; i < items.getLength(); i++) {
-            OptionElement item = items.getItem(i);
-            Option option = itemMap.get(item);
-            if (option != null)
-                selectedItems.add(option);
-        }
-        return selectedItems;
+        return StreamSupport.stream(spliterator(), false).flatMap(w -> {
+            if (w instanceof Option) {
+                return Stream.of((Option) w);
+            } else {
+                return ((OptGroup) w).getItems().stream();
+            }
+        }).collect(Collectors.toList());
     }
 
     /**
@@ -783,10 +739,8 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @return
      */
     public boolean isItemSelected(int index) {
-        checkIndex(index);
         OptionElement item = selectElement.getOptions().getItem(index);
-        Option option = itemMap.get(item);
-        return option != null && option.isSelected();
+        return item.isSelected();
     }
 
     /**
@@ -796,16 +750,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
      * @return
      */
     public Option getItem(int index) {
-        checkIndex(index);
-        OptionElement item = selectElement.getOptions().getItem(index);
-        return itemMap.get(item);
-    }
-
-    private void checkIndex(int index) {
-        int max = getItemCount();
-        if (index < 0 || index >= max) {
-            throw new IndexOutOfBoundsException("Index should be in [0, " + max + "]");
-        }
+        return (Option) getWidget(index);
     }
 
     @Override
@@ -934,6 +879,7 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
             @org.gwtbootstrap3.extras.select.client.ui.event.LoadedEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasLoadedHandlers;)(select);
         });
         $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::CHANGED_EVENT, function (event, clickedIndex, newValue, oldValue) {
+            console.log(clickedIndex);
             // This avoid to fire twice the onValueChange !!!
             if (clickedIndex !== undefined) {
                 select.@org.gwtbootstrap3.extras.select.client.ui.SelectBase::onValueChange()();
@@ -978,4 +924,6 @@ public abstract class SelectBase<T> extends ComplexWidget implements HasValue<T>
     protected native void command(Element e, String command) /*-{
         $wnd.jQuery(e).selectpicker(command);
     }-*/;
+
+
 }

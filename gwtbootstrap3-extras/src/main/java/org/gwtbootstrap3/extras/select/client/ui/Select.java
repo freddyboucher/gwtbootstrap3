@@ -20,12 +20,9 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * #L%
  */
 
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SHOW_TICK;
-
-import java.util.Map.Entry;
-
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.OptionElement;
+
+import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SHOW_TICK;
 
 /**
  * Standard select box.
@@ -59,19 +56,7 @@ public class Select extends SelectBase<String> {
 
     @Override
     public String getValue() {
-        if (isAttached()) {
-            return getValue(getElement());
-        }
-        return getSelectedValue();
-    }
-
-    private String getSelectedValue() {
-        for (Entry<OptionElement, Option> entry : itemMap.entrySet()) {
-            Option opt = entry.getValue();
-            if (opt.isSelected())
-                return opt.getValue();
-        }
-        return null;
+        return getItems().stream().filter(Option::isSelected).findFirst().map(Option::getValue).orElse(null);
     }
 
     @Override
@@ -79,10 +64,7 @@ public class Select extends SelectBase<String> {
         if (isAttached()) {
             setValue(getElement(), value);
         } else {
-            for (Entry<OptionElement, Option> entry : itemMap.entrySet()) {
-                Option opt = entry.getValue();
-                opt.setSelected(opt.getValue().equals(value));
-            }
+            getItems().forEach(item -> item.setSelected(item.getValue().equals(value)));
         }
     }
 
@@ -92,12 +74,7 @@ public class Select extends SelectBase<String> {
      * @return the selected items list
      */
     public Option getSelectedItem() {
-        for (Entry<OptionElement, Option> entry : itemMap.entrySet()) {
-            Option opt = entry.getValue();
-            if (opt.isSelected())
-                return opt;
-        }
-        return null;
+        return getItems().stream().filter(Option::isSelected).findFirst().orElse(null);
     }
 
     private native String getValue(Element e) /*-{

@@ -20,22 +20,23 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * #L%
  */
 
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.ICON;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.MAX_OPTIONS;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SUBTEXT;
-
-import java.util.HashMap;
-import java.util.Map;
-
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.OptionElement;
+import com.google.gwt.user.client.ui.HasEnabled;
+import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.mixin.AttributeMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
 import org.gwtbootstrap3.client.ui.constants.IconType;
 
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.OptionElement;
-import com.google.gwt.user.client.ui.HasEnabled;
-import com.google.gwt.user.client.ui.Widget;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
+import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.*;
 
 /**
  * Select option group widget.
@@ -143,48 +144,28 @@ public class OptGroup extends ComplexWidget implements HasEnabled {
 
     @Override
     public void add(Widget child) {
+        if (!(child instanceof Option) && !(child instanceof OptGroup)) {
+            throw new IllegalArgumentException("Only Option or OptGroup widgets can be added");
+        }
         super.add(child);
-        updateItemMap(child, true);
     }
 
     @Override
     public void insert(Widget child, int beforeIndex) {
+        if (!(child instanceof Option) && !(child instanceof OptGroup)) {
+            throw new IllegalArgumentException("Only Option or OptGroup widgets can be added");
+        }
         super.insert(child, beforeIndex);
-        updateItemMap(child, true);
     }
 
-    @Override
-    public boolean remove(Widget w) {
-        boolean removed = super.remove(w);
-        if (removed) {
-            updateItemMap(w, false);
-        }
-        return removed;
+    public List<Option> getItems() {
+        return StreamSupport.stream(spliterator(), false).flatMap(w -> {
+            if (w instanceof Option) {
+                return Stream.of((Option) w);
+            } else {
+                return ((OptGroup)w).getItems().stream();
+            }
+        }).collect(Collectors.toList());
     }
 
-    private void updateItemMap(Widget widget, boolean toAdd) {
-
-        // Not option element ==> ignore it
-        if (!(widget instanceof Option))
-            return;
-
-        // Update item map
-        Option option = (Option) widget;
-        if (toAdd) {
-            itemMap.put(option.getSelectElement(), option);
-        } else {
-            itemMap.remove(option.getSelectElement());
-        }
-
-        // Update select item map
-        Widget parent = getParent();
-        if (parent != null && parent instanceof SelectBase) {
-            SelectBase<?> select = (SelectBase<?>) parent;
-            select.updateItemMap(option, toAdd);
-        }
-    }
-
-    Map<OptionElement, Option> getItemMap() {
-        return itemMap;
-    }
 }

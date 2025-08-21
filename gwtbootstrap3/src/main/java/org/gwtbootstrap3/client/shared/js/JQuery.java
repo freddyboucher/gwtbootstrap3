@@ -82,6 +82,10 @@ public class JQuery {
 
     public native JQuery find(String selector);
 
+    public native JQuery closest(String selector);
+
+    public native void trigger(String event);
+
     public native String text();
 
     /**

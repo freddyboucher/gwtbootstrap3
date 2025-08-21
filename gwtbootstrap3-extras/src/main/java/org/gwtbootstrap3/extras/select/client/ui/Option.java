@@ -20,23 +20,17 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * #L%
  */
 
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.CONTENT;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.DIVIDER;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.HIDDEN;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.ICON;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SUBTEXT;
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.TOKENS;
-
-import org.gwtbootstrap3.client.ui.base.AbstractTextWidget;
-import org.gwtbootstrap3.client.ui.base.mixin.AttributeMixin;
-import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
-import org.gwtbootstrap3.client.ui.constants.IconType;
-
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.OptionElement;
 import com.google.gwt.user.client.TakesValue;
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasName;
+import org.gwtbootstrap3.client.ui.base.AbstractTextWidget;
+import org.gwtbootstrap3.client.ui.base.mixin.AttributeMixin;
+import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
+import org.gwtbootstrap3.client.ui.constants.IconType;
+
+import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.*;
 
 /**
  * Select option widget.
@@ -50,6 +44,8 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
 
     private static final String NAME = "name";
     private static final String VALUE = "value";
+    private boolean valueDefined;
+    private String value;
 
     public Option() {
         super(Document.get().createOptionElement());
@@ -108,6 +104,8 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
 
     @Override
     public void setValue(String value) {
+        valueDefined = true;
+        this.value = value;
         if (value != null)
             attrMixin.setAttribute(VALUE, value);
         else
@@ -120,8 +118,7 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
      */
     @Override
     public String getValue() {
-        String value = attrMixin.getAttribute(VALUE);
-        return value.isEmpty() ? getText() : value;
+        return valueDefined || value != null ? value : getText();
     }
 
     @Override
