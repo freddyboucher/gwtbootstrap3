@@ -339,4 +339,16 @@ public class Modal extends Div implements IsClosable {
         je.off("hide.bs.modal");
         je.off("hidden.bs.modal");
     }
+
+    public ModalHeader getHeader() {
+        return header;
+    }
+
+    public ModalContent getContent() {
+        return content;
+    }
+
+    public ModalDialog getDialog() {
+        return dialog;
+    }
 }
