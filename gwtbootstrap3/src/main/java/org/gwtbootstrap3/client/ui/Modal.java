@@ -328,7 +328,10 @@ public class Modal extends Div implements IsClosable {
 
     // Will iterate over all the modals, if they are visible it will hide them
     private void hideOtherModals() {
+        JQuery hasfade = JQuery.jQuery(".modal.in.fade");
+        hasfade.removeClass("fade");
         JQuery.jQuery(".modal.in").modal("hide");
+        hasfade.addClass("fade");
     }
 
     // Unbinds all the handlers

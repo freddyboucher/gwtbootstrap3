@@ -160,4 +160,7 @@ public class JQuery {
      */
     public native JQuery tooltip(String method);
 
+    public native JQuery addClass(String className);
+
+    public native JQuery removeClass(String className);
 }
