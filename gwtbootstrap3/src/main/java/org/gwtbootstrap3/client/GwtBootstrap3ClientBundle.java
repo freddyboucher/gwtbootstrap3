@@ -34,7 +34,7 @@ public interface GwtBootstrap3ClientBundle extends ClientBundle {
     @Source("resource/js/gwtbootstrap3.js")
     TextResource gwtBootstrap3();
 
-    @Source("resource/js/jquery-1.12.4.min.cache.js")
+    @Source("resource/js/jquery-3.7.1.min.cache.js")
     TextResource jQuery();
 
     @Source("resource/js/bootstrap-3.4.1.min.cache.js")
