@@ -2,6 +2,7 @@ package org.gwtbootstrap3.extras.select.client.ui;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.junit.client.GWTTestCase;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import org.gwtbootstrap3.client.GwtBootstrap3EntryPoint;
 import org.gwtbootstrap3.client.shared.js.JQuery;
@@ -25,7 +26,7 @@ public class SelectTest extends GWTTestCase {
 
     public void testSelect() {
         Select select = new Select();
-        assertNull(select.getValue());
+        assertEquals("", select.getValue());
 
         Option option = new Option();
         option.setText("text");
@@ -40,7 +41,7 @@ public class SelectTest extends GWTTestCase {
         assertEquals("text", readText(select));
 
         select.setValue("xxx");
-        assertNull(select.getValue());
+        assertEquals("", select.getValue());
         assertEquals("Nothing selected", readText(select));
 
         select.setValue("value");
@@ -48,19 +49,19 @@ public class SelectTest extends GWTTestCase {
         assertEquals("text", readText(select));
 
         select.setValue("xxx");
-        assertNull(select.getValue());
+        assertEquals("", select.getValue());
         assertEquals("Nothing selected", readText(select));
 
         select.setValue("");
-        assertNull(select.getValue());
+        assertEquals("", select.getValue());
         assertEquals("Nothing selected", readText(select));
 
         select.setValue(null);
-        assertNull(select.getValue());
+        assertEquals("", select.getValue());
         assertEquals("Nothing selected", readText(select));
 
         select.setValue("xxx");
-        assertNull(select.getValue());
+        assertEquals("", select.getValue());
         assertEquals("Nothing selected", readText(select));
     }
 
@@ -96,7 +97,7 @@ public class SelectTest extends GWTTestCase {
         option.setText("text");
         option.setValue(null);
         select.add(option);
-        assertNull(select.getValue());
+        assertEquals("text", select.getValue());
     }
 
     public void testUndefinedValueOption() {
@@ -119,7 +120,7 @@ public class SelectTest extends GWTTestCase {
             option.setText("text");
             option.setValue("value");
 
-            assertNull(select.getValue());
+            assertEquals("", select.getValue());
             select.add(option);
             assertEquals("value", select.getValue());
         }
@@ -132,7 +133,7 @@ public class SelectTest extends GWTTestCase {
             option.setText("text");
             option.setValue("value");
 
-            assertNull(select.getValue());
+            assertEquals("", select.getValue());
             select.add(option);
             assertEquals("value", select.getValue());
         }
@@ -148,7 +149,7 @@ public class SelectTest extends GWTTestCase {
 
             assertEquals("value", select.getValue());
             option.removeFromParent();
-            assertNull(select.getValue());
+            assertEquals("", select.getValue());
         }
         {
             Select select = new Select();
@@ -160,7 +161,7 @@ public class SelectTest extends GWTTestCase {
             option.setValue("value");
             optGroup.add(option);
 
-            assertNull(select.getValue());
+            assertEquals("", select.getValue());
             select.add(option);
             assertEquals("value", select.getValue());
         }
@@ -177,8 +178,10 @@ public class SelectTest extends GWTTestCase {
             select.addValueChangeHandler(event -> fail());
 
             assertEquals("value", select.getValue());
+            assertEquals(option, select.getSelectedItem());
             option.removeFromParent();
-            assertNull(select.getValue());
+            assertEquals("", select.getValue());
+            assertNull(select.getSelectedItem());
         }
         // Only manuel firing and user interactions triggers ValueChangeEvent, adding/removing Option DO NOT TRIGGER ValueChangeEvent
         {
@@ -252,5 +255,72 @@ public class SelectTest extends GWTTestCase {
                 finishTest();
             });
         }
+        {
+            AtomicBoolean called = new AtomicBoolean(false);
+            Select select = new Select();
+            RootPanel.get().add(select);
+            select.clear();
+            assertEquals("", select.getValue());
+
+            select.addValueChangeHandler(event -> {
+                assertFalse(called.get());
+                called.set(true);
+                assertEquals("value2", select.getValue());
+            });
+
+            Option option1 = new Option();
+            option1.setText("text1");
+            option1.setValue("value1");
+            option1.setEnabled(false);
+            select.add(option1);
+
+            select.refresh();
+
+            assertEquals("<select class=\"selectpicker form-control\"><option value=\"value1\" class=\"disabled\" disabled=\"\">text1</option></select>", select.selectElement.getString());
+            // It does NOT make sense and it's wrong!! option1 is disabled so select.getValue() should return the empty string
+            assertEquals("value1", select.getValue());
+            assertEquals("text1", readText(select));
+
+            Option option2 = new Option();
+            option2.setText("text2");
+            option2.setValue("value2");
+            select.add(option2);
+            assertEquals("value1", select.getValue());
+
+            select.refresh();
+            assertEquals("value1", select.getValue());
+
+            select.setValue("value2", true);
+            assertEquals("value2", select.getValue());
+            assertTrue(called.get());
+        }
+        {
+            ListBox listBox = new ListBox();
+            listBox.addItem("item1", "value1");
+
+
+        }
+    }
+
+    public void testDisabled() {
+        Select select = new Select();
+        RootPanel.get().add(select);
+
+        Option option1 = new Option();
+        option1.setText("text1");
+        option1.setValue("value1");
+        option1.setEnabled(false);
+        select.add(option1);
+
+        assertEquals("value1", select.getValue());
+
+        Option option2 = new Option();
+        option2.setText("text2");
+        option2.setValue("value2");
+        select.add(option2);
+
+        select.refresh();
+
+        assertEquals("value1", select.getValue());
     }
 }

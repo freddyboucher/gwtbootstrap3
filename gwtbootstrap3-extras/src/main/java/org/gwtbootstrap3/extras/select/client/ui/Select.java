@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -56,15 +56,14 @@ public class Select extends SelectBase<String> {
 
     @Override
     public String getValue() {
-        return getItems().stream().filter(Option::isSelected).findFirst().map(Option::getValue).orElse(null);
+        return selectElement.getValue();
     }
 
     @Override
     protected void setSelectedValue(String value) {
+        selectElement.setValue(value);
         if (isAttached()) {
-            setValue(getElement(), value);
-        } else {
-            getItems().forEach(item -> item.setSelected(item.getValue().equals(value)));
+            render(getElement());
         }
     }
 
@@ -74,15 +73,11 @@ public class Select extends SelectBase<String> {
      * @return the selected items list
      */
     public Option getSelectedItem() {
-        return getItems().stream().filter(Option::isSelected).findFirst().orElse(null);
+        int selectedIndex = selectElement.getSelectedIndex();
+        return selectedIndex != -1 ? getItems().get(selectedIndex): null;
     }
 
-    private native String getValue(Element e) /*-{
-        return $wnd.jQuery(e).selectpicker('val');
-    }-*/;
-
-    private native void setValue(Element e, String value) /*-{
-        $wnd.jQuery(e).val(value);
+    private native void render(Element e) /*-{
         $wnd.jQuery(e).selectpicker('render');
     }-*/;
 

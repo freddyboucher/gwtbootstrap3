@@ -44,7 +44,6 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
 
     private static final String NAME = "name";
     private static final String VALUE = "value";
-    private boolean valueDefined;
     private String value;
 
     public Option() {
@@ -104,7 +103,6 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
 
     @Override
     public void setValue(String value) {
-        valueDefined = true;
         this.value = value;
         if (value != null)
             attrMixin.setAttribute(VALUE, value);
@@ -118,7 +116,7 @@ public class Option extends AbstractTextWidget implements HasName, TakesValue<St
      */
     @Override
     public String getValue() {
-        return valueDefined || value != null ? value : getText();
+        return value != null ? value : getText();
     }
 
     @Override
