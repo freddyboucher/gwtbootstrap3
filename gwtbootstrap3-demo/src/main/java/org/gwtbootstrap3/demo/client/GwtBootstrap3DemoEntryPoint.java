@@ -24,6 +24,11 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.ScriptInjector;
 import com.google.web.bindery.event.shared.UmbrellaException;
+import org.gwtbootstrap3.extras.notify.client.constants.NotifyType;
+import org.gwtbootstrap3.extras.notify.client.ui.Notify;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 /**
  * @author Sven Jacobs
@@ -37,6 +42,7 @@ public class GwtBootstrap3DemoEntryPoint implements EntryPoint {
                 e = e.getCause();
             }
             GWT.log(e.getMessage(), e);
+            Notify.notify(e.getMessage(), NotifyType.DANGER);
         });
         ScriptInjector.fromString(GwtBootstrap3DemoClientBundle.INSTANCE.prettify().getText())
                 .setWindow(ScriptInjector.TOP_WINDOW)
