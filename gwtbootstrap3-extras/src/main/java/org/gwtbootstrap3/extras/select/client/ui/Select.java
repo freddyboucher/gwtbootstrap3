@@ -81,4 +81,10 @@ public class Select extends SelectBase<String> {
         $wnd.jQuery(e).selectpicker('render');
     }-*/;
 
+    @Override
+    public void setTitle(String title) {
+        throw new UnsupportedOperationException("Cannot set title on a Select");
+    }
+
+
 }

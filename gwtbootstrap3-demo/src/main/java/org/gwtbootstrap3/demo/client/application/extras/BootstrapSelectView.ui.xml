@@ -318,12 +318,12 @@
 
             <b:Panel>
                 <b:PanelHeader>
-                    <b:Heading size="H3" text="Placeholder"/>
+                    <b:Heading size="H3" text="Placeholder/NoneSelectedText"/>
                 </b:PanelHeader>
                 <b:PanelBody>
                     <b:Row>
                         <b:Column size="XS_6">
-                            <select:Select title="Choose one of the following...">
+                            <select:Select noneSelectedText="Choose one of the following...">
                                 <select:Option text="Mustard"/>
                                 <select:Option text="Ketchup"/>
                                 <select:Option text="Relish"/>
@@ -340,8 +340,8 @@
                 </b:PanelBody>
                 <b:PanelFooter>
                     <d:PrettyPre addStyleNames="lang-xml">
-                        &lt;!-- Set the default placeholder text when nothing is selected --&gt;\n
-                        &lt;select:Select title="Choose one of the following..."&gt;\n
+                        &lt;!-- Set the default none Selected Text when nothing is selected but Select always picks-up the first option --&gt;\n
+                        &lt;select:Select noneSelectedText="Choose one of the following..."&gt;\n
                         \s\s&lt;select:Option text="..."/&gt;\n
                         \s\s...\n
                         &lt;/select:Select&gt;\n\n
@@ -511,7 +511,7 @@
                             </select:Select>
                         </b:Column>
                         <b:Column size="SM_2">
-                            <select:Select style="btn-default" title="btn-default">
+                            <select:Select style="btn-default">
                                 <select:Option text="Mustard"/>
                                 <select:Option text="Ketchup"/>
                                 <select:Option text="Relish"/>
@@ -625,7 +625,7 @@
                             </select:Select>
                         </b:Column>
                     </b:Row>
-                    <b:Row addStyleNames="{style.bottom}">    
+                    <b:Row addStyleNames="{style.bottom}">
                         <b:Column size="SM_1">
                             <b:FormLabel text="100px" for="width100px"/>
                         </b:Column>
@@ -768,7 +768,7 @@
                 <b:PanelBody>
                     <b:Row>
                         <b:Column size="SM_4">
-                            <select:Select menuSize="AUTO" title="menuSize: AUTO">
+                            <select:Select menuSize="AUTO">
                                 <select:Option text="Mustard"/>
                                 <select:Option text="Ketchup"/>
                                 <select:Option text="Relish"/>
@@ -796,7 +796,7 @@
                             </select:Select>
                         </b:Column>
                         <b:Column size="SM_4">
-                            <select:Select menuSize="ALL" title="menuSize: ALL">
+                            <select:Select menuSize="ALL">
                                 <select:Option text="Mustard"/>
                                 <select:Option text="Ketchup"/>
                                 <select:Option text="Relish"/>
@@ -824,7 +824,7 @@
                             </select:Select>
                         </b:Column>
                         <b:Column size="SM_4">
-                            <select:Select fixedMenuSize="5" title="fixedMenuSize: 5">
+                            <select:Select fixedMenuSize="5">
                                 <select:Option text="Mustard"/>
                                 <select:Option text="Ketchup"/>
                                 <select:Option text="Relish"/>
@@ -1051,7 +1051,7 @@
                 <b:PanelBody>
                     <b:Row addStyleNames="{style.bottom}">
                         <b:Column size="SM_3">
-                            <select:Select ui:field="simpleSelect" showSubtext="true" title="Please select...">
+                            <select:Select ui:field="simpleSelect" showSubtext="true" noneSelectedText="Please select...">
                                 <select:Option text="Mustard" value="1" subtext="value=1"/>
                                 <select:Option text="Ketchup" value="2" subtext="value=2"/>
                                 <select:Option text="Relish"/>
