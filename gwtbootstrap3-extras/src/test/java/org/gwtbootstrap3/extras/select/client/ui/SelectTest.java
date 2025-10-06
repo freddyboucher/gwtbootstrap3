@@ -2,7 +2,6 @@ package org.gwtbootstrap3.extras.select.client.ui;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.junit.client.GWTTestCase;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import org.gwtbootstrap3.client.GwtBootstrap3EntryPoint;
 import org.gwtbootstrap3.client.shared.js.JQuery;
@@ -295,10 +294,27 @@ public class SelectTest extends GWTTestCase {
             assertTrue(called.get());
         }
         {
-            ListBox listBox = new ListBox();
-            listBox.addItem("item1", "value1");
+            Select select = new Select();
+            RootPanel.get().add(select);
 
+            Option option1 = new Option();
+            option1.setText("text1");
+            option1.setValue("value1");
+            option1.setEnabled(false);
+            select.add(option1);
 
+            select.refresh();
+
+            assertEquals("value1", select.getValue());
+
+            select.clear();
+
+            assertEquals("", select.getValue());
+            // if you don't call refresh, text still shows text1
+            assertEquals("text1", readText(select));
+
+            select.refresh();
+            assertEquals("Nothing selected", readText(select));
         }
     }
 
