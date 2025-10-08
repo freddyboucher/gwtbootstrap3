@@ -18,6 +18,6 @@
   #L%
   -->
 <module rename-to='card'>
-    <inherits name="com.google.gwt.resources.Resources"/>
-    <inherits name="org.gwtbootstrap3.extras.card.client.CardResources"/>
+  <inherits name="com.google.gwt.resources.Resources"/>
+  <inherits name="org.gwtbootstrap3.extras.card.client.CardResources"/>
 </module>

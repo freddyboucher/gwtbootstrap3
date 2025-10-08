@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,31 +33,31 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  */
 public class NavbarForm extends AbstractForm implements HasPull {
 
-    public NavbarForm() {
-        setStyleName(Styles.NAVBAR_FORM);
+  public NavbarForm() {
+    setStyleName(Styles.NAVBAR_FORM);
+  }
+
+  @Override
+  public void setPull(Pull pull) {
+    NavbarPull navbarPull;
+
+    if (pull == Pull.LEFT) {
+      navbarPull = NavbarPull.LEFT;
+    } else {
+      navbarPull = NavbarPull.RIGHT;
     }
 
-    @Override
-    public void setPull(Pull pull) {
-        NavbarPull navbarPull;
+    StyleHelper.addUniqueEnumStyleName(this, NavbarPull.class, navbarPull);
+  }
 
-        if (pull == Pull.LEFT) {
-            navbarPull = NavbarPull.LEFT;
-        } else {
-            navbarPull = NavbarPull.RIGHT;
-        }
+  @Override
+  public Pull getPull() {
+    NavbarPull navbarPull = NavbarPull.fromStyleName(getStyleName());
 
-        StyleHelper.addUniqueEnumStyleName(this, NavbarPull.class, navbarPull);
+    if (navbarPull == NavbarPull.NONE) {
+      return Pull.NONE;
     }
 
-    @Override
-    public Pull getPull() {
-        NavbarPull navbarPull = NavbarPull.fromStyleName(getStyleName());
-
-        if (navbarPull == NavbarPull.NONE) {
-            return Pull.NONE;
-        }
-
-        return navbarPull == NavbarPull.RIGHT ? Pull.RIGHT : Pull.LEFT;
-    }
+    return navbarPull == NavbarPull.RIGHT ? Pull.RIGHT : Pull.LEFT;
+  }
 }

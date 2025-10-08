@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,10 +20,9 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.html.Div;
-
-import com.google.gwt.user.client.ui.Widget;
 
 /**
  * Container widget for the tab content
@@ -46,24 +45,24 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class TabContent extends Div {
 
-    /**
-     * Creates the default widget with the default styles
-     */
-    public TabContent() {
-        setStyleName(Styles.TAB_CONTENT);
-    }
+  /**
+   * Creates the default widget with the default styles
+   */
+  public TabContent() {
+    setStyleName(Styles.TAB_CONTENT);
+  }
 
-    /**
-     * We override the add to make sure only children of type TabPane can be added!
-     *
-     * @param child widget to be added
-     * @see TabPane
-     */
-    @Override
-    public void add(Widget child) {
-        if (!(child instanceof TabPane)) {
-            throw new IllegalArgumentException("TabContent must have children of type TabPane.");
-        }
-        super.add(child);
+  /**
+   * We override the add to make sure only children of type TabPane can be added!
+   *
+   * @param child widget to be added
+   * @see TabPane
+   */
+  @Override
+  public void add(Widget child) {
+    if (!(child instanceof TabPane)) {
+      throw new IllegalArgumentException("TabContent must have children of type TabPane.");
     }
+    super.add(child);
+  }
 }

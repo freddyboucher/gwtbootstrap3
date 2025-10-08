@@ -26,10 +26,9 @@ import junit.framework.TestCase;
 
 public class GwtTestSuite extends TestCase {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("gwtbootstrap3-extras suite");
-        suite.addTestSuite(SelectTest.class);
-        return suite;
-    }
-
+  public static Test suite() {
+    GWTTestSuite suite = new GWTTestSuite("gwtbootstrap3-extras suite");
+    suite.addTestSuite(SelectTest.class);
+    return suite;
+  }
 }

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd">
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd"><!--
   #%L
   GwtBootstrap3
   %%
@@ -20,11 +19,11 @@
   -->
 
 <module rename-to='select'>
-    <inherits name="org.gwtbootstrap3.GwtBootstrap3Base"/>
-    <inherits name="com.google.gwt.resources.Resources"/>
-    <inherits name='org.gwtbootstrap3.extras.select.client.SelectResources'/>
+  <inherits name="org.gwtbootstrap3.GwtBootstrap3Base"/>
+  <inherits name="com.google.gwt.resources.Resources"/>
+  <inherits name='org.gwtbootstrap3.extras.select.client.SelectResources'/>
 
-    <source path='client'/>
+  <source path='client'/>
 
-    <entry-point class="org.gwtbootstrap3.extras.select.client.SelectEntryPoint"/>
+  <entry-point class="org.gwtbootstrap3.extras.select.client.SelectEntryPoint"/>
 </module>

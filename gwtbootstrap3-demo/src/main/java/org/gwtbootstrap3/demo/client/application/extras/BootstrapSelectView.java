@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application.extras;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,9 +20,18 @@ package org.gwtbootstrap3.demo.client.application.extras;
  * #L%
  */
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
+import com.gwtplatform.mvp.client.ViewImpl;
 import java.util.Arrays;
 import java.util.List;
-
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.html.Paragraph;
 import org.gwtbootstrap3.extras.select.client.ui.MaxOptionsTextHandler;
@@ -37,225 +46,225 @@ import org.gwtbootstrap3.extras.select.client.ui.event.RenderedEvent;
 import org.gwtbootstrap3.extras.select.client.ui.event.ShowEvent;
 import org.gwtbootstrap3.extras.select.client.ui.event.ShownEvent;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Widget;
-import com.google.inject.Inject;
-import com.gwtplatform.mvp.client.ViewImpl;
-
 /**
  * @author godi
  */
 public class BootstrapSelectView extends ViewImpl implements BootstrapSelectPresenter.MyView {
 
-    @UiField MultipleSelect maxOptionsSelect;
-    @UiField Select simpleSelect;
-    @UiField MultipleSelect multiSelect;
-    @UiField Button setValueSimple;
-    @UiField Button setValueMultiple;
-    @UiField Button deselectAll;
-    @UiField Button showHideSimple;
-    @UiField Button showHideMultiple;
-    @UiField Button disableEnableSimple;
-    @UiField Button disableEnableMultiple;
-    @UiField FlowPanel logRow;
+  @UiField
+  MultipleSelect maxOptionsSelect;
+  @UiField
+  Select simpleSelect;
+  @UiField
+  MultipleSelect multiSelect;
+  @UiField
+  Button setValueSimple;
+  @UiField
+  Button setValueMultiple;
+  @UiField
+  Button deselectAll;
+  @UiField
+  Button showHideSimple;
+  @UiField
+  Button showHideMultiple;
+  @UiField
+  Button disableEnableSimple;
+  @UiField
+  Button disableEnableMultiple;
+  @UiField
+  FlowPanel logRow;
 
-    interface Binder extends UiBinder<Widget, BootstrapSelectView> {
-    }
+  interface Binder extends UiBinder<Widget, BootstrapSelectView> {
+  }
 
-    @Inject
-    BootstrapSelectView(Binder uiBinder) {
-        initWidget(uiBinder.createAndBindUi(this));
-        maxOptionsSelect.setMaxOptionsTextHandler(new MaxOptionsTextHandler() {
-            @Override
-            public String getMaxSelectOptionsText(int maxSelectOptions) {
-                return "Only " + maxSelectOptions + " options are allowed";
-            }
-            @Override
-            public String getMaxGroupOptionsText(int maxGroupOptions) {
-                return "No more than " + maxGroupOptions + " options in group";
-            }
-        });
-    }
+  @Inject
+  BootstrapSelectView(Binder uiBinder) {
+    initWidget(uiBinder.createAndBindUi(this));
+    maxOptionsSelect.setMaxOptionsTextHandler(new MaxOptionsTextHandler() {
+      @Override
+      public String getMaxSelectOptionsText(int maxSelectOptions) {
+        return "Only " + maxSelectOptions + " options are allowed";
+      }
 
-    @UiHandler("disableEnableSimple")
-    void onClickDisableEnableSimple(ClickEvent event) {
-        disableEnableSimple.setText(simpleSelect.isEnabled() ? "Enable" : "Disable");
-        simpleSelect.setEnabled(!simpleSelect.isEnabled());
-    }
+      @Override
+      public String getMaxGroupOptionsText(int maxGroupOptions) {
+        return "No more than " + maxGroupOptions + " options in group";
+      }
+    });
+  }
 
-    @UiHandler("showHideSimple")
-    void onClickShowHideSimple(ClickEvent event) {
-        showHideSimple.setText(simpleSelect.isVisible() ? "Show" : "Hide");
-        simpleSelect.setVisible(!simpleSelect.isVisible());
-    }
+  @UiHandler("disableEnableSimple")
+  void onClickDisableEnableSimple(ClickEvent event) {
+    disableEnableSimple.setText(simpleSelect.isEnabled() ? "Enable" : "Disable");
+    simpleSelect.setEnabled(!simpleSelect.isEnabled());
+  }
 
-    @UiHandler("toggleSimple")
-    void onClickToggleSimple(ClickEvent event) {
-        simpleSelect.toggle();
-    }
+  @UiHandler("showHideSimple")
+  void onClickShowHideSimple(ClickEvent event) {
+    showHideSimple.setText(simpleSelect.isVisible() ? "Show" : "Hide");
+    simpleSelect.setVisible(!simpleSelect.isVisible());
+  }
 
-    @UiHandler("getValueSimple")
-    void onClickGetValueSimple(ClickEvent event) {
-        Window.alert("Simple select value: " + simpleSelect.getValue());
-    }
+  @UiHandler("toggleSimple")
+  void onClickToggleSimple(ClickEvent event) {
+    simpleSelect.toggle();
+  }
 
-    @UiHandler("setValueSimple")
-    void onClickSetValueSimple(ClickEvent event) {
-        simpleSelect.setValue("2", true);
-    }
+  @UiHandler("getValueSimple")
+  void onClickGetValueSimple(ClickEvent event) {
+    Window.alert("Simple select value: " + simpleSelect.getValue());
+  }
 
-    @UiHandler("renderedSimple")
-    void onClickRenderedSimple(ClickEvent event) {
-        simpleSelect.render();
-    }
+  @UiHandler("setValueSimple")
+  void onClickSetValueSimple(ClickEvent event) {
+    simpleSelect.setValue("2", true);
+  }
 
-    @UiHandler("refreshSimple")
-    void onClickRefreshSimple(ClickEvent event) {
-        simpleSelect.refresh();
-    }
+  @UiHandler("renderedSimple")
+  void onClickRenderedSimple(ClickEvent event) {
+    simpleSelect.render();
+  }
 
-    @UiHandler("simpleSelect")
-    void onLoadedSimpleSelect(LoadedEvent event) {
-        addEventLog(true, HasAllSelectHandlers.LOADED_EVENT, "");
-    }
+  @UiHandler("refreshSimple")
+  void onClickRefreshSimple(ClickEvent event) {
+    simpleSelect.refresh();
+  }
 
-    @UiHandler("simpleSelect")
-    void onValueChangeSimple(ValueChangeEvent<String> event) {
-        addEventLog(true, HasAllSelectHandlers.CHANGED_EVENT, "New value: " + event.getValue());
-    }
+  @UiHandler("simpleSelect")
+  void onLoadedSimpleSelect(LoadedEvent event) {
+    addEventLog(true, HasAllSelectHandlers.LOADED_EVENT, "");
+  }
 
-    @UiHandler("simpleSelect")
-    void onShowSimple(ShowEvent event) {
-        addEventLog(true, HasAllSelectHandlers.SHOW_EVENT, "");
-    }
+  @UiHandler("simpleSelect")
+  void onValueChangeSimple(ValueChangeEvent<String> event) {
+    addEventLog(true, HasAllSelectHandlers.CHANGED_EVENT, "New value: " + event.getValue());
+  }
 
-    @UiHandler("simpleSelect")
-    void onShownSimple(ShownEvent event) {
-        addEventLog(true, HasAllSelectHandlers.SHOWN_EVENT, "");
-    }
+  @UiHandler("simpleSelect")
+  void onShowSimple(ShowEvent event) {
+    addEventLog(true, HasAllSelectHandlers.SHOW_EVENT, "");
+  }
 
-    @UiHandler("simpleSelect")
-    void onHideSimple(HideEvent event) {
-        addEventLog(true, HasAllSelectHandlers.HIDE_EVENT, "");
-    }
+  @UiHandler("simpleSelect")
+  void onShownSimple(ShownEvent event) {
+    addEventLog(true, HasAllSelectHandlers.SHOWN_EVENT, "");
+  }
 
-    @UiHandler("simpleSelect")
-    void onHiddenSimple(HiddenEvent event) {
-        addEventLog(true, HasAllSelectHandlers.HIDDEN_EVENT, "");
-    }
+  @UiHandler("simpleSelect")
+  void onHideSimple(HideEvent event) {
+    addEventLog(true, HasAllSelectHandlers.HIDE_EVENT, "");
+  }
 
-    @UiHandler("simpleSelect")
-    void onRenderSimple(RenderedEvent event) {
-        addEventLog(true, HasAllSelectHandlers.RENDERED_EVENT, "");
-    }
+  @UiHandler("simpleSelect")
+  void onHiddenSimple(HiddenEvent event) {
+    addEventLog(true, HasAllSelectHandlers.HIDDEN_EVENT, "");
+  }
 
-    @UiHandler("simpleSelect")
-    void onRefrechSimple(RefreshedEvent event) {
-        addEventLog(true, HasAllSelectHandlers.REFRESHED_EVENT, "");
-    }
+  @UiHandler("simpleSelect")
+  void onRenderSimple(RenderedEvent event) {
+    addEventLog(true, HasAllSelectHandlers.RENDERED_EVENT, "");
+  }
 
-    @UiHandler("disableEnableMultiple")
-    void onClickDisableEnableMultiple(ClickEvent event) {
-        disableEnableMultiple.setText(multiSelect.isEnabled() ? "Enable" : "Disable");
-        multiSelect.setEnabled(!multiSelect.isEnabled());
-    }
+  @UiHandler("simpleSelect")
+  void onRefrechSimple(RefreshedEvent event) {
+    addEventLog(true, HasAllSelectHandlers.REFRESHED_EVENT, "");
+  }
 
-    @UiHandler("showHideMultiple")
-    void onClickShowHideMultiple(ClickEvent event) {
-        showHideMultiple.setText(multiSelect.isVisible() ? "Show" : "Hide");
-        multiSelect.setVisible(!multiSelect.isVisible());
-    }
+  @UiHandler("disableEnableMultiple")
+  void onClickDisableEnableMultiple(ClickEvent event) {
+    disableEnableMultiple.setText(multiSelect.isEnabled() ? "Enable" : "Disable");
+    multiSelect.setEnabled(!multiSelect.isEnabled());
+  }
 
-    @UiHandler("toggleMultiple")
-    void onClickToggleMultiple(ClickEvent event) {
-        multiSelect.toggle();
-    }
+  @UiHandler("showHideMultiple")
+  void onClickShowHideMultiple(ClickEvent event) {
+    showHideMultiple.setText(multiSelect.isVisible() ? "Show" : "Hide");
+    multiSelect.setVisible(!multiSelect.isVisible());
+  }
 
-    @UiHandler("getValueMultiple")
-    void onClickGetValueMultiple(ClickEvent event) {
-        Window.alert("Multiple select value: " + multiSelect.getValue());
-    }
+  @UiHandler("toggleMultiple")
+  void onClickToggleMultiple(ClickEvent event) {
+    multiSelect.toggle();
+  }
 
-    @UiHandler("setValueMultiple")
-    void onClickSetValueMultiple(ClickEvent event) {
-        multiSelect.setValue(Arrays.asList("2", "Relish"), true);
-    }
+  @UiHandler("getValueMultiple")
+  void onClickGetValueMultiple(ClickEvent event) {
+    Window.alert("Multiple select value: " + multiSelect.getValue());
+  }
 
-    @UiHandler("renderMultiple")
-    void onClickRenderMultiple(ClickEvent event) {
-        multiSelect.render();
-    }
+  @UiHandler("setValueMultiple")
+  void onClickSetValueMultiple(ClickEvent event) {
+    multiSelect.setValue(Arrays.asList("2", "Relish"), true);
+  }
 
-    @UiHandler("refreshMultiple")
-    void onClickrRefreshMultiple(ClickEvent event) {
-        multiSelect.refresh();
-    }
+  @UiHandler("renderMultiple")
+  void onClickRenderMultiple(ClickEvent event) {
+    multiSelect.render();
+  }
 
-    @UiHandler("selectAll")
-    void onClickSelectAll(ClickEvent event) {
-        multiSelect.selectAll();
-    }
+  @UiHandler("refreshMultiple")
+  void onClickrRefreshMultiple(ClickEvent event) {
+    multiSelect.refresh();
+  }
 
-    @UiHandler("deselectAll")
-    void onClickDeselectAll(ClickEvent event) {
-        multiSelect.deselectAll();
-    }
+  @UiHandler("selectAll")
+  void onClickSelectAll(ClickEvent event) {
+    multiSelect.selectAll();
+  }
 
-    @UiHandler("multiSelect")
-    void onLoadedMultiple(LoadedEvent event) {
-        addEventLog(false, HasAllSelectHandlers.LOADED_EVENT, "");
-    }
+  @UiHandler("deselectAll")
+  void onClickDeselectAll(ClickEvent event) {
+    multiSelect.deselectAll();
+  }
 
-    @UiHandler("multiSelect")
-    void onValueChangeMultiple(ValueChangeEvent<List<String>> event) {
-        addEventLog(false, HasAllSelectHandlers.CHANGED_EVENT, "New value: " + event.getValue());
-    }
+  @UiHandler("multiSelect")
+  void onLoadedMultiple(LoadedEvent event) {
+    addEventLog(false, HasAllSelectHandlers.LOADED_EVENT, "");
+  }
 
-    @UiHandler("multiSelect")
-    void onShowMultiple(ShowEvent event) {
-        addEventLog(false, HasAllSelectHandlers.SHOW_EVENT, "");
-    }
+  @UiHandler("multiSelect")
+  void onValueChangeMultiple(ValueChangeEvent<List<String>> event) {
+    addEventLog(false, HasAllSelectHandlers.CHANGED_EVENT, "New value: " + event.getValue());
+  }
 
-    @UiHandler("multiSelect")
-    void onShownMultiple(ShownEvent event) {
-        addEventLog(false, HasAllSelectHandlers.SHOWN_EVENT, "");
-    }
+  @UiHandler("multiSelect")
+  void onShowMultiple(ShowEvent event) {
+    addEventLog(false, HasAllSelectHandlers.SHOW_EVENT, "");
+  }
 
-    @UiHandler("multiSelect")
-    void onHideMultiple(HideEvent event) {
-        addEventLog(false, HasAllSelectHandlers.HIDE_EVENT, "");
-    }
+  @UiHandler("multiSelect")
+  void onShownMultiple(ShownEvent event) {
+    addEventLog(false, HasAllSelectHandlers.SHOWN_EVENT, "");
+  }
 
-    @UiHandler("multiSelect")
-    void onHiddenMultiple(HiddenEvent event) {
-        addEventLog(false, HasAllSelectHandlers.HIDDEN_EVENT, "");
-    }
+  @UiHandler("multiSelect")
+  void onHideMultiple(HideEvent event) {
+    addEventLog(false, HasAllSelectHandlers.HIDE_EVENT, "");
+  }
 
-    @UiHandler("multiSelect")
-    void onRenderMultiple(RenderedEvent event) {
-        addEventLog(false, HasAllSelectHandlers.RENDERED_EVENT, "");
-    }
+  @UiHandler("multiSelect")
+  void onHiddenMultiple(HiddenEvent event) {
+    addEventLog(false, HasAllSelectHandlers.HIDDEN_EVENT, "");
+  }
 
-    @UiHandler("multiSelect")
-    void onRefreshMultiple(RefreshedEvent event) {
-        addEventLog(false, HasAllSelectHandlers.REFRESHED_EVENT, "");
-    }
+  @UiHandler("multiSelect")
+  void onRenderMultiple(RenderedEvent event) {
+    addEventLog(false, HasAllSelectHandlers.RENDERED_EVENT, "");
+  }
 
-    private void addEventLog(boolean simple, String eventName, String logSuffix) {
-        Paragraph logEntry = new Paragraph();
-        logEntry.setHTML("<b>" + eventName + "</b> event fired on <b>"
-                + (simple ? "simple" : "multiple") + "</b> select! " + logSuffix);
-        logRow.add(logEntry);
-    }
+  @UiHandler("multiSelect")
+  void onRefreshMultiple(RefreshedEvent event) {
+    addEventLog(false, HasAllSelectHandlers.REFRESHED_EVENT, "");
+  }
 
-    @UiHandler("clearLogButton")
-    void onClickclearLogButton(ClickEvent event) {
-        logRow.clear();
-    }
+  private void addEventLog(boolean simple, String eventName, String logSuffix) {
+    Paragraph logEntry = new Paragraph();
+    logEntry.setHTML("<b>" + eventName + "</b> event fired on <b>" + (simple ? "simple" : "multiple") + "</b> select! " + logSuffix);
+    logRow.add(logEntry);
+  }
+
+  @UiHandler("clearLogButton")
+  void onClickclearLogButton(ClickEvent event) {
+    logRow.clear();
+  }
 }

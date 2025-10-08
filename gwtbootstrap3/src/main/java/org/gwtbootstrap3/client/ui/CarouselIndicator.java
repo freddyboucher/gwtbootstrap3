@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,8 +20,9 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.user.client.ui.Widget;
 import java.util.List;
-
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.HasActive;
 import org.gwtbootstrap3.client.ui.base.HasDataTarget;
@@ -29,56 +30,53 @@ import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.DataTargetMixin;
 import org.gwtbootstrap3.client.ui.constants.Attributes;
 
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.user.client.ui.Widget;
-
 /**
  * @author Joshua Godi
  */
 public class CarouselIndicator extends ComplexWidget implements HasDataTarget, HasActive {
 
-    private final DataTargetMixin<CarouselIndicator> targetMixin = new DataTargetMixin<>(this);
-    private final ActiveMixin<CarouselIndicator> activeMixin = new ActiveMixin<>(this);
+  private final DataTargetMixin<CarouselIndicator> targetMixin = new DataTargetMixin<>(this);
+  private final ActiveMixin<CarouselIndicator> activeMixin = new ActiveMixin<>(this);
 
-    public CarouselIndicator() {
-        setElement(Document.get().createLIElement());
-    }
+  public CarouselIndicator() {
+    setElement(Document.get().createLIElement());
+  }
 
-    public void setDataSlideTo(String dataSlideTo) {
-        getElement().setAttribute(Attributes.DATA_SLIDE_TO, dataSlideTo);
-    }
+  public void setDataSlideTo(String dataSlideTo) {
+    getElement().setAttribute(Attributes.DATA_SLIDE_TO, dataSlideTo);
+  }
 
-    public String getDataSlideTo() {
-        return getElement().getAttribute(Attributes.DATA_SLIDE_TO);
-    }
+  public String getDataSlideTo() {
+    return getElement().getAttribute(Attributes.DATA_SLIDE_TO);
+  }
 
-    @Override
-    public void setActive(boolean active) {
-        activeMixin.setActive(active);
-    }
+  @Override
+  public void setActive(boolean active) {
+    activeMixin.setActive(active);
+  }
 
-    @Override
-    public boolean isActive() {
-        return activeMixin.isActive();
-    }
+  @Override
+  public boolean isActive() {
+    return activeMixin.isActive();
+  }
 
-    @Override
-    public void setDataTargetWidgets(List<Widget> widgets) {
-        targetMixin.setDataTargetWidgets(widgets);
-    }
+  @Override
+  public void setDataTargetWidgets(List<Widget> widgets) {
+    targetMixin.setDataTargetWidgets(widgets);
+  }
 
-    @Override
-    public void setDataTargetWidget(Widget widget) {
-        targetMixin.setDataTargetWidget(widget);
-    }
+  @Override
+  public void setDataTargetWidget(Widget widget) {
+    targetMixin.setDataTargetWidget(widget);
+  }
 
-    @Override
-    public void setDataTarget(String dataTarget) {
-        targetMixin.setDataTarget(dataTarget);
-    }
+  @Override
+  public void setDataTarget(String dataTarget) {
+    targetMixin.setDataTarget(dataTarget);
+  }
 
-    @Override
-    public String getDataTarget() {
-        return targetMixin.getDataTarget();
-    }
+  @Override
+  public String getDataTarget() {
+    return targetMixin.getDataTarget();
+  }
 }

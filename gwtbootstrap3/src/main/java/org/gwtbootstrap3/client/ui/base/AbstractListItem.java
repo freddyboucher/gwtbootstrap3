@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.base;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,6 +20,8 @@ package org.gwtbootstrap3.client.ui.base;
  * #L%
  */
 
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.user.client.ui.HasEnabled;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
@@ -28,9 +30,6 @@ import org.gwtbootstrap3.client.ui.base.mixin.PullMixin;
 import org.gwtbootstrap3.client.ui.constants.DeviceSize;
 import org.gwtbootstrap3.client.ui.constants.Pull;
 import org.gwtbootstrap3.client.ui.constants.Styles;
-
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.user.client.ui.HasEnabled;
 
 /**
  * Base class for list items.
@@ -41,65 +40,64 @@ import com.google.gwt.user.client.ui.HasEnabled;
  * @see org.gwtbootstrap3.client.ui.AnchorListItem
  * @see org.gwtbootstrap3.client.ui.ListDropDown
  */
-public abstract class AbstractListItem extends ComplexWidget implements HasEnabled, HasPull, HasActive,
-        HasResponsiveness, HasId {
+public abstract class AbstractListItem extends ComplexWidget implements HasEnabled, HasPull, HasActive, HasResponsiveness, HasId {
 
-    private final ActiveMixin<AbstractListItem> activeMixin = new ActiveMixin<>(this);
-    private final PullMixin<AbstractListItem> pullMixin = new PullMixin<>(this);
-    private final IdMixin<AbstractListItem> idMixin = new IdMixin<>(this);
-    private final EnabledMixin<AbstractListItem> enabledMixin = new EnabledMixin<>(this);
+  private final ActiveMixin<AbstractListItem> activeMixin = new ActiveMixin<>(this);
+  private final PullMixin<AbstractListItem> pullMixin = new PullMixin<>(this);
+  private final IdMixin<AbstractListItem> idMixin = new IdMixin<>(this);
+  private final EnabledMixin<AbstractListItem> enabledMixin = new EnabledMixin<>(this);
 
-    protected AbstractListItem() {
-        setElement(Document.get().createLIElement());
-    }
+  protected AbstractListItem() {
+    setElement(Document.get().createLIElement());
+  }
 
-    @Override
-    public void setEnabled(boolean enabled) {
-        enabledMixin.setEnabled(enabled);
-    }
+  @Override
+  public void setEnabled(boolean enabled) {
+    enabledMixin.setEnabled(enabled);
+  }
 
-    @Override
-    public boolean isEnabled() {
-        return !StyleHelper.containsStyle(getStyleName(), Styles.DISABLED);
-    }
+  @Override
+  public boolean isEnabled() {
+    return !StyleHelper.containsStyle(getStyleName(), Styles.DISABLED);
+  }
 
-    @Override
-    public void setPull(Pull pull) {
-        pullMixin.setPull(pull);
-    }
+  @Override
+  public void setPull(Pull pull) {
+    pullMixin.setPull(pull);
+  }
 
-    @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
-    }
+  @Override
+  public Pull getPull() {
+    return pullMixin.getPull();
+  }
 
-    @Override
-    public void setActive(boolean active) {
-        activeMixin.setActive(active);
-    }
+  @Override
+  public void setActive(boolean active) {
+    activeMixin.setActive(active);
+  }
 
-    @Override
-    public boolean isActive() {
-        return activeMixin.isActive();
-    }
+  @Override
+  public boolean isActive() {
+    return activeMixin.isActive();
+  }
 
-    @Override
-    public void setVisibleOn(DeviceSize deviceSize) {
-        StyleHelper.setVisibleOn(this, deviceSize);
-    }
+  @Override
+  public void setVisibleOn(DeviceSize deviceSize) {
+    StyleHelper.setVisibleOn(this, deviceSize);
+  }
 
-    @Override
-    public void setHiddenOn(DeviceSize deviceSize) {
-        StyleHelper.setHiddenOn(this, deviceSize);
-    }
+  @Override
+  public void setHiddenOn(DeviceSize deviceSize) {
+    StyleHelper.setHiddenOn(this, deviceSize);
+  }
 
-    @Override
-    public void setId(String id) {
-        idMixin.setId(id);
-    }
+  @Override
+  public void setId(String id) {
+    idMixin.setId(id);
+  }
 
-    @Override
-    public String getId() {
-        return idMixin.getId();
-    }
+  @Override
+  public String getId() {
+    return idMixin.getId();
+  }
 }

@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.fullcalendar.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,7 +25,6 @@ import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.core.client.JsDate;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
-
 import java.util.Date;
 
 /**
@@ -36,297 +35,299 @@ import java.util.Date;
  */
 public class Event implements IsJavaScriptObject {
 
-    private static final DateTimeFormat ISO_8601_FORMAT = DateTimeFormat.getFormat(PredefinedFormat.ISO_8601);
-    private static final DateTimeFormat RFC_2822_FORMAT = DateTimeFormat.getFormat(PredefinedFormat.RFC_2822);
-    private JavaScriptObject event;
+  private static final DateTimeFormat ISO_8601_FORMAT = DateTimeFormat.getFormat(PredefinedFormat.ISO_8601);
+  private static final DateTimeFormat RFC_2822_FORMAT = DateTimeFormat.getFormat(PredefinedFormat.RFC_2822);
+  private JavaScriptObject event;
 
-    public Event(String id, String title) {
-        newEvent(id, title, true, true, true);
+  public Event(String id, String title) {
+    newEvent(id, title, true, true, true);
+  }
+
+  public Event(JavaScriptObject jso) {
+    event = jso;
+  }
+
+  public Event(String id, String title, boolean isEditable, boolean isStartEditable, boolean isDurationEditable) {
+    newEvent(id, title, isEditable, isStartEditable, isDurationEditable);
+  }
+
+  private native void newEvent(String eventId, String eventTitle, boolean isEditable, boolean isStartEditable,
+                               boolean isDurationEditable) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event = {
+      id: eventId,
+      title: eventTitle,
+      allDay: false,
+      editable: isEditable,
+      startEditable: isStartEditable,
+      durationEditable: isDurationEditable
+    };
+  }-*/;
+
+  public native String getId() /*-{
+    var theInstance = this;
+    return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.id;
+  }-*/;
+
+  public native String getTitle() /*-{
+    var theInstance = this;
+    return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.title;
+  }-*/;
+
+  public native void setTitle(String title) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.title = title;
+  }-*/;
+
+  public native void setAllDay(boolean isAllDay) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.allDay = isAllDay;
+  }-*/;
+
+  public native boolean isAllDay() /*-{
+    var theInstance = this;
+    return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.allDay;
+  }-*/;
+
+  public void setStart(Date d) {
+    if (d != null) {
+      setStart(getDateAsISO8601(d));
     }
+  }
 
-    public Event(JavaScriptObject jso) {
-        event = jso;
+  public native void setStart(String start) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start = start;
+  }-*/;
+
+  public native void setStart(JavaScriptObject start) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start = start;
+  }-*/;
+
+  public native JsDate getStart() /*-{
+    var theInstance = this;
+    if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start) {
+      return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start.toDate();
     }
+    return null;
 
-    public Event(String id, String title, boolean isEditable, boolean isStartEditable, boolean isDurationEditable) {
-        newEvent(id, title, isEditable, isStartEditable, isDurationEditable);
+  }-*/;
+
+  public Date getStartFromYearMonthDay() {
+    Date iso = null;
+    String isoString = getISOStart();
+    if (isoString != null && isoString.length() >= 10) {
+      iso = DateTimeFormat.getFormat("yyyy-MM-dd").parse(isoString.substring(0, 10));
     }
+    return iso;
+  }
 
-    private native void newEvent(String eventId, String eventTitle, boolean isEditable, boolean isStartEditable, boolean isDurationEditable) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event = {id: eventId,
-            title: eventTitle,
-            allDay: false,
-            editable: isEditable,
-            startEditable: isStartEditable,
-            durationEditable: isDurationEditable
-        };
-    }-*/;
-
-    public native String getId() /*-{
-        var theInstance = this;
-        return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.id;
-    }-*/;
-
-    public native String getTitle() /*-{
-        var theInstance = this;
-        return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.title;
-    }-*/;
-
-    public native void setTitle(String title) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.title = title;
-    }-*/;
-
-    public native void setAllDay(boolean isAllDay) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.allDay = isAllDay;
-    }-*/;
-
-    public native boolean isAllDay() /*-{
-        var theInstance = this;
-        return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.allDay;
-    }-*/;
-
-    public void setStart(Date d) {
-        if (d != null) {
-            setStart(getDateAsISO8601(d));
-        }
+  public native String getISOStart() /*-{
+    var theInstance = this;
+    if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start) {
+      return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start.toDate().toISOString();
     }
+    return null;
 
-    public native void setStart(String start) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start = start;
-    }-*/;
+  }-*/;
 
-    public native void setStart(JavaScriptObject start) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start = start;
-    }-*/;
-
-    public native JsDate getStart() /*-{
-        var theInstance = this;
-        if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start) {
-            return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start.toDate();
-        }
-        return null;
-
-    }-*/;
-
-    public Date getStartFromYearMonthDay() {
-        Date iso = null;
-        String isoString = getISOStart();
-        if (isoString != null && isoString.length() >= 10) {
-            iso = DateTimeFormat.getFormat("yyyy-MM-dd").parse(isoString.substring(0, 10));
-        }
-        return iso;
+  public void setEnd(Date d) {
+    if (d != null) {
+      setEnd(getDateAsISO8601(d));
     }
+  }
 
-    public native String getISOStart() /*-{
-        var theInstance = this;
-        if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start) {
-            return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.start.toDate().toISOString();
-        }
-        return null;
+  public native void setEnd(String end) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end = end;
+  }-*/;
 
-    }-*/;
+  public native void setEnd(JavaScriptObject end) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end = end;
+  }-*/;
 
-    public void setEnd(Date d) {
-        if (d != null) {
-            setEnd(getDateAsISO8601(d));
-        }
+  public native JsDate getEnd() /*-{
+    var theInstance = this;
+    if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end) {
+      return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end.toDate();
     }
+    return null;
+  }-*/;
 
-    public native void setEnd(String end) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end = end;
-    }-*/;
-
-    public native void setEnd(JavaScriptObject end) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end = end;
-    }-*/;
-
-    public native JsDate getEnd() /*-{
-        var theInstance = this;
-        if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end) {
-            return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end.toDate();
-        }
-        return null;
-    }-*/;
-
-    public native String getISOEnd() /*-{
-        var theInstance = this;
-        if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end) {
-            return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end.toDate().toISOString();
-        }
-        return null;
-    }-*/;
-
-    public Date getEndFromYearMonthDay() {
-        Date iso = null;
-        String isoString = getISOEnd();
-        if (isoString != null && isoString.length() >= 10) {
-            iso = DateTimeFormat.getFormat("yyyy-MM-dd").parse(isoString.substring(0, 10));
-        }
-        return iso;
+  public native String getISOEnd() /*-{
+    var theInstance = this;
+    if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end) {
+      return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.end.toDate().toISOString();
     }
+    return null;
+  }-*/;
 
-    public native void setUrl(String url) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.url = url;
-    }-*/;
-
-    public native String getUrl() /*-{
-        var theInstance = this;
-        return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.url;
-    }-*/;
-
-    public native void setClassName(String className) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.className = className;
-    }-*/;
-
-    public native void setClassNames(JsArrayString classNames) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.className = className;
-    }-*/;
-
-    public native void setEditable(boolean editable) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.editable = editable;
-    }-*/;
-
-    public native boolean isEditable() /*-{
-        var theInstance = this;
-        if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.editable) {
-            return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.editable;
-        }
-        return false;
-    }-*/;
-
-    public native void setStartEditable(boolean startEditable) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.startEditable = startEditable;
-    }-*/;
-
-    public native boolean getStartEditable() /*-{
-        var theInstance = this;
-        if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.startEditable) {
-            return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.startEditable;
-        }
-        return false;
-    }-*/;
-
-    public native void setDurationEditable(boolean durationEditable) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.durationEditable = durationEditable;
-    }-*/;
-
-    public native boolean getDurationEditable() /*-{
-        var theInstance = this;
-        if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.durationEditable) {
-            return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.durationEditable;
-        }
-        return false;
-    }-*/;
-    
-    public native void setRendering(String rendering) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.rendering = rendering;
-    }-*/;
-    
-    public native String getRendering() /*-{
-        var theInstance = this;
-         if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.rendering) {
-            return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.rendering;
-        }
-        return null;
-    }-*/;
-    
-    public native void setOverlap(boolean overlap) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.overlap = overlap;
-    }-*/;
-    
-    public native boolean getOverlap() /*-{
-        var theInstance = this;
-        if (typeof theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.overlap != 'undefined') {
-            return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.overlap;
-        }
-        return true;
-    }-*/;
-    
-    public native void setConstraint(String constraint) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.constraint = constraint;
-    }-*/;
-    
-    public native void setConstraint(JavaScriptObject constraint) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.constraint = constraint;
-    }-*/;
-    
-    private native JavaScriptObject getJSOSource() /*-{
-        var theInstance = this;
-        return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.source;
-    }-*/;
-    
-    public EventSource getSource() {
-        return new EventSource(getJSOSource());
+  public Date getEndFromYearMonthDay() {
+    Date iso = null;
+    String isoString = getISOEnd();
+    if (isoString != null && isoString.length() >= 10) {
+      iso = DateTimeFormat.getFormat("yyyy-MM-dd").parse(isoString.substring(0, 10));
     }
+    return iso;
+  }
 
-    public native void setColor(String color) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.color = color;
-    }-*/;
+  public native void setUrl(String url) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.url = url;
+  }-*/;
 
-    public native void setBackgroundColor(String bgColor) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.backgroundColor = bgColor;
-    }-*/;
+  public native String getUrl() /*-{
+    var theInstance = this;
+    return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.url;
+  }-*/;
 
-    public native void setBorderColor(String borderColor) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.borderColor = borderColor;
-    }-*/;
+  public native void setClassName(String className) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.className = className;
+  }-*/;
 
-    public native void setTextColor(String textColor) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.textColor = textColor;
-    }-*/;
+  public native void setClassNames(JsArrayString classNames) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.className = className;
+  }-*/;
 
-    /**
-     * ************* non standard / add-on fields and methods *********************
-     */
-    public native void setDescription(String description) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.description = description;
-    }-*/;
+  public native void setEditable(boolean editable) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.editable = editable;
+  }-*/;
 
-    public native String getDescription() /*-{
-        var theInstance = this;
-        return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.description;
-    }-*/;
-
-    public static String getDateAsRFC_2822(Date d) {
-        return d == null ? "" : RFC_2822_FORMAT.format(d);
+  public native boolean isEditable() /*-{
+    var theInstance = this;
+    if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.editable) {
+      return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.editable;
     }
+    return false;
+  }-*/;
 
-    public static String getDateAsISO8601(Date d) {
-        return d == null ? "" : ISO_8601_FORMAT.format(d);
-    }
+  public native void setStartEditable(boolean startEditable) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.startEditable = startEditable;
+  }-*/;
 
-    public static String getDateAsUnixTimestamp(Date d) {
-        if (d == null) {
-            return "";
-        }
-        int iTimeStamp = (int) (d.getTime() * .001);
-        return "" + iTimeStamp;
+  public native boolean getStartEditable() /*-{
+    var theInstance = this;
+    if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.startEditable) {
+      return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.startEditable;
     }
+    return false;
+  }-*/;
 
-    @Override
-    public JavaScriptObject toJavaScript() {
-        return event;
+  public native void setDurationEditable(boolean durationEditable) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.durationEditable = durationEditable;
+  }-*/;
+
+  public native boolean getDurationEditable() /*-{
+    var theInstance = this;
+    if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.durationEditable) {
+      return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.durationEditable;
     }
+    return false;
+  }-*/;
+
+  public native void setRendering(String rendering) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.rendering = rendering;
+  }-*/;
+
+  public native String getRendering() /*-{
+    var theInstance = this;
+    if (theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.rendering) {
+      return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.rendering;
+    }
+    return null;
+  }-*/;
+
+  public native void setOverlap(boolean overlap) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.overlap = overlap;
+  }-*/;
+
+  public native boolean getOverlap() /*-{
+    var theInstance = this;
+    if (typeof theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.overlap != 'undefined') {
+      return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.overlap;
+    }
+    return true;
+  }-*/;
+
+  public native void setConstraint(String constraint) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.constraint = constraint;
+  }-*/;
+
+  public native void setConstraint(JavaScriptObject constraint) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.constraint = constraint;
+  }-*/;
+
+  private native JavaScriptObject getJSOSource() /*-{
+    var theInstance = this;
+    return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.source;
+  }-*/;
+
+  public EventSource getSource() {
+    return new EventSource(getJSOSource());
+  }
+
+  public native void setColor(String color) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.color = color;
+  }-*/;
+
+  public native void setBackgroundColor(String bgColor) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.backgroundColor = bgColor;
+  }-*/;
+
+  public native void setBorderColor(String borderColor) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.borderColor = borderColor;
+  }-*/;
+
+  public native void setTextColor(String textColor) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.textColor = textColor;
+  }-*/;
+
+  /**
+   * ************* non standard / add-on fields and methods *********************
+   */
+  public native void setDescription(String description) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.description = description;
+  }-*/;
+
+  public native String getDescription() /*-{
+    var theInstance = this;
+    return theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.Event::event.description;
+  }-*/;
+
+  public static String getDateAsRFC_2822(Date d) {
+    return d == null ? "" : RFC_2822_FORMAT.format(d);
+  }
+
+  public static String getDateAsISO8601(Date d) {
+    return d == null ? "" : ISO_8601_FORMAT.format(d);
+  }
+
+  public static String getDateAsUnixTimestamp(Date d) {
+    if (d == null) {
+      return "";
+    }
+    int iTimeStamp = (int) (d.getTime() * .001);
+    return "" + iTimeStamp;
+  }
+
+  @Override
+  public JavaScriptObject toJavaScript() {
+    return event;
+  }
 }

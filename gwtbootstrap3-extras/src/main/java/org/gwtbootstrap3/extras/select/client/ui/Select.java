@@ -20,9 +20,9 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * #L%
  */
 
-import com.google.gwt.dom.client.Element;
-
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SHOW_TICK;
+
+import com.google.gwt.dom.client.Element;
 
 /**
  * Standard select box.
@@ -31,60 +31,59 @@ import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SHOW_TICK;
  */
 public class Select extends SelectBase<String> {
 
-    public Select() {
+  public Select() {
+  }
+
+  @Override
+  public final boolean isMultiple() {
+    return false;
+  }
+
+  /**
+   * Set to <code>true</code> to show check mark icon on
+   * standard select boxes.<br>
+   * <br>
+   * Defaults to <code>false</code>.
+   *
+   * @param showTick
+   */
+  public void setShowTick(boolean showTick) {
+    if (showTick) {
+      attrMixin.setAttribute(SHOW_TICK, Boolean.toString(true));
+    } else {
+      attrMixin.removeAttribute(SHOW_TICK);
     }
+  }
 
-    @Override
-    public final boolean isMultiple() {
-        return false;
+  @Override
+  public String getValue() {
+    return selectElement.getValue();
+  }
+
+  @Override
+  protected void setSelectedValue(String value) {
+    selectElement.setValue(value);
+    if (isAttached()) {
+      render(getElement());
     }
+  }
 
-    /**
-     * Set to <code>true</code> to show check mark icon on
-     * standard select boxes.<br>
-     * <br>
-     * Defaults to <code>false</code>.
-     *
-     * @param showTick
-     */
-    public void setShowTick(boolean showTick) {
-        if (showTick)
-            attrMixin.setAttribute(SHOW_TICK, Boolean.toString(true));
-        else
-            attrMixin.removeAttribute(SHOW_TICK);
-    }
+  /**
+   * Returns the selected item or <code>null</code> if no item is selected.
+   *
+   * @return the selected items list
+   */
+  public Option getSelectedItem() {
+    int selectedIndex = selectElement.getSelectedIndex();
+    return selectedIndex != -1 ? getItems().get(selectedIndex) : null;
+  }
 
-    @Override
-    public String getValue() {
-        return selectElement.getValue();
-    }
+  private native void render(Element e) /*-{
+    $wnd.jQuery(e).selectpicker('render');
+  }-*/;
 
-    @Override
-    protected void setSelectedValue(String value) {
-        selectElement.setValue(value);
-        if (isAttached()) {
-            render(getElement());
-        }
-    }
-
-    /**
-     * Returns the selected item or <code>null</code> if no item is selected.
-     *
-     * @return the selected items list
-     */
-    public Option getSelectedItem() {
-        int selectedIndex = selectElement.getSelectedIndex();
-        return selectedIndex != -1 ? getItems().get(selectedIndex): null;
-    }
-
-    private native void render(Element e) /*-{
-        $wnd.jQuery(e).selectpicker('render');
-    }-*/;
-
-    @Override
-    public void setTitle(String title) {
-        throw new UnsupportedOperationException("Cannot set title on a Select");
-    }
-
-
+  @Override
+  public void setTitle(String title) {
+    throw new UnsupportedOperationException("Cannot set title on a Select");
+  }
 }

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd">
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd"><!--
   #%L
   GwtBootstrap3
   %%
@@ -19,9 +18,9 @@
   #L%
   -->
 <module rename-to="GwtBootstrap3">
-	<inherits name="org.gwtbootstrap3.GwtBootstrap3Base"/>
-    <inherits name="com.google.gwt.core.Core"/>
-    <inherits name="com.google.gwt.dom.DOM"/>
-    <inherits name="com.google.gwt.text.Text"/>
-    <inherits name="com.google.gwt.event.dom.DomEvent"/>
+  <inherits name="org.gwtbootstrap3.GwtBootstrap3Base"/>
+  <inherits name="com.google.gwt.core.Core"/>
+  <inherits name="com.google.gwt.dom.DOM"/>
+  <inherits name="com.google.gwt.text.Text"/>
+  <inherits name="com.google.gwt.event.dom.DomEvent"/>
 </module>

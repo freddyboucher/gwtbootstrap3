@@ -1,9 +1,8 @@
 package org.gwtbootstrap3.client.ui.html;
 
+import com.google.gwt.dom.client.SpanElement;
 import org.gwtbootstrap3.client.ui.base.mixin.HTMLMixin;
 import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
-
-import com.google.gwt.dom.client.SpanElement;
 
 /*
  * #%L
@@ -14,9 +13,9 @@ import com.google.gwt.dom.client.SpanElement;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,30 +30,30 @@ import com.google.gwt.dom.client.SpanElement;
  */
 public class Span extends HTMLPanel {
 
-    private final HTMLMixin<Span> textMixin = new HTMLMixin<>(this);
+  private final HTMLMixin<Span> textMixin = new HTMLMixin<>(this);
 
-    public Span() {
-        super(SpanElement.TAG, "");
-    }
+  public Span() {
+    super(SpanElement.TAG, "");
+  }
 
-    public Span(String html) {
-        this();
-        setHTML(html);
-    }
+  public Span(String html) {
+    this();
+    setHTML(html);
+  }
 
-    public void setText(String text) {
-        textMixin.setText(text);
-    }
+  public void setText(String text) {
+    textMixin.setText(text);
+  }
 
-    public String getText() {
-        return textMixin.getText();
-    }
+  public String getText() {
+    return textMixin.getText();
+  }
 
-    public String getHTML() {
-        return textMixin.getHTML();
-    }
+  public String getHTML() {
+    return textMixin.getHTML();
+  }
 
-    public void setHTML(String html) {
-        textMixin.setHTML(html);
-    }
+  public void setHTML(String html) {
+    textMixin.setHTML(html);
+  }
 }

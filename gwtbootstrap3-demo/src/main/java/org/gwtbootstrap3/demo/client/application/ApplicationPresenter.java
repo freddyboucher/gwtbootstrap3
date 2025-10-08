@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,39 +38,37 @@ import org.gwtbootstrap3.client.ui.NavbarCollapse;
  */
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> {
 
-    @ProxyStandard
-    public interface MyProxy extends Proxy<ApplicationPresenter> {
+  @ProxyStandard
+  public interface MyProxy extends Proxy<ApplicationPresenter> {
+  }
+
+  public interface MyView extends View {
+    NavbarCollapse getNavbarCollapse();
+  }
+
+  /**
+   * Use this in leaf presenters, inside their {@link #revealInParent} method.
+   */
+  public static final NestedSlot TYPE_SetMainContent = new NestedSlot();
+
+  @Inject
+  ApplicationPresenter(EventBus eventBus, MyView view, MyProxy proxy) {
+    super(eventBus, view, proxy, RevealType.Root);
+
+    // need to reset display because display is not reloaded every time (like conventional web site)
+    eventBus.addHandler(NavigationEvent.getType(), navigationEvent -> Scheduler.get().scheduleDeferred((Command) () -> {
+      // Making the window scroll to top on every page change
+      Window.scrollTo(0, 0);
+      // and collapse any nav menus
+      hideNavbarCollapse();
+    }));
+  }
+
+  private void hideNavbarCollapse() {
+    NavbarCollapse navbarCollapse = getView().getNavbarCollapse();
+    String ariaExpanded = navbarCollapse.getElement().getAttribute("aria-expanded");
+    if (Boolean.parseBoolean(ariaExpanded)) {
+      navbarCollapse.toggle();
     }
-
-    public interface MyView extends View {
-        NavbarCollapse getNavbarCollapse();
-    }
-
-    /**
-     * Use this in leaf presenters, inside their {@link #revealInParent} method.
-     */
-    public static final NestedSlot TYPE_SetMainContent = new NestedSlot();
-
-    @Inject
-    ApplicationPresenter(EventBus eventBus,
-                         MyView view,
-                         MyProxy proxy) {
-        super(eventBus, view, proxy, RevealType.Root);
-
-        // need to reset display because display is not reloaded every time (like conventional web site)
-        eventBus.addHandler(NavigationEvent.getType(), navigationEvent -> Scheduler.get().scheduleDeferred((Command) () -> {
-            // Making the window scroll to top on every page change
-            Window.scrollTo(0, 0);
-            // and collapse any nav menus
-            hideNavbarCollapse();
-        }));
-    }
-
-    private void hideNavbarCollapse() {
-        NavbarCollapse navbarCollapse = getView().getNavbarCollapse();
-        String ariaExpanded = navbarCollapse.getElement().getAttribute("aria-expanded");
-        if (Boolean.parseBoolean(ariaExpanded)) {
-            navbarCollapse.toggle();
-        }
-    }
+  }
 }

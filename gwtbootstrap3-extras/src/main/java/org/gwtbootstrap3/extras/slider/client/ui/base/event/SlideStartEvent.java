@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.slider.client.ui.base.event;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,65 +29,65 @@ import com.google.gwt.event.shared.GwtEvent;
  */
 public class SlideStartEvent<T> extends GwtEvent<SlideStartHandler<T>> {
 
-    private static Type<SlideStartHandler<?>> TYPE;
+  private static Type<SlideStartHandler<?>> TYPE;
 
-    private T value;
+  private T value;
 
-    /**
-     * Fires a slide start event on all registered handlers in the handler
-     * manager. If no such handlers exist, this method will do nothing.
-     *
-     * @param source the source of the handlers
-     * @param value the new slider value
-     */
-    public static <T> void fire(HasSlideStartHandlers<T> source, T value) {
-        if (TYPE != null) {
-            SlideStartEvent<T> event = new SlideStartEvent<>(value);
-            source.fireEvent(event);
-        }
+  /**
+   * Fires a slide start event on all registered handlers in the handler
+   * manager. If no such handlers exist, this method will do nothing.
+   *
+   * @param source the source of the handlers
+   * @param value  the new slider value
+   */
+  public static <T> void fire(HasSlideStartHandlers<T> source, T value) {
+    if (TYPE != null) {
+      SlideStartEvent<T> event = new SlideStartEvent<>(value);
+      source.fireEvent(event);
     }
+  }
 
-    /**
-     * Gets the type associated with this event.
-     *
-     * @return returns the handler type
-     */
-    public static Type<SlideStartHandler<?>> getType() {
-        if (TYPE == null) {
-            TYPE = new Type<>();
-        }
-        return TYPE;
+  /**
+   * Gets the type associated with this event.
+   *
+   * @return returns the handler type
+   */
+  public static Type<SlideStartHandler<?>> getType() {
+    if (TYPE == null) {
+      TYPE = new Type<>();
     }
+    return TYPE;
+  }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    @Override
-    public Type<SlideStartHandler<T>> getAssociatedType() {
-        return (Type)TYPE;
-    }
+  @SuppressWarnings({"unchecked", "rawtypes"})
+  @Override
+  public Type<SlideStartHandler<T>> getAssociatedType() {
+    return (Type) TYPE;
+  }
 
-    @Override
-    protected void dispatch(SlideStartHandler<T> handler) {
-        handler.onSlideStart(this);
-    }
+  @Override
+  protected void dispatch(SlideStartHandler<T> handler) {
+    handler.onSlideStart(this);
+  }
 
-    /**
-     * Creates a slide start event.
-     *
-     * @param value the new slider value
-     */
-    protected SlideStartEvent(T value) {
-        this.value = value;
-    }
+  /**
+   * Creates a slide start event.
+   *
+   * @param value the new slider value
+   */
+  protected SlideStartEvent(T value) {
+    this.value = value;
+  }
 
-    /**
-     * @return the new slider value
-     */
-    public T getValue() {
-        return value;
-    }
+  /**
+   * @return the new slider value
+   */
+  public T getValue() {
+    return value;
+  }
 
-    @Override
-    public String toDebugString() {
-        return super.toDebugString() + getValue();
-    }
+  @Override
+  public String toDebugString() {
+    return super.toDebugString() + getValue();
+  }
 }

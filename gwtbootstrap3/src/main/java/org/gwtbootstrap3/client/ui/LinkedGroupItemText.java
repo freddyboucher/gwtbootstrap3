@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,52 +20,50 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import org.gwtbootstrap3.client.ui.base.ComplexWidget;
-import org.gwtbootstrap3.client.ui.base.mixin.HTMLMixin;
-import org.gwtbootstrap3.client.ui.constants.Styles;
-
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
+import org.gwtbootstrap3.client.ui.base.ComplexWidget;
+import org.gwtbootstrap3.client.ui.base.mixin.HTMLMixin;
+import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * @author Joshua Godi
  */
 public class LinkedGroupItemText extends ComplexWidget implements HasWidgets, HasText {
-    private final HTMLMixin<LinkedGroupItemText> htmlMixin = new HTMLMixin<>(this);
+  private final HTMLMixin<LinkedGroupItemText> htmlMixin = new HTMLMixin<>(this);
 
-    public LinkedGroupItemText() {
-        setElement(Document.get().createPElement());
-        setStyleName(Styles.LIST_GROUP_ITEM_TEXT);
-    }
+  public LinkedGroupItemText() {
+    setElement(Document.get().createPElement());
+    setStyleName(Styles.LIST_GROUP_ITEM_TEXT);
+  }
 
-    public LinkedGroupItemText(String html) {
-        this();
-        setHTML(html);
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getText() {
-        return htmlMixin.getText();
-    }
+  public LinkedGroupItemText(String html) {
+    this();
+    setHTML(html);
+  }
 
-    public String getHTML() {
-        return htmlMixin.getHTML();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getText() {
+    return htmlMixin.getText();
+  }
 
-    public void setHTML(String html) {
-        htmlMixin.setHTML(html);
-    }
+  public String getHTML() {
+    return htmlMixin.getHTML();
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setText(String text) {
-        htmlMixin.setText(text);
-    }
+  public void setHTML(String html) {
+    htmlMixin.setHTML(html);
+  }
 
-
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setText(String text) {
+    htmlMixin.setText(text);
+  }
 }

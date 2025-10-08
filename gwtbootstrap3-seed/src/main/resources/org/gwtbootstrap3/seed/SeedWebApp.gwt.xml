@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd">
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd"><!--
   #%L
   GwtBootstrap3
   %%
@@ -19,17 +18,17 @@
   #L%
   -->
 <module rename-to='SeedWebApp'>
-    <!-- Inherit the core Web Toolkit stuff.                        -->
-    <inherits name='com.google.gwt.user.User'/>
-    <inherits name='org.gwtbootstrap3.GwtBootstrap3'/>
+  <!-- Inherit the core Web Toolkit stuff.                        -->
+  <inherits name='com.google.gwt.user.User'/>
+  <inherits name='org.gwtbootstrap3.GwtBootstrap3'/>
 
-    <!-- Specify the app entry point class.                         -->
-    <entry-point class='org.gwtbootstrap3.seed.client.SeedWebApp'/>
+  <!-- Specify the app entry point class.                         -->
+  <entry-point class='org.gwtbootstrap3.seed.client.SeedWebApp'/>
 
-    <!--For SDM-->
-    <add-linker name="xsiframe"/>
-    <set-configuration-property name="devModeRedirectEnabled" value="true"/>
+  <!--For SDM-->
+  <add-linker name="xsiframe"/>
+  <set-configuration-property name="devModeRedirectEnabled" value="true"/>
 
-    <!-- Specify the paths for translatable code                    -->
-    <source path='client'/>
+  <!-- Specify the paths for translatable code                    -->
+  <source path='client'/>
 </module>

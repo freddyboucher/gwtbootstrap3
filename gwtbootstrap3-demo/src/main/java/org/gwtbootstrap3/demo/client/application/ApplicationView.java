@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,30 +34,30 @@ import org.gwtbootstrap3.client.ui.NavbarCollapse;
  */
 public class ApplicationView extends ViewImpl implements ApplicationPresenter.MyView {
 
-    @UiField
-    SimplePanel contentContainer;
-    @UiField
-    NavbarCollapse navbarCollapse;
+  @UiField
+  SimplePanel contentContainer;
+  @UiField
+  NavbarCollapse navbarCollapse;
 
-    @Override
-    public NavbarCollapse getNavbarCollapse() {
-        return navbarCollapse;
-    }
+  @Override
+  public NavbarCollapse getNavbarCollapse() {
+    return navbarCollapse;
+  }
 
-    interface Binder extends UiBinder<Widget, ApplicationView> {
-    }
+  interface Binder extends UiBinder<Widget, ApplicationView> {
+  }
 
-    @Inject
-    ApplicationView(Binder binder) {
-        initWidget(binder.createAndBindUi(this));
-    }
+  @Inject
+  ApplicationView(Binder binder) {
+    initWidget(binder.createAndBindUi(this));
+  }
 
-    @Override
-    public void setInSlot(Object slot, IsWidget content) {
-        if (slot == ApplicationPresenter.TYPE_SetMainContent) {
-            contentContainer.setWidget(content);
-        } else {
-            super.setInSlot(slot, content);
-        }
+  @Override
+  public void setInSlot(Object slot, IsWidget content) {
+    if (slot == ApplicationPresenter.TYPE_SetMainContent) {
+      contentContainer.setWidget(content);
+    } else {
+      super.setInSlot(slot, content);
     }
+  }
 }

@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application.extras;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,181 +29,180 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
+import java.util.Date;
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.html.Div;
 import org.gwtbootstrap3.client.ui.html.Paragraph;
 import org.gwtbootstrap3.extras.datepicker.client.ui.DatePicker;
 import org.gwtbootstrap3.extras.datepicker.client.ui.base.constants.DatePickerDayOfWeek;
 
-import java.util.Date;
-
 /**
  * @author Joshua Godi
  */
 public class DatePickerView extends ViewImpl implements DatePickerPresenter.MyView {
-    @UiField(provided = true)
-    DatePicker eventDatePicker;
-    @UiField
-    FlowPanel logRow;
-    @UiField
-    Button endDate;
-    @UiField
-    Button clearLogButton;
-    @UiField
-    DatePicker methods;
-    @UiField
-    Button startDate;
-    @UiField
-    Button disableSundays;
-    @UiField
-    Button editable;
-    @UiField
-    Button readonly;
-    @UiField
-    Button disable;
-    @UiField
-    Button enable;
-    @UiField
-    Button getValue;
-    @UiField
-    Button enableSundays;
-    @UiField
-    Button show;
-    @UiField
-    Button hide;
-    @UiField
-    Button setValue;
-    @UiField
-    Button addRemove;
-    @UiField
-    Div eventDatePickerDiv;
-    @UiField
-    Button setFormat;
+  @UiField(provided = true)
+  DatePicker eventDatePicker;
+  @UiField
+  FlowPanel logRow;
+  @UiField
+  Button endDate;
+  @UiField
+  Button clearLogButton;
+  @UiField
+  DatePicker methods;
+  @UiField
+  Button startDate;
+  @UiField
+  Button disableSundays;
+  @UiField
+  Button editable;
+  @UiField
+  Button readonly;
+  @UiField
+  Button disable;
+  @UiField
+  Button enable;
+  @UiField
+  Button getValue;
+  @UiField
+  Button enableSundays;
+  @UiField
+  Button show;
+  @UiField
+  Button hide;
+  @UiField
+  Button setValue;
+  @UiField
+  Button addRemove;
+  @UiField
+  Div eventDatePickerDiv;
+  @UiField
+  Button setFormat;
 
-    @Inject
-    DatePickerView(Binder uiBinder) {
-        eventDatePicker = new DatePicker();
-        eventDatePicker.setValue(new Date());
+  @Inject
+  DatePickerView(Binder uiBinder) {
+    eventDatePicker = new DatePicker();
+    eventDatePicker.setValue(new Date());
 
-        initWidget(uiBinder.createAndBindUi(this));
+    initWidget(uiBinder.createAndBindUi(this));
 
-        eventDatePicker.addChangeDateHandler(evt -> {
-            Paragraph logEntry = new Paragraph();
-            logEntry.setText("Changed Date Event Fired! (" + eventDatePicker.getValue().toString() + ")");
-            logRow.add(logEntry);
-        });
+    eventDatePicker.addChangeDateHandler(evt -> {
+      Paragraph logEntry = new Paragraph();
+      logEntry.setText("Changed Date Event Fired! (" + eventDatePicker.getValue().toString() + ")");
+      logRow.add(logEntry);
+    });
 
-        eventDatePicker.addChangeMonthHandler(evt -> {
-            Paragraph logEntry = new Paragraph();
-            logEntry.setText("Changed Month Event Fired! (" + eventDatePicker.getValue().toString() + ")");
-            logRow.add(logEntry);
-        });
+    eventDatePicker.addChangeMonthHandler(evt -> {
+      Paragraph logEntry = new Paragraph();
+      logEntry.setText("Changed Month Event Fired! (" + eventDatePicker.getValue().toString() + ")");
+      logRow.add(logEntry);
+    });
 
-        eventDatePicker.addChangeYearHandler(evt -> {
-            Paragraph logEntry = new Paragraph();
-            logEntry.setText("Changed Year Event Fired! (" + eventDatePicker.getValue().toString() + ")");
-            logRow.add(logEntry);
-        });
+    eventDatePicker.addChangeYearHandler(evt -> {
+      Paragraph logEntry = new Paragraph();
+      logEntry.setText("Changed Year Event Fired! (" + eventDatePicker.getValue().toString() + ")");
+      logRow.add(logEntry);
+    });
 
-        eventDatePicker.addClearDateHandler(evt -> {
-            Paragraph logEntry = new Paragraph();
-            logEntry.setText("Clear Date Event Fired! (" + eventDatePicker.getValue().toString() + ")");
-            logRow.add(logEntry);
-        });
+    eventDatePicker.addClearDateHandler(evt -> {
+      Paragraph logEntry = new Paragraph();
+      logEntry.setText("Clear Date Event Fired! (" + eventDatePicker.getValue().toString() + ")");
+      logRow.add(logEntry);
+    });
 
-        eventDatePicker.addShowHandler(showEvent -> {
-            Paragraph logEntry = new Paragraph();
-            logEntry.setText("Show Event Fired");
-            logRow.add(logEntry);
-        });
+    eventDatePicker.addShowHandler(showEvent -> {
+      Paragraph logEntry = new Paragraph();
+      logEntry.setText("Show Event Fired");
+      logRow.add(logEntry);
+    });
 
-        eventDatePicker.addHideHandler(hideEvent -> {
-            Paragraph logEntry = new Paragraph();
-            logEntry.setText("Hide Event Fired");
-            logRow.add(logEntry);
-        });
+    eventDatePicker.addHideHandler(hideEvent -> {
+      Paragraph logEntry = new Paragraph();
+      logEntry.setText("Hide Event Fired");
+      logRow.add(logEntry);
+    });
+  }
+
+  @UiHandler("addRemove")
+  public void handleAddRemove(ClickEvent event) {
+    if (eventDatePicker.isAttached()) {
+      eventDatePicker.removeFromParent();
+    } else {
+      eventDatePickerDiv.add(eventDatePicker);
     }
+  }
 
-    @UiHandler("addRemove")
-    public void handleAddRemove(ClickEvent event) {
-        if (eventDatePicker.isAttached()) {
-            eventDatePicker.removeFromParent();
-        } else {
-            eventDatePickerDiv.add(eventDatePicker);
-        }
-    }
+  @UiHandler("clearLogButton")
+  public void handleClearLog(ClickEvent event) {
+    logRow.clear();
+  }
 
-    @UiHandler("clearLogButton")
-    public void handleClearLog(ClickEvent event) {
-        logRow.clear();
-    }
+  @UiHandler("endDate")
+  public void handleEndDate(ClickEvent event) {
+    methods.setEndDate("01-27-2015");
+  }
 
-    @UiHandler("endDate")
-    public void handleEndDate(ClickEvent event) {
-        methods.setEndDate("01-27-2015");
-    }
+  @UiHandler("startDate")
+  public void handleStartDate(ClickEvent event) {
+    methods.setStartDate("01-10-2015");
+  }
 
-    @UiHandler("startDate")
-    public void handleStartDate(ClickEvent event) {
-        methods.setStartDate("01-10-2015");
-    }
+  @UiHandler("getValue")
+  public void handleGetValue(ClickEvent event) {
+    Window.alert(methods.getValue().toString());
+  }
 
-    @UiHandler("getValue")
-    public void handleGetValue(ClickEvent event) {
-        Window.alert(methods.getValue().toString());
-    }
+  @UiHandler("setValue")
+  public void handleSetValue(ClickEvent event) {
+    methods.setValue(new Date(System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 3)));
+  }
 
-    @UiHandler("setValue")
-    public void handleSetValue(ClickEvent event) {
-        methods.setValue(new Date(System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 3)));
-    }
+  @UiHandler("enable")
+  public void handleEnable(ClickEvent event) {
+    methods.setEnabled(true);
+  }
 
-    @UiHandler("enable")
-    public void handleEnable(ClickEvent event) {
-        methods.setEnabled(true);
-    }
+  @UiHandler("disable")
+  public void handledisable(ClickEvent event) {
+    methods.setEnabled(false);
+  }
 
-    @UiHandler("disable")
-    public void handledisable(ClickEvent event) {
-        methods.setEnabled(false);
-    }
+  @UiHandler("readonly")
+  public void handleReadOnly(ClickEvent event) {
+    methods.setReadOnly(true);
+  }
 
-    @UiHandler("readonly")
-    public void handleReadOnly(ClickEvent event) {
-        methods.setReadOnly(true);
-    }
+  @UiHandler("editable")
+  public void handleEditable(ClickEvent event) {
+    methods.setReadOnly(false);
+  }
 
-    @UiHandler("editable")
-    public void handleEditable(ClickEvent event) {
-        methods.setReadOnly(false);
-    }
+  @UiHandler("disableSundays")
+  public void handleDisableSundays(ClickEvent event) {
+    methods.setDaysOfWeekDisabled(DatePickerDayOfWeek.SUNDAY);
+  }
 
-    @UiHandler("disableSundays")
-    public void handleDisableSundays(ClickEvent event) {
-        methods.setDaysOfWeekDisabled(DatePickerDayOfWeek.SUNDAY);
-    }
+  @UiHandler("enableSundays")
+  public void handleEnableSundays(ClickEvent event) {
+    methods.setDaysOfWeekDisabled();
+  }
 
-    @UiHandler("enableSundays")
-    public void handleEnableSundays(ClickEvent event) {
-        methods.setDaysOfWeekDisabled();
-    }
+  @UiHandler("hide")
+  public void handleHide(ClickEvent event) {
+    methods.hide();
+  }
 
-    @UiHandler("hide")
-    public void handleHide(ClickEvent event) {
-        methods.hide();
-    }
+  @UiHandler("show")
+  public void handleShow(ClickEvent event) {
+    methods.show();
+  }
 
-    @UiHandler("show")
-    public void handleShow(ClickEvent event) {
-        methods.show();
-    }
+  @UiHandler("setFormat")
+  public void handleSetFormat(ClickEvent event) {
+    methods.setFormat("dd.mm.yyyy");
+    methods.reload();
+  }
 
-    @UiHandler("setFormat")
-    public void handleSetFormat(ClickEvent event) {
-        methods.setFormat("dd.mm.yyyy");
-        methods.reload();
-    }
-
-    interface Binder extends UiBinder<Widget, DatePickerView> {
-    }
+  interface Binder extends UiBinder<Widget, DatePickerView> {
+  }
 }

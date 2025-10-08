@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd">
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd"><!--
   #%L
   GwtBootstrap3
   %%
@@ -19,62 +18,59 @@
   #L%
   -->
 <module>
-    <inherits name="com.google.gwt.user.User"/>
-    <inherits name="com.google.gwt.user.UserAgent"/>
-    <inherits name="com.google.gwt.i18n.I18N"/>
+  <inherits name="com.google.gwt.user.User"/>
+  <inherits name="com.google.gwt.user.UserAgent"/>
+  <inherits name="com.google.gwt.i18n.I18N"/>
 
-    <!-- This is the default validator message mixin -->
-    <replace-with class="org.gwtbootstrap3.client.ui.form.validator.DefaultValidatorMessageMixin">
-        <when-type-is class="org.gwtbootstrap3.client.ui.form.validator.ValidatorMessageMixin" />
-    </replace-with>
+  <!-- This is the default validator message mixin -->
+  <replace-with class="org.gwtbootstrap3.client.ui.form.validator.DefaultValidatorMessageMixin">
+    <when-type-is class="org.gwtbootstrap3.client.ui.form.validator.ValidatorMessageMixin"/>
+  </replace-with>
 
-    <!-- Fall through to this rule is the browser isn't IE 8 -->
-    <replace-with class="org.gwtbootstrap3.client.ui.impl.SimpleCheckBoxImpl">
-        <when-type-is class="org.gwtbootstrap3.client.ui.impl.SimpleCheckBoxImpl" />
-    </replace-with>
+  <!-- Fall through to this rule is the browser isn't IE 8 -->
+  <replace-with class="org.gwtbootstrap3.client.ui.impl.SimpleCheckBoxImpl">
+    <when-type-is class="org.gwtbootstrap3.client.ui.impl.SimpleCheckBoxImpl"/>
+  </replace-with>
 
-    <!-- IE 8 uses a different implementation -->
-    <replace-with class="org.gwtbootstrap3.client.ui.impl.SimpleCheckBoxImplIE8">
-        <when-type-is class="org.gwtbootstrap3.client.ui.impl.SimpleCheckBoxImpl" />
-        <when-property-is name="user.agent" value="ie8" />
-    </replace-with>
+  <!-- IE 8 uses a different implementation -->
+  <replace-with class="org.gwtbootstrap3.client.ui.impl.SimpleCheckBoxImplIE8">
+    <when-type-is class="org.gwtbootstrap3.client.ui.impl.SimpleCheckBoxImpl"/>
+    <when-property-is name="user.agent" value="ie8"/>
+  </replace-with>
 
-    <!-- Fall through to this rule is the browser isn't IE 8 -->
-    <replace-with class="org.gwtbootstrap3.client.ui.impl.SimpleRadioButtonImpl">
-        <when-type-is class="org.gwtbootstrap3.client.ui.impl.SimpleRadioButtonImpl" />
-    </replace-with>
+  <!-- Fall through to this rule is the browser isn't IE 8 -->
+  <replace-with class="org.gwtbootstrap3.client.ui.impl.SimpleRadioButtonImpl">
+    <when-type-is class="org.gwtbootstrap3.client.ui.impl.SimpleRadioButtonImpl"/>
+  </replace-with>
 
-    <!-- IE 8 uses a different implementation -->
-    <replace-with
-        class="org.gwtbootstrap3.client.ui.impl.SimpleRadioButtonImplIE8">
-        <when-type-is class="org.gwtbootstrap3.client.ui.impl.SimpleRadioButtonImpl" />
-        <when-property-is name="user.agent" value="ie8" />
-    </replace-with>
+  <!-- IE 8 uses a different implementation -->
+  <replace-with class="org.gwtbootstrap3.client.ui.impl.SimpleRadioButtonImplIE8">
+    <when-type-is class="org.gwtbootstrap3.client.ui.impl.SimpleRadioButtonImpl"/>
+    <when-property-is name="user.agent" value="ie8"/>
+  </replace-with>
 
-    <!-- Fall through to this rule if the browser isn't IE 8 -->
-    <replace-with class="org.gwtbootstrap3.client.ui.impl.CheckBoxImpl">
-        <when-type-is class="org.gwtbootstrap3.client.ui.impl.CheckBoxImpl" />
-    </replace-with>
+  <!-- Fall through to this rule if the browser isn't IE 8 -->
+  <replace-with class="org.gwtbootstrap3.client.ui.impl.CheckBoxImpl">
+    <when-type-is class="org.gwtbootstrap3.client.ui.impl.CheckBoxImpl"/>
+  </replace-with>
 
-    <!-- IE 8 uses a different implementation -->
-    <replace-with
-        class="org.gwtbootstrap3.client.ui.impl.CheckBoxImplIE8">
-        <when-type-is class="org.gwtbootstrap3.client.ui.impl.CheckBoxImpl" />
-        <when-property-is name="user.agent" value="ie8" />
-    </replace-with>
+  <!-- IE 8 uses a different implementation -->
+  <replace-with class="org.gwtbootstrap3.client.ui.impl.CheckBoxImplIE8">
+    <when-type-is class="org.gwtbootstrap3.client.ui.impl.CheckBoxImpl"/>
+    <when-property-is name="user.agent" value="ie8"/>
+  </replace-with>
 
-    <!-- Fall through to this rule if the browser isn't IE 8 -->
-    <replace-with class="org.gwtbootstrap3.client.ui.impl.RadioImpl">
-        <when-type-is class="org.gwtbootstrap3.client.ui.impl.RadioImpl" />
-    </replace-with>
+  <!-- Fall through to this rule if the browser isn't IE 8 -->
+  <replace-with class="org.gwtbootstrap3.client.ui.impl.RadioImpl">
+    <when-type-is class="org.gwtbootstrap3.client.ui.impl.RadioImpl"/>
+  </replace-with>
 
-    <!-- IE 8 uses a different implementation -->
-    <replace-with
-        class="org.gwtbootstrap3.client.ui.impl.RadioImplIE8">
-        <when-type-is class="org.gwtbootstrap3.client.ui.impl.RadioImpl" />
-        <when-property-is name="user.agent" value="ie8" />
-    </replace-with>
+  <!-- IE 8 uses a different implementation -->
+  <replace-with class="org.gwtbootstrap3.client.ui.impl.RadioImplIE8">
+    <when-type-is class="org.gwtbootstrap3.client.ui.impl.RadioImpl"/>
+    <when-property-is name="user.agent" value="ie8"/>
+  </replace-with>
 
-    <source path="client" />
-    <source path="shared" />
+  <source path="client"/>
+  <source path="shared"/>
 </module>

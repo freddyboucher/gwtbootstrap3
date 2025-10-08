@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,26 +20,24 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.uibinder.client.UiConstructor;
 import org.gwtbootstrap3.client.ui.base.RadioGroupBase;
 import org.gwtbootstrap3.client.ui.form.validator.BooleanParser;
 
-import com.google.gwt.uibinder.client.UiConstructor;
-
 /**
  * A radio group that returns a boolean value.
- * 
+ *
  * @author Steven Jardine
  */
 public class BooleanRadioGroup extends RadioGroupBase<Boolean> {
 
-    /**
-     * Constructor.
-     * 
-     * @param name the name.
-     */
-    @UiConstructor
-    public BooleanRadioGroup(String name) {
-        super(name, BooleanParser.instance());
-    }
-
+  /**
+   * Constructor.
+   *
+   * @param name the name.
+   */
+  @UiConstructor
+  public BooleanRadioGroup(String name) {
+    super(name, BooleanParser.instance());
+  }
 }

@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.select.client.ui.event;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,46 +27,46 @@ import com.google.gwt.event.shared.GwtEvent;
  */
 public class HideEvent extends GwtEvent<HideHandler> {
 
-    private static Type<HideHandler> TYPE;
+  private static Type<HideHandler> TYPE;
 
-    /**
-     * Fires a hide event on all registered handlers in the handler manager. If
-     * no such handlers exist, this method will do nothing.
-     *
-     * @param source the source of the handlers
-     */
-    public static void fire(HasHideHandlers source) {
-        if (TYPE != null) {
-            HideEvent event = new HideEvent();
-            source.fireEvent(event);
-        }
+  /**
+   * Fires a hide event on all registered handlers in the handler manager. If
+   * no such handlers exist, this method will do nothing.
+   *
+   * @param source the source of the handlers
+   */
+  public static void fire(HasHideHandlers source) {
+    if (TYPE != null) {
+      HideEvent event = new HideEvent();
+      source.fireEvent(event);
     }
+  }
 
-    /**
-     * Gets the type associated with this event.
-     *
-     * @return returns the handler type
-     */
-    public static Type<HideHandler> getType() {
-        if (TYPE == null) {
-            TYPE = new Type<>();
-        }
-        return TYPE;
+  /**
+   * Gets the type associated with this event.
+   *
+   * @return returns the handler type
+   */
+  public static Type<HideHandler> getType() {
+    if (TYPE == null) {
+      TYPE = new Type<>();
     }
+    return TYPE;
+  }
 
-    @Override
-    public Type<HideHandler> getAssociatedType() {
-        return TYPE;
-    }
+  @Override
+  public Type<HideHandler> getAssociatedType() {
+    return TYPE;
+  }
 
-    @Override
-    protected void dispatch(HideHandler handler) {
-        handler.onHide(this);
-    }
+  @Override
+  protected void dispatch(HideHandler handler) {
+    handler.onHide(this);
+  }
 
-    /**
-     * Creates a hide event.
-     */
-    protected HideEvent() {}
-
+  /**
+   * Creates a hide event.
+   */
+  protected HideEvent() {
+  }
 }

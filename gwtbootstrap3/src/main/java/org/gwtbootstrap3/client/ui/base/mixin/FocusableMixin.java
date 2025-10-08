@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.base.mixin;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,42 +32,42 @@ import com.google.gwt.user.client.ui.UIObject;
  */
 public class FocusableMixin<T extends UIObject & Focusable> implements Focusable {
 
-    private final T uiObject;
+  private final T uiObject;
 
-    public FocusableMixin(T uiObject) {
-        this.uiObject = uiObject;
+  public FocusableMixin(T uiObject) {
+    this.uiObject = uiObject;
+  }
+
+  @Override
+  public int getTabIndex() {
+    return uiObject.getElement().getTabIndex();
+  }
+
+  @Override
+  public void setTabIndex(int index) {
+    uiObject.getElement().setTabIndex(index);
+  }
+
+  @Override
+  public void setAccessKey(char key) {
+    Element element = uiObject.getElement();
+    String accessKey = Character.toString(key);
+
+    if (AnchorElement.is(element)) {
+      AnchorElement.as(element).setAccessKey(accessKey);
+    } else if (ButtonElement.is(element)) {
+      ButtonElement.as(element).setAccessKey(accessKey);
+    } else if (InputElement.is(element)) {
+      InputElement.as(element).setAccessKey(accessKey);
     }
+  }
 
-    @Override
-    public int getTabIndex() {
-        return uiObject.getElement().getTabIndex();
+  @Override
+  public void setFocus(boolean focused) {
+    if (focused) {
+      uiObject.getElement().focus();
+    } else {
+      uiObject.getElement().blur();
     }
-
-    @Override
-    public void setTabIndex(int index) {
-        uiObject.getElement().setTabIndex(index);
-    }
-
-    @Override
-    public void setAccessKey(char key) {
-        Element element = uiObject.getElement();
-        String accessKey = Character.toString(key);
-
-        if (AnchorElement.is(element)) {
-            AnchorElement.as(element).setAccessKey(accessKey);
-        } else if (ButtonElement.is(element)) {
-            ButtonElement.as(element).setAccessKey(accessKey);
-        } else if (InputElement.is(element)) {
-            InputElement.as(element).setAccessKey(accessKey);
-        }
-    }
-
-    @Override
-    public void setFocus(boolean focused) {
-        if (focused) {
-            uiObject.getElement().focus();
-        } else {
-            uiObject.getElement().blur();
-        }
-    }
+  }
 }

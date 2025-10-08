@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.html;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui.html;
  * #L%
  */
 
+import com.google.gwt.dom.client.ParagraphElement;
 import org.gwtbootstrap3.client.ui.base.HasAlignment;
 import org.gwtbootstrap3.client.ui.base.HasEmphasis;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
@@ -28,57 +29,55 @@ import org.gwtbootstrap3.client.ui.constants.Alignment;
 import org.gwtbootstrap3.client.ui.constants.Emphasis;
 import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
 
-import com.google.gwt.dom.client.ParagraphElement;
-
 /**
  * @author Sven Jacobs
  */
 public class Paragraph extends HTMLPanel implements HasAlignment, HasEmphasis {
 
-    private final HTMLMixin<Paragraph> textMixin = new HTMLMixin<>(this);
+  private final HTMLMixin<Paragraph> textMixin = new HTMLMixin<>(this);
 
-    public Paragraph() {
-        this("");
-    }
+  public Paragraph() {
+    this("");
+  }
 
-    public Paragraph(String html) {
-        super(ParagraphElement.TAG, html);
-        setHTML(html);
-    }
+  public Paragraph(String html) {
+    super(ParagraphElement.TAG, html);
+    setHTML(html);
+  }
 
-    public void setText(String text) {
-        textMixin.setText(text);
-    }
+  public void setText(String text) {
+    textMixin.setText(text);
+  }
 
-    public String getText() {
-        return textMixin.getText();
-    }
+  public String getText() {
+    return textMixin.getText();
+  }
 
-    public String getHTML() {
-        return textMixin.getHTML();
-    }
+  public String getHTML() {
+    return textMixin.getHTML();
+  }
 
-    public void setHTML(String html) {
-        textMixin.setHTML(html);
-    }
+  public void setHTML(String html) {
+    textMixin.setHTML(html);
+  }
 
-    @Override
-    public void setAlignment(Alignment alignment) {
-        StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
-    }
+  @Override
+  public void setAlignment(Alignment alignment) {
+    StyleHelper.addUniqueEnumStyleName(this, Alignment.class, alignment);
+  }
 
-    @Override
-    public Alignment getAlignment() {
-        return Alignment.fromStyleName(getStyleName());
-    }
+  @Override
+  public Alignment getAlignment() {
+    return Alignment.fromStyleName(getStyleName());
+  }
 
-    @Override
-    public void setEmphasis(Emphasis emphasis) {
-        StyleHelper.addUniqueEnumStyleName(this, Emphasis.class, emphasis);
-    }
+  @Override
+  public void setEmphasis(Emphasis emphasis) {
+    StyleHelper.addUniqueEnumStyleName(this, Emphasis.class, emphasis);
+  }
 
-    @Override
-    public Emphasis getEmphasis() {
-        return Emphasis.fromStyleName(getStyleName());
-    }
+  @Override
+  public Emphasis getEmphasis() {
+    return Emphasis.fromStyleName(getStyleName());
+  }
 }

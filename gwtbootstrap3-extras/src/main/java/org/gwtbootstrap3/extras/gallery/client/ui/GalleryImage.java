@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.gallery.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,80 +47,80 @@ import org.gwtbootstrap3.client.ui.base.HasHref;
  */
 public class GalleryImage extends ComplexWidget implements HasHref, HasLoadHandlers {
 
-    private Image image;
+  private Image image;
 
-    @UiConstructor
-    public GalleryImage(String url) {
-        setElement(Document.get().createAnchorElement());
-        getElement().setAttribute("data-gallery", "data-gallery");
-        getElement().getStyle().setDisplay(Display.INLINE_TABLE);
+  @UiConstructor
+  public GalleryImage(String url) {
+    setElement(Document.get().createAnchorElement());
+    getElement().setAttribute("data-gallery", "data-gallery");
+    getElement().getStyle().setDisplay(Display.INLINE_TABLE);
 
-        setHref(url);
+    setHref(url);
 
-        image = new Image(url);
-        add(image);
+    image = new Image(url);
+    add(image);
+  }
+
+  @Override
+  public void add(Widget child) {
+    if (child instanceof Image) {
+      if (image != null) {
+        image.removeFromParent();
+      }
+
+      image = (Image) child;
+      setHref(image.getUrl());
+
+      super.add(image);
+    } else if (child instanceof HasClickHandlers) {
+      ((HasClickHandlers) child).addClickHandler(DomEvent::stopPropagation);
+
+      Scheduler.get().scheduleDeferred((Command) () -> {
+        Style style = child.getElement().getStyle();
+        style.setPosition(Position.RELATIVE);
+        style.setBottom(image.getHeight(), Unit.PX);
+        style.setLeft(4, Unit.PX);
+      });
+
+      super.add(child);
+    } else {
+      super.add(child);
     }
+  }
 
-    @Override
-    public void add(Widget child) {
-        if(child instanceof Image) {
-            if(image != null) {
-                image.removeFromParent();
-            }
+  @Override
+  public void setHref(String href) {
+    AnchorElement.as(getElement()).setHref(href);
+  }
 
-            image = (Image) child;
-            setHref(image.getUrl());
+  @Override
+  public String getHref() {
+    return AnchorElement.as(getElement()).getHref();
+  }
 
-            super.add(image);
-        } else if(child instanceof HasClickHandlers) {
-            ((HasClickHandlers) child).addClickHandler(DomEvent::stopPropagation);
+  @Override
+  public void setWidth(String width) {
+    super.setWidth(width);
+    image.setWidth(width);
+  }
 
-            Scheduler.get().scheduleDeferred((Command) () -> {
-                Style style = child.getElement().getStyle();
-                style.setPosition(Position.RELATIVE);
-                style.setBottom(image.getHeight(), Unit.PX);
-                style.setLeft(4, Unit.PX);
-            });
+  @Override
+  public void setHeight(String height) {
+    super.setHeight(height);
+    image.setHeight(height);
 
-            super.add(child);
-        } else {
-            super.add(child);
+    Scheduler.get().scheduleDeferred((Command) () -> {
+      for (Widget child : this) {
+        if (child instanceof HasClickHandlers && !(child instanceof Image)) {
+          Style style = child.getElement().getStyle();
+          style.setBottom(image.getHeight(), Unit.PX);
         }
-    }
+      }
+    });
+  }
 
-    @Override
-    public void setHref(String href) {
-        AnchorElement.as(getElement()).setHref(href);
-    }
-
-    @Override
-    public String getHref() {
-        return AnchorElement.as(getElement()).getHref();
-    }
-
-    @Override
-    public void setWidth(String width) {
-        super.setWidth(width);
-        image.setWidth(width);
-    }
-
-    @Override
-    public void setHeight(String height) {
-        super.setHeight(height);
-        image.setHeight(height);
-
-        Scheduler.get().scheduleDeferred((Command) () -> {
-            for (Widget child : this) {
-                if (child instanceof HasClickHandlers && !(child instanceof Image)) {
-                    Style style = child.getElement().getStyle();
-                    style.setBottom(image.getHeight(), Unit.PX);
-                }
-            }
-        });
-    }
-
-    @Override
-    public HandlerRegistration addLoadHandler(LoadHandler handler) {
-        return image.addHandler(handler, LoadEvent.getType());
-    }
+  @Override
+  public HandlerRegistration addLoadHandler(LoadHandler handler) {
+    return image.addHandler(handler, LoadEvent.getType());
+  }
 }

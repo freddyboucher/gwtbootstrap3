@@ -18,6 +18,6 @@
   #L%
   -->
 <module rename-to='positionedtabs'>
-    <inherits name="com.google.gwt.resources.Resources"/>
-    <inherits name='org.gwtbootstrap3.extras.positionedtabs.client.PositionedTabsResources'/>
+  <inherits name="com.google.gwt.resources.Resources"/>
+  <inherits name='org.gwtbootstrap3.extras.positionedtabs.client.PositionedTabsResources'/>
 </module>

@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application.css;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,82 +43,83 @@ import org.gwtbootstrap3.demo.client.pojo.TableTestPojo;
  * @author Joshua Godi
  */
 public class TablesView extends ViewImpl implements TablesPresenter.MyView {
-    @UiField(provided = true)
-    DataGrid<TableTestPojo> dataGrid = new DataGrid<>(10);
-    @UiField
-    Pagination dataGridPagination;
-    @UiField(provided = true)
-    CellTable<TableTestPojo> cellTable = new CellTable<>(10);
-    @UiField
-    Pagination cellTablePagination;
+  @UiField(provided = true)
+  DataGrid<TableTestPojo> dataGrid = new DataGrid<>(10);
+  @UiField
+  Pagination dataGridPagination;
+  @UiField(provided = true)
+  CellTable<TableTestPojo> cellTable = new CellTable<>(10);
+  @UiField
+  Pagination cellTablePagination;
 
-    interface Binder extends UiBinder<Widget, TablesView> {
+  interface Binder extends UiBinder<Widget, TablesView> {
+  }
+
+  private SimplePager dataGridPager = new SimplePager();
+  private SimplePager cellTablePager = new SimplePager();
+  private ListDataProvider<TableTestPojo> dataGridProvider = new ListDataProvider<>();
+  private ListDataProvider<TableTestPojo> cellTableProvider = new ListDataProvider<>();
+
+  @Inject
+  TablesView(Binder uiBinder) {
+    initWidget(uiBinder.createAndBindUi(this));
+
+    initTable(dataGrid, dataGridPager, dataGridPagination, dataGridProvider);
+    initTable(cellTable, cellTablePager, cellTablePagination, cellTableProvider);
+    initMockData(dataGridPagination, dataGridPager, dataGridProvider);
+    initMockData(cellTablePagination, cellTablePager, cellTableProvider);
+  }
+
+  private void initMockData(Pagination pagination, SimplePager simplePager, ListDataProvider<TableTestPojo> dataProvider) {
+    for (int i = 0; i < 25; i++) {
+      dataProvider.getList().add(new TableTestPojo("Test " + i, "Test " + i, "Test " + i));
     }
+    dataProvider.flush();
+    pagination.rebuild(simplePager);
+  }
 
-    private SimplePager dataGridPager = new SimplePager();
-    private SimplePager cellTablePager = new SimplePager();
-    private ListDataProvider<TableTestPojo> dataGridProvider = new ListDataProvider<>();
-    private ListDataProvider<TableTestPojo> cellTableProvider = new ListDataProvider<>();
+  private void initTable(AbstractCellTable<TableTestPojo> grid, SimplePager pager, Pagination pagination,
+                         ListDataProvider<TableTestPojo> dataProvider) {
+    TextColumn<TableTestPojo> col1 = new TextColumn<TableTestPojo>() {
 
-    @Inject
-    TablesView(Binder uiBinder) {
-        initWidget(uiBinder.createAndBindUi(this));
+      @Override
+      public String getValue(TableTestPojo object) {
+        return String.valueOf(object.getField1());
+      }
+    };
+    grid.addColumn(col1, "Field 1");
 
-        initTable(dataGrid, dataGridPager, dataGridPagination, dataGridProvider);
-        initTable(cellTable, cellTablePager, cellTablePagination, cellTableProvider);
-        initMockData(dataGridPagination, dataGridPager, dataGridProvider);
-        initMockData(cellTablePagination, cellTablePager, cellTableProvider);
-    }
+    TextColumn<TableTestPojo> col2 = new TextColumn<TableTestPojo>() {
 
-    private void initMockData(Pagination pagination, SimplePager simplePager, ListDataProvider<TableTestPojo> dataProvider) {
-        for (int i = 0; i < 25; i++) {
-            dataProvider.getList().add(new TableTestPojo("Test " + i, "Test " + i, "Test " + i));
-        }
-        dataProvider.flush();
-        pagination.rebuild(simplePager);
-    }
+      @Override
+      public String getValue(TableTestPojo object) {
+        return String.valueOf(object.getField1());
+      }
+    };
+    grid.addColumn(col2, "Field 2");
 
-    private void initTable(AbstractCellTable<TableTestPojo> grid, SimplePager pager, Pagination pagination, ListDataProvider<TableTestPojo> dataProvider) {
-        TextColumn<TableTestPojo> col1 = new TextColumn<TableTestPojo>() {
+    TextColumn<TableTestPojo> col3 = new TextColumn<TableTestPojo>() {
 
-            @Override
-            public String getValue(TableTestPojo object) {
-                return String.valueOf(object.getField1());
-            }
-        };
-        grid.addColumn(col1, "Field 1");
+      @Override
+      public String getValue(TableTestPojo object) {
+        return String.valueOf(object.getField1());
+      }
+    };
+    grid.addColumn(col3, "Field 3");
 
-        TextColumn<TableTestPojo> col2 = new TextColumn<TableTestPojo>() {
+    Column<TableTestPojo, String> col4 = new Column<TableTestPojo, String>(new ButtonCell(ButtonType.PRIMARY, IconType.GITHUB)) {
+      @Override
+      public String getValue(TableTestPojo object) {
+        return "Click Me";
+      }
+    };
+    col4.setFieldUpdater((index, object, value) -> Window.alert("Clicked!"));
+    grid.addColumn(col4, "Buttons");
 
-            @Override
-            public String getValue(TableTestPojo object) {
-                return String.valueOf(object.getField1());
-            }
-        };
-        grid.addColumn(col2, "Field 2");
+    grid.addRangeChangeHandler(event -> pagination.rebuild(pager));
 
-        TextColumn<TableTestPojo> col3 = new TextColumn<TableTestPojo>() {
-
-            @Override
-            public String getValue(TableTestPojo object) {
-                return String.valueOf(object.getField1());
-            }
-        };
-        grid.addColumn(col3, "Field 3");
-
-        Column<TableTestPojo, String> col4 = new Column<TableTestPojo, String>(new ButtonCell(ButtonType.PRIMARY, IconType.GITHUB)) {
-            @Override
-            public String getValue(TableTestPojo object) {
-                return "Click Me";
-            }
-        };
-        col4.setFieldUpdater((index, object, value) -> Window.alert("Clicked!"));
-        grid.addColumn(col4, "Buttons");
-
-        grid.addRangeChangeHandler(event -> pagination.rebuild(pager));
-
-        pager.setDisplay(grid);
-        pagination.clear();
-        dataProvider.addDataDisplay(grid);
-    }
+    pager.setDisplay(grid);
+    pagination.clear();
+    dataProvider.addDataDisplay(grid);
+  }
 }

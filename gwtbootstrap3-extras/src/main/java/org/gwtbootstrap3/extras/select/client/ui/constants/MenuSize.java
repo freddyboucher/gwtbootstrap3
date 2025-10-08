@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.select.client.ui.constants;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,31 +27,30 @@ package org.gwtbootstrap3.extras.select.client.ui.constants;
  */
 public enum MenuSize {
 
-    /**
-     * Show as many items as the window will allow without being cut off.
-     */
-    AUTO("auto"),
+  /**
+   * Show as many items as the window will allow without being cut off.
+   */
+  AUTO("auto"),
 
-    /**
-     * Always show all items.
-     */
-    ALL("false"),
+  /**
+   * Always show all items.
+   */
+  ALL("false"),
 
-    ;
+  ;
 
-    private String value;
+  private String value;
 
-    MenuSize(String size) {
-        value = size;
-    }
+  MenuSize(String size) {
+    value = size;
+  }
 
-    /**
-     * Returns the value of the drop-down menu size.
-     *
-     * @return
-     */
-    public String getValue() {
-        return value;
-    }
-
+  /**
+   * Returns the value of the drop-down menu size.
+   *
+   * @return
+   */
+  public String getValue() {
+    return value;
+  }
 }

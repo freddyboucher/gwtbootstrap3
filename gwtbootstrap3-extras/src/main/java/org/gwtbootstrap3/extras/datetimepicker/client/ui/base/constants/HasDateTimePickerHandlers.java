@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.datetimepicker.client.ui.base.constants;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,27 +35,27 @@ import org.gwtbootstrap3.extras.datetimepicker.client.ui.base.events.OutOfRangeH
  * @author Joshua Godi
  */
 public interface HasDateTimePickerHandlers {
-    void onShow(Event e);
+  void onShow(Event e);
 
-    HandlerRegistration addShowHandler(ShowHandler showHandler);
+  HandlerRegistration addShowHandler(ShowHandler showHandler);
 
-    void onHide(Event e);
+  void onHide(Event e);
 
-    HandlerRegistration addHideHandler(HideHandler hideHandler);
+  HandlerRegistration addHideHandler(HideHandler hideHandler);
 
-    void onChangeDate(Event e);
+  void onChangeDate(Event e);
 
-    HandlerRegistration addChangeDateHandler(ChangeDateHandler changeDateHandler);
+  HandlerRegistration addChangeDateHandler(ChangeDateHandler changeDateHandler);
 
-    void onChangeYear(Event e);
+  void onChangeYear(Event e);
 
-    HandlerRegistration addChangeYearHandler(ChangeYearHandler changeYearHandler);
+  HandlerRegistration addChangeYearHandler(ChangeYearHandler changeYearHandler);
 
-    void onChangeMonth(Event e);
+  void onChangeMonth(Event e);
 
-    HandlerRegistration addChangeMonthHandler(ChangeMonthHandler changeMonthHandler);
+  HandlerRegistration addChangeMonthHandler(ChangeMonthHandler changeMonthHandler);
 
-    void onOutOfRange(Event e);
+  void onOutOfRange(Event e);
 
-    HandlerRegistration addOutOfRangeHandler(OutOfRangeHandler outOfRangeHandler);
+  HandlerRegistration addOutOfRangeHandler(OutOfRangeHandler outOfRangeHandler);
 }

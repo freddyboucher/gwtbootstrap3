@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.base.button;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,25 +19,6 @@ package org.gwtbootstrap3.client.ui.base.button;
  * limitations under the License.
  * #L%
  */
-
-import java.util.List;
-
-import org.gwtbootstrap3.client.shared.js.JQuery;
-import org.gwtbootstrap3.client.ui.base.ComplexWidget;
-import org.gwtbootstrap3.client.ui.base.HasActive;
-import org.gwtbootstrap3.client.ui.base.HasDataTarget;
-import org.gwtbootstrap3.client.ui.base.HasSize;
-import org.gwtbootstrap3.client.ui.base.HasType;
-import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
-import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
-import org.gwtbootstrap3.client.ui.base.mixin.DataTargetMixin;
-import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
-import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
-import org.gwtbootstrap3.client.ui.constants.Attributes;
-import org.gwtbootstrap3.client.ui.constants.ButtonDismiss;
-import org.gwtbootstrap3.client.ui.constants.ButtonSize;
-import org.gwtbootstrap3.client.ui.constants.ButtonType;
-import org.gwtbootstrap3.client.ui.constants.Styles;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
@@ -63,6 +44,23 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.Focusable;
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.Widget;
+import java.util.List;
+import org.gwtbootstrap3.client.shared.js.JQuery;
+import org.gwtbootstrap3.client.ui.base.ComplexWidget;
+import org.gwtbootstrap3.client.ui.base.HasActive;
+import org.gwtbootstrap3.client.ui.base.HasDataTarget;
+import org.gwtbootstrap3.client.ui.base.HasSize;
+import org.gwtbootstrap3.client.ui.base.HasType;
+import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
+import org.gwtbootstrap3.client.ui.base.mixin.ActiveMixin;
+import org.gwtbootstrap3.client.ui.base.mixin.DataTargetMixin;
+import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
+import org.gwtbootstrap3.client.ui.base.mixin.FocusableMixin;
+import org.gwtbootstrap3.client.ui.constants.Attributes;
+import org.gwtbootstrap3.client.ui.constants.ButtonDismiss;
+import org.gwtbootstrap3.client.ui.constants.ButtonSize;
+import org.gwtbootstrap3.client.ui.constants.ButtonType;
+import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * Abstract base class for different kinds of buttons.
@@ -70,235 +68,234 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Sven Jacobs
  * @author Joshua Godi
  */
-public abstract class AbstractButton extends ComplexWidget implements HasEnabled, HasActive, HasType<ButtonType>,
-        HasSize<ButtonSize>, HasDataTarget, HasClickHandlers, Focusable, HasAllMouseHandlers {
+public abstract class AbstractButton extends ComplexWidget
+    implements HasEnabled, HasActive, HasType<ButtonType>, HasSize<ButtonSize>, HasDataTarget, HasClickHandlers, Focusable,
+                   HasAllMouseHandlers {
 
-    public class ButtonStateHandler {
-        private ButtonStateHandler() {
-        }
-
-        public void loading() {
-            button(getElement(), "loading");
-        }
-
-        public void reset() {
-            button(getElement(), "reset");
-        }
-
-        /**
-         * Resets button to specified text state.
-         *
-         * @param state Text state
-         */
-        public void reset(String state) {
-            button(getElement(), state);
-        }
+  public class ButtonStateHandler {
+    private ButtonStateHandler() {
     }
 
-    private final ButtonStateHandler buttonStateHandler = new ButtonStateHandler();
-    private final DataTargetMixin<AbstractButton> targetMixin = new DataTargetMixin<>(this);
-    private final ActiveMixin<AbstractButton> activeMixin = new ActiveMixin<>(this);
-    private final FocusableMixin<AbstractButton> focusableMixin = new FocusableMixin<>(this);
-    private final EnabledMixin<AbstractButton> enabledMixin = new EnabledMixin<>(this);
-
-    /**
-     * Creates button with DEFAULT type.
-     */
-    protected AbstractButton() {
-        this(ButtonType.DEFAULT);
+    public void loading() {
+      button(getElement(), "loading");
     }
 
-    protected AbstractButton(ButtonType type) {
-        setElement(createElement());
-        setStyleName(Styles.BTN);
-        setType(type);
-    }
-
-    @Override
-    public boolean isActive() {
-        return activeMixin.isActive();
-    }
-
-    @Override
-    public void setActive(boolean active) {
-        activeMixin.setActive(active);
-    }
-
-    @Override
-    public void setEnabled(boolean enabled) {
-        enabledMixin.setEnabled(enabled);
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabledMixin.isEnabled();
-    }
-
-    @Override
-    public HandlerRegistration addClickHandler(ClickHandler handler) {
-        return addDomHandler(handler, ClickEvent.getType());
+    public void reset() {
+      button(getElement(), "reset");
     }
 
     /**
-     * Sets type of button.
+     * Resets button to specified text state.
      *
-     * @param type Type of button
+     * @param state Text state
      */
-    @Override
-    public void setType(ButtonType type) {
-        StyleHelper.addUniqueEnumStyleName(this, ButtonType.class, type);
+    public void reset(String state) {
+      button(getElement(), state);
     }
+  }
 
-    @Override
-    public ButtonType getType() {
-        return ButtonType.fromStyleName(getStyleName());
+  private final ButtonStateHandler buttonStateHandler = new ButtonStateHandler();
+  private final DataTargetMixin<AbstractButton> targetMixin = new DataTargetMixin<>(this);
+  private final ActiveMixin<AbstractButton> activeMixin = new ActiveMixin<>(this);
+  private final FocusableMixin<AbstractButton> focusableMixin = new FocusableMixin<>(this);
+  private final EnabledMixin<AbstractButton> enabledMixin = new EnabledMixin<>(this);
+
+  /**
+   * Creates button with DEFAULT type.
+   */
+  protected AbstractButton() {
+    this(ButtonType.DEFAULT);
+  }
+
+  protected AbstractButton(ButtonType type) {
+    setElement(createElement());
+    setStyleName(Styles.BTN);
+    setType(type);
+  }
+
+  @Override
+  public boolean isActive() {
+    return activeMixin.isActive();
+  }
+
+  @Override
+  public void setActive(boolean active) {
+    activeMixin.setActive(active);
+  }
+
+  @Override
+  public void setEnabled(boolean enabled) {
+    enabledMixin.setEnabled(enabled);
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return enabledMixin.isEnabled();
+  }
+
+  @Override
+  public HandlerRegistration addClickHandler(ClickHandler handler) {
+    return addDomHandler(handler, ClickEvent.getType());
+  }
+
+  /**
+   * Sets type of button.
+   *
+   * @param type Type of button
+   */
+  @Override
+  public void setType(ButtonType type) {
+    StyleHelper.addUniqueEnumStyleName(this, ButtonType.class, type);
+  }
+
+  @Override
+  public ButtonType getType() {
+    return ButtonType.fromStyleName(getStyleName());
+  }
+
+  /**
+   * Sets size of button.
+   *
+   * @param size Size of button
+   */
+  @Override
+  public void setSize(ButtonSize size) {
+    StyleHelper.addUniqueEnumStyleName(this, ButtonSize.class, size);
+  }
+
+  @Override
+  public ButtonSize getSize() {
+    return ButtonSize.fromStyleName(getStyleName());
+  }
+
+  @Override
+  public void setDataTargetWidgets(List<Widget> widgets) {
+    targetMixin.setDataTargetWidgets(widgets);
+  }
+
+  @Override
+  public void setDataTargetWidget(Widget widget) {
+    targetMixin.setDataTargetWidget(widget);
+  }
+
+  @Override
+  public void setDataTarget(String dataTarget) {
+    targetMixin.setDataTarget(dataTarget);
+  }
+
+  @Override
+  public String getDataTarget() {
+    return targetMixin.getDataTarget();
+  }
+
+  @Override
+  public int getTabIndex() {
+    return focusableMixin.getTabIndex();
+  }
+
+  @Override
+  public void setAccessKey(char key) {
+    focusableMixin.setAccessKey(key);
+  }
+
+  @Override
+  public void setFocus(boolean focused) {
+    focusableMixin.setFocus(focused);
+  }
+
+  @Override
+  public void setTabIndex(int index) {
+    focusableMixin.setTabIndex(index);
+  }
+
+  @Override
+  public HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
+    return addDomHandler(handler, MouseDownEvent.getType());
+  }
+
+  @Override
+  public HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler) {
+    return addDomHandler(handler, MouseMoveEvent.getType());
+  }
+
+  @Override
+  public HandlerRegistration addMouseOutHandler(MouseOutHandler handler) {
+    return addDomHandler(handler, MouseOutEvent.getType());
+  }
+
+  @Override
+  public HandlerRegistration addMouseOverHandler(MouseOverHandler handler) {
+    return addDomHandler(handler, MouseOverEvent.getType());
+  }
+
+  @Override
+  public HandlerRegistration addMouseUpHandler(MouseUpHandler handler) {
+    return addDomHandler(handler, MouseUpEvent.getType());
+  }
+
+  @Override
+  public HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler) {
+    return addDomHandler(handler, MouseWheelEvent.getType());
+  }
+
+  /**
+   * Makes button a block level element that spawns full width of parent.
+   *
+   * @param block True for block level element
+   */
+  public void setBlock(boolean block) {
+    if (block) {
+      addStyleName(Styles.BTN_BLOCK);
+    } else {
+      removeStyleName(Styles.BTN_BLOCK);
     }
+  }
 
-    /**
-     * Sets size of button.
-     *
-     * @param size Size of button
-     */
-    @Override
-    public void setSize(ButtonSize size) {
-        StyleHelper.addUniqueEnumStyleName(this, ButtonSize.class, size);
+  /**
+   * Sets dismiss type of button.
+   * <p/>
+   * If button is inside a
+   * {@link org.gwtbootstrap3.client.ui.Modal} and dismiss type is
+   * {@code MODAL} the button will act as the dismiss (close) button for this
+   * Modal. Same goes for {@link org.gwtbootstrap3.client.ui.Alert}
+   * and dismiss type {@code ALERT}.
+   *
+   * @param dismiss Dismiss type of button
+   * @see org.gwtbootstrap3.client.ui.Modal
+   * @see org.gwtbootstrap3.client.ui.Alert
+   */
+  public void setDataDismiss(ButtonDismiss dismiss) {
+    if (dismiss != null) {
+      getElement().setAttribute(Attributes.DATA_DISMISS, dismiss.getDismiss());
+    } else {
+      getElement().removeAttribute(Attributes.DATA_DISMISS);
     }
+  }
 
-    @Override
-    public ButtonSize getSize() {
-        return ButtonSize.fromStyleName(getStyleName());
+  public void setDataLoadingText(String loadingText) {
+    if (loadingText != null) {
+      getElement().setAttribute(Attributes.DATA_LOADING_TEXT, loadingText);
+    } else {
+      getElement().removeAttribute(Attributes.DATA_LOADING_TEXT);
     }
+  }
 
-    @Override
-    public void setDataTargetWidgets(List<Widget> widgets) {
-        targetMixin.setDataTargetWidgets(widgets);
-    }
+  public void toggle() {
+    button(getElement(), "toggle");
+  }
 
-    @Override
-    public void setDataTargetWidget(Widget widget) {
-        targetMixin.setDataTargetWidget(widget);
-    }
+  public ButtonStateHandler state() {
+    return buttonStateHandler;
+  }
 
-    @Override
-    public void setDataTarget(String dataTarget) {
-        targetMixin.setDataTarget(dataTarget);
-    }
+  public void click() {
+    NativeEvent event = Document.get().createClickEvent(0, 0, 0, 0, 0, false, false, false, false);
+    DomEvent.fireNativeEvent(event, this);
+  }
 
-    @Override
-    public String getDataTarget() {
-        return targetMixin.getDataTarget();
-    }
+  protected abstract Element createElement();
 
-    @Override
-    public int getTabIndex() {
-        return focusableMixin.getTabIndex();
-    }
-
-    @Override
-    public void setAccessKey(char key) {
-        focusableMixin.setAccessKey(key);
-    }
-
-    @Override
-    public void setFocus(boolean focused) {
-        focusableMixin.setFocus(focused);
-    }
-
-    @Override
-    public void setTabIndex(int index) {
-        focusableMixin.setTabIndex(index);
-    }
-
-    @Override
-    public HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
-        return addDomHandler(handler, MouseDownEvent.getType());
-    }
-
-    @Override
-    public HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler) {
-        return addDomHandler(handler, MouseMoveEvent.getType());
-    }
-
-    @Override
-    public HandlerRegistration addMouseOutHandler(MouseOutHandler handler) {
-        return addDomHandler(handler, MouseOutEvent.getType());
-    }
-
-    @Override
-    public HandlerRegistration addMouseOverHandler(MouseOverHandler handler) {
-        return addDomHandler(handler, MouseOverEvent.getType());
-    }
-
-    @Override
-    public HandlerRegistration addMouseUpHandler(MouseUpHandler handler) {
-        return addDomHandler(handler, MouseUpEvent.getType());
-    }
-
-    @Override
-    public HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler) {
-        return addDomHandler(handler, MouseWheelEvent.getType());
-    }
-
-    /**
-     * Makes button a block level element that spawns full width of parent.
-     *
-     * @param block True for block level element
-     */
-    public void setBlock(boolean block) {
-        if (block) {
-            addStyleName(Styles.BTN_BLOCK);
-        } else {
-            removeStyleName(Styles.BTN_BLOCK);
-        }
-    }
-
-    /**
-     * Sets dismiss type of button.
-     * <p/>
-     * If button is inside a
-     * {@link org.gwtbootstrap3.client.ui.Modal} and dismiss type is
-     * {@code MODAL} the button will act as the dismiss (close) button for this
-     * Modal. Same goes for {@link org.gwtbootstrap3.client.ui.Alert}
-     * and dismiss type {@code ALERT}.
-     *
-     * @param dismiss Dismiss type of button
-     * @see org.gwtbootstrap3.client.ui.Modal
-     * @see org.gwtbootstrap3.client.ui.Alert
-     */
-    public void setDataDismiss(ButtonDismiss dismiss) {
-        if (dismiss != null) {
-            getElement().setAttribute(Attributes.DATA_DISMISS, dismiss.getDismiss());
-        } else {
-            getElement().removeAttribute(Attributes.DATA_DISMISS);
-        }
-    }
-
-    public void setDataLoadingText(String loadingText) {
-        if (loadingText != null) {
-            getElement().setAttribute(Attributes.DATA_LOADING_TEXT, loadingText);
-        } else {
-            getElement().removeAttribute(Attributes.DATA_LOADING_TEXT);
-        }
-    }
-
-    public void toggle() {
-        button(getElement(), "toggle");
-    }
-
-    public ButtonStateHandler state() {
-        return buttonStateHandler;
-    }
-
-    public void click() {
-        NativeEvent event = Document.get().createClickEvent(0, 0, 0, 0, 0, false, false, false, false);
-        DomEvent.fireNativeEvent(event, this);
-    }
-
-    protected abstract Element createElement();
-
-    // @formatter:off
-
-    private void button( Element e, String arg) {
-        JQuery.jQuery(e).button(arg);
-    }
+  private void button(Element e, String arg) {
+    JQuery.jQuery(e).button(arg);
+  }
 }

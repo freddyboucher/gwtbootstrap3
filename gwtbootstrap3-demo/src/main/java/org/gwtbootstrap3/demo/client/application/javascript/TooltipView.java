@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application.javascript;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,22 +33,22 @@ import org.gwtbootstrap3.client.ui.Tooltip;
  */
 public class TooltipView extends ViewImpl implements TooltipPresenter.MyView {
 
-    @UiField
-    Tooltip forceTooltip;
-    @UiField
-    Button forceHideButton;
-    @UiField
-    Button forceShowButton;
+  @UiField
+  Tooltip forceTooltip;
+  @UiField
+  Button forceHideButton;
+  @UiField
+  Button forceShowButton;
 
-    interface Binder extends UiBinder<Widget, TooltipView> {
-    }
+  interface Binder extends UiBinder<Widget, TooltipView> {
+  }
 
-    @Inject
-    TooltipView(Binder uiBinder) {
-        initWidget(uiBinder.createAndBindUi(this));
+  @Inject
+  TooltipView(Binder uiBinder) {
+    initWidget(uiBinder.createAndBindUi(this));
 
-        forceHideButton.addClickHandler(event -> forceTooltip.hide());
+    forceHideButton.addClickHandler(event -> forceTooltip.hide());
 
-        forceShowButton.addClickHandler(event -> forceTooltip.show());
-    }
+    forceShowButton.addClickHandler(event -> forceTooltip.show());
+  }
 }

@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.form.validator;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,7 +22,6 @@ package org.gwtbootstrap3.client.ui.form.validator;
 
 import java.util.Collection;
 import java.util.Map;
-
 import org.gwtbootstrap3.client.ui.form.validator.ValidationMessages.Keys;
 
 /**
@@ -35,60 +34,63 @@ import org.gwtbootstrap3.client.ui.form.validator.ValidationMessages.Keys;
  */
 public class SizeValidator<T> extends AbstractValidator<T> {
 
-    private Integer maxValue;
+  private Integer maxValue;
 
-    private Integer minValue;
+  private Integer minValue;
 
-    public SizeValidator(Integer min, Integer max) {
-        super(Keys.SIZE, new Object[] { min, max });
-        setMin(min);
-        setMax(max);
+  public SizeValidator(Integer min, Integer max) {
+    super(Keys.SIZE, new Object[]{min, max});
+    setMin(min);
+    setMax(max);
+  }
+
+  public SizeValidator(Integer min, Integer max, String invalidMessageOverride) {
+    super(invalidMessageOverride);
+    setMin(min);
+    setMax(max);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int getPriority() {
+    return Priority.MEDIUM;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isValid(T value) {
+    int length = 0;
+    if (value instanceof Map<?, ?>) {
+      length = ((Map<?, ?>) value).size();
+    } else if (value instanceof Collection<?>) {
+      length = ((Collection<?>) value).size();
+    } else if (value instanceof Object[]) {
+      length = ((Object[]) value).length;
+    } else if (value != null) {
+      length = value.toString().length();
     }
+    return length >= minValue && length <= maxValue;
+  }
 
-    public SizeValidator(Integer min, Integer max, String invalidMessageOverride) {
-        super(invalidMessageOverride);
-        setMin(min);
-        setMax(max);
+  /**
+   * @param max the max to set
+   */
+  public void setMax(Integer max) {
+    maxValue = max;
+    assert maxValue > 0;
+  }
+
+  /**
+   * @param min the min to set
+   */
+  public void setMin(Integer min) {
+    minValue = min;
+    if (minValue == null || minValue < 0) {
+      minValue = 0;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getPriority() {
-        return Priority.MEDIUM;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isValid(T value) {
-        int length = 0;
-        if (value instanceof Map<?, ?>) {
-            length = ((Map<?, ?>) value).size();
-        } else if (value instanceof Collection<?>) {
-            length = ((Collection<?>) value).size();
-        } else if (value instanceof Object[]) {
-            length = ((Object[]) value).length;
-        } else if (value != null) {
-            length = value.toString().length();
-        }
-        return length >= minValue && length <= maxValue;
-    }
-
-    /**
-     * @param max the max to set
-     */
-    public void setMax(Integer max) {
-        maxValue = max;
-        assert maxValue > 0;
-    }
-
-    /**
-     * @param min the min to set
-     */
-    public void setMin(Integer min) {
-        minValue = min;
-        if (minValue == null || minValue < 0) {
-            minValue = 0;
-        }
-    }
-
+  }
 }

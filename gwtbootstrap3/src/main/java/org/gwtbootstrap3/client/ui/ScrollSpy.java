@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,14 +20,12 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import org.gwtbootstrap3.client.shared.js.JQuery;
-import org.gwtbootstrap3.client.ui.base.HasId;
-
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.UIObject;
-
 import jsinterop.annotations.JsMethod;
+import org.gwtbootstrap3.client.shared.js.JQuery;
+import org.gwtbootstrap3.client.ui.base.HasId;
 
 /**
  * A ScrollSpy handles scrolling events (typically on {@code <body>}) and
@@ -51,98 +49,98 @@ import jsinterop.annotations.JsMethod;
  */
 public class ScrollSpy {
 
-    private final Element spyOn;
-    private final String target;
+  private final Element spyOn;
+  private final String target;
 
-    /**
-     * Attaches ScrollSpy to document {@code <body>} and with the specified
-     * target CSS selector.
-     *
-     * @param selector CSS selector for target element
-     * @return ScrollSpy
-     */
-    public static ScrollSpy scrollSpy(String selector) {
-        return new ScrollSpy(Document.get().getBody().cast(), selector);
+  /**
+   * Attaches ScrollSpy to document {@code <body>} and with the specified
+   * target CSS selector.
+   *
+   * @param selector CSS selector for target element
+   * @return ScrollSpy
+   */
+  public static ScrollSpy scrollSpy(String selector) {
+    return new ScrollSpy(Document.get().getBody().cast(), selector);
+  }
+
+  /**
+   * Attaches ScrollSpy to document {@code <body>} and with the specified
+   * target element that <strong>must</strong> have an ID.
+   *
+   * @param target Target element having an ID
+   * @return ScrollSpy
+   */
+  public static ScrollSpy scrollSpy(HasId target) {
+    return new ScrollSpy(Document.get().getBody().cast(), target);
+  }
+
+  /**
+   * Attaches ScrollSpy to specified object with specified target selector.
+   *
+   * @param spyOn    Spy on this object
+   * @param selector CSS selector of target element
+   * @return ScrollSpy
+   */
+  public static ScrollSpy scrollSpy(UIObject spyOn, String selector) {
+    return new ScrollSpy(spyOn.getElement(), selector);
+  }
+
+  /**
+   * Attaches ScrollSpy to specified object with specified target element.
+   *
+   * @param spyOn  Spy on this object
+   * @param target Target element having an ID
+   * @return ScrollSpy
+   */
+  public static ScrollSpy scrollSpy(UIObject spyOn, HasId target) {
+    return new ScrollSpy(spyOn.getElement(), target);
+  }
+
+  /**
+   * Attaches ScrollSpy to specified element with specified target selector.
+   *
+   * @param spyOn    Spy on this element
+   * @param selector CSS selector of target element
+   * @return ScrollSpy
+   */
+  public static ScrollSpy scrollSpy(Element spyOn, String selector) {
+    return new ScrollSpy(spyOn, selector);
+  }
+
+  private ScrollSpy(Element spyOn, String selector) {
+
+    this.spyOn = spyOn;
+    target = selector;
+
+    init(this.spyOn, target);
+  }
+
+  private ScrollSpy(Element spyOn, HasId target) {
+
+    String id = target.getId();
+
+    if (id == null || id.isEmpty()) {
+      throw new IllegalArgumentException("ScrollSpy target element must have id");
     }
 
-    /**
-     * Attaches ScrollSpy to document {@code <body>} and with the specified
-     * target element that <strong>must</strong> have an ID.
-     *
-     * @param target Target element having an ID
-     * @return ScrollSpy
-     */
-    public static ScrollSpy scrollSpy(HasId target) {
-        return new ScrollSpy(Document.get().getBody().cast(), target);
-    }
+    this.spyOn = spyOn;
+    this.target = "#" + id;
 
-    /**
-     * Attaches ScrollSpy to specified object with specified target selector.
-     *
-     * @param spyOn    Spy on this object
-     * @param selector CSS selector of target element
-     * @return ScrollSpy
-     */
-    public static ScrollSpy scrollSpy(UIObject spyOn, String selector) {
-        return new ScrollSpy(spyOn.getElement(), selector);
-    }
+    init(this.spyOn, this.target);
+  }
 
-    /**
-     * Attaches ScrollSpy to specified object with specified target element.
-     *
-     * @param spyOn  Spy on this object
-     * @param target Target element having an ID
-     * @return ScrollSpy
-     */
-    public static ScrollSpy scrollSpy(UIObject spyOn, HasId target) {
-        return new ScrollSpy(spyOn.getElement(), target);
-    }
+  /**
+   * Refresh ScrollSpy after elements have been added to or removed from the
+   * DOM.
+   */
+  public void refresh() {
+    refresh(spyOn);
+  }
 
-    /**
-     * Attaches ScrollSpy to specified element with specified target selector.
-     *
-     * @param spyOn    Spy on this element
-     * @param selector CSS selector of target element
-     * @return ScrollSpy
-     */
-    public static ScrollSpy scrollSpy(Element spyOn, String selector) {
-        return new ScrollSpy(spyOn, selector);
-    }
+  @JsMethod
+  private static native void init(Element e, String target);
 
-    private ScrollSpy(Element spyOn, String selector) {
-
-        this.spyOn = spyOn;
-        target = selector;
-
-        init(this.spyOn, target);
-    }
-
-    private ScrollSpy(Element spyOn, HasId target) {
-
-        String id = target.getId();
-
-        if (id == null || id.isEmpty()) {
-            throw new IllegalArgumentException("ScrollSpy target element must have id");
-        }
-
-        this.spyOn = spyOn;
-        this.target = "#" + id;
-
-        init(this.spyOn, this.target);
-    }
-
-    /**
-     * Refresh ScrollSpy after elements have been added to or removed from the
-     * DOM.
-     */
-    public void refresh() {
-        refresh(spyOn);
-    }
-
-    @JsMethod
-    private static native void init(Element e, String target);
-
-    private void refresh(Element e) {
-        JQuery.jQuery(e).scrollspy("refresh");
-    }
+  private void refresh(Element e) {
+    JQuery.jQuery(e).scrollspy("refresh");
+  }
 }

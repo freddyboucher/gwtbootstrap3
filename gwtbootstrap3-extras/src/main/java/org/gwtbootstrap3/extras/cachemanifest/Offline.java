@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.cachemanifest;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,7 +30,6 @@ import com.google.gwt.core.ext.linker.EmittedArtifact;
 import com.google.gwt.core.ext.linker.EmittedArtifact.Visibility;
 import com.google.gwt.core.ext.linker.LinkerOrder;
 import com.google.gwt.core.ext.linker.LinkerOrder.Order;
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -82,85 +81,96 @@ import java.util.SortedSet;
 @LinkerOrder(Order.POST)
 public class Offline extends AbstractLinker {
 
-    private static final String CACHEMANIFEST_STATIC_FILES_PROPERTY = "cachemanifest_static_files";
+  private static final String CACHEMANIFEST_STATIC_FILES_PROPERTY = "cachemanifest_static_files";
 
-    @Override
-    public String getDescription() {
-        return "Offline Linker";
+  @Override
+  public String getDescription() {
+    return "Offline Linker";
+  }
+
+  @Override
+  public ArtifactSet link(TreeLogger logger, LinkerContext context, ArtifactSet artifacts) throws UnableToCompleteException {
+
+    ArtifactSet artifactset = new ArtifactSet(artifacts);
+
+    HashSet<String> resources = new HashSet<>();
+    for (EmittedArtifact emitted : artifacts.find(EmittedArtifact.class)) {
+
+      if (skipArtifact(emitted)) {
+        continue;
+      }
+      resources.add(emitted.getPartialPath());
     }
 
-    @Override
-    public ArtifactSet link(TreeLogger logger, LinkerContext context, ArtifactSet artifacts) throws UnableToCompleteException {
-
-        ArtifactSet artifactset = new ArtifactSet(artifacts);
-
-        HashSet<String> resources = new HashSet<>();
-        for (EmittedArtifact emitted : artifacts.find(EmittedArtifact.class)) {
-
-            if (skipArtifact(emitted))
-                continue;
-            resources.add(emitted.getPartialPath());
-        }
-
-        SortedSet<ConfigurationProperty> staticFileProperties = context.getConfigurationProperties();
-        for (ConfigurationProperty configurationProperty : staticFileProperties) {
-            String name = configurationProperty.getName();
-            if (CACHEMANIFEST_STATIC_FILES_PROPERTY.equals(name)) {
-                resources.addAll(configurationProperty.getValues());
-            }
-        }
-
-        String manifestString = buildManifestContents(resources);
-        if (manifestString != null) {
-            EmittedArtifact manifest = emitString(logger, manifestString, "appcache.manifest");
-            artifactset.add(manifest);
-        }
-        return artifactset;
+    SortedSet<ConfigurationProperty> staticFileProperties = context.getConfigurationProperties();
+    for (ConfigurationProperty configurationProperty : staticFileProperties) {
+      String name = configurationProperty.getName();
+      if (CACHEMANIFEST_STATIC_FILES_PROPERTY.equals(name)) {
+        resources.addAll(configurationProperty.getValues());
+      }
     }
 
-    private boolean skipArtifact(EmittedArtifact emitted) {
+    String manifestString = buildManifestContents(resources);
+    if (manifestString != null) {
+      EmittedArtifact manifest = emitString(logger, manifestString, "appcache.manifest");
+      artifactset.add(manifest);
+    }
+    return artifactset;
+  }
 
-        if (emitted.getVisibility().matches(Visibility.Private))
-            return true;
+  private boolean skipArtifact(EmittedArtifact emitted) {
 
-        String pathName = emitted.getPartialPath();
-
-        if (pathName.endsWith("symbolMap"))
-            return true;
-        if (pathName.endsWith(".xml.gz"))
-            return true;
-        if (pathName.endsWith("rpc.log"))
-            return true;
-        if (pathName.endsWith("gwt.rpc"))
-            return true;
-        if (pathName.endsWith("manifest.txt"))
-            return true;
-        if (pathName.startsWith("rpcPolicyManifest"))
-            return true;
-        if (pathName.startsWith("soycReport"))
-            return true;
-        if (pathName.endsWith(".cssmap"))
-            return true;
-
-        return false;
+    if (emitted.getVisibility().matches(Visibility.Private)) {
+      return true;
     }
 
-    private String buildManifestContents(Set<String> resources) {
-        if (resources == null)
-            return null;
+    String pathName = emitted.getPartialPath();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("CACHE MANIFEST\n");
-        sb.append("# Version: " + (new Date()).getTime() + "." + Math.random() + "\n");
-        sb.append("\n");
-        sb.append("CACHE:\n");
-        for (String resourcePath : resources) {
-            sb.append(resourcePath + "\n");
-        }
-
-        sb.append("\n\n");
-        sb.append("NETWORK:\n");
-        sb.append("*\n");
-        return sb.toString();
+    if (pathName.endsWith("symbolMap")) {
+      return true;
     }
+    if (pathName.endsWith(".xml.gz")) {
+      return true;
+    }
+    if (pathName.endsWith("rpc.log")) {
+      return true;
+    }
+    if (pathName.endsWith("gwt.rpc")) {
+      return true;
+    }
+    if (pathName.endsWith("manifest.txt")) {
+      return true;
+    }
+    if (pathName.startsWith("rpcPolicyManifest")) {
+      return true;
+    }
+    if (pathName.startsWith("soycReport")) {
+      return true;
+    }
+    if (pathName.endsWith(".cssmap")) {
+      return true;
+    }
+
+    return false;
+  }
+
+  private String buildManifestContents(Set<String> resources) {
+    if (resources == null) {
+      return null;
+    }
+
+    StringBuilder sb = new StringBuilder();
+    sb.append("CACHE MANIFEST\n");
+    sb.append("# Version: " + (new Date()).getTime() + "." + Math.random() + "\n");
+    sb.append("\n");
+    sb.append("CACHE:\n");
+    for (String resourcePath : resources) {
+      sb.append(resourcePath + "\n");
+    }
+
+    sb.append("\n\n");
+    sb.append("NETWORK:\n");
+    sb.append("*\n");
+    return sb.toString();
+  }
 }

@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.gwt;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,8 +20,8 @@ package org.gwtbootstrap3.client.ui.gwt;
  * #L%
  */
 
+import com.google.gwt.user.client.ui.Widget;
 import java.util.List;
-
 import org.gwtbootstrap3.client.ui.base.HasDataSpy;
 import org.gwtbootstrap3.client.ui.base.HasDataTarget;
 import org.gwtbootstrap3.client.ui.base.HasId;
@@ -33,64 +33,62 @@ import org.gwtbootstrap3.client.ui.base.mixin.IdMixin;
 import org.gwtbootstrap3.client.ui.constants.DeviceSize;
 import org.gwtbootstrap3.client.ui.constants.Spy;
 
-import com.google.gwt.user.client.ui.Widget;
-
 /**
  * @author Sven Jacobs
  */
 public class FlowPanel extends com.google.gwt.user.client.ui.FlowPanel implements HasDataSpy, HasId, HasDataTarget, HasResponsiveness {
 
-    private final DataSpyMixin<FlowPanel> spyMixin = new DataSpyMixin<>(this);
-    private final IdMixin<FlowPanel> idMixin = new IdMixin<>(this);
-    private final DataTargetMixin<FlowPanel> targetMixin = new DataTargetMixin<>(this);
+  private final DataSpyMixin<FlowPanel> spyMixin = new DataSpyMixin<>(this);
+  private final IdMixin<FlowPanel> idMixin = new IdMixin<>(this);
+  private final DataTargetMixin<FlowPanel> targetMixin = new DataTargetMixin<>(this);
 
-    @Override
-    public void setDataSpy(Spy spy) {
-        spyMixin.setDataSpy(spy);
-    }
+  @Override
+  public void setDataSpy(Spy spy) {
+    spyMixin.setDataSpy(spy);
+  }
 
-    @Override
-    public Spy getDataSpy() {
-        return spyMixin.getDataSpy();
-    }
+  @Override
+  public Spy getDataSpy() {
+    return spyMixin.getDataSpy();
+  }
 
-    @Override
-    public void setDataTargetWidgets(List<Widget> widgets) {
-        targetMixin.setDataTargetWidgets(widgets);
-    }
+  @Override
+  public void setDataTargetWidgets(List<Widget> widgets) {
+    targetMixin.setDataTargetWidgets(widgets);
+  }
 
-    @Override
-    public void setDataTargetWidget(Widget widget) {
-        targetMixin.setDataTargetWidget(widget);
-    }
+  @Override
+  public void setDataTargetWidget(Widget widget) {
+    targetMixin.setDataTargetWidget(widget);
+  }
 
-    @Override
-    public void setDataTarget(String dataTarget) {
-        targetMixin.setDataTarget(dataTarget);
-    }
+  @Override
+  public void setDataTarget(String dataTarget) {
+    targetMixin.setDataTarget(dataTarget);
+  }
 
-    @Override
-    public String getDataTarget() {
-        return targetMixin.getDataTarget();
-    }
+  @Override
+  public String getDataTarget() {
+    return targetMixin.getDataTarget();
+  }
 
-    @Override
-    public void setId(String id) {
-        idMixin.setId(id);
-    }
+  @Override
+  public void setId(String id) {
+    idMixin.setId(id);
+  }
 
-    @Override
-    public String getId() {
-        return idMixin.getId();
-    }
+  @Override
+  public String getId() {
+    return idMixin.getId();
+  }
 
-    @Override
-    public void setVisibleOn(DeviceSize deviceSize) {
-        StyleHelper.setVisibleOn(this, deviceSize);
-    }
+  @Override
+  public void setVisibleOn(DeviceSize deviceSize) {
+    StyleHelper.setVisibleOn(this, deviceSize);
+  }
 
-    @Override
-    public void setHiddenOn(DeviceSize deviceSize) {
-        StyleHelper.setHiddenOn(this, deviceSize);
-    }
+  @Override
+  public void setHiddenOn(DeviceSize deviceSize) {
+    StyleHelper.setHiddenOn(this, deviceSize);
+  }
 }

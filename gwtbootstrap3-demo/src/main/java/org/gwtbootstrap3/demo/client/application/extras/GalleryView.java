@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application.extras;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,23 +35,25 @@ import org.gwtbootstrap3.extras.gallery.client.ui.Gallery;
  */
 public class GalleryView extends ViewImpl implements GalleryPresenter.MyView {
 
-    interface Binder extends UiBinder<Widget, GalleryView> {
-    }
+  interface Binder extends UiBinder<Widget, GalleryView> {
+  }
 
-    @UiField Gallery gallery;
-    @UiField Gallery galleryWithControls;
+  @UiField
+  Gallery gallery;
+  @UiField
+  Gallery galleryWithControls;
 
-    @Inject
-    GalleryView(Binder uiBinder) {
-      initWidget(uiBinder.createAndBindUi(this));
-    }
+  @Inject
+  GalleryView(Binder uiBinder) {
+    initWidget(uiBinder.createAndBindUi(this));
+  }
 
-    @UiHandler({"delete1", "delete2", "delete3", "delete4", "delete5", "delete6"})
-    protected void deleteFirstClick(ClickEvent event) {
-        Element element = Element.as(event.getNativeEvent().getEventTarget());
-        Element item = element.getParentElement();
-        if(item != null) {
-            item.getParentElement().removeFromParent();
-        }
+  @UiHandler({"delete1", "delete2", "delete3", "delete4", "delete5", "delete6"})
+  protected void deleteFirstClick(ClickEvent event) {
+    Element element = Element.as(event.getNativeEvent().getEventTarget());
+    Element item = element.getParentElement();
+    if (item != null) {
+      item.getParentElement().removeFromParent();
     }
+  }
 }

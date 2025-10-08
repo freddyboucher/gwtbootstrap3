@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,6 +36,7 @@ import com.google.gwt.user.client.ui.Focusable;
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasHTML;
 import com.google.gwt.user.client.ui.Widget;
+import java.util.List;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.HasBadge;
 import org.gwtbootstrap3.client.ui.base.HasDataParent;
@@ -66,8 +67,6 @@ import org.gwtbootstrap3.client.ui.constants.Pull;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
 
-import java.util.List;
-
 /**
  * Anchor {@code <a>} element with text and optional icon.
  *
@@ -76,485 +75,485 @@ import java.util.List;
  * @author Grant Slender
  * @author Drew Spencer
  */
-public class Anchor extends ComplexWidget implements HasEnabled, HasClickHandlers, HasDoubleClickHandlers, HasHref, HasDataToggle, HasDataParent,
-        HasTargetHistoryToken, HasHTML, HasIcon, HasIconPosition, Focusable, HasDataTarget, HasTarget, HasPull, HasBadge {
+public class Anchor extends ComplexWidget
+    implements HasEnabled, HasClickHandlers, HasDoubleClickHandlers, HasHref, HasDataToggle, HasDataParent, HasTargetHistoryToken, HasHTML,
+                   HasIcon, HasIconPosition, Focusable, HasDataTarget, HasTarget, HasPull, HasBadge {
 
-    private final PullMixin<Anchor> pullMixin = new PullMixin<>(this);
-    private final DataToggleMixin<Anchor> toggleMixin = new DataToggleMixin<>(this);
-    private final DataParentMixin<Anchor> parentMixin = new DataParentMixin<>(this);
-    private final IconTextMixin<Anchor> iconTextMixin = new IconTextMixin<>(this);
-    private final DataTargetMixin<Anchor> targetMixin = new DataTargetMixin<>(this);
-    private final AttributeMixin<Anchor> attributeMixin = new AttributeMixin<>(this);
-    private final FocusableMixin<Anchor> focusableMixin = new FocusableMixin<>(this);
-    private final EnabledMixin<Anchor> enabledMixin = new EnabledMixin<>(this);
-    private String targetHistoryToken;
+  private final PullMixin<Anchor> pullMixin = new PullMixin<>(this);
+  private final DataToggleMixin<Anchor> toggleMixin = new DataToggleMixin<>(this);
+  private final DataParentMixin<Anchor> parentMixin = new DataParentMixin<>(this);
+  private final IconTextMixin<Anchor> iconTextMixin = new IconTextMixin<>(this);
+  private final DataTargetMixin<Anchor> targetMixin = new DataTargetMixin<>(this);
+  private final AttributeMixin<Anchor> attributeMixin = new AttributeMixin<>(this);
+  private final FocusableMixin<Anchor> focusableMixin = new FocusableMixin<>(this);
+  private final EnabledMixin<Anchor> enabledMixin = new EnabledMixin<>(this);
+  private String targetHistoryToken;
 
-    /**
-     * Creates an anchor widget with the desired HREF
-     *
-     * @param href href for the anchor
-     */
-    public Anchor(String href) {
-        setElement(Document.get().createAnchorElement());
-        setHref(href);
-        iconTextMixin.addTextWidgetToParent();
+  /**
+   * Creates an anchor widget with the desired HREF
+   *
+   * @param href href for the anchor
+   */
+  public Anchor(String href) {
+    setElement(Document.get().createAnchorElement());
+    setHref(href);
+    iconTextMixin.addTextWidgetToParent();
+  }
+
+  /**
+   * Creates an achor widget with the desired HREF and text
+   *
+   * @param text text for the anchor
+   * @param href href for the anchor
+   */
+  public Anchor(String text, String href) {
+    this(href);
+    setText(text);
+  }
+
+  /**
+   * Creates a default anchor with a default href
+   */
+  public Anchor() {
+    this(EMPTY_HREF);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public HandlerRegistration addClickHandler(ClickHandler handler) {
+    return addDomHandler(handler, ClickEvent.getType());
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler) {
+    return addDomHandler(handler, DoubleClickEvent.getType());
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setText(String text) {
+    iconTextMixin.setText(text);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getText() {
+    return iconTextMixin.getText();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIcon(IconType iconType) {
+    iconTextMixin.setIcon(iconType);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IconType getIcon() {
+    return iconTextMixin.getIcon();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconPosition(IconPosition iconPosition) {
+    iconTextMixin.setIconPosition(iconPosition);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IconPosition getIconPosition() {
+    return iconTextMixin.getIconPosition();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconSize(IconSize iconSize) {
+    iconTextMixin.setIconSize(iconSize);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IconSize getIconSize() {
+    return iconTextMixin.getIconSize();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconFlip(IconFlip iconFlip) {
+    iconTextMixin.setIconFlip(iconFlip);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IconFlip getIconFlip() {
+    return iconTextMixin.getIconFlip();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconRotate(IconRotate iconRotate) {
+    iconTextMixin.setIconRotate(iconRotate);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IconRotate getIconRotate() {
+    return iconTextMixin.getIconRotate();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconBordered(boolean iconBordered) {
+    iconTextMixin.setIconBordered(iconBordered);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isIconBordered() {
+    return iconTextMixin.isIconBordered();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconInverse(boolean iconInverse) {
+    iconTextMixin.setIconInverse(iconInverse);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isIconInverse() {
+    return iconTextMixin.isIconInverse();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconSpin(boolean iconSpin) {
+    iconTextMixin.setIconSpin(iconSpin);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isIconSpin() {
+    return iconTextMixin.isIconSpin();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconPulse(boolean iconPulse) {
+    iconTextMixin.setIconPulse(iconPulse);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isIconPulse() {
+    return iconTextMixin.isIconPulse();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconFixedWidth(boolean iconFixedWidth) {
+    iconTextMixin.setIconFixedWidth(iconFixedWidth);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isIconFixedWidth() {
+    return iconTextMixin.isIconFixedWidth();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setHref(String href) {
+    AnchorElement.as(getElement()).setHref(href);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getHref() {
+    return AnchorElement.as(getElement()).getHref();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setTargetHistoryToken(String targetHistoryToken) {
+    this.targetHistoryToken = targetHistoryToken;
+    String hash = History.encodeHistoryToken(targetHistoryToken);
+    setHref("#" + hash);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getTargetHistoryToken() {
+    return targetHistoryToken;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setDataParent(String dataParent) {
+    parentMixin.setDataParent(dataParent);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getDataParent() {
+    return parentMixin.getDataParent();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setDataToggle(Toggle toggle) {
+    toggleMixin.setDataToggle(toggle);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Toggle getDataToggle() {
+    return toggleMixin.getDataToggle();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int getTabIndex() {
+    return focusableMixin.getTabIndex();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setTabIndex(int index) {
+    focusableMixin.setTabIndex(index);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setAccessKey(char key) {
+    focusableMixin.setAccessKey(key);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setFocus(boolean focused) {
+    focusableMixin.setFocus(focused);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getHTML() {
+    return getElement().getInnerHTML();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setHTML(String html) {
+    getElement().setInnerHTML(html);
+  }
+
+  @Override
+  public void setDataTargetWidgets(List<Widget> widgets) {
+    targetMixin.setDataTargetWidgets(widgets);
+  }
+
+  @Override
+  public void setDataTargetWidget(Widget widget) {
+    targetMixin.setDataTargetWidget(widget);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setDataTarget(String dataTarget) {
+    targetMixin.setDataTarget(dataTarget);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getDataTarget() {
+    return targetMixin.getDataTarget();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setTarget(String target) {
+    attributeMixin.setAttribute(Attributes.TARGET, target);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getTarget() {
+    return attributeMixin.getAttribute(Attributes.TARGET);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setPull(Pull pull) {
+    pullMixin.setPull(pull);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Pull getPull() {
+    return pullMixin.getPull();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isEnabled() {
+    return enabledMixin.isEnabled();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setEnabled(boolean enabled) {
+    enabledMixin.setEnabled(enabled);
+  }
+
+  @Override
+  public void setBadgeText(String badgeText) {
+    iconTextMixin.setBadgeText(badgeText);
+  }
+
+  @Override
+  public String getBadgeText() {
+    return iconTextMixin.getBadgeText();
+  }
+
+  @Override
+  public void setBadgePosition(BadgePosition badgePosition) {
+    iconTextMixin.setBadgePosition(badgePosition);
+  }
+
+  @Override
+  public BadgePosition getBadgePosition() {
+    return iconTextMixin.getBadgePosition();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  protected void onAttach() {
+    super.onAttach();
+
+    // Adding styles to the heading depending on the parent
+    if (getParent() != null) {
+      if (getParent() instanceof Alert) {
+        addStyleName(Styles.ALERT_LINK);
+      }
     }
+  }
 
-    /**
-     * Creates an achor widget with the desired HREF and text
-     *
-     * @param text text for the anchor
-     * @param href href for the anchor
-     */
-    public Anchor(String text, String href) {
-        this(href);
-        setText(text);
-    }
-
-    /**
-     * Creates a default anchor with a default href
-     */
-    public Anchor() {
-        this(EMPTY_HREF);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public HandlerRegistration addClickHandler(ClickHandler handler) {
-        return addDomHandler(handler, ClickEvent.getType());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler) {
-        return addDomHandler(handler, DoubleClickEvent.getType());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setText(String text) {
-        iconTextMixin.setText(text);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getText() {
-        return iconTextMixin.getText();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setIcon(IconType iconType) {
-        iconTextMixin.setIcon(iconType);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public IconType getIcon() {
-        return iconTextMixin.getIcon();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setIconPosition(IconPosition iconPosition) {
-        iconTextMixin.setIconPosition(iconPosition);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public IconPosition getIconPosition() {
-        return iconTextMixin.getIconPosition();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setIconSize(IconSize iconSize) {
-        iconTextMixin.setIconSize(iconSize);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public IconSize getIconSize() {
-        return iconTextMixin.getIconSize();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setIconFlip(IconFlip iconFlip) {
-        iconTextMixin.setIconFlip(iconFlip);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public IconFlip getIconFlip() {
-        return iconTextMixin.getIconFlip();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setIconRotate(IconRotate iconRotate) {
-        iconTextMixin.setIconRotate(iconRotate);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public IconRotate getIconRotate() {
-        return iconTextMixin.getIconRotate();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setIconBordered(boolean iconBordered) {
-        iconTextMixin.setIconBordered(iconBordered);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isIconBordered() {
-        return iconTextMixin.isIconBordered();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setIconInverse(boolean iconInverse) {
-        iconTextMixin.setIconInverse(iconInverse);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isIconInverse() {
-        return iconTextMixin.isIconInverse();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setIconSpin(boolean iconSpin) {
-        iconTextMixin.setIconSpin(iconSpin);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isIconSpin() {
-        return iconTextMixin.isIconSpin();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setIconPulse(boolean iconPulse) {
-        iconTextMixin.setIconPulse(iconPulse);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isIconPulse() {
-        return iconTextMixin.isIconPulse();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setIconFixedWidth(boolean iconFixedWidth) {
-        iconTextMixin.setIconFixedWidth(iconFixedWidth);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isIconFixedWidth() {
-        return iconTextMixin.isIconFixedWidth();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setHref(String href) {
-        AnchorElement.as(getElement()).setHref(href);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getHref() {
-        return AnchorElement.as(getElement()).getHref();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setTargetHistoryToken(String targetHistoryToken) {
-        this.targetHistoryToken = targetHistoryToken;
-        String hash = History.encodeHistoryToken(targetHistoryToken);
-        setHref("#" + hash);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getTargetHistoryToken() {
-        return targetHistoryToken;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setDataParent(String dataParent) {
-        parentMixin.setDataParent(dataParent);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getDataParent() {
-        return parentMixin.getDataParent();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setDataToggle(Toggle toggle) {
-        toggleMixin.setDataToggle(toggle);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Toggle getDataToggle() {
-        return toggleMixin.getDataToggle();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getTabIndex() {
-        return focusableMixin.getTabIndex();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setTabIndex(int index) {
-        focusableMixin.setTabIndex(index);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setAccessKey(char key) {
-        focusableMixin.setAccessKey(key);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setFocus(boolean focused) {
-        focusableMixin.setFocus(focused);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getHTML() {
-        return getElement().getInnerHTML();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setHTML(String html) {
-        getElement().setInnerHTML(html);
-    }
-
-    @Override
-    public void setDataTargetWidgets(List<Widget> widgets) {
-        targetMixin.setDataTargetWidgets(widgets);
-    }
-
-    @Override
-    public void setDataTargetWidget(Widget widget) {
-        targetMixin.setDataTargetWidget(widget);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setDataTarget(String dataTarget) {
-        targetMixin.setDataTarget(dataTarget);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getDataTarget() {
-        return targetMixin.getDataTarget();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setTarget(String target) {
-        attributeMixin.setAttribute(Attributes.TARGET, target);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getTarget() {
-        return attributeMixin.getAttribute(Attributes.TARGET);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setPull(Pull pull) {
-        pullMixin.setPull(pull);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isEnabled() {
-        return enabledMixin.isEnabled();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setEnabled(boolean enabled) {
-        enabledMixin.setEnabled(enabled);
-    }
-
-    @Override
-    public void setBadgeText(String badgeText) {
-        iconTextMixin.setBadgeText(badgeText);
-    }
-
-    @Override
-    public String getBadgeText() {
-        return iconTextMixin.getBadgeText();
-    }
-
-    @Override
-    public void setBadgePosition(BadgePosition badgePosition) {
-        iconTextMixin.setBadgePosition(badgePosition);
-    }
-
-    @Override
-    public BadgePosition getBadgePosition() {
-        return iconTextMixin.getBadgePosition();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void onAttach() {
-        super.onAttach();
-
-        // Adding styles to the heading depending on the parent
-        if (getParent() != null) {
-            if (getParent() instanceof Alert) {
-                addStyleName(Styles.ALERT_LINK);
-            }
+  /**
+   * We override this because the <a></a> tag doesn't support the disabled property. So on clicks and focus, if disabled then ignore
+   *
+   * @param event dom event
+   */
+  @Override
+  public void onBrowserEvent(Event event) {
+    switch (DOM.eventGetType(event)) {
+      case Event.ONDBLCLICK:
+      case Event.ONFOCUS:
+      case Event.ONCLICK:
+        if (!isEnabled()) {
+          return;
         }
+        break;
     }
+    super.onBrowserEvent(event);
+  }
 
-    /**
-     * We override this because the <a></a> tag doesn't support the disabled property. So on clicks and focus, if disabled then ignore
-     *
-     * @param event dom event
-     */
-    @Override
-    public void onBrowserEvent(Event event) {
-        switch (DOM.eventGetType(event)) {
-            case Event.ONDBLCLICK:
-            case Event.ONFOCUS:
-            case Event.ONCLICK:
-                if (!isEnabled()) {
-                    return;
-                }
-                break;
-        }
-        super.onBrowserEvent(event);
-    }
-
-    @Override
-    public void setIconColor(String iconColor) {
-        iconTextMixin.setIconColor(iconColor);
-    }
-
+  @Override
+  public void setIconColor(String iconColor) {
+    iconTextMixin.setIconColor(iconColor);
+  }
 }

@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.base.mixin;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,7 +22,6 @@ package org.gwtbootstrap3.client.ui.base.mixin;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.user.client.ui.HasText;
-
 import org.gwtbootstrap3.client.ui.Badge;
 import org.gwtbootstrap3.client.ui.Icon;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
@@ -43,256 +42,255 @@ import org.gwtbootstrap3.client.ui.html.Text;
  * @author Sven Jacobs
  * @author Drew Spencer
  */
-public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIconPosition & HasBadge> implements
-        HasText, HasIcon, HasIconPosition, HasBadge {
+public class IconTextMixin<T extends ComplexWidget & HasText & HasIcon & HasIconPosition & HasBadge>
+    implements HasText, HasIcon, HasIconPosition, HasBadge {
 
-    private final T widget;
-    private final Text text = new Text();
-    private final Text separator = new Text(" ");
-    private final Text badgeSeparator = new Text(" ");
-    private Icon icon;
-    private IconType iconType;
-    private IconPosition iconPosition = IconPosition.LEFT;
-    private IconSize iconSize = IconSize.NONE;
-    private IconFlip iconFlip = IconFlip.NONE;
-    private IconRotate iconRotate = IconRotate.NONE;
-    private boolean iconInverse;
-    private boolean iconSpin;
-    private boolean iconPulse;
-    private boolean iconBordered;
-    private boolean iconFixedWidth;
-    private Badge badge = new Badge();
-    private BadgePosition badgePosition = BadgePosition.RIGHT;
-    private String iconColor;
+  private final T widget;
+  private final Text text = new Text();
+  private final Text separator = new Text(" ");
+  private final Text badgeSeparator = new Text(" ");
+  private Icon icon;
+  private IconType iconType;
+  private IconPosition iconPosition = IconPosition.LEFT;
+  private IconSize iconSize = IconSize.NONE;
+  private IconFlip iconFlip = IconFlip.NONE;
+  private IconRotate iconRotate = IconRotate.NONE;
+  private boolean iconInverse;
+  private boolean iconSpin;
+  private boolean iconPulse;
+  private boolean iconBordered;
+  private boolean iconFixedWidth;
+  private Badge badge = new Badge();
+  private BadgePosition badgePosition = BadgePosition.RIGHT;
+  private String iconColor;
 
-    public IconTextMixin(T widget) {
-        this.widget = widget;
-    }
+  public IconTextMixin(T widget) {
+    this.widget = widget;
+  }
 
-    public void addTextWidgetToParent() {
-        widget.add(text);
-    }
+  public void addTextWidgetToParent() {
+    widget.add(text);
+  }
 
-    @Override
-    public void setText(String text) {
-        this.text.setText(text);
-        render();
-    }
+  @Override
+  public void setText(String text) {
+    this.text.setText(text);
+    render();
+  }
 
-    @Override
-    public String getText() {
-        return text.getText();
-    }
+  @Override
+  public String getText() {
+    return text.getText();
+  }
 
-    @Override
-    public void setIcon(IconType iconType) {
-        this.iconType = iconType;
-        render();
-    }
+  @Override
+  public void setIcon(IconType iconType) {
+    this.iconType = iconType;
+    render();
+  }
 
-    @Override
-    public IconType getIcon() {
-        return icon == null ? null : icon.getType();
-    }
+  @Override
+  public IconType getIcon() {
+    return icon == null ? null : icon.getType();
+  }
 
-    @Override
-    public void setIconPosition(IconPosition iconPosition) {
-        this.iconPosition = iconPosition;
-        render();
-    }
+  @Override
+  public void setIconPosition(IconPosition iconPosition) {
+    this.iconPosition = iconPosition;
+    render();
+  }
 
-    @Override
-    public IconPosition getIconPosition() {
-        return iconPosition;
-    }
+  @Override
+  public IconPosition getIconPosition() {
+    return iconPosition;
+  }
 
-    @Override
-    public void setIconSize(IconSize iconSize) {
-        this.iconSize = iconSize;
-        render();
-    }
+  @Override
+  public void setIconSize(IconSize iconSize) {
+    this.iconSize = iconSize;
+    render();
+  }
 
-    @Override
-    public IconSize getIconSize() {
-        return iconSize;
-    }
+  @Override
+  public IconSize getIconSize() {
+    return iconSize;
+  }
 
-    @Override
-    public void setIconFlip(IconFlip iconFlip) {
-        this.iconFlip = iconFlip;
-        render();
-    }
+  @Override
+  public void setIconFlip(IconFlip iconFlip) {
+    this.iconFlip = iconFlip;
+    render();
+  }
 
-    @Override
-    public IconFlip getIconFlip() {
-        return iconFlip;
-    }
+  @Override
+  public IconFlip getIconFlip() {
+    return iconFlip;
+  }
 
-    @Override
-    public void setIconRotate(IconRotate iconRotate) {
-        this.iconRotate = iconRotate;
-        render();
-    }
+  @Override
+  public void setIconRotate(IconRotate iconRotate) {
+    this.iconRotate = iconRotate;
+    render();
+  }
 
-    @Override
-    public IconRotate getIconRotate() {
-        return iconRotate;
-    }
+  @Override
+  public IconRotate getIconRotate() {
+    return iconRotate;
+  }
 
-    @Override
-    public void setIconBordered(boolean iconBordered) {
-        this.iconBordered = iconBordered;
-        render();
-    }
+  @Override
+  public void setIconBordered(boolean iconBordered) {
+    this.iconBordered = iconBordered;
+    render();
+  }
 
-    @Override
-    public boolean isIconBordered() {
-        return iconBordered;
-    }
+  @Override
+  public boolean isIconBordered() {
+    return iconBordered;
+  }
 
-    @Override
-    public void setIconInverse(boolean iconInverse) {
-        this.iconInverse = iconInverse;
-        render();
-    }
+  @Override
+  public void setIconInverse(boolean iconInverse) {
+    this.iconInverse = iconInverse;
+    render();
+  }
 
-    @Override
-    public boolean isIconInverse() {
-        return iconInverse;
-    }
+  @Override
+  public boolean isIconInverse() {
+    return iconInverse;
+  }
 
-    @Override
-    public void setIconSpin(boolean iconSpin) {
-        this.iconSpin = iconSpin;
-        render();
-    }
+  @Override
+  public void setIconSpin(boolean iconSpin) {
+    this.iconSpin = iconSpin;
+    render();
+  }
 
-    @Override
-    public boolean isIconSpin() {
-        return iconSpin;
-    }
+  @Override
+  public boolean isIconSpin() {
+    return iconSpin;
+  }
 
-    @Override
-    public void setIconPulse(boolean iconPulse) {
-        this.iconPulse = iconPulse;
-        render();
-    }
+  @Override
+  public void setIconPulse(boolean iconPulse) {
+    this.iconPulse = iconPulse;
+    render();
+  }
 
-    @Override
-    public boolean isIconPulse() {
-        return iconPulse;
-    }
+  @Override
+  public boolean isIconPulse() {
+    return iconPulse;
+  }
 
-    @Override
-    public void setIconFixedWidth(boolean iconFixedWidth) {
-        this.iconFixedWidth = iconFixedWidth;
-        render();
-    }
+  @Override
+  public void setIconFixedWidth(boolean iconFixedWidth) {
+    this.iconFixedWidth = iconFixedWidth;
+    render();
+  }
 
-    @Override
-    public boolean isIconFixedWidth() {
-        return iconFixedWidth;
-    }
+  @Override
+  public boolean isIconFixedWidth() {
+    return iconFixedWidth;
+  }
 
-    @Override
-    public void setBadgeText(String badgeText) {
-        badge.setText(badgeText);
-        render();
-    }
+  @Override
+  public void setBadgeText(String badgeText) {
+    badge.setText(badgeText);
+    render();
+  }
 
-    @Override
-    public String getBadgeText() {
-        return badge.getText();
-    }
+  @Override
+  public String getBadgeText() {
+    return badge.getText();
+  }
 
-    @Override
-    public void setBadgePosition(BadgePosition badgePosition) {
-        this.badgePosition = badgePosition;
-        render();
-    }
+  @Override
+  public void setBadgePosition(BadgePosition badgePosition) {
+    this.badgePosition = badgePosition;
+    render();
+  }
 
-    @Override
-    public BadgePosition getBadgePosition() {
-        return badgePosition;
-    }
+  @Override
+  public BadgePosition getBadgePosition() {
+    return badgePosition;
+  }
 
-    private void render() {
-        // We defer to make sure the elements are available to manipulate their positions
-        Scheduler.get().scheduleDeferred(() -> {
+  private void render() {
+    // We defer to make sure the elements are available to manipulate their positions
+    Scheduler.get().scheduleDeferred(() -> {
 
-            if (text.isAttached()) {
-                text.removeFromParent();
-            }
+      if (text.isAttached()) {
+        text.removeFromParent();
+      }
 
-            if (separator.isAttached()) {
-                separator.removeFromParent();
-            }
+      if (separator.isAttached()) {
+        separator.removeFromParent();
+      }
 
-            if (badgeSeparator.isAttached()) {
-                badgeSeparator.removeFromParent();
-            }
+      if (badgeSeparator.isAttached()) {
+        badgeSeparator.removeFromParent();
+      }
 
-            if (badge.isAttached()) {
-                badge.removeFromParent();
-            }
+      if (badge.isAttached()) {
+        badge.removeFromParent();
+      }
 
-            if (icon != null) {
-                icon.removeFromParent();
-                icon = null;
-            }
+      if (icon != null) {
+        icon.removeFromParent();
+        icon = null;
+      }
 
-            if (iconType != null) {
-                icon = new Icon();
-                icon.setType(iconType);
-                icon.setSize(iconSize);
-                icon.setFlip(iconFlip);
-                icon.setRotate(iconRotate);
-                icon.setSpin(iconSpin);
-                icon.setPulse(iconPulse);
-                icon.setBorder(iconBordered);
-                icon.setFixedWidth(iconFixedWidth);
-                icon.setInverse(iconInverse);
-                icon.setColor(iconColor);
-            }
+      if (iconType != null) {
+        icon = new Icon();
+        icon.setType(iconType);
+        icon.setSize(iconSize);
+        icon.setFlip(iconFlip);
+        icon.setRotate(iconRotate);
+        icon.setSpin(iconSpin);
+        icon.setPulse(iconPulse);
+        icon.setBorder(iconBordered);
+        icon.setFixedWidth(iconFixedWidth);
+        icon.setInverse(iconInverse);
+        icon.setColor(iconColor);
+      }
 
-            // Since we are dealing with Icon/Text, we can insert them at the right position
-            // Helps on widgets like ButtonDropDown, where it has a caret added
-            int position = 0;
+      // Since we are dealing with Icon/Text, we can insert them at the right position
+      // Helps on widgets like ButtonDropDown, where it has a caret added
+      int position = 0;
 
-            if (badge.getText() != null && !badge.getText().isEmpty() && badgePosition == BadgePosition.LEFT) {
-                widget.insert(badge, position++);
-                widget.insert(badgeSeparator, position++);
-            }
+      if (badge.getText() != null && !badge.getText().isEmpty() && badgePosition == BadgePosition.LEFT) {
+        widget.insert(badge, position++);
+        widget.insert(badgeSeparator, position++);
+      }
 
-            if (icon != null && iconPosition == IconPosition.LEFT) {
-                widget.insert(icon, position++);
-                widget.insert(separator, position++);
-            }
+      if (icon != null && iconPosition == IconPosition.LEFT) {
+        widget.insert(icon, position++);
+        widget.insert(separator, position++);
+      }
 
-            if (text.getText() != null && !text.getText().isEmpty()) {
-                widget.insert(text, position++);
-            }
+      if (text.getText() != null && !text.getText().isEmpty()) {
+        widget.insert(text, position++);
+      }
 
-            if (icon != null && iconPosition == IconPosition.RIGHT) {
-                widget.insert(separator, position++);
-                widget.insert(icon, position++);
-            }
+      if (icon != null && iconPosition == IconPosition.RIGHT) {
+        widget.insert(separator, position++);
+        widget.insert(icon, position++);
+      }
 
-            if (badge.getText() != null && !badge.getText().isEmpty() && badgePosition == BadgePosition.RIGHT) {
-                widget.insert(badgeSeparator, position++);
-                widget.insert(badge, position++);
-            }
+      if (badge.getText() != null && !badge.getText().isEmpty() && badgePosition == BadgePosition.RIGHT) {
+        widget.insert(badgeSeparator, position++);
+        widget.insert(badge, position++);
+      }
 
-            // hack to remove css spacing in Pills
-            badge.setMarginLeft(0);
-            badge.setMarginRight(0);
+      // hack to remove css spacing in Pills
+      badge.setMarginLeft(0);
+      badge.setMarginRight(0);
+    });
+  }
 
-        });
-    }
-
-    @Override
-    public void setIconColor(String iconColor) {
-        this.iconColor = iconColor;
-        render();
-    }
+  @Override
+  public void setIconColor(String iconColor) {
+    this.iconColor = iconColor;
+    render();
+  }
 }

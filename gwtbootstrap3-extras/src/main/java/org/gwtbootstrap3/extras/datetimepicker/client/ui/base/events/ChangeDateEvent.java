@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.datetimepicker.client.ui.base.events;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,29 +28,29 @@ import com.google.gwt.user.client.Event;
  */
 public class ChangeDateEvent extends GwtEvent<ChangeDateHandler> {
 
-    private static final Type<ChangeDateHandler> TYPE = new Type<>();
+  private static final Type<ChangeDateHandler> TYPE = new Type<>();
 
-    private final Event nativeEvent;
+  private final Event nativeEvent;
 
-    public static Type<ChangeDateHandler> getType() {
-        return TYPE;
-    }
+  public static Type<ChangeDateHandler> getType() {
+    return TYPE;
+  }
 
-    public ChangeDateEvent(Event nativeEvent) {
-        this.nativeEvent = nativeEvent;
-    }
+  public ChangeDateEvent(Event nativeEvent) {
+    this.nativeEvent = nativeEvent;
+  }
 
-    public Event getNativeEvent() {
-        return nativeEvent;
-    }
+  public Event getNativeEvent() {
+    return nativeEvent;
+  }
 
-    @Override
-    public Type<ChangeDateHandler> getAssociatedType() {
-        return TYPE;
-    }
+  @Override
+  public Type<ChangeDateHandler> getAssociatedType() {
+    return TYPE;
+  }
 
-    @Override
-    protected void dispatch(ChangeDateHandler handler) {
-        handler.onChangeDate(this);
-    }
+  @Override
+  protected void dispatch(ChangeDateHandler handler) {
+    handler.onChangeDate(this);
+  }
 }

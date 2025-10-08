@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.user.cellview.client.SimplePager;
 import org.gwtbootstrap3.client.ui.base.HasPaginationSize;
 import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
@@ -28,8 +29,6 @@ import org.gwtbootstrap3.client.ui.constants.PaginationSize;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.html.UnorderedList;
 
-import com.google.gwt.user.cellview.client.SimplePager;
-
 /**
  * Support for Bootstrap pagination (http://getbootstrap.com/components/#pagination)
  *
@@ -37,112 +36,110 @@ import com.google.gwt.user.cellview.client.SimplePager;
  */
 public class Pagination extends UnorderedList implements HasResponsiveness, HasPaginationSize {
 
-    public Pagination() {
-        setStyleName(Styles.PAGINATION);
+  public Pagination() {
+    setStyleName(Styles.PAGINATION);
+  }
+
+  public Pagination(PaginationSize paginationSize) {
+    this();
+    setPaginationSize(paginationSize);
+  }
+
+  @Override
+  public void setPaginationSize(PaginationSize paginationSize) {
+    StyleHelper.addUniqueEnumStyleName(this, PaginationSize.class, paginationSize);
+  }
+
+  @Override
+  public PaginationSize getPaginationSize() {
+    return PaginationSize.fromStyleName(getStyleName());
+  }
+
+  public AnchorListItem addPreviousLink() {
+    AnchorListItem listItem = new AnchorListItem();
+    listItem.setIcon(IconType.ANGLE_DOUBLE_LEFT);
+    insert(listItem, 0);
+    return listItem;
+  }
+
+  public AnchorListItem addNextLink() {
+    AnchorListItem listItem = new AnchorListItem();
+    listItem.setIcon(IconType.ANGLE_DOUBLE_RIGHT);
+    add(listItem);
+    return listItem;
+  }
+
+  /**
+   * This will help to rebuild the Pagination based on the data inside the SimplePager passed in.
+   * <p/>
+   * Make sure to all this after adding/remove data from any of the grid to ensure that this stays
+   * current with the SimplePager.
+   * <p/>
+   * ex.
+   * dataProvider.getList().addAll(newData);
+   * pagination.rebuild(mySimplePager);
+   *
+   * @param pager the SimplePager of the CellTable/DataGrid
+   */
+  public void rebuild(SimplePager pager) {
+    clear();
+
+    if (pager.getPageCount() == 0) {
+      return;
     }
 
-    public Pagination(PaginationSize paginationSize) {
-        this();
-        setPaginationSize(paginationSize);
+    AnchorListItem prev = addPreviousLink();
+    prev.addClickHandler(event -> {
+      pager.previousPage();
+      updatePaginationState(pager);
+    });
+    prev.setEnabled(pager.hasPreviousPage());
+
+    for (int i = 0; i < pager.getPageCount(); i++) {
+      int display = i + 1;
+      AnchorListItem page = new AnchorListItem(String.valueOf(display));
+      page.addClickHandler(event -> {
+        pager.setPage(display - 1);
+        updatePaginationState(pager);
+      });
+
+      if (i == pager.getPage()) {
+        page.setActive(true);
+      }
+
+      add(page);
     }
 
-    @Override
-    public void setPaginationSize(PaginationSize paginationSize) {
-        StyleHelper.addUniqueEnumStyleName(this, PaginationSize.class, paginationSize);
-    }
+    AnchorListItem next = addNextLink();
+    next.addClickHandler(event -> {
+      pager.nextPage();
+      updatePaginationState(pager);
+    });
+    next.setEnabled(pager.hasNextPage());
+  }
 
-    @Override
-    public PaginationSize getPaginationSize() {
-        return PaginationSize.fromStyleName(getStyleName());
-    }
+  /**
+   * This updates the current active page, and the enabled state
+   * of the previous and next buttons in the Pagination based
+   * on the state of the given SimplePager.
+   *
+   * @param pager the SimplePager of the CellTable/DataGrid
+   */
+  private void updatePaginationState(SimplePager pager) {
 
-    public AnchorListItem addPreviousLink() {
-        AnchorListItem listItem = new AnchorListItem();
-        listItem.setIcon(IconType.ANGLE_DOUBLE_LEFT);
-        insert(listItem, 0);
-        return listItem;
-    }
-
-    public AnchorListItem addNextLink() {
-        AnchorListItem listItem = new AnchorListItem();
-        listItem.setIcon(IconType.ANGLE_DOUBLE_RIGHT);
-        add(listItem);
-        return listItem;
-    }
-
-    /**
-     * This will help to rebuild the Pagination based on the data inside the SimplePager passed in.
-     * <p/>
-     * Make sure to all this after adding/remove data from any of the grid to ensure that this stays
-     * current with the SimplePager.
-     * <p/>
-     * ex.
-     * dataProvider.getList().addAll(newData);
-     * pagination.rebuild(mySimplePager);
-     *
-     * @param pager the SimplePager of the CellTable/DataGrid
-     */
-    public void rebuild(SimplePager pager) {
-        clear();
-
-        if (pager.getPageCount() == 0) {
-            return;
+    for (int i = 0; i < getWidgetCount(); i++) {
+      if (i == 0) { //previous button
+        ((AnchorListItem) getWidget(i)).setEnabled(pager.hasPreviousPage());
+      } else if (i == getWidgetCount() - 1) { //next button
+        ((AnchorListItem) getWidget(i)).setEnabled(pager.hasNextPage());
+      } else {
+        int index = i - 1;
+        if (index == pager.getPage()) {
+          ((AnchorListItem) getWidget(i)).setActive(true);
+        } else {
+          ((AnchorListItem) getWidget(i)).setActive(false);
         }
-
-        AnchorListItem prev = addPreviousLink();
-        prev.addClickHandler(event -> {
-            pager.previousPage();
-            updatePaginationState(pager);
-        });
-        prev.setEnabled(pager.hasPreviousPage());
-
-        for (int i = 0; i < pager.getPageCount(); i++) {
-            int display = i + 1;
-            AnchorListItem page = new AnchorListItem(String.valueOf(display));
-            page.addClickHandler(event -> {
-                pager.setPage(display - 1);
-                updatePaginationState(pager);
-            });
-
-            if (i == pager.getPage()) {
-                page.setActive(true);
-            }
-
-            add(page);
-        }
-
-        AnchorListItem next = addNextLink();
-        next.addClickHandler(event -> {
-            pager.nextPage();
-            updatePaginationState(pager);
-        });
-        next.setEnabled(pager.hasNextPage());
+      }
     }
-
-    /**
-     * This updates the current active page, and the enabled state
-     * of the previous and next buttons in the Pagination based
-     * on the state of the given SimplePager.
-     * @param pager the SimplePager of the CellTable/DataGrid
-     */
-    private void updatePaginationState(SimplePager pager) {
-
-        for (int i = 0; i < getWidgetCount(); i++) {
-            if (i == 0) { //previous button
-                ((AnchorListItem)getWidget(i)).setEnabled(pager.hasPreviousPage());
-            }
-            else if (i == getWidgetCount() - 1) { //next button
-                ((AnchorListItem)getWidget(i)).setEnabled(pager.hasNextPage());
-            }
-            else {
-                int index = i - 1;
-                if (index == pager.getPage()) {
-                    ((AnchorListItem)getWidget(i)).setActive(true);
-                }
-                else {
-                    ((AnchorListItem)getWidget(i)).setActive(false);
-                }
-            }
-        }
-   }
+  }
 }

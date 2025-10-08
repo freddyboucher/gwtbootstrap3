@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,7 +23,6 @@ package org.gwtbootstrap3.client.ui;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Event;
-
 import org.gwtbootstrap3.client.shared.event.HiddenEvent;
 import org.gwtbootstrap3.client.shared.event.HiddenHandler;
 import org.gwtbootstrap3.client.shared.event.HideEvent;
@@ -43,154 +42,154 @@ import org.gwtbootstrap3.client.ui.html.Div;
  */
 public class Collapse extends Div {
 
-    // Default shown
-    private boolean toggle = true;
+  // Default shown
+  private boolean toggle = true;
 
-    public Collapse() {
-        // Set the default styles
-        setStyleName(Styles.COLLAPSE);
+  public Collapse() {
+    // Set the default styles
+    setStyleName(Styles.COLLAPSE);
+  }
+
+  @Override
+  protected void onLoad() {
+    super.onLoad();
+
+    // Bind jquery events
+    bindJavaScriptEvents(getElement());
+
+    // Configure the collapse
+    if (toggle) {
+      addStyleName(Styles.IN);
     }
+  }
 
-    @Override
-    protected void onLoad() {
-        super.onLoad();
+  @Override
+  protected void onUnload() {
+    super.onUnload();
 
-        // Bind jquery events
-        bindJavaScriptEvents(getElement());
+    // Unbind the events
+    unbindJavaScriptEvents(getElement());
+  }
 
-        // Configure the collapse
-        if (toggle) {
-            addStyleName(Styles.IN);
-        }
+  /**
+   * Sets the default state to show or hide. Show is true.
+   *
+   * @param toggle toggle the collapse
+   */
+  public void setToggle(boolean toggle) {
+    this.toggle = toggle;
+  }
+
+  /**
+   * Causes the collapse to show or hide without animation and events
+   *
+   * @param in show or hide the collapse
+   */
+  public void setIn(boolean in) {
+    if (in) {
+      addStyleName(Styles.IN);
+    } else {
+      removeStyleName(Styles.IN);
     }
+  }
 
-    @Override
-    protected void onUnload() {
-        super.onUnload();
+  /**
+   * Causes the collapse to show or hide
+   */
+  public void toggle() {
+    fireMethod(getElement(), CollapseParam.TOGGLE);
+  }
 
-        // Unbind the events
-        unbindJavaScriptEvents(getElement());
-    }
+  /**
+   * Causes the collapse to show
+   */
+  public void show() {
+    fireMethod(getElement(), CollapseParam.SHOW);
+  }
 
-    /**
-     * Sets the default state to show or hide. Show is true.
-     *
-     * @param toggle toggle the collapse
-     */
-    public void setToggle(boolean toggle) {
-        this.toggle = toggle;
-    }
+  /**
+   * Causes the collapse to hide
+   */
+  public void hide() {
+    fireMethod(getElement(), CollapseParam.HIDE);
+  }
 
-    /**
-     * Causes the collapse to show or hide without animation and events
-     *
-     * @param in show or hide the collapse
-     */
-    public void setIn(boolean in) {
-        if (in) {
-            addStyleName(Styles.IN);
-        } else {
-            removeStyleName(Styles.IN);
-        }
-    }
+  public boolean isShown() {
+    return StyleHelper.containsStyle(getStyleName(), Styles.IN);
+  }
 
-    /**
-     * Causes the collapse to show or hide
-     */
-    public void toggle() {
-        fireMethod(getElement(), CollapseParam.TOGGLE);
-    }
+  public boolean isHidden() {
+    return !isShown();
+  }
 
-    /**
-     * Causes the collapse to show
-     */
-    public void show() {
-        fireMethod(getElement(), CollapseParam.SHOW);
-    }
+  public boolean isCollapsing() {
+    return StyleHelper.containsStyle(getStyleName(), Styles.COLLAPSING);
+  }
 
-    /**
-     * Causes the collapse to hide
-     */
-    public void hide() {
-        fireMethod(getElement(), CollapseParam.HIDE);
-    }
+  public HandlerRegistration addShowHandler(ShowHandler showHandler) {
+    return addHandler(showHandler, ShowEvent.getType());
+  }
 
-    public boolean isShown() {
-        return StyleHelper.containsStyle(getStyleName(), Styles.IN);
-    }
+  public HandlerRegistration addShownHandler(ShownHandler shownHandler) {
+    return addHandler(shownHandler, ShownEvent.getType());
+  }
 
-    public boolean isHidden() {
-        return !isShown();
-    }
+  public HandlerRegistration addHideHandler(HideHandler hideHandler) {
+    return addHandler(hideHandler, HideEvent.getType());
+  }
 
-    public boolean isCollapsing() {
-        return StyleHelper.containsStyle(getStyleName(), Styles.COLLAPSING);
-    }
+  public HandlerRegistration addHiddenHandler(HiddenHandler hiddenHandler) {
+    return addHandler(hiddenHandler, HiddenEvent.getType());
+  }
 
-    public HandlerRegistration addShowHandler(ShowHandler showHandler) {
-        return addHandler(showHandler, ShowEvent.getType());
-    }
+  /**
+   * Fired when the collapse is starting to show
+   */
+  private void onShow(Event evt) {
+    fireEvent(new ShowEvent(evt));
+  }
 
-    public HandlerRegistration addShownHandler(ShownHandler shownHandler) {
-        return addHandler(shownHandler, ShownEvent.getType());
-    }
+  /**
+   * Fired when the collapse has shown
+   */
+  private void onShown(Event evt) {
+    fireEvent(new ShownEvent(evt));
+  }
 
-    public HandlerRegistration addHideHandler(HideHandler hideHandler) {
-        return addHandler(hideHandler, HideEvent.getType());
-    }
+  /**
+   * Fired when the collapse is starting to hide
+   */
+  private void onHide(Event evt) {
+    fireEvent(new HideEvent(evt));
+  }
 
-    public HandlerRegistration addHiddenHandler(HiddenHandler hiddenHandler) {
-        return addHandler(hiddenHandler, HiddenEvent.getType());
-    }
+  /**
+   * Fired when the collapse has hidden
+   */
+  private void onHidden(Event evt) {
+    fireEvent(new HiddenEvent(evt));
+  }
 
-    /**
-     * Fired when the collapse is starting to show
-     */
-    private void onShow(Event evt) {
-        fireEvent(new ShowEvent(evt));
-    }
+  private void bindJavaScriptEvents(Element e) {
+    JQuery collapse = JQuery.jQuery(e);
 
-    /**
-     * Fired when the collapse has shown
-     */
-    private void onShown(Event evt) {
-        fireEvent(new ShownEvent(evt));
-    }
+    collapse.on("show.bs.collapse", this::onShow);
 
-    /**
-     * Fired when the collapse is starting to hide
-     */
-    private void onHide(Event evt) {
-        fireEvent(new HideEvent(evt));
-    }
+    collapse.on("shown.bs.collapse", this::onShown);
 
-    /**
-     * Fired when the collapse has hidden
-     */
-    private void onHidden(Event evt) {
-        fireEvent(new HiddenEvent(evt));
-    }
+    collapse.on("hide.bs.collapse", this::onHide);
 
-    private void bindJavaScriptEvents(Element e) {
-        JQuery collapse = JQuery.jQuery(e);
+    collapse.on("hidden.bs.collapse", this::onHidden);
+  }
 
-        collapse.on("show.bs.collapse", this::onShow);
+  private void unbindJavaScriptEvents(Element e) {
+    JQuery.jQuery(e).off("show.bs.collapse");
+    JQuery.jQuery(e).off("shown.bs.collapse");
+    JQuery.jQuery(e).off("hide.bs.collapse");
+    JQuery.jQuery(e).off("hidden.bs.collapse");
+  }
 
-        collapse.on("shown.bs.collapse", this::onShown);
-
-        collapse.on("hide.bs.collapse", this::onHide);
-
-        collapse.on("hidden.bs.collapse", this::onHidden);
-    }
-
-    private void unbindJavaScriptEvents(Element e) {
-        JQuery.jQuery(e).off("show.bs.collapse");
-        JQuery.jQuery(e).off("shown.bs.collapse");
-        JQuery.jQuery(e).off("hide.bs.collapse");
-        JQuery.jQuery(e).off("hidden.bs.collapse");
-    }
-
-    private void fireMethod(Element e, String method) {
-        JQuery.jQuery(e).collapse(method);
-    }
+  private void fireMethod(Element e, String method) {
+    JQuery.jQuery(e).collapse(method);
+  }
 }

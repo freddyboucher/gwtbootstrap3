@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,12 +20,11 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import org.gwtbootstrap3.client.ui.base.button.AbstractToggleButton;
-import org.gwtbootstrap3.client.ui.constants.IconType;
-
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickHandler;
+import org.gwtbootstrap3.client.ui.base.button.AbstractToggleButton;
+import org.gwtbootstrap3.client.ui.constants.IconType;
 
 /**
  * Button based on {@code <button>} element with different types and sizes.
@@ -46,33 +45,33 @@ import com.google.gwt.event.dom.client.ClickHandler;
  */
 public class Button extends AbstractToggleButton {
 
-    /**
-     * Creates button with DEFAULT type.
-     */
-    public Button() {
-    }
+  /**
+   * Creates button with DEFAULT type.
+   */
+  public Button() {
+  }
 
-    /**
-     * Creates button with specified text
-     *
-     * @param text Text contents of button
-     */
-    public Button(String text) {
-        setText(text);
-    }
+  /**
+   * Creates button with specified text
+   *
+   * @param text Text contents of button
+   */
+  public Button(String text) {
+    setText(text);
+  }
 
-    public Button(String text, ClickHandler handler) {
-        this(text);
-        addClickHandler(handler);
-    }
+  public Button(String text, ClickHandler handler) {
+    this(text);
+    addClickHandler(handler);
+  }
 
-    public Button(String text, IconType iconType, ClickHandler clickHandler) {
-        this(text, clickHandler);
-        setIcon(iconType);
-    }
+  public Button(String text, IconType iconType, ClickHandler clickHandler) {
+    this(text, clickHandler);
+    setIcon(iconType);
+  }
 
-    @Override
-    protected Element createElement() {
-        return Document.get().createPushButtonElement().cast();
-    }
+  @Override
+  protected Element createElement() {
+    return Document.get().createPushButtonElement().cast();
+  }
 }

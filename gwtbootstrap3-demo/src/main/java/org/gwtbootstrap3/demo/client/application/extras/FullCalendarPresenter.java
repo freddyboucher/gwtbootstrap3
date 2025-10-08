@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application.extras;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,7 +19,6 @@ package org.gwtbootstrap3.demo.client.application.extras;
  * limitations under the License.
  * #L%
  */
-
 
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -36,18 +35,16 @@ import org.gwtbootstrap3.demo.client.place.NameTokens;
  */
 public class FullCalendarPresenter extends Presenter<FullCalendarPresenter.MyView, FullCalendarPresenter.MyProxy> {
 
-    public interface MyView extends View {
-    }
+  public interface MyView extends View {
+  }
 
-    @NameToken(NameTokens.FULL_CALENDAR)
-    @ProxyCodeSplit
-    public interface MyProxy extends ProxyPlace<FullCalendarPresenter> {
-    }
+  @NameToken(NameTokens.FULL_CALENDAR)
+  @ProxyCodeSplit
+  public interface MyProxy extends ProxyPlace<FullCalendarPresenter> {
+  }
 
-    @Inject
-    public FullCalendarPresenter(EventBus eventBus,
-                                 MyView view,
-                                 MyProxy proxy) {
-        super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
-    }
+  @Inject
+  public FullCalendarPresenter(EventBus eventBus, MyView view, MyProxy proxy) {
+    super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
+  }
 }

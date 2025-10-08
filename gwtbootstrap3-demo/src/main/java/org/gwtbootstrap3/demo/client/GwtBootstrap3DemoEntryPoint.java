@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,26 +27,20 @@ import com.google.web.bindery.event.shared.UmbrellaException;
 import org.gwtbootstrap3.extras.notify.client.constants.NotifyType;
 import org.gwtbootstrap3.extras.notify.client.ui.Notify;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
 /**
  * @author Sven Jacobs
  */
 public class GwtBootstrap3DemoEntryPoint implements EntryPoint {
 
-    @Override
-    public void onModuleLoad() {
-        GWT.setUncaughtExceptionHandler(e -> {
-            while (e instanceof UmbrellaException) {
-                e = e.getCause();
-            }
-            GWT.log(e.getMessage(), e);
-            Notify.notify(e.getMessage(), NotifyType.DANGER);
-        });
-        ScriptInjector.fromString(GwtBootstrap3DemoClientBundle.INSTANCE.prettify().getText())
-                .setWindow(ScriptInjector.TOP_WINDOW)
-                .inject();
-    }
-    
+  @Override
+  public void onModuleLoad() {
+    GWT.setUncaughtExceptionHandler(e -> {
+      while (e instanceof UmbrellaException) {
+        e = e.getCause();
+      }
+      GWT.log(e.getMessage(), e);
+      Notify.notify(e.getMessage(), NotifyType.DANGER);
+    });
+    ScriptInjector.fromString(GwtBootstrap3DemoClientBundle.INSTANCE.prettify().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+  }
 }

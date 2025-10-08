@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.form.validator;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,50 +20,50 @@ package org.gwtbootstrap3.client.ui.form.validator;
  * #L%
  */
 
-import java.text.ParseException;
-
 import com.google.gwt.text.shared.Parser;
+import java.text.ParseException;
 
 /**
  * Parses boolean values from a {@link CharSequence}.
- * 
+ *
  * @author Steven Jardine
  */
 public class BooleanParser implements Parser<Boolean> {
 
-    private static BooleanParser instance;
+  private static BooleanParser instance;
 
-    /**
-     * @return the instance of the {@link BooleanRenderer}.
-     */
-    public static Parser<Boolean> instance() {
-        if (instance == null) {
-            instance = new BooleanParser();
-        }
-        return instance;
+  /**
+   * @return the instance of the {@link BooleanRenderer}.
+   */
+  public static Parser<Boolean> instance() {
+    if (instance == null) {
+      instance = new BooleanParser();
     }
+    return instance;
+  }
 
-    /**
-     * Constructor.
-     */
-    protected BooleanParser() {
+  /**
+   * Constructor.
+   */
+  protected BooleanParser() {
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Boolean parse(CharSequence text) throws ParseException {
+    if (text != null) {
+      String value = text.toString();
+      if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("Yes")) {
+        return true;
+      }
+      try {
+        int i = Integer.parseInt(value);
+        return i != 0;
+      } catch (Exception ignored) {
+      }
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean parse(CharSequence text) throws ParseException {
-        if (text != null) {
-            String value = text.toString();
-            if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("Yes")) {
-                return true;
-            }
-            try {
-                int i = Integer.parseInt(value);
-                return i != 0;
-            } catch (Exception ignored) {
-            }
-        }
-        return false;
-    }
-
+    return false;
+  }
 }

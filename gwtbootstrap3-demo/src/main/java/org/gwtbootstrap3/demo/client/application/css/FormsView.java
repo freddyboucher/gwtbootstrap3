@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application.css;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,30 +33,30 @@ import org.gwtbootstrap3.client.ui.constants.ValidationState;
  * @author Joshua Godi
  */
 public class FormsView extends ViewImpl implements FormsPresenter.MyView {
-    @UiField
-    FormGroup formGroup;
-    @UiField
-    Button none;
-    @UiField
-    Button success;
-    @UiField
-    Button warning;
-    @UiField
-    Button error;
+  @UiField
+  FormGroup formGroup;
+  @UiField
+  Button none;
+  @UiField
+  Button success;
+  @UiField
+  Button warning;
+  @UiField
+  Button error;
 
-    interface Binder extends UiBinder<Widget, FormsView> {
-    }
+  interface Binder extends UiBinder<Widget, FormsView> {
+  }
 
-    @Inject
-    FormsView(Binder uiBinder) {
-        initWidget(uiBinder.createAndBindUi(this));
+  @Inject
+  FormsView(Binder uiBinder) {
+    initWidget(uiBinder.createAndBindUi(this));
 
-        none.addClickHandler(event -> formGroup.setValidationState(ValidationState.NONE));
+    none.addClickHandler(event -> formGroup.setValidationState(ValidationState.NONE));
 
-        success.addClickHandler(event -> formGroup.setValidationState(ValidationState.SUCCESS));
+    success.addClickHandler(event -> formGroup.setValidationState(ValidationState.SUCCESS));
 
-        warning.addClickHandler(event -> formGroup.setValidationState(ValidationState.WARNING));
+    warning.addClickHandler(event -> formGroup.setValidationState(ValidationState.WARNING));
 
-        error.addClickHandler(event -> formGroup.setValidationState(ValidationState.ERROR));
-    }
+    error.addClickHandler(event -> formGroup.setValidationState(ValidationState.ERROR));
+  }
 }

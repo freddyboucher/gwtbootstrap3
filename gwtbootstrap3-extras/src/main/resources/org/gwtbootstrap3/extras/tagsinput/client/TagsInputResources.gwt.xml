@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd">
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd"><!--
   #%L
   GwtBootstrap3
   %%
@@ -19,11 +18,11 @@
   #L%
   -->
 <module>
-    <public path="resource">
-        <include name="css/bootstrap-tagsinput-typeahead.css"/>
-        <include name="css/bootstrap-tagsinput.css"/>
-    </public>
+  <public path="resource">
+    <include name="css/bootstrap-tagsinput-typeahead.css"/>
+    <include name="css/bootstrap-tagsinput.css"/>
+  </public>
 
-    <stylesheet src="css/bootstrap-tagsinput-typeahead.css"/>
-    <stylesheet src="css/bootstrap-tagsinput.css"/>
+  <stylesheet src="css/bootstrap-tagsinput-typeahead.css"/>
+  <stylesheet src="css/bootstrap-tagsinput.css"/>
 </module>

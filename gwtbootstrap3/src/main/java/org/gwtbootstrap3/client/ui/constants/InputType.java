@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.constants;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,29 +24,29 @@ package org.gwtbootstrap3.client.ui.constants;
  * @author Joshua Godi
  */
 public enum InputType implements Type {
-    PASSWORD("password"),
-    DATETIME("datetime"),
-    DATETIME_LOCAL("datetime-local"),
-    DATE("date"),
-    MONTH("month"),
-    TIME("time"),
-    WEEK("week"),
-    NUMBER("number"),
-    EMAIL("email"),
-    FILE("file"),
-    URL("url"),
-    SEARCH("search"),
-    TEL("tel"),
-    TEXT("text"),
-    COLOR("color");
+  PASSWORD("password"),
+  DATETIME("datetime"),
+  DATETIME_LOCAL("datetime-local"),
+  DATE("date"),
+  MONTH("month"),
+  TIME("time"),
+  WEEK("week"),
+  NUMBER("number"),
+  EMAIL("email"),
+  FILE("file"),
+  URL("url"),
+  SEARCH("search"),
+  TEL("tel"),
+  TEXT("text"),
+  COLOR("color");
 
-    private final String type;
+  private final String type;
 
-    InputType(String type) {
-        this.type = type;
-    }
+  InputType(String type) {
+    this.type = type;
+  }
 
-    public String getType() {
-        return type;
-    }
+  public String getType() {
+    return type;
+  }
 }

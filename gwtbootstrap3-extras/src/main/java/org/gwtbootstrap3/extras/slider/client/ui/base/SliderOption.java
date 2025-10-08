@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.slider.client.ui.base;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,59 +33,59 @@ package org.gwtbootstrap3.extras.slider.client.ui.base;
  */
 enum SliderOption {
 
-    ID("id"),
-    MIN("min"),
-    MAX("max"),
-    STEP("step"),
-    PRECISION("precision"),
-    ORIENTATION("orientation"),
-    VALUE("value"),
-    RANGE("range"),
-    SELECTION("selection"),
-    TOOLTIP("tooltip"),
-    TOOLTIP_SPLIT("tooltip_split"),
-    TOOLTIP_POSITION("tooltip_position"),
-    HANDLE("handle"),
-    REVERSED("reversed"),
-    ENABLED("enabled"),
-    FORMATTER("formatter"),
-    NATURAL_ARROW_KEYS("natural_arrow_keys"),
-    TICKS("ticks"),
-    TICKS_POSITIONS("ticks_positions"),
-    TICKS_LABELS("ticks_labels"),
-    TICKS_SNAP_BOUNDS("ticks_snap_bounds"),
-    SCALE("scale"),
-    FOCUS("focus"),
-    ;
+  ID("id"),
+  MIN("min"),
+  MAX("max"),
+  STEP("step"),
+  PRECISION("precision"),
+  ORIENTATION("orientation"),
+  VALUE("value"),
+  RANGE("range"),
+  SELECTION("selection"),
+  TOOLTIP("tooltip"),
+  TOOLTIP_SPLIT("tooltip_split"),
+  TOOLTIP_POSITION("tooltip_position"),
+  HANDLE("handle"),
+  REVERSED("reversed"),
+  ENABLED("enabled"),
+  FORMATTER("formatter"),
+  NATURAL_ARROW_KEYS("natural_arrow_keys"),
+  TICKS("ticks"),
+  TICKS_POSITIONS("ticks_positions"),
+  TICKS_LABELS("ticks_labels"),
+  TICKS_SNAP_BOUNDS("ticks_snap_bounds"),
+  SCALE("scale"),
+  FOCUS("focus"),
+  ;
 
-    private final String name;
-    private final String dataAttrName;
-    private final static String DATA_ATTRIBUTE_PREFIX = "data-slider-";
+  private final String name;
+  private final String dataAttrName;
+  private final static String DATA_ATTRIBUTE_PREFIX = "data-slider-";
 
-    /**
-     * @param name the option name
-     */
-    SliderOption(String name) {
-        this.name = name;
-        dataAttrName = name.replaceAll("_", "-");
-    }
+  /**
+   * @param name the option name
+   */
+  SliderOption(String name) {
+    this.name = name;
+    dataAttrName = name.replaceAll("_", "-");
+  }
 
-    /**
-     * Returns the option name.
-     *
-     * @return the option name.
-     */
-    public String getName() {
-        return name;
-    }
+  /**
+   * Returns the option name.
+   *
+   * @return the option name.
+   */
+  public String getName() {
+    return name;
+  }
 
-    /**
-     * Returns the data attribute name prefixed by
-     * {@value #DATA_ATTRIBUTE_PREFIX}.
-     *
-     * @return the data attribute name
-     */
-    public String getDataAttribute() {
-        return DATA_ATTRIBUTE_PREFIX + dataAttrName;
-    }
+  /**
+   * Returns the data attribute name prefixed by
+   * {@value #DATA_ATTRIBUTE_PREFIX}.
+   *
+   * @return the data attribute name
+   */
+  public String getDataAttribute() {
+    return DATA_ATTRIBUTE_PREFIX + dataAttrName;
+  }
 }

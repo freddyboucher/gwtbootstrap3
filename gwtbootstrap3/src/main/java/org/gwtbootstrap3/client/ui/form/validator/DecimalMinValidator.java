@@ -11,9 +11,9 @@ import org.gwtbootstrap3.client.ui.form.validator.ValidationMessages.Keys;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,40 +30,45 @@ import org.gwtbootstrap3.client.ui.form.validator.ValidationMessages.Keys;
  */
 public class DecimalMinValidator<T extends Number> extends AbstractValidator<T> {
 
-    private Number minValue;
+  private Number minValue;
 
-    /**
-     * Constructor.
-     *
-     * @param minValue the min value
-     */
-    public DecimalMinValidator(Number minValue) {
-        super(Keys.DECIMAL_MIN, new Object[] { minValue.toString() });
-        this.minValue = minValue;
+  /**
+   * Constructor.
+   *
+   * @param minValue the min value
+   */
+  public DecimalMinValidator(Number minValue) {
+    super(Keys.DECIMAL_MIN, new Object[]{minValue.toString()});
+    this.minValue = minValue;
+  }
+
+  /**
+   * Constructor.
+   *
+   * @param minValue               the min value
+   * @param invalidMessageOverride the invalid message override
+   */
+  public DecimalMinValidator(Number minValue, String invalidMessageOverride) {
+    super(invalidMessageOverride);
+    this.minValue = minValue;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int getPriority() {
+    return Priority.MEDIUM;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isValid(T value) {
+    if (value == null) {
+      return true;
     }
-
-    /**
-     * Constructor.
-     *
-     * @param minValue the min value
-     * @param invalidMessageOverride the invalid message override
-     */
-    public DecimalMinValidator(Number minValue, String invalidMessageOverride) {
-        super(invalidMessageOverride);
-        this.minValue = minValue;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getPriority() {
-        return Priority.MEDIUM;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isValid(T value) {
-        if (value == null) { return true; }
-        return value.doubleValue() >= minValue.doubleValue();
-    }
-
+    return value.doubleValue() >= minValue.doubleValue();
+  }
 }

@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.base.mixin;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,46 +27,46 @@ import com.google.gwt.user.client.ui.UIObject;
  */
 public class AttributeMixin<T extends UIObject> extends AbstractMixin {
 
-    public AttributeMixin(T uiObject) {
-        super(uiObject);
-    }
+  public AttributeMixin(T uiObject) {
+    super(uiObject);
+  }
 
-    /**
-     * Sets the attribute on the UiObject
-     *
-     * @param attributeName  attribute name
-     * @param attributeValue attribute value
-     */
-    public void setAttribute(String attributeName, String attributeValue) {
-        uiObject.getElement().setAttribute(attributeName, attributeValue);
-    }
+  /**
+   * Sets the attribute on the UiObject
+   *
+   * @param attributeName  attribute name
+   * @param attributeValue attribute value
+   */
+  public void setAttribute(String attributeName, String attributeValue) {
+    uiObject.getElement().setAttribute(attributeName, attributeValue);
+  }
 
-    /**
-     * Get the attribute name on the UiObject
-     *
-     * @param attributeName attribute name
-     * @return attribute value
-     */
-    public String getAttribute(String attributeName) {
-        return uiObject.getElement().getAttribute(attributeName);
-    }
+  /**
+   * Get the attribute name on the UiObject
+   *
+   * @param attributeName attribute name
+   * @return attribute value
+   */
+  public String getAttribute(String attributeName) {
+    return uiObject.getElement().getAttribute(attributeName);
+  }
 
-    /**
-     * Removes the attribute from the UiObject
-     *
-     * @param attributeName attribute name
-     */
-    public void removeAttribute(String attributeName) {
-        uiObject.getElement().removeAttribute(attributeName);
-    }
+  /**
+   * Removes the attribute from the UiObject
+   *
+   * @param attributeName attribute name
+   */
+  public void removeAttribute(String attributeName) {
+    uiObject.getElement().removeAttribute(attributeName);
+  }
 
-    /**
-     * Checks whether or not the UiObject has the element
-     *
-     * @param attributeName attribute name
-     * @return true if has the attribute, false otherwise
-     */
-    public boolean hasAttribute(String attributeName) {
-        return uiObject.getElement().hasAttribute(attributeName);
-    }
+  /**
+   * Checks whether or not the UiObject has the element
+   *
+   * @param attributeName attribute name
+   * @return true if has the attribute, false otherwise
+   */
+  public boolean hasAttribute(String attributeName) {
+    return uiObject.getElement().hasAttribute(attributeName);
+  }
 }

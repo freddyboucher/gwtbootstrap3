@@ -14,9 +14,9 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,131 +27,148 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
 
 /**
  * Event fired when validation state changes.
- * 
+ *
  * @author Steven Jardine
  */
 public class ValidationChangedEvent extends GwtEvent<ValidationChangedEvent.ValidationChangedHandler> {
 
-    /**
-     * HasValidationChangedHandlers.
-     */
-    public interface HasValidationChangedHandlers extends HasHandlers {
-
-        /**
-         * Adds a validation changed handler.
-         *
-         * @param handler the handler
-         * @return the handler registration
-         */
-        HandlerRegistration addValidationChangedHandler(ValidationChangedHandler handler);
-    }
+  /**
+   * HasValidationChangedHandlers.
+   */
+  public interface HasValidationChangedHandlers extends HasHandlers {
 
     /**
-     * ValidationChangedHandler.
-     */
-    public interface ValidationChangedHandler extends EventHandler {
-
-        /**
-         * On validation changed.
-         *
-         * @param event the event
-         */
-        void onValidationChanged(ValidationChangedEvent event);
-    }
-
-    private static final Type<ValidationChangedHandler> TYPE = new Type<>();
-
-    /**
-     * Fire the event.
+     * Adds a validation changed handler.
      *
-     * @param source the source
-     * @param valid the valid
+     * @param handler the handler
+     * @return the handler registration
      */
-    public static void fire(HasHandlers source, boolean valid) {
-        ValidationChangedEvent eventInstance = new ValidationChangedEvent(valid);
-        source.fireEvent(eventInstance);
-    }
+    HandlerRegistration addValidationChangedHandler(ValidationChangedHandler handler);
+  }
+
+  /**
+   * ValidationChangedHandler.
+   */
+  public interface ValidationChangedHandler extends EventHandler {
 
     /**
-     * Fire.
+     * On validation changed.
      *
-     * @param source the source
-     * @param eventInstance the event instance
+     * @param event the event
      */
-    public static void fire(HasHandlers source, ValidationChangedEvent eventInstance) {
-        source.fireEvent(eventInstance);
+    void onValidationChanged(ValidationChangedEvent event);
+  }
+
+  private static final Type<ValidationChangedHandler> TYPE = new Type<>();
+
+  /**
+   * Fire the event.
+   *
+   * @param source the source
+   * @param valid  the valid
+   */
+  public static void fire(HasHandlers source, boolean valid) {
+    ValidationChangedEvent eventInstance = new ValidationChangedEvent(valid);
+    source.fireEvent(eventInstance);
+  }
+
+  /**
+   * Fire.
+   *
+   * @param source        the source
+   * @param eventInstance the event instance
+   */
+  public static void fire(HasHandlers source, ValidationChangedEvent eventInstance) {
+    source.fireEvent(eventInstance);
+  }
+
+  /**
+   * Gets the event type.
+   *
+   * @return the type
+   */
+  public static Type<ValidationChangedHandler> getType() {
+    return TYPE;
+  }
+
+  private boolean valid;
+
+  /**
+   * Constructor.
+   */
+  protected ValidationChangedEvent() {
+  }
+
+  /**
+   * Constructor.
+   *
+   * @param valid the validation state.
+   */
+  public ValidationChangedEvent(boolean valid) {
+    this.valid = valid;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  protected void dispatch(ValidationChangedHandler handler) {
+    handler.onValidationChanged(this);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
     }
-
-    /**
-     * Gets the event type.
-     *
-     * @return the type
-     */
-    public static Type<ValidationChangedHandler> getType() {
-        return TYPE;
+    if (obj == null) {
+      return false;
     }
-
-    private boolean valid;
-
-    /**
-     * Constructor.
-     */
-    protected ValidationChangedEvent() {
+    if (getClass() != obj.getClass()) {
+      return false;
     }
-
-    /**
-     * Constructor.
-     *
-     * @param valid the validation state.
-     */
-    public ValidationChangedEvent(boolean valid) {
-        this.valid = valid;
+    ValidationChangedEvent other = (ValidationChangedEvent) obj;
+    if (valid != other.valid) {
+      return false;
     }
+    return true;
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    protected void dispatch(ValidationChangedHandler handler) {
-        handler.onValidationChanged(this);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Type<ValidationChangedHandler> getAssociatedType() {
+    return TYPE;
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
-        ValidationChangedEvent other = (ValidationChangedEvent) obj;
-        if (valid != other.valid) return false;
-        return true;
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int hashCode() {
+    int hashCode = 23;
+    hashCode = (hashCode * 37) + Boolean.valueOf(valid).hashCode();
+    return hashCode;
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public Type<ValidationChangedHandler> getAssociatedType() {
-        return TYPE;
-    }
+  /**
+   * Checks if is valid.
+   *
+   * @return true, if is valid
+   */
+  public boolean isValid() {
+    return valid;
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public int hashCode() {
-        int hashCode = 23;
-        hashCode = (hashCode * 37) + Boolean.valueOf(valid).hashCode();
-        return hashCode;
-    }
-
-    /**
-     * Checks if is valid.
-     *
-     * @return true, if is valid
-     */
-    public boolean isValid() {
-        return valid;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String toString() {
-        return "ValidationChangedEvent[" + valid + "]";
-    }
-
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "ValidationChangedEvent[" + valid + "]";
+  }
 }

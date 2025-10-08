@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,8 +20,9 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Widget;
 import java.util.List;
-
 import org.gwtbootstrap3.client.ui.base.HasDataTarget;
 import org.gwtbootstrap3.client.ui.base.HasPull;
 import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
@@ -33,9 +34,6 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
 import org.gwtbootstrap3.client.ui.html.Span;
 
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Widget;
-
 /**
  * Special button to toggle collapsible area of {@link Navbar}.
  *
@@ -45,64 +43,64 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class NavbarCollapseButton extends Composite implements HasDataTarget, HasResponsiveness, HasPull {
 
-    private final PullMixin<NavbarCollapseButton> pullMixin = new PullMixin<>(this);
-    private final Button button;
+  private final PullMixin<NavbarCollapseButton> pullMixin = new PullMixin<>(this);
+  private final Button button;
 
-    public NavbarCollapseButton() {
-        button = new Button();
-        button.setStyleName(Styles.NAVBAR_TOGGLE);
-        button.setDataToggle(Toggle.COLLAPSE);
+  public NavbarCollapseButton() {
+    button = new Button();
+    button.setStyleName(Styles.NAVBAR_TOGGLE);
+    button.setDataToggle(Toggle.COLLAPSE);
 
-        button.add(newBarIcon());
-        button.add(newBarIcon());
-        button.add(newBarIcon());
+    button.add(newBarIcon());
+    button.add(newBarIcon());
+    button.add(newBarIcon());
 
-        initWidget(button);
-    }
+    initWidget(button);
+  }
 
-    @Override
-    public void setDataTargetWidgets(List<Widget> widgets) {
-        button.setDataTargetWidgets(widgets);
-    }
+  @Override
+  public void setDataTargetWidgets(List<Widget> widgets) {
+    button.setDataTargetWidgets(widgets);
+  }
 
-    @Override
-    public void setDataTargetWidget(Widget widget) {
-        button.setDataTargetWidget(widget);
-    }
+  @Override
+  public void setDataTargetWidget(Widget widget) {
+    button.setDataTargetWidget(widget);
+  }
 
-    @Override
-    public void setDataTarget(String dataTarget) {
-        button.setDataTarget(dataTarget);
-    }
+  @Override
+  public void setDataTarget(String dataTarget) {
+    button.setDataTarget(dataTarget);
+  }
 
-    @Override
-    public String getDataTarget() {
-        return button.getDataTarget();
-    }
+  @Override
+  public String getDataTarget() {
+    return button.getDataTarget();
+  }
 
-    @Override
-    public void setVisibleOn(DeviceSize deviceSize) {
-        StyleHelper.setVisibleOn(this, deviceSize);
-    }
+  @Override
+  public void setVisibleOn(DeviceSize deviceSize) {
+    StyleHelper.setVisibleOn(this, deviceSize);
+  }
 
-    @Override
-    public void setHiddenOn(DeviceSize deviceSize) {
-        StyleHelper.setHiddenOn(this, deviceSize);
-    }
+  @Override
+  public void setHiddenOn(DeviceSize deviceSize) {
+    StyleHelper.setHiddenOn(this, deviceSize);
+  }
 
-    @Override
-    public void setPull(Pull pull) {
-        pullMixin.setPull(pull);
-    }
+  @Override
+  public void setPull(Pull pull) {
+    pullMixin.setPull(pull);
+  }
 
-    @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
-    }
+  @Override
+  public Pull getPull() {
+    return pullMixin.getPull();
+  }
 
-    private Span newBarIcon() {
-        Span span = new Span();
-        span.setStyleName(Styles.ICON_BAR);
-        return span;
-    }
+  private Span newBarIcon() {
+    Span span = new Span();
+    span.setStyleName(Styles.ICON_BAR);
+    return span;
+  }
 }

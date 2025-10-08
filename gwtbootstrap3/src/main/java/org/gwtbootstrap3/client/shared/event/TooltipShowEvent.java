@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.shared.event;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,47 +20,46 @@ package org.gwtbootstrap3.client.shared.event;
  * #L%
  */
 
-import org.gwtbootstrap3.client.ui.Tooltip;
-
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.user.client.Event;
+import org.gwtbootstrap3.client.ui.Tooltip;
 
 /**
  * @author Pontus Enmark
  */
 public class TooltipShowEvent extends GwtEvent<TooltipShowHandler> implements TooltipEvent {
 
-    private static final Type<TooltipShowHandler> TYPE = new Type<>();
+  private static final Type<TooltipShowHandler> TYPE = new Type<>();
 
-    private final Tooltip tooltip;
-    private final Event nativeEvent;
+  private final Tooltip tooltip;
+  private final Event nativeEvent;
 
-    public static Type<TooltipShowHandler> getType() {
-        return TYPE;
-    }
+  public static Type<TooltipShowHandler> getType() {
+    return TYPE;
+  }
 
-    public TooltipShowEvent(Tooltip tooltip, Event nativeEvent) {
-        this.tooltip = tooltip;
-        this.nativeEvent = nativeEvent;
-    }
+  public TooltipShowEvent(Tooltip tooltip, Event nativeEvent) {
+    this.tooltip = tooltip;
+    this.nativeEvent = nativeEvent;
+  }
 
-    @Override
-    public Tooltip getTooltip() {
-        return tooltip;
-    }
+  @Override
+  public Tooltip getTooltip() {
+    return tooltip;
+  }
 
-    @Override
-    public Event getNativeEvent() {
-        return nativeEvent;
-    }
+  @Override
+  public Event getNativeEvent() {
+    return nativeEvent;
+  }
 
-    @Override
-    public Type<TooltipShowHandler> getAssociatedType() {
-        return TYPE;
-    }
+  @Override
+  public Type<TooltipShowHandler> getAssociatedType() {
+    return TYPE;
+  }
 
-    @Override
-    protected void dispatch(TooltipShowHandler handler) {
-        handler.onShow(this);
-    }
+  @Override
+  protected void dispatch(TooltipShowHandler handler) {
+    handler.onShow(this);
+  }
 }

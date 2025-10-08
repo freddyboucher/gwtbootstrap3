@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application.css;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,26 +35,26 @@ import org.gwtbootstrap3.client.ui.Button;
  */
 public class ButtonsView extends ViewImpl implements ButtonsPresenter.MyView {
 
-    interface Binder extends UiBinder<Widget, ButtonsView> {
-    }
+  interface Binder extends UiBinder<Widget, ButtonsView> {
+  }
 
-    @UiField
-    Button button;
+  @UiField
+  Button button;
 
-    @Inject
-    ButtonsView(Binder uiBinder) {
-        initWidget(uiBinder.createAndBindUi(this));
-    }
+  @Inject
+  ButtonsView(Binder uiBinder) {
+    initWidget(uiBinder.createAndBindUi(this));
+  }
 
-    @UiHandler("button")
-    public void onButtonClick(ClickEvent event) {
-        button.state().loading();
+  @UiHandler("button")
+  public void onButtonClick(ClickEvent event) {
+    button.state().loading();
 
-        new Timer() {
-            @Override
-            public void run() {
-                button.state().reset();
-            }
-        }.schedule(2000);
-    }
+    new Timer() {
+      @Override
+      public void run() {
+        button.state().reset();
+      }
+    }.schedule(2000);
+  }
 }

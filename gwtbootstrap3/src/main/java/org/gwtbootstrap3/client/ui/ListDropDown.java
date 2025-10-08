@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,12 +20,11 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.base.AbstractListItem;
 import org.gwtbootstrap3.client.ui.base.button.AbstractToggleButton;
 import org.gwtbootstrap3.client.ui.constants.Styles;
-
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.user.client.ui.Widget;
 
 /**
  * Drop down item within a list, e.g. {@link NavTabs}, {@link NavPills} or
@@ -58,20 +57,20 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class ListDropDown extends AbstractListItem {
 
-    public ListDropDown() {
-        setStyleName(Styles.DROPDOWN);
+  public ListDropDown() {
+    setStyleName(Styles.DROPDOWN);
+  }
+
+  @Override
+  public void add(Widget child) {
+    if (child instanceof AbstractToggleButton) {
+      if (!(child instanceof AnchorButton)) {
+        throw new IllegalArgumentException("Only buttons of type AnchorButton can be added to ListDropDown");
+      }
+
+      child.setStyleName(Styles.DROPDOWN_TOGGLE);
     }
 
-    @Override
-    public void add(Widget child) {
-        if (child instanceof AbstractToggleButton) {
-            if (!(child instanceof AnchorButton)) {
-                throw new IllegalArgumentException("Only buttons of type AnchorButton can be added to ListDropDown");
-            }
-
-            child.setStyleName(Styles.DROPDOWN_TOGGLE);
-        }
-
-        add(child, (Element) getElement());
-    }
+    add(child, (Element) getElement());
+  }
 }

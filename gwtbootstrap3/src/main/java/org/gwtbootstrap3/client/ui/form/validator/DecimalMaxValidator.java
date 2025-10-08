@@ -11,9 +11,9 @@ import org.gwtbootstrap3.client.ui.form.validator.ValidationMessages.Keys;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,44 +30,49 @@ import org.gwtbootstrap3.client.ui.form.validator.ValidationMessages.Keys;
  */
 public class DecimalMaxValidator<T> extends AbstractValidator<T> {
 
-    private Number maxValue;
+  private Number maxValue;
 
-    /**
-     * Constructor.
-     *
-     * @param maxValue the max value
-     */
-    public DecimalMaxValidator(Number maxValue) {
-        super(Keys.DECIMAL_MAX, new Object[] { maxValue.toString() });
-        this.maxValue = maxValue;
+  /**
+   * Constructor.
+   *
+   * @param maxValue the max value
+   */
+  public DecimalMaxValidator(Number maxValue) {
+    super(Keys.DECIMAL_MAX, new Object[]{maxValue.toString()});
+    this.maxValue = maxValue;
+  }
+
+  /**
+   * Constructor.
+   *
+   * @param maxValue               the max value
+   * @param invalidMessageOverride the invalid message override
+   */
+  public DecimalMaxValidator(Number maxValue, String invalidMessageOverride) {
+    super(invalidMessageOverride);
+    this.maxValue = maxValue;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int getPriority() {
+    return Priority.MEDIUM;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isValid(T value) {
+    if (value == null) {
+      return true;
     }
-
-    /**
-     * Constructor.
-     *
-     * @param maxValue the max value
-     * @param invalidMessageOverride the invalid message override
-     */
-    public DecimalMaxValidator(Number maxValue, String invalidMessageOverride) {
-        super(invalidMessageOverride);
-        this.maxValue = maxValue;
+    if (value instanceof Number) {
+      return ((Number) value).doubleValue() <= maxValue.doubleValue();
+    } else {
+      return Double.parseDouble(value.toString()) <= maxValue.doubleValue();
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getPriority() {
-        return Priority.MEDIUM;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isValid(T value) {
-        if (value == null) { return true; }
-        if (value instanceof Number) {
-            return ((Number) value).doubleValue() <= maxValue.doubleValue();
-        } else {
-            return Double.parseDouble(value.toString()) <= maxValue.doubleValue();
-        }
-    }
-
+  }
 }

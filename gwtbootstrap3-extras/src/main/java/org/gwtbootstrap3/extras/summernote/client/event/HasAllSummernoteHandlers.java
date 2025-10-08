@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.summernote.client.event;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,56 +25,55 @@ package org.gwtbootstrap3.extras.summernote.client.event;
  *
  * @author Xiaodong Sun
  */
-public interface HasAllSummernoteHandlers extends HasSummernoteInitHandlers,
-        HasSummernoteEnterHandlers, HasSummernoteFocusHandlers, HasSummernoteBlurHandlers,
-        HasSummernoteKeyUpHandlers, HasSummernoteKeyDownHandlers, HasSummernotePasteHandlers,
-        HasSummernoteImageUploadHandlers, HasSummernoteChangeHandlers {
+public interface HasAllSummernoteHandlers
+    extends HasSummernoteInitHandlers, HasSummernoteEnterHandlers, HasSummernoteFocusHandlers, HasSummernoteBlurHandlers,
+                HasSummernoteKeyUpHandlers, HasSummernoteKeyDownHandlers, HasSummernotePasteHandlers, HasSummernoteImageUploadHandlers,
+                HasSummernoteChangeHandlers {
 
-    String SUMMERNOTE_PREFIX = "summernote.";
+  String SUMMERNOTE_PREFIX = "summernote.";
 
-    /**
-     * The {@link SummernoteInitEvent} name
-     */
-    String SUMMERNOTE_INIT_EVENT = SUMMERNOTE_PREFIX + "init";
+  /**
+   * The {@link SummernoteInitEvent} name
+   */
+  String SUMMERNOTE_INIT_EVENT = SUMMERNOTE_PREFIX + "init";
 
-    /**
-     * The {@link SummernoteEnterEvent} name
-     */
-    String SUMMERNOTE_ENTER_EVENT = SUMMERNOTE_PREFIX + "enter";
+  /**
+   * The {@link SummernoteEnterEvent} name
+   */
+  String SUMMERNOTE_ENTER_EVENT = SUMMERNOTE_PREFIX + "enter";
 
-    /**
-     * The {@link SummernoteFocusEvent} name
-     */
-    String SUMMERNOTE_FOCUS_EVENT = SUMMERNOTE_PREFIX + "focus";
+  /**
+   * The {@link SummernoteFocusEvent} name
+   */
+  String SUMMERNOTE_FOCUS_EVENT = SUMMERNOTE_PREFIX + "focus";
 
-    /**
-     * The {@link SummernoteBlurEvent} name
-     */
-    String SUMMERNOTE_BLUR_EVENT = SUMMERNOTE_PREFIX + "blur";
+  /**
+   * The {@link SummernoteBlurEvent} name
+   */
+  String SUMMERNOTE_BLUR_EVENT = SUMMERNOTE_PREFIX + "blur";
 
-    /**
-     * The {@link SummernoteKeyUpEvent} name
-     */
-    String SUMMERNOTE_KEYUP_EVENT = SUMMERNOTE_PREFIX + "keyup";
+  /**
+   * The {@link SummernoteKeyUpEvent} name
+   */
+  String SUMMERNOTE_KEYUP_EVENT = SUMMERNOTE_PREFIX + "keyup";
 
-    /**
-     * The {@link SummernoteKeyDownEvent} name
-     */
-    String SUMMERNOTE_KEYDOWN_EVENT = SUMMERNOTE_PREFIX + "keydown";
+  /**
+   * The {@link SummernoteKeyDownEvent} name
+   */
+  String SUMMERNOTE_KEYDOWN_EVENT = SUMMERNOTE_PREFIX + "keydown";
 
-    /**
-     * The {@link SummernotePasteEvent} name
-     */
-    String SUMMERNOTE_PASTE_EVENT = SUMMERNOTE_PREFIX + "paste";
+  /**
+   * The {@link SummernotePasteEvent} name
+   */
+  String SUMMERNOTE_PASTE_EVENT = SUMMERNOTE_PREFIX + "paste";
 
-    /**
-     * The {@link SummernoteImageUploadEvent} name
-     */
-    String SUMMERNOTE_IMAGE_UPLOAD_EVENT = SUMMERNOTE_PREFIX + "image.upload";
+  /**
+   * The {@link SummernoteImageUploadEvent} name
+   */
+  String SUMMERNOTE_IMAGE_UPLOAD_EVENT = SUMMERNOTE_PREFIX + "image.upload";
 
-    /**
-     * The {@link SummernoteChangeEvent} name
-     */
-    String SUMMERNOTE_CHANGE_EVENT = SUMMERNOTE_PREFIX + "change";
-
+  /**
+   * The {@link SummernoteChangeEvent} name
+   */
+  String SUMMERNOTE_CHANGE_EVENT = SUMMERNOTE_PREFIX + "change";
 }

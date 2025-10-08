@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,26 +46,26 @@ import org.gwtbootstrap3.client.ui.html.Div;
  */
 public class Well extends Div implements HasSize<WellSize> {
 
-    /**
-     * Creates a Well with the default Bootstrap styling
-     */
-    public Well() {
-        setStyleName(Styles.WELL);
-    }
+  /**
+   * Creates a Well with the default Bootstrap styling
+   */
+  public Well() {
+    setStyleName(Styles.WELL);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setSize(WellSize size) {
-        StyleHelper.addUniqueEnumStyleName(this, WellSize.class, size);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setSize(WellSize size) {
+    StyleHelper.addUniqueEnumStyleName(this, WellSize.class, size);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public WellSize getSize() {
-        return WellSize.fromStyleName(getStyleName());
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public WellSize getSize() {
+    return WellSize.fromStyleName(getStyleName());
+  }
 }

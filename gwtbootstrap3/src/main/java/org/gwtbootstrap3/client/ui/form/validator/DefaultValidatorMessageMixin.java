@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.form.validator;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,16 +20,15 @@ package org.gwtbootstrap3.client.ui.form.validator;
  * #L%
  */
 
-import java.util.MissingResourceException;
-
 import com.google.gwt.core.client.GWT;
+import java.util.MissingResourceException;
 
 /**
  * Default implementation of the validator message mixin. This can be replaced with your own version by using
  * a "replace-with" statment in the gwt module file.
- * 
+ * <p>
  * Example:
- * 
+ *
  * <pre>
  * {@code
  * <replace-with class="...CustomValidatorMessageMixin">
@@ -37,31 +36,34 @@ import com.google.gwt.core.client.GWT;
  * </replace-with>
  * }
  * </pre>
- * 
+ *
  * @author Steven Jardine
  */
 public class DefaultValidatorMessageMixin implements ValidatorMessageMixin {
 
-    protected ValidationMessages messages = GWT.create(ValidationMessages.class);
+  protected ValidationMessages messages = GWT.create(ValidationMessages.class);
 
-    /** {@inheritDoc} */
-    public String lookup(String key) {
-        try {
-            // Replace "." with "_" in the key.
-            return key == null ? null : messages.getString(key.replace(".", "_"));
-        } catch (MissingResourceException e) {
-            return null;
-        }
+  /**
+   * {@inheritDoc}
+   */
+  public String lookup(String key) {
+    try {
+      // Replace "." with "_" in the key.
+      return key == null ? null : messages.getString(key.replace(".", "_"));
+    } catch (MissingResourceException e) {
+      return null;
     }
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public String lookup(String key, Object[] msgValues) {
-        String msg = lookup(key);
-        if (msg != null) {
-            msg = MessageFormat.format(msg, msgValues);
-        }
-        return msg;
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String lookup(String key, Object[] msgValues) {
+    String msg = lookup(key);
+    if (msg != null) {
+      msg = MessageFormat.format(msg, msgValues);
     }
-
+    return msg;
+  }
 }

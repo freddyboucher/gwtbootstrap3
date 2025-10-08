@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd">
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd"><!--
   #%L
   GwtBootstrap3
   %%
@@ -19,9 +18,9 @@
   #L%
   -->
 <module>
-    <public path="resource">
-        <include name="css/*.css"/>
-        <include name="js/*.js"/>
-        <include name="fonts/*"/>
-    </public>
+  <public path="resource">
+    <include name="css/*.css"/>
+    <include name="js/*.js"/>
+    <include name="fonts/*"/>
+  </public>
 </module>

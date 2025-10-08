@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,45 +35,44 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
  */
 public class ListBox extends com.google.gwt.user.client.ui.ListBox implements HasId, HasSize<InputSize> {
 
-    private final IdMixin<ListBox> idMixin = new IdMixin<>(this);
+  private final IdMixin<ListBox> idMixin = new IdMixin<>(this);
 
-    /**
-     * Creates an empty list box in single selection mode.
-     */
-    public ListBox() {
-        setStyleName(Styles.FORM_CONTROL);
-    }
+  /**
+   * Creates an empty list box in single selection mode.
+   */
+  public ListBox() {
+    setStyleName(Styles.FORM_CONTROL);
+  }
 
-    /**
-     * Creates an empty list box.
-     *
-     * @param isMultipleSelect
-     *            specifies if multiple selection is enabled
-     * @deprecated use {@link #setMultipleSelect(boolean)} instead.
-     */
-    @Deprecated
-    public ListBox(boolean isMultipleSelect) {
-        this();
-        setMultipleSelect(isMultipleSelect);
-    }
+  /**
+   * Creates an empty list box.
+   *
+   * @param isMultipleSelect specifies if multiple selection is enabled
+   * @deprecated use {@link #setMultipleSelect(boolean)} instead.
+   */
+  @Deprecated
+  public ListBox(boolean isMultipleSelect) {
+    this();
+    setMultipleSelect(isMultipleSelect);
+  }
 
-    @Override
-    public void setId(String id) {
-        idMixin.setId(id);
-    }
+  @Override
+  public void setId(String id) {
+    idMixin.setId(id);
+  }
 
-    @Override
-    public String getId() {
-        return idMixin.getId();
-    }
+  @Override
+  public String getId() {
+    return idMixin.getId();
+  }
 
-    @Override
-    public void setSize(InputSize size) {
-        StyleHelper.addUniqueEnumStyleName(this, InputSize.class, size);
-    }
+  @Override
+  public void setSize(InputSize size) {
+    StyleHelper.addUniqueEnumStyleName(this, InputSize.class, size);
+  }
 
-    @Override
-    public InputSize getSize() {
-        return InputSize.fromStyleName(getStyleName());
-    }
+  @Override
+  public InputSize getSize() {
+    return InputSize.fromStyleName(getStyleName());
+  }
 }

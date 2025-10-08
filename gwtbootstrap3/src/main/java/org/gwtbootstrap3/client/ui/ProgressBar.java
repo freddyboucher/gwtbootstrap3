@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.dom.client.Style;
 import org.gwtbootstrap3.client.ui.base.HasType;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.ProgressBarType;
@@ -27,50 +28,48 @@ import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.html.Div;
 import org.gwtbootstrap3.client.ui.html.Span;
 
-import com.google.gwt.dom.client.Style;
-
 /**
  * @author Joshua Godi
  */
 public class ProgressBar extends Div implements HasType<ProgressBarType> {
-    private final Span span = new Span();
+  private final Span span = new Span();
 
-    public ProgressBar() {
-        // Default style
-        setStyleName(Styles.PROGRESS_BAR);
+  public ProgressBar() {
+    // Default style
+    setStyleName(Styles.PROGRESS_BAR);
 
-        // Progress text
-        add(span);
-    }
+    // Progress text
+    add(span);
+  }
 
-    public void setSrOnly(boolean srOnly) {
-        span.setStyleName(Styles.SR_ONLY, srOnly);
-    }
+  public void setSrOnly(boolean srOnly) {
+    span.setStyleName(Styles.SR_ONLY, srOnly);
+  }
 
-    public void setText(String text) {
-        span.setText(text);
-    }
+  public void setText(String text) {
+    span.setText(text);
+  }
 
-    public String getText() {
-        return span.getText();
-    }
+  public String getText() {
+    return span.getText();
+  }
 
-    public void setPercent(double percent) {
-        getElement().getStyle().setWidth(percent, Style.Unit.PCT);
-    }
+  public void setPercent(double percent) {
+    getElement().getStyle().setWidth(percent, Style.Unit.PCT);
+  }
 
-    public double getPercent() {
-        String width = getElement().getStyle().getWidth();
-        return width == null ? 0 : Double.parseDouble(width.substring(0, width.indexOf("%")));
-    }
+  public double getPercent() {
+    String width = getElement().getStyle().getWidth();
+    return width == null ? 0 : Double.parseDouble(width.substring(0, width.indexOf("%")));
+  }
 
-    @Override
-    public void setType(ProgressBarType type) {
-        StyleHelper.addUniqueEnumStyleName(this, ProgressBarType.class, type);
-    }
+  @Override
+  public void setType(ProgressBarType type) {
+    StyleHelper.addUniqueEnumStyleName(this, ProgressBarType.class, type);
+  }
 
-    @Override
-    public ProgressBarType getType() {
-        return ProgressBarType.fromStyleName(getStyleName());
-    }
+  @Override
+  public ProgressBarType getType() {
+    return ProgressBarType.fromStyleName(getStyleName());
+  }
 }

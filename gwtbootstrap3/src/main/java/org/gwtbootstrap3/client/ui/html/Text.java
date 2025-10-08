@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.html;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,38 +42,38 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class Text extends Widget implements HasText {
 
-    private final com.google.gwt.dom.client.Text text;
+  private final com.google.gwt.dom.client.Text text;
 
-    /**
-     * Creates the default text node with empty text
-     */
-    public Text() {
-        this("");
-    }
+  /**
+   * Creates the default text node with empty text
+   */
+  public Text() {
+    this("");
+  }
 
-    /**
-     * Creates a text node with the desired text
-     *
-     * @param txt String text to display
-     */
-    public Text(String txt) {
-        text = Document.get().createTextNode(txt);
-        setElement(text.<Element>cast());
-    }
+  /**
+   * Creates a text node with the desired text
+   *
+   * @param txt String text to display
+   */
+  public Text(String txt) {
+    text = Document.get().createTextNode(txt);
+    setElement(text.<Element>cast());
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setText(String txt) {
-        text.setData(txt);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setText(String txt) {
+    text.setData(txt);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getText() {
-        return text.getData();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getText() {
+    return text.getData();
+  }
 }

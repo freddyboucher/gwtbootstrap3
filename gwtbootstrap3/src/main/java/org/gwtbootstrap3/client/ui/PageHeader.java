@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,12 +20,11 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.google.gwt.user.client.ui.HasText;
 import org.gwtbootstrap3.client.ui.base.HasSubText;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.html.Div;
-
-import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-import com.google.gwt.user.client.ui.HasText;
 
 /**
  * Page header with optional subtext
@@ -43,50 +42,50 @@ import com.google.gwt.user.client.ui.HasText;
  */
 public class PageHeader extends Div implements HasText, HasSubText {
 
-    private String heading;
-    private String subText;
+  private String heading;
+  private String subText;
 
-    public PageHeader() {
-        setStyleName(Styles.PAGE_HEADER);
+  public PageHeader() {
+    setStyleName(Styles.PAGE_HEADER);
+  }
+
+  @Override
+  public void setText(String text) {
+    heading = text;
+    render();
+  }
+
+  @Override
+  public String getText() {
+    return heading;
+  }
+
+  @Override
+  public void setSubText(String subText) {
+    this.subText = subText;
+    render();
+  }
+
+  @Override
+  public String getSubText() {
+    return subText;
+  }
+
+  private void render() {
+    SafeHtmlBuilder builder = new SafeHtmlBuilder();
+
+    builder.appendHtmlConstant("<h1>");
+    builder.appendEscaped(heading == null ? "" : heading);
+
+    if (subText != null && !subText.isEmpty()) {
+      builder.appendEscaped(" ");
+      builder.appendHtmlConstant("<small>");
+      builder.appendEscaped(subText);
+      builder.appendHtmlConstant("</small>");
     }
 
-    @Override
-    public void setText(String text) {
-        heading = text;
-        render();
-    }
+    builder.appendHtmlConstant("</h1>");
 
-    @Override
-    public String getText() {
-        return heading;
-    }
-
-    @Override
-    public void setSubText(String subText) {
-        this.subText = subText;
-        render();
-    }
-
-    @Override
-    public String getSubText() {
-        return subText;
-    }
-
-    private void render() {
-        SafeHtmlBuilder builder = new SafeHtmlBuilder();
-
-        builder.appendHtmlConstant("<h1>");
-        builder.appendEscaped(heading == null ? "" : heading);
-
-        if (subText != null && !subText.isEmpty()) {
-            builder.appendEscaped(" ");
-            builder.appendHtmlConstant("<small>");
-            builder.appendEscaped(subText);
-            builder.appendHtmlConstant("</small>");
-        }
-
-        builder.appendHtmlConstant("</h1>");
-
-        getElement().setInnerSafeHtml(builder.toSafeHtml());
-    }
+    getElement().setInnerSafeHtml(builder.toSafeHtml());
+  }
 }

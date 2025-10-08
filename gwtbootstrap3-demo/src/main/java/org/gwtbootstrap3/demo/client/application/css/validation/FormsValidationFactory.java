@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application.css.validation;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,27 +20,26 @@ package org.gwtbootstrap3.demo.client.application.css.validation;
  * #L%
  */
 
-import javax.validation.Validator;
-
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.validation.client.AbstractGwtValidatorFactory;
 import com.google.gwt.validation.client.GwtValidation;
 import com.google.gwt.validation.client.impl.AbstractGwtValidator;
+import javax.validation.Validator;
 
 public class FormsValidationFactory extends AbstractGwtValidatorFactory {
 
-    /**
-     * The Interface GwtValidator.
-     */
-    @GwtValidation(Credentials.class)
-    public interface GwtValidator extends Validator {
-    }
+  /**
+   * The Interface GwtValidator.
+   */
+  @GwtValidation(Credentials.class)
+  public interface GwtValidator extends Validator {
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public AbstractGwtValidator createValidator() {
-        return GWT.create(GwtValidator.class);
-    }
-
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public AbstractGwtValidator createValidator() {
+    return GWT.create(GwtValidator.class);
+  }
 }

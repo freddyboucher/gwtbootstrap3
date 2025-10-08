@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application.components;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,35 +34,35 @@ import org.gwtbootstrap3.client.ui.html.Paragraph;
  */
 public class ButtonGroupView extends ViewImpl implements ButtonGroupPresenter.MyView {
 
-    interface Binder extends UiBinder<Widget, ButtonGroupView> {
-    }
+  interface Binder extends UiBinder<Widget, ButtonGroupView> {
+  }
 
-    @UiField
-    RadioButton button1;
+  @UiField
+  RadioButton button1;
 
-    @UiField
-    RadioButton button2;
+  @UiField
+  RadioButton button2;
 
-    @UiField
-    RadioButton button3;
+  @UiField
+  RadioButton button3;
 
-    @UiField
-    FlowPanel log;
+  @UiField
+  FlowPanel log;
 
-    @Inject
-    ButtonGroupView(Binder uiBinder) {
-        initWidget(uiBinder.createAndBindUi(this));
+  @Inject
+  ButtonGroupView(Binder uiBinder) {
+    initWidget(uiBinder.createAndBindUi(this));
 
-        button1.addValueChangeHandler(event -> log("Value of button1 changed to: " + event.getValue().toString()));
+    button1.addValueChangeHandler(event -> log("Value of button1 changed to: " + event.getValue().toString()));
 
-        button2.addValueChangeHandler(event -> log("Value of button2 changed to: " + event.getValue().toString()));
+    button2.addValueChangeHandler(event -> log("Value of button2 changed to: " + event.getValue().toString()));
 
-        button3.addValueChangeHandler(event -> log("Value of button3 changed to: " + event.getValue().toString()));
-    }
+    button3.addValueChangeHandler(event -> log("Value of button3 changed to: " + event.getValue().toString()));
+  }
 
-    private void log(String msg) {
-        Paragraph p = new Paragraph();
-        p.setText(msg);
-        log.add(p);
-    }
+  private void log(String msg) {
+    Paragraph p = new Paragraph();
+    p.setText(msg);
+    log.add(p);
+  }
 }

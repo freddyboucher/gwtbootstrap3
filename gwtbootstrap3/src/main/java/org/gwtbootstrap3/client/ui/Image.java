@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,6 +20,8 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.safehtml.shared.SafeUri;
 import org.gwtbootstrap3.client.ui.base.HasPull;
 import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
 import org.gwtbootstrap3.client.ui.base.HasType;
@@ -30,81 +32,77 @@ import org.gwtbootstrap3.client.ui.constants.ImageType;
 import org.gwtbootstrap3.client.ui.constants.Pull;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
-import com.google.gwt.resources.client.ImageResource;
-import com.google.gwt.safehtml.shared.SafeUri;
-
 /**
  * @author Joshua Godi
  */
-public class Image extends com.google.gwt.user.client.ui.Image implements HasType<ImageType>, HasResponsiveness,
-        HasPull {
+public class Image extends com.google.gwt.user.client.ui.Image implements HasType<ImageType>, HasResponsiveness, HasPull {
 
-    private final PullMixin<Image> pullMixin = new PullMixin<>(this);
+  private final PullMixin<Image> pullMixin = new PullMixin<>(this);
 
-    public Image() {
-        setStyleName("");
-    }
+  public Image() {
+    setStyleName("");
+  }
 
-    public Image(ImageResource resource) {
-        super(resource);
-        setStyleName("");
-    }
+  public Image(ImageResource resource) {
+    super(resource);
+    setStyleName("");
+  }
 
-    public Image(SafeUri url, int left, int top, int width, int height) {
-        super(url, left, top, width, height);
-        setStyleName("");
-    }
+  public Image(SafeUri url, int left, int top, int width, int height) {
+    super(url, left, top, width, height);
+    setStyleName("");
+  }
 
-    public Image(SafeUri url) {
-        super(url);
-        setStyleName("");
-    }
+  public Image(SafeUri url) {
+    super(url);
+    setStyleName("");
+  }
 
-    public Image(String url, int left, int top, int width, int height) {
-        super(url, left, top, width, height);
-        setStyleName("");
-    }
+  public Image(String url, int left, int top, int width, int height) {
+    super(url, left, top, width, height);
+    setStyleName("");
+  }
 
-    public Image(String url) {
-        super(url);
-        setStyleName("");
-    }
+  public Image(String url) {
+    super(url);
+    setStyleName("");
+  }
 
-    @Override
-    public void setType(ImageType type) {
-        StyleHelper.addEnumStyleName(this, type);
-    }
+  @Override
+  public void setType(ImageType type) {
+    StyleHelper.addEnumStyleName(this, type);
+  }
 
-    @Override
-    public ImageType getType() {
-        return ImageType.fromStyleName(getStyleName());
-    }
+  @Override
+  public ImageType getType() {
+    return ImageType.fromStyleName(getStyleName());
+  }
 
-    @Override
-    public void setVisibleOn(DeviceSize deviceSize) {
-        StyleHelper.setVisibleOn(this, deviceSize);
-    }
+  @Override
+  public void setVisibleOn(DeviceSize deviceSize) {
+    StyleHelper.setVisibleOn(this, deviceSize);
+  }
 
-    @Override
-    public void setHiddenOn(DeviceSize deviceSize) {
-        StyleHelper.setHiddenOn(this, deviceSize);
-    }
+  @Override
+  public void setHiddenOn(DeviceSize deviceSize) {
+    StyleHelper.setHiddenOn(this, deviceSize);
+  }
 
-    public void setResponsive(boolean responsive) {
-        StyleHelper.toggleStyleName(this, responsive, Styles.IMG_RESPONSIVE);
-    }
+  public void setResponsive(boolean responsive) {
+    StyleHelper.toggleStyleName(this, responsive, Styles.IMG_RESPONSIVE);
+  }
 
-    public void setAsMediaObject(boolean asMediaObject) {
-        StyleHelper.toggleStyleName(this, asMediaObject, Styles.MEDIA_OBJECT);
-    }
+  public void setAsMediaObject(boolean asMediaObject) {
+    StyleHelper.toggleStyleName(this, asMediaObject, Styles.MEDIA_OBJECT);
+  }
 
-    @Override
-    public void setPull(Pull pull) {
-        pullMixin.setPull(pull);
-    }
+  @Override
+  public void setPull(Pull pull) {
+    pullMixin.setPull(pull);
+  }
 
-    @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
-    }
+  @Override
+  public Pull getPull() {
+    return pullMixin.getPull();
+  }
 }

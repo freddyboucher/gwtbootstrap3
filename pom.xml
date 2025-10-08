@@ -1,124 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.gwtbootstrap3</groupId>
-    <artifactId>gwtbootstrap3-parent</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0.8-SNAPSHOT</version>
-    <name>GwtBootstrap3 Parent</name>
-    <description>GWT wrapper for the Bootstrap front-end framework</description>
+  <groupId>org.gwtbootstrap3</groupId>
+  <artifactId>gwtbootstrap3-parent</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0.8-SNAPSHOT</version>
+  <name>GwtBootstrap3 Parent</name>
+  <description>GWT wrapper for the Bootstrap front-end framework</description>
 
-    <prerequisites>
-        <maven>3.2.1</maven>
-    </prerequisites>
+  <prerequisites>
+    <maven>3.2.1</maven>
+  </prerequisites>
 
-    <modules>
-        <module>gwtbootstrap3</module>
-        <module>gwtbootstrap3-extras</module>
-        <module>gwtbootstrap3-demo</module>
-        <module>gwtbootstrap3-seed</module>
-    </modules>
+  <modules>
+    <module>gwtbootstrap3</module>
+    <module>gwtbootstrap3-extras</module>
+    <module>gwtbootstrap3-demo</module>
+    <module>gwtbootstrap3-seed</module>
+  </modules>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  <properties>
+    <java.version>1.8</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <gwt-maven-plugin.version>2.10.0</gwt-maven-plugin.version>
-        <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
-        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+    <gwt-maven-plugin.version>2.10.0</gwt-maven-plugin.version>
+    <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
+    <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
 
-        <gwt.version>2.12.2</gwt.version>
-        <junit.version>4.12</junit.version>
-    </properties>
+    <gwt.version>2.12.2</gwt.version>
+    <junit.version>4.12</junit.version>
+  </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.gwtproject</groupId>
-                <artifactId>gwt-user</artifactId>
-                <version>${gwt.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.gwtproject</groupId>
-                <artifactId>gwt-dev</artifactId>
-                <version>${gwt.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>net.sourceforge.htmlunit</groupId>
-                <artifactId>htmlunit</artifactId>
-                <version>2.70.0</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.gwtproject</groupId>
+        <artifactId>gwt-user</artifactId>
+        <version>${gwt.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.gwtproject</groupId>
+        <artifactId>gwt-dev</artifactId>
+        <version>${gwt.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>net.sourceforge.htmlunit</groupId>
+        <artifactId>htmlunit</artifactId>
+        <version>2.70.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${maven-checkstyle-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <configLocation>checkstyle.xml</configLocation>
-                            <violationSeverity>warning</violationSeverity>
-                        </configuration>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${maven-checkstyle-plugin.version}</version>
+        <executions>
+          <execution>
+            <configuration>
+              <configLocation>checkstyle.xml</configLocation>
+              <violationSeverity>warning</violationSeverity>
+            </configuration>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
 
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.13.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>gwt-maven-plugin</artifactId>
-                    <version>${gwt-maven-plugin.version}</version>
-                    <configuration>
-                        <sourceLevel>1.8</sourceLevel>
-                        <extraJvmArgs>-Xmx1G</extraJvmArgs>
-                        <failOnError>true</failOnError>
-                    </configuration>
-                    <inherited>true</inherited>
-                </plugin>
-                <plugin>
-                    <groupId>net.ltgt.gwt.maven</groupId>
-                    <artifactId>gwt-maven-plugin</artifactId>
-                    <version>1.1.0</version>
-                    <inherited>true</inherited>
-                    <configuration>
-                        <sourceLevel>1.8</sourceLevel>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.13.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>gwt-maven-plugin</artifactId>
+          <version>${gwt-maven-plugin.version}</version>
+          <configuration>
+            <sourceLevel>1.8</sourceLevel>
+            <extraJvmArgs>-Xmx1G</extraJvmArgs>
+            <failOnError>true</failOnError>
+          </configuration>
+          <inherited>true</inherited>
+        </plugin>
+        <plugin>
+          <groupId>net.ltgt.gwt.maven</groupId>
+          <artifactId>gwt-maven-plugin</artifactId>
+          <version>1.1.0</version>
+          <inherited>true</inherited>
+          <configuration>
+            <sourceLevel>1.8</sourceLevel>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
-    <distributionManagement>
-        <repository>
-            <id>deployment</id>
-            <name>SBE Releases</name>
-            <url>http://10.159.1.36:8081/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>deployment</id>
-            <name>SBE Releases</name>
-            <url>http://10.159.1.36:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
+  <distributionManagement>
+    <repository>
+      <id>deployment</id>
+      <name>SBE Releases</name>
+      <url>http://10.159.1.36:8081/nexus/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>deployment</id>
+      <name>SBE Releases</name>
+      <url>http://10.159.1.36:8081/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>

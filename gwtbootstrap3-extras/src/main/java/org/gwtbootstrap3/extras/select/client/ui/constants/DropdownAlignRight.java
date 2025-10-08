@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.select.client.ui.constants;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,36 +27,35 @@ package org.gwtbootstrap3.extras.select.client.ui.constants;
  */
 public enum DropdownAlignRight {
 
-    /**
-     * Align to right if the drop-down menu is too large,
-     * otherwise align to left
-     */
-    AUTO("auto"),
+  /**
+   * Align to right if the drop-down menu is too large,
+   * otherwise align to left
+   */
+  AUTO("auto"),
 
-    /**
-     * Always align to right
-     */
-    TRUE("true"),
+  /**
+   * Always align to right
+   */
+  TRUE("true"),
 
-    /**
-     * Always align to left
-     */
-    FALSE("false"),
-    ;
+  /**
+   * Always align to left
+   */
+  FALSE("false"),
+  ;
 
-    private String value;
+  private String value;
 
-    DropdownAlignRight(String size) {
-        value = size;
-    }
+  DropdownAlignRight(String size) {
+    value = size;
+  }
 
-    /**
-     * Returns the value of the drop-down menu right alignment.
-     *
-     * @return
-     */
-    public String getValue() {
-        return value;
-    }
-
+  /**
+   * Returns the value of the drop-down menu right alignment.
+   *
+   * @return
+   */
+  public String getValue() {
+    return value;
+  }
 }

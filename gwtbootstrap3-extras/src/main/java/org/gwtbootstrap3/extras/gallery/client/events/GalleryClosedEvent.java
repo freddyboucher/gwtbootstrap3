@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.gallery.client.events;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,7 +19,6 @@ package org.gwtbootstrap3.extras.gallery.client.events;
  * limitations under the License.
  * #L%
  */
-
 
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.user.client.Event;
@@ -32,40 +31,40 @@ import org.gwtbootstrap3.extras.gallery.client.ui.Gallery;
  */
 public class GalleryClosedEvent extends GwtEvent<GalleryClosedHandler> {
 
-    public static void fire(Gallery source, Event nativeEvent) {
-        GalleryClosedEvent event = new GalleryClosedEvent(source, nativeEvent);
-        source.fireEvent(event);
-    }
+  public static void fire(Gallery source, Event nativeEvent) {
+    GalleryClosedEvent event = new GalleryClosedEvent(source, nativeEvent);
+    source.fireEvent(event);
+  }
 
-    private static final Type<GalleryClosedHandler> TYPE = new Type<>();
+  private static final Type<GalleryClosedHandler> TYPE = new Type<>();
 
-    private final Gallery gallery;
-    private final Event nativeEvent;
+  private final Gallery gallery;
+  private final Event nativeEvent;
 
-    public static Type<GalleryClosedHandler> getType() {
-        return TYPE;
-    }
+  public static Type<GalleryClosedHandler> getType() {
+    return TYPE;
+  }
 
-    private GalleryClosedEvent(Gallery gallery, Event nativeEvent) {
-        this.gallery = gallery;
-        this.nativeEvent = nativeEvent;
-    }
+  private GalleryClosedEvent(Gallery gallery, Event nativeEvent) {
+    this.gallery = gallery;
+    this.nativeEvent = nativeEvent;
+  }
 
-    public Gallery getGallery() {
-        return gallery;
-    }
+  public Gallery getGallery() {
+    return gallery;
+  }
 
-    public Event getNativeEvent() {
-        return nativeEvent;
-    }
+  public Event getNativeEvent() {
+    return nativeEvent;
+  }
 
-    @Override
-    public Type<GalleryClosedHandler> getAssociatedType() {
-        return TYPE;
-    }
+  @Override
+  public Type<GalleryClosedHandler> getAssociatedType() {
+    return TYPE;
+  }
 
-    @Override
-    protected void dispatch(GalleryClosedHandler handler) {
-        handler.onClosed(this);
-    }
+  @Override
+  protected void dispatch(GalleryClosedHandler handler) {
+    handler.onClosed(this);
+  }
 }

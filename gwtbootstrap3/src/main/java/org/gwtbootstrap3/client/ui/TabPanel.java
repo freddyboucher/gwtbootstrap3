@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,28 +48,28 @@ import org.gwtbootstrap3.client.ui.html.Div;
  */
 public class TabPanel extends Div implements HasTabPosition {
 
-    /**
-     * Creates the widget with the default styles
-     */
-    public TabPanel() {
-        setStyleName(Styles.TABBABLE);
-    }
+  /**
+   * Creates the widget with the default styles
+   */
+  public TabPanel() {
+    setStyleName(Styles.TABBABLE);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setTabPosition(TabPosition tabPosition) {
-        // When setting TabPosition that isn't TOP, make sure to inherit the
-        // PositionedTabs module from Extra's in order to get the CSS injected!
-        StyleHelper.addUniqueEnumStyleName(this, TabPosition.class, tabPosition);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setTabPosition(TabPosition tabPosition) {
+    // When setting TabPosition that isn't TOP, make sure to inherit the
+    // PositionedTabs module from Extra's in order to get the CSS injected!
+    StyleHelper.addUniqueEnumStyleName(this, TabPosition.class, tabPosition);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public TabPosition getTabPosition() {
-        return TabPosition.fromStyleName(getStyleName());
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public TabPosition getTabPosition() {
+    return TabPosition.fromStyleName(getStyleName());
+  }
 }

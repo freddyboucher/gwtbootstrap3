@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.gallery.client;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,8 +28,8 @@ import com.google.gwt.resources.client.ClientBundle;
  */
 public interface GalleryClientBundle extends ClientBundle {
 
-    GalleryClientBundle INSTANCE = GWT.create(GalleryClientBundle.class);
+  GalleryClientBundle INSTANCE = GWT.create(GalleryClientBundle.class);
 
-    String BLUEIMP_JS = "js/jquery.blueimp-gallery-2.18.2.min.cache.js";
-    String GALLERY_JS = "js/bootstrap-image-gallery-3.4.2.min.cache.js";
+  String BLUEIMP_JS = "js/jquery.blueimp-gallery-2.18.2.min.cache.js";
+  String GALLERY_JS = "js/bootstrap-image-gallery-3.4.2.min.cache.js";
 }

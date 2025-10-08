@@ -9,9 +9,9 @@ package org.gwtbootstrap3.demo.client.application.javascript;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,92 +37,92 @@ import org.gwtbootstrap3.client.ui.html.Span;
  * @author Joshua Godi
  */
 public class ModalView extends ViewImpl implements ModalPresenter.MyView {
-    @UiField
-    Modal eventModal;
-    @UiField
-    Button clearLogButton;
-    @UiField
-    FlowPanel logRow;
-    @UiField
-    Button createModal;
+  @UiField
+  Modal eventModal;
+  @UiField
+  Button clearLogButton;
+  @UiField
+  FlowPanel logRow;
+  @UiField
+  Button createModal;
 
-    interface Binder extends UiBinder<Widget, ModalView> {
-    }
+  interface Binder extends UiBinder<Widget, ModalView> {
+  }
 
-    @Inject
-    ModalView(Binder uiBinder) {
-        initWidget(uiBinder.createAndBindUi(this));
+  @Inject
+  ModalView(Binder uiBinder) {
+    initWidget(uiBinder.createAndBindUi(this));
 
-        clearLogButton.addClickHandler(event -> logRow.clear());
+    clearLogButton.addClickHandler(event -> logRow.clear());
 
-        eventModal.addHideHandler(evt -> {
-            Paragraph logEntry = new Paragraph();
-            logEntry.setText("Hide event fired! (UiBinder Modal)");
-            logRow.add(logEntry);
-        });
+    eventModal.addHideHandler(evt -> {
+      Paragraph logEntry = new Paragraph();
+      logEntry.setText("Hide event fired! (UiBinder Modal)");
+      logRow.add(logEntry);
+    });
 
-        eventModal.addHiddenHandler(evt -> {
-            Paragraph logEntry = new Paragraph();
-            logEntry.setText("Hidden event fired! (UiBinder Modal)");
-            logRow.add(logEntry);
-        });
+    eventModal.addHiddenHandler(evt -> {
+      Paragraph logEntry = new Paragraph();
+      logEntry.setText("Hidden event fired! (UiBinder Modal)");
+      logRow.add(logEntry);
+    });
 
-        eventModal.addShowHandler(evt -> {
-            Paragraph logEntry = new Paragraph();
-            logEntry.setText("Show event fired! (UiBinder Modal)");
-            logRow.add(logEntry);
-        });
+    eventModal.addShowHandler(evt -> {
+      Paragraph logEntry = new Paragraph();
+      logEntry.setText("Show event fired! (UiBinder Modal)");
+      logRow.add(logEntry);
+    });
 
-        eventModal.addShownHandler(evt -> {
-            Paragraph logEntry = new Paragraph();
-            logEntry.setText("Shown event fired! (UiBinder Modal)");
-            logRow.add(logEntry);
-        });
+    eventModal.addShownHandler(evt -> {
+      Paragraph logEntry = new Paragraph();
+      logEntry.setText("Shown event fired! (UiBinder Modal)");
+      logRow.add(logEntry);
+    });
 
-        createModal.addClickHandler(event -> {
-            Modal modal = new Modal();
-            modal.setTitle("Java Created Modal");
-            modal.setClosable(true);
-            modal.setRemoveOnHide(true);
+    createModal.addClickHandler(event -> {
+      Modal modal = new Modal();
+      modal.setTitle("Java Created Modal");
+      modal.setClosable(true);
+      modal.setRemoveOnHide(true);
 
-            modal.addHideHandler(evt -> {
-                Paragraph logEntry = new Paragraph();
-                logEntry.setText("Hide event fired! (Java Created Modal)");
-                logRow.add(logEntry);
-            });
+      modal.addHideHandler(evt -> {
+        Paragraph logEntry = new Paragraph();
+        logEntry.setText("Hide event fired! (Java Created Modal)");
+        logRow.add(logEntry);
+      });
 
-            modal.addHiddenHandler(evt -> {
-                Paragraph logEntry = new Paragraph();
-                logEntry.setText("Hidden event fired! (Java Created Modal)");
-                logRow.add(logEntry);
-            });
+      modal.addHiddenHandler(evt -> {
+        Paragraph logEntry = new Paragraph();
+        logEntry.setText("Hidden event fired! (Java Created Modal)");
+        logRow.add(logEntry);
+      });
 
-            modal.addShowHandler(evt -> {
-                Paragraph logEntry = new Paragraph();
-                logEntry.setText("Show event fired! (Java Created Modal)");
-                logRow.add(logEntry);
-            });
+      modal.addShowHandler(evt -> {
+        Paragraph logEntry = new Paragraph();
+        logEntry.setText("Show event fired! (Java Created Modal)");
+        logRow.add(logEntry);
+      });
 
-            modal.addShownHandler(evt -> {
-                Paragraph logEntry = new Paragraph();
-                logEntry.setText("Shown event fired! (Java Created Modal)");
-                logRow.add(logEntry);
-            });
+      modal.addShownHandler(evt -> {
+        Paragraph logEntry = new Paragraph();
+        logEntry.setText("Shown event fired! (Java Created Modal)");
+        logRow.add(logEntry);
+      });
 
-            ModalBody modalBody = new ModalBody();
-            modalBody.add(new Span("Create in Java Code!"));
+      ModalBody modalBody = new ModalBody();
+      modalBody.add(new Span("Create in Java Code!"));
 
-            ModalFooter modalFooter = new ModalFooter();
-            modalFooter.add(new Button("Click ME!", event1 -> {
-                Paragraph logEntry = new Paragraph();
-                logEntry.setText("Click Event from Modal! (Java Created Modal)");
-                logRow.add(logEntry);
-            }));
+      ModalFooter modalFooter = new ModalFooter();
+      modalFooter.add(new Button("Click ME!", event1 -> {
+        Paragraph logEntry = new Paragraph();
+        logEntry.setText("Click Event from Modal! (Java Created Modal)");
+        logRow.add(logEntry);
+      }));
 
-            modal.add(modalBody);
-            modal.add(modalFooter);
+      modal.add(modalBody);
+      modal.add(modalFooter);
 
-            modal.show();
-        });
-    }
+      modal.show();
+    });
+  }
 }

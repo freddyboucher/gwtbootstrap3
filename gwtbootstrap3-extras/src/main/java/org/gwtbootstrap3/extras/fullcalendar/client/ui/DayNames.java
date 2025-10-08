@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.fullcalendar.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,60 +30,62 @@ import com.google.gwt.i18n.client.LocaleInfo;
  * @see http://arshaw.com/fullcalendar/docs/text/dayNamesShort/
  */
 public class DayNames implements IsJavaScriptObject {
-    private JavaScriptObject names;
+  private JavaScriptObject names;
 
-    public DayNames() {
-        newInstance();
+  public DayNames() {
+    newInstance();
+  }
+
+  private native void newInstance() /*-{
+    //default vals...
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.DayNames::names = {};
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.DayNames::names.dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
+      'Thursday', 'Friday', 'Saturday'];
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.DayNames::names.dayNamesShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu',
+      'Fri', 'Sat'];
+  }-*/;
+
+  public void localize() {
+    localized(LocaleInfo.getCurrentLocale().getDateTimeFormatInfo().weekdaysFull(),
+        LocaleInfo.getCurrentLocale().getDateTimeFormatInfo().weekdaysShort());
+  }
+
+  /**
+   * pass in localized names directly
+   *
+   * @param longNames
+   * @param shortNames
+   */
+  public void localized(String[] longNames, String[] shortNames) {
+    assert longNames != null && longNames.length == 7;
+    assert shortNames != null && shortNames.length == 7;
+    JsArrayString longOnes = (JsArrayString) JsArrayString.createArray();
+    for (String name : longNames) {
+      longOnes.push(name);
     }
 
-    private native void newInstance() /*-{
-        //default vals...
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.DayNames::names = {};
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.DayNames::names.dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.DayNames::names.dayNamesShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    }-*/;
-
-    public void localize() {
-        localized(LocaleInfo.getCurrentLocale().getDateTimeFormatInfo().weekdaysFull(),
-                LocaleInfo.getCurrentLocale().getDateTimeFormatInfo().weekdaysShort());
+    JsArrayString shortOnes = (JsArrayString) JsArrayString.createArray();
+    for (String name : shortNames) {
+      shortOnes.push(name);
     }
+    localized(longOnes, shortOnes);
+  }
 
-    /**
-     * pass in localized names directly
-     *
-     * @param longNames
-     * @param shortNames
-     */
-    public void localized(String[] longNames, String[] shortNames) {
-        assert longNames != null && longNames.length == 7;
-        assert shortNames != null && shortNames.length == 7;
-        JsArrayString longOnes = (JsArrayString) JsArrayString.createArray();
-        for (String name : longNames) {
-            longOnes.push(name);
-        }
+  /**
+   * pass in localized names directly
+   *
+   * @param longNames
+   * @param shortNames
+   */
+  public native void localized(JsArrayString longNames, JsArrayString shortNames) /*-{
+    var theInstance = this;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.DayNames::names.dayNames = longNames;
+    theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.DayNames::names.dayNamesShort = shortNames;
+  }-*/;
 
-        JsArrayString shortOnes = (JsArrayString) JsArrayString.createArray();
-        for (String name : shortNames) {
-            shortOnes.push(name);
-        }
-        localized(longOnes, shortOnes);
-    }
-
-    /**
-     * pass in localized names directly
-     *
-     * @param longNames
-     * @param shortNames
-     */
-    public native void localized(JsArrayString longNames, JsArrayString shortNames) /*-{
-        var theInstance = this;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.DayNames::names.dayNames = longNames;
-        theInstance.@org.gwtbootstrap3.extras.fullcalendar.client.ui.DayNames::names.dayNamesShort = shortNames;
-    }-*/;
-
-    @Override
-    public JavaScriptObject toJavaScript() {
-        return names;
-    }
+  @Override
+  public JavaScriptObject toJavaScript() {
+    return names;
+  }
 }

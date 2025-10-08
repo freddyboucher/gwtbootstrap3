@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.gwt;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,323 +20,322 @@ package org.gwtbootstrap3.client.ui.gwt;
  * #L%
  */
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.ProvidesKey;
 import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.DeviceSize;
 import org.gwtbootstrap3.client.ui.constants.TableType;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.resources.client.ImageResource;
-import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.view.client.ProvidesKey;
-
 /**
  * @author Joshua Godi
  */
 public class DataGrid<T> extends com.google.gwt.user.cellview.client.DataGrid<T> implements HasResponsiveness {
-    private static final int DEFAULT_PAGESIZE = 50;
-    private static Resources DEFAULT_RESOURCES;
+  private static final int DEFAULT_PAGESIZE = 50;
+  private static Resources DEFAULT_RESOURCES;
 
-    /**
-     * Constructs a table with a default page size of 50.
-     */
-    public DataGrid() {
-        this(DEFAULT_PAGESIZE);
+  /**
+   * Constructs a table with a default page size of 50.
+   */
+  public DataGrid() {
+    this(DEFAULT_PAGESIZE);
+  }
+
+  /**
+   * Constructs a table with the given page size.
+   *
+   * @param pageSize the page size
+   */
+  public DataGrid(int pageSize) {
+    this(pageSize, getDefaultResources());
+  }
+
+  /**
+   * Constructs a table with the given page size and the given
+   * {@link ProvidesKey key provider}.
+   *
+   * @param pageSize    the page size
+   * @param keyProvider an instance of ProvidesKey, or null if the record
+   *                    object should act as its own key
+   */
+  public DataGrid(int pageSize, ProvidesKey<T> keyProvider) {
+    super(pageSize, getDefaultResources(), keyProvider);
+    getTableBodyElement().getParentElement().addClassName(TableType.DEFAULT.getCssName());
+  }
+
+  /**
+   * Constructs a table with the given page size with the specified
+   * {@link Resources}.
+   *
+   * @param pageSize  the page size
+   * @param resources the resources to use for this widget
+   */
+  public DataGrid(int pageSize, DataGrid.Resources resources) {
+    super(pageSize, resources, null);
+    getTableBodyElement().getParentElement().addClassName(TableType.DEFAULT.getCssName());
+  }
+
+  /**
+   * Constructs a table with the given page size, the specified
+   * {@link Resources}, and the given key provider.
+   *
+   * @param pageSize         the page size
+   * @param resources        the resources to use for this widget
+   * @param keyProvider      an instance of ProvidesKey, or null if the record
+   *                         object should act as its own key
+   * @param loadingIndicator the widget to use as a loading indicator, or null
+   *                         to disable
+   */
+  public DataGrid(int pageSize, Resources resources, ProvidesKey<T> keyProvider, Widget loadingIndicator) {
+    super(pageSize, resources, keyProvider, loadingIndicator);
+    getTableBodyElement().getParentElement().addClassName(TableType.DEFAULT.getCssName());
+  }
+
+  /**
+   * Constructs a table with a default page size of 50, and the given
+   * {@link ProvidesKey key provider}.
+   *
+   * @param keyProvider an instance of ProvidesKey, or null if the record
+   *                    object should act as its own key
+   */
+  public DataGrid(ProvidesKey<T> keyProvider) {
+    this(DEFAULT_PAGESIZE, keyProvider);
+  }
+
+  private static DataGrid.Resources getDefaultResources() {
+    if (DEFAULT_RESOURCES == null) {
+      DataGrid.Resources dataGridResources = GWT.create(Resources.class);
+      DEFAULT_RESOURCES = new ResourcesAdapter(dataGridResources);
     }
+    return DEFAULT_RESOURCES;
+  }
 
-    /**
-     * Constructs a table with the given page size.
-     *
-     * @param pageSize the page size
-     */
-    public DataGrid(int pageSize) {
-        this(pageSize, getDefaultResources());
+  @Override
+  public void setVisibleOn(DeviceSize deviceSize) {
+    StyleHelper.setVisibleOn(this, deviceSize);
+  }
+
+  @Override
+  public void setHiddenOn(DeviceSize deviceSize) {
+    StyleHelper.setHiddenOn(this, deviceSize);
+  }
+
+  public void setStriped(boolean striped) {
+    if (striped) {
+      addToDataGrid(TableType.STRIPED);
+    } else {
+      removeFromDataGrid(TableType.STRIPED);
     }
+  }
 
-    /**
-     * Constructs a table with the given page size and the given
-     * {@link ProvidesKey key provider}.
-     *
-     * @param pageSize    the page size
-     * @param keyProvider an instance of ProvidesKey, or null if the record
-     *                    object should act as its own key
-     */
-    public DataGrid(int pageSize, ProvidesKey<T> keyProvider) {
-        super(pageSize, getDefaultResources(), keyProvider);
-        getTableBodyElement().getParentElement().addClassName(TableType.DEFAULT.getCssName());
+  public void setBordered(boolean bordered) {
+    if (bordered) {
+      addToDataGrid(TableType.BORDERED);
+    } else {
+      removeFromDataGrid(TableType.BORDERED);
     }
+  }
 
-    /**
-     * Constructs a table with the given page size with the specified
-     * {@link Resources}.
-     *
-     * @param pageSize  the page size
-     * @param resources the resources to use for this widget
-     */
-    public DataGrid(int pageSize, DataGrid.Resources resources) {
-        super(pageSize, resources, null);
-        getTableBodyElement().getParentElement().addClassName(TableType.DEFAULT.getCssName());
+  public void setCondensed(boolean condensed) {
+    if (condensed) {
+      addToDataGrid(TableType.CONDENSED);
+    } else {
+      removeFromDataGrid(TableType.CONDENSED);
     }
+  }
 
-    /**
-     * Constructs a table with the given page size, the specified
-     * {@link Resources}, and the given key provider.
-     *
-     * @param pageSize         the page size
-     * @param resources        the resources to use for this widget
-     * @param keyProvider      an instance of ProvidesKey, or null if the record
-     *                         object should act as its own key
-     * @param loadingIndicator the widget to use as a loading indicator, or null
-     *                         to disable
-     */
-    public DataGrid(int pageSize, Resources resources, ProvidesKey<T> keyProvider, Widget loadingIndicator) {
-        super(pageSize, resources, keyProvider, loadingIndicator);
-        getTableBodyElement().getParentElement().addClassName(TableType.DEFAULT.getCssName());
+  public void setHover(boolean hover) {
+    if (hover) {
+      addToDataGrid(TableType.HOVER);
+    } else {
+      removeFromDataGrid(TableType.HOVER);
     }
+  }
 
-    /**
-     * Constructs a table with a default page size of 50, and the given
-     * {@link ProvidesKey key provider}.
-     *
-     * @param keyProvider an instance of ProvidesKey, or null if the record
-     *                    object should act as its own key
-     */
-    public DataGrid(ProvidesKey<T> keyProvider) {
-        this(DEFAULT_PAGESIZE, keyProvider);
-    }
+  private void addToDataGrid(TableType tableType) {
+    getTableHeadElement().getParentElement().addClassName(tableType.getCssName());
+    getTableBodyElement().getParentElement().addClassName(tableType.getCssName());
+    getTableFootElement().getParentElement().addClassName(tableType.getCssName());
+  }
 
-    private static DataGrid.Resources getDefaultResources() {
-        if (DEFAULT_RESOURCES == null) {
-            DataGrid.Resources dataGridResources = GWT.create(Resources.class);
-            DEFAULT_RESOURCES = new ResourcesAdapter(dataGridResources);
-        }
-        return DEFAULT_RESOURCES;
+  private void removeFromDataGrid(TableType tableType) {
+    getTableHeadElement().getParentElement().removeClassName(tableType.getCssName());
+    getTableBodyElement().getParentElement().removeClassName(tableType.getCssName());
+    getTableFootElement().getParentElement().removeClassName(tableType.getCssName());
+  }
+
+  /**
+   * Resources/Styles to remove the GWT styling of the tables!
+   */
+  private static class ResourcesAdapter implements DataGrid.Resources {
+    private final DataGrid.Resources resources;
+    private final StyleAdapter style;
+
+    public ResourcesAdapter(DataGrid.Resources resources) {
+      this.resources = resources;
+      style = new StyleAdapter();
     }
 
     @Override
-    public void setVisibleOn(DeviceSize deviceSize) {
-        StyleHelper.setVisibleOn(this, deviceSize);
+    public ImageResource dataGridLoading() {
+      return resources.dataGridLoading();
     }
 
     @Override
-    public void setHiddenOn(DeviceSize deviceSize) {
-        StyleHelper.setHiddenOn(this, deviceSize);
+    public ImageResource dataGridSortAscending() {
+      return resources.dataGridSortAscending();
     }
 
-    public void setStriped(boolean striped) {
-        if (striped) {
-            addToDataGrid(TableType.STRIPED);
-        } else {
-            removeFromDataGrid(TableType.STRIPED);
-        }
+    @Override
+    public ImageResource dataGridSortDescending() {
+      return resources.dataGridSortDescending();
     }
 
-    public void setBordered(boolean bordered) {
-        if (bordered) {
-            addToDataGrid(TableType.BORDERED);
-        } else {
-            removeFromDataGrid(TableType.BORDERED);
-        }
+    @Override
+    public DataGrid.Style dataGridStyle() {
+      return style;
+    }
+  }
+
+  private static class StyleAdapter implements DataGrid.Style {
+    private static final String B = "gwtb3-";
+    private static final String DUMMY = B + "d";
+
+    @Override
+    public boolean ensureInjected() {
+      return true;
     }
 
-    public void setCondensed(boolean condensed) {
-        if (condensed) {
-            addToDataGrid(TableType.CONDENSED);
-        } else {
-            removeFromDataGrid(TableType.CONDENSED);
-        }
+    @Override
+    public String getText() {
+      return B;
     }
 
-    public void setHover(boolean hover) {
-        if (hover) {
-            addToDataGrid(TableType.HOVER);
-        } else {
-            removeFromDataGrid(TableType.HOVER);
-        }
+    @Override
+    public String getName() {
+      return B;
     }
 
-    private void addToDataGrid(TableType tableType) {
-        getTableHeadElement().getParentElement().addClassName(tableType.getCssName());
-        getTableBodyElement().getParentElement().addClassName(tableType.getCssName());
-        getTableFootElement().getParentElement().addClassName(tableType.getCssName());
+    @Override
+    public String dataGridCell() {
+      return B + "cell";
     }
 
-    private void removeFromDataGrid(TableType tableType) {
-        getTableHeadElement().getParentElement().removeClassName(tableType.getCssName());
-        getTableBodyElement().getParentElement().removeClassName(tableType.getCssName());
-        getTableFootElement().getParentElement().removeClassName(tableType.getCssName());
+    @Override
+    public String dataGridEvenRow() {
+      return "even";
     }
 
-    /**
-     * Resources/Styles to remove the GWT styling of the tables!
-     */
-    private static class ResourcesAdapter implements DataGrid.Resources {
-        private final DataGrid.Resources resources;
-        private final StyleAdapter style;
-
-        public ResourcesAdapter(DataGrid.Resources resources) {
-            this.resources = resources;
-            style = new StyleAdapter();
-        }
-
-        @Override
-        public ImageResource dataGridLoading() {
-            return resources.dataGridLoading();
-        }
-
-        @Override
-        public ImageResource dataGridSortAscending() {
-            return resources.dataGridSortAscending();
-        }
-
-        @Override
-        public ImageResource dataGridSortDescending() {
-            return resources.dataGridSortDescending();
-        }
-
-        @Override
-        public DataGrid.Style dataGridStyle() {
-            return style;
-        }
+    @Override
+    public String dataGridEvenRowCell() {
+      return DUMMY;
     }
 
-    private static class StyleAdapter implements DataGrid.Style {
-        private static final String B = "gwtb3-";
-        private static final String DUMMY = B + "d";
-
-        @Override
-        public boolean ensureInjected() {
-            return true;
-        }
-
-        @Override
-        public String getText() {
-            return B;
-        }
-
-        @Override
-        public String getName() {
-            return B;
-        }
-
-        @Override
-        public String dataGridCell() {
-            return B + "cell";
-        }
-
-        @Override
-        public String dataGridEvenRow() {
-            return "even";
-        }
-
-        @Override
-        public String dataGridEvenRowCell() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridFirstColumn() {
-            return DUMMY; // Bootstrap3 uses "smart selectors"
-        }
-
-        @Override
-        public String dataGridFirstColumnFooter() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridFirstColumnHeader() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridFooter() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridHeader() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridHoveredRow() {
-            return "active";
-        }
-
-        @Override
-        public String dataGridHoveredRowCell() {
-            return "active";
-        }
-
-        @Override
-        public String dataGridKeyboardSelectedCell() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridKeyboardSelectedRow() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridKeyboardSelectedRowCell() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridLastColumn() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridLastColumnFooter() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridLastColumnHeader() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridOddRow() {
-            return "odd";
-        }
-
-        @Override
-        public String dataGridOddRowCell() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridSelectedRow() {
-            return "info";
-        }
-
-        @Override
-        public String dataGridSelectedRowCell() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridSortableHeader() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridSortedHeaderAscending() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridSortedHeaderDescending() {
-            return DUMMY;
-        }
-
-        @Override
-        public String dataGridWidget() {
-            return "table";
-        }
+    @Override
+    public String dataGridFirstColumn() {
+      return DUMMY; // Bootstrap3 uses "smart selectors"
     }
+
+    @Override
+    public String dataGridFirstColumnFooter() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridFirstColumnHeader() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridFooter() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridHeader() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridHoveredRow() {
+      return "active";
+    }
+
+    @Override
+    public String dataGridHoveredRowCell() {
+      return "active";
+    }
+
+    @Override
+    public String dataGridKeyboardSelectedCell() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridKeyboardSelectedRow() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridKeyboardSelectedRowCell() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridLastColumn() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridLastColumnFooter() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridLastColumnHeader() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridOddRow() {
+      return "odd";
+    }
+
+    @Override
+    public String dataGridOddRowCell() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridSelectedRow() {
+      return "info";
+    }
+
+    @Override
+    public String dataGridSelectedRowCell() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridSortableHeader() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridSortedHeaderAscending() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridSortedHeaderDescending() {
+      return DUMMY;
+    }
+
+    @Override
+    public String dataGridWidget() {
+      return "table";
+    }
+  }
 }

@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.tagsinput.client.event;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,55 +28,55 @@ import com.google.gwt.event.shared.GwtEvent;
  * @author Marko Nikolić <marko.nikolic@iten.rs>
  */
 public class ItemAddedEvent<T> extends GwtEvent<ItemAddedHandler<T>> {
-    
-    private static Type<ItemAddedHandler<?>> TYPE;
 
-    private final T item;
-    
-    /**
-     * Creates a tagsinput itemAdded event.
-     */
-    protected ItemAddedEvent(T item) {
-        this.item = item;
-    }
-    
-    public T getItem() {
-        return item;
-    }
-    
-    /**
-     * Fires a tagsinput itemAdded event on all registered handlers in the handler
-     * manager. If no such handlers exist, this method will do nothing.
-     *
-     * @param source the source of the handlers
-     */
-    public static <T> void fire(HasItemAddedHandlers<T> source, T item) {
-        if (TYPE != null) {
-            ItemAddedEvent<T> event = new ItemAddedEvent<>(item);
-            source.fireEvent(event);
-        }
-    }
+  private static Type<ItemAddedHandler<?>> TYPE;
 
-    /**
-     * Gets the type associated with this event.
-     *
-     * @return returns the handler type
-     */
-    public static Type<ItemAddedHandler<?>> getType() {
-        if (TYPE == null) {
-            TYPE = new Type<>();
-        }
-        return TYPE;
-    }
+  private final T item;
 
-    @Override
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public Type<ItemAddedHandler<T>> getAssociatedType() {
-        return (Type) TYPE;
-    }
+  /**
+   * Creates a tagsinput itemAdded event.
+   */
+  protected ItemAddedEvent(T item) {
+    this.item = item;
+  }
 
-    @Override
-    protected void dispatch(ItemAddedHandler<T> handler) {
-        handler.onItemAdded(this);
+  public T getItem() {
+    return item;
+  }
+
+  /**
+   * Fires a tagsinput itemAdded event on all registered handlers in the handler
+   * manager. If no such handlers exist, this method will do nothing.
+   *
+   * @param source the source of the handlers
+   */
+  public static <T> void fire(HasItemAddedHandlers<T> source, T item) {
+    if (TYPE != null) {
+      ItemAddedEvent<T> event = new ItemAddedEvent<>(item);
+      source.fireEvent(event);
     }
+  }
+
+  /**
+   * Gets the type associated with this event.
+   *
+   * @return returns the handler type
+   */
+  public static Type<ItemAddedHandler<?>> getType() {
+    if (TYPE == null) {
+      TYPE = new Type<>();
+    }
+    return TYPE;
+  }
+
+  @Override
+  @SuppressWarnings({"rawtypes", "unchecked"})
+  public Type<ItemAddedHandler<T>> getAssociatedType() {
+    return (Type) TYPE;
+  }
+
+  @Override
+  protected void dispatch(ItemAddedHandler<T> handler) {
+    handler.onItemAdded(this);
+  }
 }

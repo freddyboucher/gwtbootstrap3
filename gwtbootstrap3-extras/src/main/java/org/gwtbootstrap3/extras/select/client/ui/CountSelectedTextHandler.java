@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,15 +30,14 @@ package org.gwtbootstrap3.extras.select.client.ui;
  */
 public interface CountSelectedTextHandler {
 
-    /**
-     * Returns the text displayed when selectedTextFormat
-     * is <code>count</code> or <code>count > #</code>.
-     *
-     * @param selectedCount number of the selected options
-     * @param totalCount total number of options
-     * @return the text displayed when selectedTextFormat
-     *     is <code>count</code> or <code>count > #</code>
-     */
-    String getCountSelectedText(int selectedCount, int totalCount);
-
+  /**
+   * Returns the text displayed when selectedTextFormat
+   * is <code>count</code> or <code>count > #</code>.
+   *
+   * @param selectedCount number of the selected options
+   * @param totalCount    total number of options
+   * @return the text displayed when selectedTextFormat
+   * is <code>count</code> or <code>count > #</code>
+   */
+  String getCountSelectedText(int selectedCount, int totalCount);
 }

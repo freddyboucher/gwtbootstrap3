@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,43 +20,42 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.client.ui.html.OrderedList;
-
-import com.google.gwt.user.client.ui.Widget;
 
 /**
  * @author Joshua Godi
  */
 public class Breadcrumbs extends OrderedList {
-    public Breadcrumbs() {
-        setStyleName(Styles.BREADCRUMB);
+  public Breadcrumbs() {
+    setStyleName(Styles.BREADCRUMB);
+  }
+
+  public Breadcrumbs(Widget... widgets) {
+    this();
+
+    for (Widget widget : widgets) {
+      add(widget);
+    }
+  }
+
+  @Override
+  protected void onAttach() {
+    if (!isOrWasAttached() && getChildren().size() > 0) {
+      Widget lastWidget = getChildren().get(getChildren().size() - 1);
+      lastWidget.addStyleName(Styles.ACTIVE);
     }
 
-    public Breadcrumbs(Widget... widgets) {
-        this();
+    super.onAttach();
+  }
 
-        for (Widget widget : widgets) {
-            add(widget);
-        }
-    }
-
-    @Override
-    protected void onAttach() {
-        if (!isOrWasAttached() && getChildren().size() > 0) {
-            Widget lastWidget = getChildren().get(getChildren().size() - 1);
-            lastWidget.addStyleName(Styles.ACTIVE);
-        }
-
-        super.onAttach();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void add(Widget w) {
-        w.addStyleName(Styles.ACTIVE);
-        super.add(w);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void add(Widget w) {
+    w.addStyleName(Styles.ACTIVE);
+    super.add(w);
+  }
 }

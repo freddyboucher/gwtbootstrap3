@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,12 +19,6 @@ package org.gwtbootstrap3.client.ui;
  * limitations under the License.
  * #L%
  */
-
-import org.gwtbootstrap3.client.ui.base.AbstractTextWidget;
-import org.gwtbootstrap3.client.ui.base.HasType;
-import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
-import org.gwtbootstrap3.client.ui.constants.LabelType;
-import org.gwtbootstrap3.client.ui.constants.Styles;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -44,6 +38,11 @@ import com.google.gwt.event.dom.client.MouseUpHandler;
 import com.google.gwt.event.dom.client.MouseWheelEvent;
 import com.google.gwt.event.dom.client.MouseWheelHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
+import org.gwtbootstrap3.client.ui.base.AbstractTextWidget;
+import org.gwtbootstrap3.client.ui.base.HasType;
+import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
+import org.gwtbootstrap3.client.ui.constants.LabelType;
+import org.gwtbootstrap3.client.ui.constants.Styles;
 
 /**
  * Bootstrap's label, see <a href="http://getbootstrap.com/components/#labels">documentation</a>.
@@ -55,73 +54,73 @@ import com.google.gwt.event.shared.HandlerRegistration;
  */
 public class Label extends AbstractTextWidget implements HasType<LabelType>, HasClickHandlers, HasAllMouseHandlers {
 
-    public Label() {
-        super(Document.get().createSpanElement());
-        setStyleName(Styles.LABEL);
-        setType(LabelType.DEFAULT);
-    }
+  public Label() {
+    super(Document.get().createSpanElement());
+    setStyleName(Styles.LABEL);
+    setType(LabelType.DEFAULT);
+  }
 
-    public Label(LabelType type) {
-        this();
-        setType(type);
-    }
+  public Label(LabelType type) {
+    this();
+    setType(type);
+  }
 
-    public Label(String text) {
-        this(LabelType.DEFAULT, text);
-    }
+  public Label(String text) {
+    this(LabelType.DEFAULT, text);
+  }
 
-    public Label(LabelType type, String text) {
-        this(type);
-        setText(text);
-    }
+  public Label(LabelType type, String text) {
+    this(type);
+    setText(text);
+  }
 
-    /**
-     * Sets type of label.
-     *
-     * @param type Type of label
-     */
-    @Override
-    public void setType(LabelType type) {
-        StyleHelper.addUniqueEnumStyleName(this, LabelType.class, type);
-    }
+  /**
+   * Sets type of label.
+   *
+   * @param type Type of label
+   */
+  @Override
+  public void setType(LabelType type) {
+    StyleHelper.addUniqueEnumStyleName(this, LabelType.class, type);
+  }
 
-    @Override
-    public LabelType getType() {
-        return LabelType.fromStyleName(getStyleName());
-    }
+  @Override
+  public LabelType getType() {
+    return LabelType.fromStyleName(getStyleName());
+  }
 
-    @Override
-    public HandlerRegistration addClickHandler(ClickHandler handler) {
-        return addDomHandler(handler, ClickEvent.getType());
-    }
+  @Override
+  public HandlerRegistration addClickHandler(ClickHandler handler) {
+    return addDomHandler(handler, ClickEvent.getType());
+  }
 
-    @Override
-    public HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
-        return addDomHandler(handler, MouseDownEvent.getType());
-    }
+  @Override
+  public HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
+    return addDomHandler(handler, MouseDownEvent.getType());
+  }
 
-    @Override
-    public HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler) {
-        return addDomHandler(handler, MouseMoveEvent.getType());
-    }
+  @Override
+  public HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler) {
+    return addDomHandler(handler, MouseMoveEvent.getType());
+  }
 
-    @Override
-    public HandlerRegistration addMouseOutHandler(MouseOutHandler handler) {
-        return addDomHandler(handler, MouseOutEvent.getType());
-    }
+  @Override
+  public HandlerRegistration addMouseOutHandler(MouseOutHandler handler) {
+    return addDomHandler(handler, MouseOutEvent.getType());
+  }
 
-    @Override
-    public HandlerRegistration addMouseOverHandler(MouseOverHandler handler) {
-        return addDomHandler(handler, MouseOverEvent.getType());
-    }
+  @Override
+  public HandlerRegistration addMouseOverHandler(MouseOverHandler handler) {
+    return addDomHandler(handler, MouseOverEvent.getType());
+  }
 
-    @Override
-    public HandlerRegistration addMouseUpHandler(MouseUpHandler handler) {
-        return addDomHandler(handler, MouseUpEvent.getType());
-    }
+  @Override
+  public HandlerRegistration addMouseUpHandler(MouseUpHandler handler) {
+    return addDomHandler(handler, MouseUpEvent.getType());
+  }
 
-    @Override
-    public HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler) {
-        return addDomHandler(handler, MouseWheelEvent.getType());
-    }
+  @Override
+  public HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler) {
+    return addDomHandler(handler, MouseWheelEvent.getType());
+  }
 }

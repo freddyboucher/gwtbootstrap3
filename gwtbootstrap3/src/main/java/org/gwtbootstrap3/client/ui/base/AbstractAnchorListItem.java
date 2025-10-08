@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.base;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,6 +20,12 @@ package org.gwtbootstrap3.client.ui.base;
  * #L%
  */
 
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.ui.Focusable;
 import org.gwtbootstrap3.client.ui.Anchor;
 import org.gwtbootstrap3.client.ui.constants.BadgePosition;
 import org.gwtbootstrap3.client.ui.constants.IconFlip;
@@ -29,13 +35,6 @@ import org.gwtbootstrap3.client.ui.constants.IconSize;
 import org.gwtbootstrap3.client.ui.constants.IconType;
 import org.gwtbootstrap3.client.ui.constants.Toggle;
 
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.ui.Focusable;
-
 /**
  * Base class for list items that contain an
  * {@link Anchor} link.
@@ -44,261 +43,335 @@ import com.google.gwt.user.client.ui.Focusable;
  * @author Drew Spencer
  * @author Steven Jardine
  */
-public abstract class AbstractAnchorListItem extends AbstractListItem implements HasHref, HasTargetHistoryToken,
-        HasClickHandlers, Focusable, HasDataToggle, HasIcon, HasIconPosition, HasBadge, HasTarget {
+public abstract class AbstractAnchorListItem extends AbstractListItem
+    implements HasHref, HasTargetHistoryToken, HasClickHandlers, Focusable, HasDataToggle, HasIcon, HasIconPosition, HasBadge, HasTarget {
 
-    protected final Anchor anchor;
+  protected final Anchor anchor;
 
-    /**
-     * Constructor.
-     */
-    protected AbstractAnchorListItem() {
-        anchor = new Anchor();
-        anchor.addClickHandler(event -> delegateEvent(this, event));
-        add(anchor, (Element) getElement());
-    }
+  /**
+   * Constructor.
+   */
+  protected AbstractAnchorListItem() {
+    anchor = new Anchor();
+    anchor.addClickHandler(event -> delegateEvent(this, event));
+    add(anchor, (Element) getElement());
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public HandlerRegistration addClickHandler(ClickHandler handler) {
-        return anchor.addHandler(handler, ClickEvent.getType());
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public HandlerRegistration addClickHandler(ClickHandler handler) {
+    return anchor.addHandler(handler, ClickEvent.getType());
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public BadgePosition getBadgePosition() {
-        return anchor.getBadgePosition();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public BadgePosition getBadgePosition() {
+    return anchor.getBadgePosition();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public String getBadgeText() {
-        return anchor.getBadgeText();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getBadgeText() {
+    return anchor.getBadgeText();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public Toggle getDataToggle() {
-        return anchor.getDataToggle();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Toggle getDataToggle() {
+    return anchor.getDataToggle();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public String getHref() {
-        return anchor.getHref();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getHref() {
+    return anchor.getHref();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public IconType getIcon() {
-        return anchor.getIcon();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IconType getIcon() {
+    return anchor.getIcon();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public IconFlip getIconFlip() {
-        return anchor.getIconFlip();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IconFlip getIconFlip() {
+    return anchor.getIconFlip();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public IconPosition getIconPosition() {
-        return anchor.getIconPosition();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IconPosition getIconPosition() {
+    return anchor.getIconPosition();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public IconRotate getIconRotate() {
-        return anchor.getIconRotate();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IconRotate getIconRotate() {
+    return anchor.getIconRotate();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public IconSize getIconSize() {
-        return anchor.getIconSize();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IconSize getIconSize() {
+    return anchor.getIconSize();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public int getTabIndex() {
-        return anchor.getTabIndex();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int getTabIndex() {
+    return anchor.getTabIndex();
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getTarget() {
-        return anchor.getTarget();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getTarget() {
+    return anchor.getTarget();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public String getTargetHistoryToken() {
-        return anchor.getTargetHistoryToken();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getTargetHistoryToken() {
+    return anchor.getTargetHistoryToken();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean isIconBordered() {
-        return anchor.isIconBordered();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isIconBordered() {
+    return anchor.isIconBordered();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean isIconFixedWidth() {
-        return anchor.isIconFixedWidth();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isIconFixedWidth() {
+    return anchor.isIconFixedWidth();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean isIconInverse() {
-        return anchor.isIconInverse();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isIconInverse() {
+    return anchor.isIconInverse();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean isIconPulse() {
-        return anchor.isIconPulse();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isIconPulse() {
+    return anchor.isIconPulse();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean isIconSpin() {
-        return anchor.isIconSpin();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isIconSpin() {
+    return anchor.isIconSpin();
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setAccessKey(char key) {
-        anchor.setAccessKey(key);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setAccessKey(char key) {
+    anchor.setAccessKey(key);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setBadgePosition(BadgePosition badgePosition) {
-        anchor.setBadgePosition(badgePosition);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setBadgePosition(BadgePosition badgePosition) {
+    anchor.setBadgePosition(badgePosition);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setBadgeText(String badgeText) {
-        anchor.setBadgeText(badgeText);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setBadgeText(String badgeText) {
+    anchor.setBadgeText(badgeText);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setDataToggle(Toggle toggle) {
-        anchor.setDataToggle(toggle);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setDataToggle(Toggle toggle) {
+    anchor.setDataToggle(toggle);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setEnabled(boolean enabled) {
-        super.setEnabled(enabled);
-        anchor.setEnabled(enabled);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setEnabled(boolean enabled) {
+    super.setEnabled(enabled);
+    anchor.setEnabled(enabled);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setFocus(boolean focused) {
-        anchor.setFocus(focused);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setFocus(boolean focused) {
+    anchor.setFocus(focused);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setHref(String href) {
-        anchor.setHref(href);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setHref(String href) {
+    anchor.setHref(href);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setIcon(IconType iconType) {
-        anchor.setIcon(iconType);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIcon(IconType iconType) {
+    anchor.setIcon(iconType);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setIconBordered(boolean iconBordered) {
-        anchor.setIconBordered(iconBordered);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconBordered(boolean iconBordered) {
+    anchor.setIconBordered(iconBordered);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setIconColor(String iconColor) {
-        anchor.setIconColor(iconColor);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconColor(String iconColor) {
+    anchor.setIconColor(iconColor);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setIconFixedWidth(boolean iconFixedWidth) {
-        anchor.setIconFixedWidth(iconFixedWidth);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconFixedWidth(boolean iconFixedWidth) {
+    anchor.setIconFixedWidth(iconFixedWidth);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setIconFlip(IconFlip iconFlip) {
-        anchor.setIconFlip(iconFlip);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconFlip(IconFlip iconFlip) {
+    anchor.setIconFlip(iconFlip);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setIconInverse(boolean iconInverse) {
-        anchor.setIconInverse(iconInverse);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconInverse(boolean iconInverse) {
+    anchor.setIconInverse(iconInverse);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setIconPosition(IconPosition iconPosition) {
-        anchor.setIconPosition(iconPosition);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconPosition(IconPosition iconPosition) {
+    anchor.setIconPosition(iconPosition);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setIconPulse(boolean iconPulse) {
-        anchor.setIconPulse(iconPulse);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconPulse(boolean iconPulse) {
+    anchor.setIconPulse(iconPulse);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setIconRotate(IconRotate iconRotate) {
-        anchor.setIconRotate(iconRotate);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconRotate(IconRotate iconRotate) {
+    anchor.setIconRotate(iconRotate);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setIconSize(IconSize iconSize) {
-        anchor.setIconSize(iconSize);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconSize(IconSize iconSize) {
+    anchor.setIconSize(iconSize);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setIconSpin(boolean iconSpin) {
-        anchor.setIconSpin(iconSpin);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setIconSpin(boolean iconSpin) {
+    anchor.setIconSpin(iconSpin);
+  }
 
-    /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
 
-    @Override
-    public void setTabIndex(int index) {
-        anchor.setTabIndex(index);
-    }
+  @Override
+  public void setTabIndex(int index) {
+    anchor.setTabIndex(index);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setTarget(String target) {
-        anchor.setTarget(target);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setTarget(String target) {
+    anchor.setTarget(target);
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setTargetHistoryToken(String targetHistoryToken) {
-        anchor.setTargetHistoryToken(targetHistoryToken);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setTargetHistoryToken(String targetHistoryToken) {
+    anchor.setTargetHistoryToken(targetHistoryToken);
+  }
 
-    public Anchor getAnchor() {
-        return anchor;
-    }
+  public Anchor getAnchor() {
+    return anchor;
+  }
 }

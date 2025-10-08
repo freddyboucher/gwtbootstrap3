@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.gwtbootstrap3</groupId>
-        <artifactId>gwtbootstrap3-parent</artifactId>
-        <version>1.0.8-SNAPSHOT</version>
-    </parent>
+  <parent>
+    <groupId>org.gwtbootstrap3</groupId>
+    <artifactId>gwtbootstrap3-parent</artifactId>
+    <version>1.0.8-SNAPSHOT</version>
+  </parent>
 
-    <artifactId>gwtbootstrap3</artifactId>
-    <packaging>gwt-lib</packaging>
-    <name>GwtBootstrap3</name>
-    <description>GWT wrapper for the Bootstrap front-end framework</description>
+  <artifactId>gwtbootstrap3</artifactId>
+  <packaging>gwt-lib</packaging>
+  <name>GwtBootstrap3</name>
+  <description>GWT wrapper for the Bootstrap front-end framework</description>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.gwtproject</groupId>
-            <artifactId>gwt-user</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.gwtproject</groupId>
-            <artifactId>gwt-dev</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>org.gwtproject</groupId>
+      <artifactId>gwt-user</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.gwtproject</groupId>
+      <artifactId>gwt-dev</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>net.ltgt.gwt.maven</groupId>
-                <artifactId>gwt-maven-plugin</artifactId>
-                <version>1.1.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <sourceLevel>1.8</sourceLevel>
-                    <moduleName>org.gwtbootstrap3.GwtBootstrap3</moduleName>
-                    <moduleTemplate>src/main/resources/org/gwtbootstrap3/GwtBootstrap3.gwt.xml</moduleTemplate>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>net.ltgt.gwt.maven</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+        <version>1.1.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <sourceLevel>1.8</sourceLevel>
+          <moduleName>org.gwtbootstrap3.GwtBootstrap3</moduleName>
+          <moduleTemplate>src/main/resources/org/gwtbootstrap3/GwtBootstrap3.gwt.xml</moduleTemplate>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

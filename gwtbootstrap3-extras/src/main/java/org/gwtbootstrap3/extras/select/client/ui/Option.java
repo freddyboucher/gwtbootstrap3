@@ -20,6 +20,13 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * #L%
  */
 
+import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.CONTENT;
+import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.DIVIDER;
+import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.HIDDEN;
+import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.ICON;
+import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SUBTEXT;
+import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.TOKENS;
+
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.OptionElement;
 import com.google.gwt.user.client.TakesValue;
@@ -30,8 +37,6 @@ import org.gwtbootstrap3.client.ui.base.mixin.AttributeMixin;
 import org.gwtbootstrap3.client.ui.base.mixin.EnabledMixin;
 import org.gwtbootstrap3.client.ui.constants.IconType;
 
-import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.*;
-
 /**
  * Select option widget.
  *
@@ -39,224 +44,232 @@ import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.*;
  */
 public class Option extends AbstractTextWidget implements HasName, TakesValue<String>, HasEnabled {
 
-    private final AttributeMixin<Option> attrMixin = new AttributeMixin<>(this);
-    private final EnabledMixin<Option> enabledMixin = new EnabledMixin<>(this);
+  private final AttributeMixin<Option> attrMixin = new AttributeMixin<>(this);
+  private final EnabledMixin<Option> enabledMixin = new EnabledMixin<>(this);
 
-    private static final String NAME = "name";
-    private static final String VALUE = "value";
-    private String value;
+  private static final String NAME = "name";
+  private static final String VALUE = "value";
+  private String value;
 
-    public Option() {
-        super(Document.get().createOptionElement());
+  public Option() {
+    super(Document.get().createOptionElement());
+  }
+
+  public Option(String text) {
+    this();
+    setText(text);
+  }
+
+  public Option(String text, String value) {
+    this(text);
+    setValue(value);
+  }
+
+  /**
+   * Returns the {@link OptionElement}.
+   *
+   * @return the {@link OptionElement}.
+   */
+  public OptionElement getSelectElement() {
+    return getElement().cast();
+  }
+
+  /**
+   * Returns <code>true</code> if the option is selected.
+   *
+   * @return <code>true</code> if the option is selected
+   */
+  public boolean isSelected() {
+    return !isDivider() && getSelectElement().isSelected();
+  }
+
+  /**
+   * Selects/deselects the option.
+   *
+   * @param selected
+   */
+  public void setSelected(boolean selected) {
+    getSelectElement().setSelected(!isDivider() && selected);
+  }
+
+  @Override
+  public void setName(String name) {
+    if (name != null) {
+      attrMixin.setAttribute(NAME, name);
+    } else {
+      attrMixin.removeAttribute(NAME);
     }
+  }
 
-    public Option(String text) {
-        this();
-        setText(text);
-    }
+  @Override
+  public String getName() {
+    String name = attrMixin.getAttribute(NAME);
+    return name.isEmpty() ? null : name;
+  }
 
-    public Option(String text, String value) {
-        this(text);
-        setValue(value);
+  @Override
+  public void setValue(String value) {
+    this.value = value;
+    if (value != null) {
+      attrMixin.setAttribute(VALUE, value);
+    } else {
+      attrMixin.removeAttribute(VALUE);
     }
+  }
 
-    /**
-     * Returns the {@link OptionElement}.
-     *
-     * @return the {@link OptionElement}.
-     */
-    public OptionElement getSelectElement() {
-        return getElement().cast();
-    }
+  /**
+   * Returns the value of the option. If no value, fall-back
+   * to the displayed option text.
+   */
+  @Override
+  public String getValue() {
+    return value != null ? value : getText();
+  }
 
-    /**
-     * Returns <code>true</code> if the option is selected.
-     *
-     * @return <code>true</code> if the option is selected
-     */
-    public boolean isSelected() {
-        return !isDivider() && getSelectElement().isSelected();
-    }
+  @Override
+  public boolean isEnabled() {
+    return enabledMixin.isEnabled();
+  }
 
-    /**
-     * Selects/deselects the option.
-     *
-     * @param selected
-     */
-    public void setSelected(boolean selected) {
-        getSelectElement().setSelected(!isDivider() && selected);
-    }
+  @Override
+  public void setEnabled(boolean enabled) {
+    enabledMixin.setEnabled(enabled);
+  }
 
-    @Override
-    public void setName(String name) {
-        if (name != null)
-            attrMixin.setAttribute(NAME, name);
-        else
-            attrMixin.removeAttribute(NAME);
+  /**
+   * Adds key words to improve the searchability.
+   *
+   * @param tokens
+   */
+  public void setTokens(String tokens) {
+    if (tokens != null) {
+      attrMixin.setAttribute(TOKENS, tokens);
+    } else {
+      attrMixin.removeAttribute(TOKENS);
     }
+  }
 
-    @Override
-    public String getName() {
-        String name = attrMixin.getAttribute(NAME);
-        return name.isEmpty() ? null : name;
-    }
+  /**
+   * Returns the search key words.
+   *
+   * @return
+   */
+  public String getTokens() {
+    String tokens = attrMixin.getAttribute(TOKENS);
+    return tokens.isEmpty() ? null : tokens;
+  }
 
-    @Override
-    public void setValue(String value) {
-        this.value = value;
-        if (value != null)
-            attrMixin.setAttribute(VALUE, value);
-        else
-            attrMixin.removeAttribute(VALUE);
+  /**
+   * Turns the option into a divider.
+   *
+   * @param divider
+   */
+  public void setDivider(boolean divider) {
+    if (divider) {
+      attrMixin.setAttribute(DIVIDER, Boolean.toString(true));
+    } else {
+      attrMixin.removeAttribute(DIVIDER);
     }
+  }
 
-    /**
-     * Returns the value of the option. If no value, fall-back
-     * to the displayed option text.
-     */
-    @Override
-    public String getValue() {
-        return value != null ? value : getText();
-    }
+  /**
+   * Returns <code>true</code> if the option is a divider.
+   *
+   * @return <code>true</code> if the option is a divider
+   */
+  public boolean isDivider() {
+    return Boolean.parseBoolean(attrMixin.getAttribute(DIVIDER));
+  }
 
-    @Override
-    public boolean isEnabled() {
-        return enabledMixin.isEnabled();
+  /**
+   * Set the specified sub-text to the option.
+   *
+   * @param subtext
+   */
+  public void setSubtext(String subtext) {
+    if (subtext != null) {
+      attrMixin.setAttribute(SUBTEXT, subtext);
+    } else {
+      attrMixin.removeAttribute(SUBTEXT);
     }
+  }
 
-    @Override
-    public void setEnabled(boolean enabled) {
-        enabledMixin.setEnabled(enabled);
-    }
+  /**
+   * Returns the sub-text of the option.
+   *
+   * @return
+   */
+  public String getSubtext() {
+    String subtext = attrMixin.getAttribute(SUBTEXT);
+    return subtext.isEmpty() ? null : subtext;
+  }
 
-    /**
-     * Adds key words to improve the searchability.
-     *
-     * @param tokens
-     */
-    public void setTokens(String tokens) {
-        if (tokens != null)
-            attrMixin.setAttribute(TOKENS, tokens);
-        else
-            attrMixin.removeAttribute(TOKENS);
+  /**
+   * Add an icon to the option.
+   *
+   * @param iconType
+   */
+  public void setIcon(IconType iconType) {
+    if (iconType != null) {
+      attrMixin.setAttribute(ICON, iconType.getCssName());
+    } else {
+      attrMixin.removeAttribute(ICON);
     }
+  }
 
-    /**
-     * Returns the search key words.
-     *
-     * @return
-     */
-    public String getTokens() {
-        String tokens = attrMixin.getAttribute(TOKENS);
-        return tokens.isEmpty() ? null : tokens;
-    }
+  /**
+   * Returns the icon of the option; may be <code>null</code>.
+   *
+   * @return
+   */
+  public IconType getIcon() {
+    return IconType.fromStyleName(attrMixin.getAttribute(ICON));
+  }
 
-    /**
-     * Turns the option into a divider.
-     *
-     * @param divider
-     */
-    public void setDivider(boolean divider) {
-        if (divider)
-            attrMixin.setAttribute(DIVIDER, Boolean.toString(true));
-        else
-            attrMixin.removeAttribute(DIVIDER);
+  /**
+   * Inserts custom HTML into the option.
+   *
+   * @param content
+   */
+  public void setContent(String content) {
+    if (content != null) {
+      attrMixin.setAttribute(CONTENT, content);
+    } else {
+      attrMixin.removeAttribute(CONTENT);
     }
+  }
 
-    /**
-     * Returns <code>true</code> if the option is a divider.
-     *
-     * @return <code>true</code> if the option is a divider
-     */
-    public boolean isDivider() {
-        return Boolean.parseBoolean(attrMixin.getAttribute(DIVIDER));
-    }
+  /**
+   * Returns the custom HTML content; may be <code>null</code>.
+   *
+   * @return the custom HTML content
+   */
+  public String getContent() {
+    String content = attrMixin.getAttribute(CONTENT);
+    return content.isEmpty() ? null : content;
+  }
 
-    /**
-     * Set the specified sub-text to the option.
-     *
-     * @param subtext
-     */
-    public void setSubtext(String subtext) {
-        if (subtext != null)
-            attrMixin.setAttribute(SUBTEXT, subtext);
-        else
-            attrMixin.removeAttribute(SUBTEXT);
+  /**
+   * Hides the option if set to <code>true</code>.<br>
+   * <br>
+   * Defaults to <code>false</code>.
+   *
+   * @param hidden
+   */
+  public void setHidden(boolean hidden) {
+    if (hidden) {
+      attrMixin.setAttribute(HIDDEN, Boolean.toString(true));
+    } else {
+      attrMixin.removeAttribute(HIDDEN);
     }
+  }
 
-    /**
-     * Returns the sub-text of the option.
-     *
-     * @return
-     */
-    public String getSubtext() {
-        String subtext = attrMixin.getAttribute(SUBTEXT);
-        return subtext.isEmpty() ? null : subtext;
-    }
-
-    /**
-     * Add an icon to the option.
-     *
-     * @param iconType
-     */
-    public void setIcon(IconType iconType) {
-        if (iconType != null)
-            attrMixin.setAttribute(ICON, iconType.getCssName());
-        else
-            attrMixin.removeAttribute(ICON);
-    }
-
-    /**
-     * Returns the icon of the option; may be <code>null</code>.
-     *
-     * @return
-     */
-    public IconType getIcon() {
-        return IconType.fromStyleName(attrMixin.getAttribute(ICON));
-    }
-
-    /**
-     * Inserts custom HTML into the option.
-     *
-     * @param content
-     */
-    public void setContent(String content) {
-        if (content != null)
-            attrMixin.setAttribute(CONTENT, content);
-        else
-            attrMixin.removeAttribute(CONTENT);
-    }
-
-    /**
-     * Returns the custom HTML content; may be <code>null</code>.
-     *
-     * @return the custom HTML content
-     */
-    public String getContent() {
-        String content = attrMixin.getAttribute(CONTENT);
-        return content.isEmpty() ? null : content;
-    }
-
-    /**
-     * Hides the option if set to <code>true</code>.<br>
-     * <br>
-     * Defaults to <code>false</code>.
-     *
-     * @param hidden
-     */
-    public void setHidden(boolean hidden) {
-        if (hidden)
-            attrMixin.setAttribute(HIDDEN, Boolean.toString(true));
-        else
-            attrMixin.removeAttribute(HIDDEN);
-    }
-
-    /**
-     * Returns <code>true</code> if the option is hidden.
-     *
-     * @return <code>true</code> if the option is hidden
-     */
-    public boolean isHidden() {
-        return Boolean.parseBoolean(attrMixin.getAttribute(HIDDEN));
-    }
+  /**
+   * Returns <code>true</code> if the option is hidden.
+   *
+   * @return <code>true</code> if the option is hidden
+   */
+  public boolean isHidden() {
+    return Boolean.parseBoolean(attrMixin.getAttribute(HIDDEN));
+  }
 }

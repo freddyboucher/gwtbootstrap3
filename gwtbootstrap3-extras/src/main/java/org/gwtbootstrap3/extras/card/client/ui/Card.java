@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.card.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,21 +27,21 @@ import org.gwtbootstrap3.client.ui.html.Div;
  * @author godi
  */
 public class Card extends Div {
-    private final Div card;
+  private final Div card;
 
-    public Card() {
-        // Add required style names
-        addStyleName(CardStyles.FLIP);
+  public Card() {
+    // Add required style names
+    addStyleName(CardStyles.FLIP);
 
-        // Inner child to complete the card
-        card = new Div();
-        card.addStyleName(CardStyles.CARD);
+    // Inner child to complete the card
+    card = new Div();
+    card.addStyleName(CardStyles.CARD);
 
-        super.add(card);
-    }
+    super.add(card);
+  }
 
-    @Override
-    public void add(Widget child) {
-        card.add(child);
-    }
+  @Override
+  public void add(Widget child) {
+    card.add(child);
+  }
 }

@@ -9,9 +9,9 @@ package org.gwtbootstrap3.extras.datepicker.client.ui.base.constants;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,17 +24,17 @@ package org.gwtbootstrap3.extras.datepicker.client.ui.base.constants;
  * @author Matt Davis
  */
 public enum DatePickerStartView {
-    MONTH(0),
-    YEAR(1),
-    DECADE(2);
+  MONTH(0),
+  YEAR(1),
+  DECADE(2);
 
-    private final int value;
+  private final int value;
 
-    DatePickerStartView(int value) {
-        this.value = value;
-    }
+  DatePickerStartView(int value) {
+    this.value = value;
+  }
 
-    public int getValue() {
-        return value;
-    }
+  public int getValue() {
+    return value;
+  }
 }

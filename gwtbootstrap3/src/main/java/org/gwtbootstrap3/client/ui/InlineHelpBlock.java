@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,18 +26,17 @@ import com.google.gwt.dom.client.Style.Unit;
 
 /**
  * Display's a help block inline.
- * 
+ *
  * @author Joshua Godi
  * @author Steven Jardine
  */
 public class InlineHelpBlock extends HelpBlock {
 
-    public InlineHelpBlock() {
-        Style style = getElement().getStyle();
-        style.setDisplay(Display.INLINE_BLOCK);
-        style.setMarginTop(0, Unit.PX);
-        style.setMarginBottom(0, Unit.PX);
-        style.setPaddingLeft(10, Unit.PX);
-    }
-
+  public InlineHelpBlock() {
+    Style style = getElement().getStyle();
+    style.setDisplay(Display.INLINE_BLOCK);
+    style.setMarginTop(0, Unit.PX);
+    style.setMarginBottom(0, Unit.PX);
+    style.setPaddingLeft(10, Unit.PX);
+  }
 }

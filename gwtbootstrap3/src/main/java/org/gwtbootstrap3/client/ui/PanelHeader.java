@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,8 +20,10 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.Widget;
 import java.util.List;
-
 import org.gwtbootstrap3.client.ui.base.HasDataParent;
 import org.gwtbootstrap3.client.ui.base.HasDataTarget;
 import org.gwtbootstrap3.client.ui.base.HasDataToggle;
@@ -33,95 +35,91 @@ import org.gwtbootstrap3.client.ui.constants.Toggle;
 import org.gwtbootstrap3.client.ui.html.Div;
 import org.gwtbootstrap3.client.ui.html.Text;
 
-import com.google.gwt.user.client.ui.HasText;
-import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.user.client.ui.Widget;
-
 /**
  * @author Joshua Godi
  */
 public class PanelHeader extends Div implements HasWidgets, HasText, HasDataToggle, HasDataTarget, HasDataParent {
-    private final DataParentMixin<PanelHeader> parentMixin = new DataParentMixin<>(this);
-    private final DataTargetMixin<PanelHeader> targetMixin = new DataTargetMixin<>(this);
-    private final DataToggleMixin<PanelHeader> toggleMixin = new DataToggleMixin<>(this);
-    private final Text text = new Text();
+  private final DataParentMixin<PanelHeader> parentMixin = new DataParentMixin<>(this);
+  private final DataTargetMixin<PanelHeader> targetMixin = new DataTargetMixin<>(this);
+  private final DataToggleMixin<PanelHeader> toggleMixin = new DataToggleMixin<>(this);
+  private final Text text = new Text();
 
-    public PanelHeader() {
-        setStyleName(Styles.PANEL_HEADING);
-    }
+  public PanelHeader() {
+    setStyleName(Styles.PANEL_HEADING);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getText() {
-        return text.getText();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getText() {
+    return text.getText();
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setText(String text) {
-        this.text.setText(text);
-        insert(this.text, 0);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setText(String text) {
+    this.text.setText(text);
+    insert(this.text, 0);
+  }
 
-    @Override
-    public void setDataTargetWidgets(List<Widget> widgets) {
-        targetMixin.setDataTargetWidgets(widgets);
-    }
+  @Override
+  public void setDataTargetWidgets(List<Widget> widgets) {
+    targetMixin.setDataTargetWidgets(widgets);
+  }
 
-    @Override
-    public void setDataTargetWidget(Widget widget) {
-        targetMixin.setDataTargetWidget(widget);
-    }
+  @Override
+  public void setDataTargetWidget(Widget widget) {
+    targetMixin.setDataTargetWidget(widget);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setDataTarget(String dataTarget) {
-        targetMixin.setDataTarget(dataTarget);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setDataTarget(String dataTarget) {
+    targetMixin.setDataTarget(dataTarget);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getDataTarget() {
-        return targetMixin.getDataTarget();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getDataTarget() {
+    return targetMixin.getDataTarget();
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setDataToggle(Toggle toggle) {
-        toggleMixin.setDataToggle(toggle);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setDataToggle(Toggle toggle) {
+    toggleMixin.setDataToggle(toggle);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Toggle getDataToggle() {
-        return toggleMixin.getDataToggle();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Toggle getDataToggle() {
+    return toggleMixin.getDataToggle();
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setDataParent(String dataParent) {
-        parentMixin.setDataParent(dataParent);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setDataParent(String dataParent) {
+    parentMixin.setDataParent(dataParent);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getDataParent() {
-        return parentMixin.getDataParent();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getDataParent() {
+    return parentMixin.getDataParent();
+  }
 }

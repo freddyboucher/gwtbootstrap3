@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd">
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE module SYSTEM "https://www.gwtproject.org/doctype/2.12.2/gwt-module.dtd"><!--
   #%L
   GwtBootstrap3
   %%
@@ -26,9 +25,9 @@ for you.
 -->
 
 <module rename-to="GwtBootstrap3NoTheme">
-	<inherits name="org.gwtbootstrap3.GwtBootstrap3Base"/>
-    <inherits name="com.google.gwt.resources.Resources"/>
-    <inherits name="org.gwtbootstrap3.client.NoThemeResources"/>
+  <inherits name="org.gwtbootstrap3.GwtBootstrap3Base"/>
+  <inherits name="com.google.gwt.resources.Resources"/>
+  <inherits name="org.gwtbootstrap3.client.NoThemeResources"/>
 
-    <entry-point class="org.gwtbootstrap3.client.GwtBootstrap3EntryPoint"/>
+  <entry-point class="org.gwtbootstrap3.client.GwtBootstrap3EntryPoint"/>
 </module>

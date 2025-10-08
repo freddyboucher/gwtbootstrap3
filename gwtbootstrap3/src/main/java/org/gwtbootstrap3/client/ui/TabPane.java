@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,55 +45,55 @@ import org.gwtbootstrap3.client.ui.html.Div;
  * @see TabContent
  */
 public class TabPane extends Div implements HasActive {
-    private final ActiveMixin<TabPane> activeMixin = new ActiveMixin<>(this);
+  private final ActiveMixin<TabPane> activeMixin = new ActiveMixin<>(this);
 
-    /**
-     * Creates the default widget with the default styles
-     */
-    public TabPane() {
-        setStyleName(Styles.TAB_PANE);
-    }
+  /**
+   * Creates the default widget with the default styles
+   */
+  public TabPane() {
+    setStyleName(Styles.TAB_PANE);
+  }
 
-    /**
-     * Sets whether or not to fade the tab pane in/out when clicked
-     * Must set in="true" on the first tab if using fade!!
-     *
-     * @param fade true=fade content in/out, false=don't fade
-     */
-    public void setFade(boolean fade) {
-        if (fade) {
-            addStyleName(Styles.FADE);
-        } else {
-            removeStyleName(Styles.FADE);
-        }
+  /**
+   * Sets whether or not to fade the tab pane in/out when clicked
+   * Must set in="true" on the first tab if using fade!!
+   *
+   * @param fade true=fade content in/out, false=don't fade
+   */
+  public void setFade(boolean fade) {
+    if (fade) {
+      addStyleName(Styles.FADE);
+    } else {
+      removeStyleName(Styles.FADE);
     }
+  }
 
-    /**
-     * When using fade, but set the first tabpane with in="true" to work properly
-     *
-     * @param in whether or not the first tab pane will be faded properly
-     */
-    public void setIn(boolean in) {
-        if (in) {
-            addStyleName(Styles.IN);
-        } else {
-            removeStyleName(Styles.IN);
-        }
+  /**
+   * When using fade, but set the first tabpane with in="true" to work properly
+   *
+   * @param in whether or not the first tab pane will be faded properly
+   */
+  public void setIn(boolean in) {
+    if (in) {
+      addStyleName(Styles.IN);
+    } else {
+      removeStyleName(Styles.IN);
     }
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setActive(boolean active) {
-        activeMixin.setActive(active);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setActive(boolean active) {
+    activeMixin.setActive(active);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isActive() {
-        return activeMixin.isActive();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isActive() {
+    return activeMixin.isActive();
+  }
 }

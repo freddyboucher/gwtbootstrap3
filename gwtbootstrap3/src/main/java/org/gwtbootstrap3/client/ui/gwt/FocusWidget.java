@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui.gwt;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,6 +20,7 @@ package org.gwtbootstrap3.client.ui.gwt;
  * #L%
  */
 
+import com.google.gwt.dom.client.Element;
 import org.gwtbootstrap3.client.ui.base.HasId;
 import org.gwtbootstrap3.client.ui.base.HasPull;
 import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
@@ -30,74 +31,70 @@ import org.gwtbootstrap3.client.ui.constants.DeviceSize;
 import org.gwtbootstrap3.client.ui.constants.Pull;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 
-import com.google.gwt.dom.client.Element;
+public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWidget implements HasResponsiveness, HasId, HasPull {
 
-public abstract class FocusWidget extends com.google.gwt.user.client.ui.FocusWidget implements HasResponsiveness,
-        HasId, HasPull {
+  private final IdMixin<FocusWidget> idMixin = new IdMixin<>(this);
+  private final PullMixin<FocusWidget> pullMixin = new PullMixin<>(this);
 
-    private final IdMixin<FocusWidget> idMixin = new IdMixin<>(this);
-    private final PullMixin<FocusWidget> pullMixin = new PullMixin<>(this);
+  public FocusWidget(Element elem) {
+    super(elem);
+  }
 
-    public FocusWidget(Element elem) {
-        super(elem);
+  @Override
+  public void setEnabled(boolean enabled) {
+    super.setEnabled(enabled);
+    if (enabled) {
+      removeStyleName(Styles.DISABLED);
+    } else {
+      addStyleName(Styles.DISABLED);
     }
+  }
 
-    @Override
-    public void setEnabled(boolean enabled) {
-        super.setEnabled(enabled);
-        if (enabled) {
-            removeStyleName(Styles.DISABLED);
-        } else {
-            addStyleName(Styles.DISABLED);
-        }
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setId(String id) {
+    idMixin.setId(id);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setId(String id) {
-        idMixin.setId(id);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getId() {
+    return idMixin.getId();
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getId() {
-        return idMixin.getId();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setVisibleOn(DeviceSize deviceSize) {
+    StyleHelper.setVisibleOn(this, deviceSize);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setVisibleOn(DeviceSize deviceSize) {
-        StyleHelper.setVisibleOn(this, deviceSize);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setHiddenOn(DeviceSize deviceSize) {
+    StyleHelper.setHiddenOn(this, deviceSize);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setHiddenOn(DeviceSize deviceSize) {
-        StyleHelper.setHiddenOn(this, deviceSize);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setPull(Pull pull) {
+    pullMixin.setPull(pull);
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setPull(Pull pull) {
-        pullMixin.setPull(pull);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Pull getPull() {
-        return pullMixin.getPull();
-    }
-
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Pull getPull() {
+    return pullMixin.getPull();
+  }
 }

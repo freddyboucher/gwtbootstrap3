@@ -9,9 +9,9 @@ package org.gwtbootstrap3.client.ui;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,10 +20,9 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
-import org.gwtbootstrap3.client.ui.base.ComplexWidget;
-
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.ui.HasEnabled;
+import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 
 /**
  * @author Sven Jacobs
@@ -31,19 +30,19 @@ import com.google.gwt.user.client.ui.HasEnabled;
  * @see Form
  */
 public class FieldSet extends ComplexWidget implements HasEnabled {
-    private static final String DISABLED = "disabled";
+  private static final String DISABLED = "disabled";
 
-    public FieldSet() {
-        setElement(Document.get().createFieldSetElement());
-    }
+  public FieldSet() {
+    setElement(Document.get().createFieldSetElement());
+  }
 
-    @Override
-    public void setEnabled(boolean enabled) {
-        getElement().setPropertyBoolean(DISABLED, !enabled);
-    }
+  @Override
+  public void setEnabled(boolean enabled) {
+    getElement().setPropertyBoolean(DISABLED, !enabled);
+  }
 
-    @Override
-    public boolean isEnabled() {
-        return !getElement().getPropertyBoolean(DISABLED);
-    }
+  @Override
+  public boolean isEnabled() {
+    return !getElement().getPropertyBoolean(DISABLED);
+  }
 }
