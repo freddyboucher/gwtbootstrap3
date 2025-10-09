@@ -46,7 +46,7 @@
         <b:Anchor target="_blank" addStyleNames="{style.spacing}" href="http://arshaw.com/fullcalendar/">FullCalendar
         </b:Anchor>
         <b.html:Br/>
-        <b.html:Strong>Current Version Supported: 2.3.1</b.html:Strong>
+        <b.html:Strong>Current Version Supported: 2.9.1</b.html:Strong>
       </b:BlockQuote>
 
       <b:BlockQuote addStyleNames="{style.danger}">
@@ -88,24 +88,25 @@
           ...\n
           ...\n
           //add some events to the calendar manually/randomly...\n
-          protected void addEvents() {\n
-          for (int i = 0; i 15; i++) {\n
-          Event calEvent = new Event("id:" + i, "This is Event: " + i);\n
-          int day = Random.nextInt(10);\n
-          Date start = new Date();\n
-          CalendarUtil.addDaysToDate(start, -1 * day);\n
-          calEvent.setStart(start);\n
-
-          if( i % 3 == 0 ){\n
-          calEvent.setAllDay(true);\n
-          }else{\n
-          Date d = new Date(start.getTime());\n
-          d.setHours(d.getHours() + 1);
-          calEvent.setEnd(d);\n
-          }\n
-          fc.addEvent(calEvent);\n
-          }\n
-          }\n
+          protected void addEvents(FullCalendar fc) {\n
+          \sList&lt;Event&gt; events = new ArrayList&lt;&gt;();\n
+          \sfor (int i = 0; i &lt; 15; i++) {\n
+          \s\sEvent calEvent = new Event(&quot;&quot; + i, &quot;This is Event: &quot; + i);\n
+          \s\sint day = Random.nextInt(10);\n
+          \s\sDate start = new Date();\n
+          \s\sCalendarUtil.addDaysToDate(start, -1 * day);\n
+          \s\scalEvent.setStart(start);\n
+          \s\sif (day % 3 == 0) {\n
+          \s\s\scalEvent.setAllDay(true);\n
+          \s\s} else {\n
+          \s\s\sDate d = new Date(start.getTime());\n
+          \s\s\sd.setHours(d.getHours() + 1);\n
+          \s\s\scalEvent.setEnd(d);\n
+          \s\s}\n
+          \s\sevents.add(calEvent);\n
+          \s}\n
+          \sfc.addEvents(events);\n
+          }
         </d:PrettyPre>
       </b:BlockQuote>
 
@@ -218,24 +219,25 @@
             someContainerWidget.add(fc);\n
             ...\n
             //add some events to the calendar manually/randomly...\n
-            protected void addEvents() {\n
-            for (int i = 0; i 15; i++) {\n
-            Event calEvent = new Event("id:" + i, "This is Event: " + i);\n
-            int day = Random.nextInt(10);\n
-            Date start = new Date();\n
-            CalendarUtil.addDaysToDate(start, -1 * day);\n
-            calEvent.setStart(start);\n
-
-            if( i % 3 == 0 ){\n
-            calEvent.setAllDay(true);\n
-            }else{\n
-            Date d = new Date(start.getTime());\n
-            d.setHours(d.getHours() + 1);\n
-            calEvent.setEnd(d);\n
-            }\n
-            fc.addEvent(calEvent);\n
-            }\n
-            }\n
+            protected void addEvents(FullCalendar fc) {\n
+            \sList&lt;Event&gt; events = new ArrayList&lt;&gt;();\n
+            \sfor (int i = 0; i &lt; 15; i++) {\n
+            \s\sEvent calEvent = new Event(&quot;&quot; + i, &quot;This is Event: &quot; + i);\n
+            \s\sint day = Random.nextInt(10);\n
+            \s\sDate start = new Date();\n
+            \s\sCalendarUtil.addDaysToDate(start, -1 * day);\n
+            \s\scalEvent.setStart(start);\n
+            \s\sif (day % 3 == 0) {\n
+            \s\s\scalEvent.setAllDay(true);\n
+            \s\s} else {\n
+            \s\s\sDate d = new Date(start.getTime());\n
+            \s\s\sd.setHours(d.getHours() + 1);\n
+            \s\s\scalEvent.setEnd(d);\n
+            \s\s}\n
+            \s\sevents.add(calEvent);\n
+            \s}\n
+            \sfc.addEvents(events);\n
+            }
           </d:PrettyPre>
         </b:PanelFooter>
       </b:Panel>

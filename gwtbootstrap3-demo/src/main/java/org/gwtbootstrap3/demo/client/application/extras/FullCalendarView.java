@@ -32,7 +32,9 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.CalendarUtil;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.gwt.FlowPanel;
 import org.gwtbootstrap3.extras.fullcalendar.client.ui.CalendarConfig;
@@ -107,7 +109,7 @@ public class FullCalendarView extends ViewImpl implements FullCalendarPresenter.
       return;
     }
     CalendarConfig config = new CalendarConfig();
-    config.setLangauge(Language.Spanish);
+    config.setLanguage(Language.Spanish);
 
     localizationCalendar = new FullCalendar("" + System.currentTimeMillis(), ViewOption.agendaWeek, config, true);
     localizationCalendar.addLoadHandler(event1 -> addEvents(localizationCalendar));
@@ -208,8 +210,9 @@ public class FullCalendarView extends ViewImpl implements FullCalendarPresenter.
     config.setDragResizeConfig(dr);
     config.setSelectable(true);
     config.setSelectHelper(true);
-    GeneralDisplay gd = new GeneralDisplay();
-    config.setGeneralDisplay(gd);
+    Header header = new Header();
+    header.setRight("month,agendaWeek,agendaDay");
+    config.setGeneralDisplay(new GeneralDisplay(header));
 
     configuringCalendar = new FullCalendar("" + System.currentTimeMillis(), ViewOption.agendaWeek, config, true);
     configuringCalendar.addLoadHandler(event1 -> addEvents(configuringCalendar));
@@ -218,6 +221,7 @@ public class FullCalendarView extends ViewImpl implements FullCalendarPresenter.
 
   @SuppressWarnings("deprecation")
   protected void addEvents(FullCalendar fc) {
+    List<Event> events = new ArrayList<>();
     for (int i = 0; i < 15; i++) {
       Event calEvent = new Event("" + i, "This is Event: " + i);
       int day = Random.nextInt(10);
@@ -231,8 +235,9 @@ public class FullCalendarView extends ViewImpl implements FullCalendarPresenter.
         d.setHours(d.getHours() + 1);
         calEvent.setEnd(d);
       }
-      fc.addEvent(calEvent);
+      events.add(calEvent);
     }
+    fc.addEvents(events);
   }
 
   @SuppressWarnings("deprecation")
@@ -241,13 +246,14 @@ public class FullCalendarView extends ViewImpl implements FullCalendarPresenter.
     start.setMinutes(0);
     start.setHours(9);
     CalendarUtil.addDaysToDate(start, -start.getDay() - 1);
+    List<Event> events = new ArrayList<>();
     for (int i = 1; i < 28; i++) {
       CalendarUtil.addDaysToDate(start, 1);
       if (i == 3) {
         Event lunch = new Event("" + i, "Business lunch");
         lunch.setStart(new Date(start.getTime() + 1000 * 60 * 60 * 4));
         lunch.setConstraint("businessHours");
-        fc.addEvent(lunch);
+        events.add(lunch);
       }
       if (i == 11 || i == 13) {
         Event available = new Event("availableForMeeting", "");
@@ -255,14 +261,14 @@ public class FullCalendarView extends ViewImpl implements FullCalendarPresenter.
         available.setEnd(new Date(start.getTime() + 1000 * 60 * 60 * 8));
         available.setRendering("background");
         available.setBackgroundColor("#8FDF82");
-        fc.addEvent(available);
+        events.add(available);
         if (i == 13) {
           Event meeting = new Event("" + i, "Meeting");
           meeting.setStart(new Date(start.getTime() + Random.nextInt(7) * 1000 * 60 * 60));
           meeting.setEnd(new Date(start.getTime() + 1000 * 60 * 60));
           meeting.setBackgroundColor("#257e4a");
           meeting.setConstraint("availableForMeeting");
-          fc.addEvent(meeting);
+          events.add(meeting);
         }
       } else if (i == 6 || i == 7 || i > 23) {
         Event blocked = new Event("" + i, "");
@@ -271,14 +277,15 @@ public class FullCalendarView extends ViewImpl implements FullCalendarPresenter.
         blocked.setOverlap(false);
         blocked.setRendering("background");
         blocked.setBackgroundColor("#ff9f89");
-        fc.addEvent(blocked);
+        events.add(blocked);
       } else if (i == 10) {
         Event conference = new Event("" + i, "Conference");
         conference.setStart(start);
         conference.setEnd(new Date(start.getTime() + 1000 * 60 * 60 * 48));
         conference.setAllDay(true);
-        fc.addEvent(conference);
+        events.add(conference);
       }
     }
+    fc.addEvents(events);
   }
 }

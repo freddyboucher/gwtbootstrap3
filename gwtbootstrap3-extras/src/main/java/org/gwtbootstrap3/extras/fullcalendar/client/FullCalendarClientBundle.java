@@ -29,159 +29,180 @@ public interface FullCalendarClientBundle extends ClientBundle {
 
   FullCalendarClientBundle INSTANCE = GWT.create(FullCalendarClientBundle.class);
 
-  @Source("resource/css/fullcalendar-2.3.1.cache.css")
+  @Source("resource/css/fullcalendar-2.9.1.cache.css")
   @CssResource.NotStrict
   CssResource fullCalendarCss();
 
-  @Source("resource/css/fullcalendar-2.3.1.cache.print.css")
+  @Source("resource/css/fullcalendar-2.9.1.cache.print.css")
   @CssResource.NotStrict
   CssResource fullCalendarPrintCss();
 
-  @Source("resource/js/fullcalendar-2.3.1.min.cache.js")
+  @Source("resource/js/fullcalendar-2.9.1.min.cache.js")
   TextResource getFullCalendarJS();
 
-  @Source("resource/js/gcal-2.3.1.cache.js")
+  @Source("resource/js/gcal-2.9.1.cache.js")
   TextResource getGoogleCalJS();
 
-  @Source("resource/js/jquery-ui-1.11.2.custom.min.cache.js")
+  @Source("resource/js/jquery-ui-1.11.4.custom.min.cache.js")
   TextResource getCustomDragResizeJS();
 
-  @Source("resource/js/moment-2.9.0.min.cache.js")
+  @Source("resource/js/moment-2.13.0.min.cache.js")
   TextResource getMomentJS();
 
   //langauge files
-  @Source("resource/js/lang.cache.2.3.1/ar-ma.js")
+  @Source("resource/js/lang.cache.2.9.1/ar-ma.js")
   TextResource getArabicMorocan();
 
-  @Source("resource/js/lang.cache.2.3.1/ar.js")
+  @Source("resource/js/lang.cache.2.9.1/ar.js")
   TextResource getArabic();
 
-  @Source("resource/js/lang.cache.2.3.1/bg.js")
+  @Source("resource/js/lang.cache.2.9.1/bg.js")
   TextResource getBulgarian();
 
-  @Source("resource/js/lang.cache.2.3.1/ca.js")
+  @Source("resource/js/lang.cache.2.9.1/ca.js")
   TextResource getCatalan();
 
-  @Source("resource/js/lang.cache.2.3.1/cs.js")
+  @Source("resource/js/lang.cache.2.9.1/cs.js")
   TextResource getCzech();
 
-  @Source("resource/js/lang.cache.2.3.1/da.js")
+  @Source("resource/js/lang.cache.2.9.1/da.js")
   TextResource getDanish();
 
-  @Source("resource/js/lang.cache.2.3.1/de.js")
+  @Source("resource/js/lang.cache.2.9.1/de.js")
   TextResource getGerman();
 
-  @Source("resource/js/lang.cache.2.3.1/el.js")
+  @Source("resource/js/lang.cache.2.9.1/el.js")
   TextResource getGreek();
 
-  @Source("resource/js/lang.cache.2.3.1/en-au.js")
+  @Source("resource/js/lang.cache.2.9.1/en-au.js")
   TextResource getEnglishAustralian();
 
-  @Source("resource/js/lang.cache.2.3.1/en-ca.js")
+  @Source("resource/js/lang.cache.2.9.1/en-ca.js")
   TextResource getEnglishCanadian();
 
-  @Source("resource/js/lang.cache.2.3.1/en-gb.js")
+  @Source("resource/js/lang.cache.2.9.1/en-gb.js")
   TextResource getEnglishBritish();
 
-  @Source("resource/js/lang.cache.2.3.1/es.js")
+  @Source("resource/js/lang.cache.2.9.1/en-ie.js")
+  TextResource getEnglishIreland();
+
+  @Source("resource/js/lang.cache.2.9.1/en-nz.js")
+  TextResource getEnglishNewZealand();
+
+  @Source("resource/js/lang.cache.2.9.1/es.js")
   TextResource getSpanish();
 
-  @Source("resource/js/lang.cache.2.3.1/fa.js")
+  @Source("resource/js/lang.cache.2.9.1/eu.js")
+  TextResource getBasque();
+
+  @Source("resource/js/lang.cache.2.9.1/fa.js")
   TextResource getFarsi();
 
-  @Source("resource/js/lang.cache.2.3.1/fi.js")
+  @Source("resource/js/lang.cache.2.9.1/fi.js")
   TextResource getFinnish();
 
-  @Source("resource/js/lang.cache.2.3.1/fr-ca.js")
+  @Source("resource/js/lang.cache.2.9.1/fr-ca.js")
   TextResource getFrenchCanadian();
 
-  @Source("resource/js/lang.cache.2.3.1/fr.js")
+  @Source("resource/js/lang.cache.2.9.1/fr-ch.js")
+  TextResource getFrenchSwitzerland();
+
+  @Source("resource/js/lang.cache.2.9.1/fr.js")
   TextResource getFrench();
 
-  @Source("resource/js/lang.cache.2.3.1/hi.js")
+  @Source("resource/js/lang.cache.2.9.1/gl.js")
+  TextResource getGalician();
+
+  @Source("resource/js/lang.cache.2.9.1/hi.js")
   TextResource getHindi();
 
-  @Source("resource/js/lang.cache.2.3.1/he.js")
+  @Source("resource/js/lang.cache.2.9.1/he.js")
   TextResource getHebrew();
 
-  @Source("resource/js/lang.cache.2.3.1/hr.js")
+  @Source("resource/js/lang.cache.2.9.1/hr.js")
   TextResource getCroatian();
 
-  @Source("resource/js/lang.cache.2.3.1/hu.js")
+  @Source("resource/js/lang.cache.2.9.1/hu.js")
   TextResource getHungarian();
 
-  @Source("resource/js/lang.cache.2.3.1/id.js")
+  @Source("resource/js/lang.cache.2.9.1/id.js")
   TextResource getIndonesian();
 
-  @Source("resource/js/lang.cache.2.3.1/is.js")
+  @Source("resource/js/lang.cache.2.9.1/is.js")
   TextResource getIslandic();
 
-  @Source("resource/js/lang.cache.2.3.1/it.js")
+  @Source("resource/js/lang.cache.2.9.1/it.js")
   TextResource getItalian();
 
-  @Source("resource/js/lang.cache.2.3.1/ja.js")
+  @Source("resource/js/lang.cache.2.9.1/ja.js")
   TextResource getJapanese();
 
-  @Source("resource/js/lang.cache.2.3.1/ko.js")
+  @Source("resource/js/lang.cache.2.9.1/ko.js")
   TextResource getKorean();
 
-  @Source("resource/js/lang.cache.2.3.1/lt.js")
+  @Source("resource/js/lang.cache.2.9.1/lb.js")
+  TextResource getLuxembourgish();
+
+  @Source("resource/js/lang.cache.2.9.1/lt.js")
   TextResource getLithuanian();
 
-  @Source("resource/js/lang.cache.2.3.1/lv.js")
+  @Source("resource/js/lang.cache.2.9.1/lv.js")
   TextResource getLatvian();
 
-  @Source("resource/js/lang.cache.2.3.1/nb.js")
+  @Source("resource/js/lang.cache.2.9.1/nb.js")
   TextResource getNowegianBokmal();
 
-  @Source("resource/js/lang.cache.2.3.1/nl.js")
+  @Source("resource/js/lang.cache.2.9.1/nl.js")
   TextResource getDutch();
 
-  @Source("resource/js/lang.cache.2.3.1/pl.js")
+  @Source("resource/js/lang.cache.2.9.1/nn.js")
+  TextResource getNorwegian();
+
+  @Source("resource/js/lang.cache.2.9.1/pl.js")
   TextResource getPolish();
 
-  @Source("resource/js/lang.cache.2.3.1/pt-br.js")
+  @Source("resource/js/lang.cache.2.9.1/pt-br.js")
   TextResource getPortugeseBrazil();
 
-  @Source("resource/js/lang.cache.2.3.1/pt.js")
+  @Source("resource/js/lang.cache.2.9.1/pt.js")
   TextResource getPortugese();
 
-  @Source("resource/js/lang.cache.2.3.1/ro.js")
+  @Source("resource/js/lang.cache.2.9.1/ro.js")
   TextResource getRomanian();
 
-  @Source("resource/js/lang.cache.2.3.1/ru.js")
+  @Source("resource/js/lang.cache.2.9.1/ru.js")
   TextResource getRussian();
 
-  @Source("resource/js/lang.cache.2.3.1/sk.js")
+  @Source("resource/js/lang.cache.2.9.1/sk.js")
   TextResource getSlovak();
 
-  @Source("resource/js/lang.cache.2.3.1/sl.js")
+  @Source("resource/js/lang.cache.2.9.1/sl.js")
   TextResource getSlovenian();
 
-  @Source("resource/js/lang.cache.2.3.1/sr-cyrl.js")
+  @Source("resource/js/lang.cache.2.9.1/sr-cyrl.js")
   TextResource getSerbianCyrillic();
 
-  @Source("resource/js/lang.cache.2.3.1/sr.js")
+  @Source("resource/js/lang.cache.2.9.1/sr.js")
   TextResource getSerbian();
 
-  @Source("resource/js/lang.cache.2.3.1/sv.js")
+  @Source("resource/js/lang.cache.2.9.1/sv.js")
   TextResource getSweedish();
 
-  @Source("resource/js/lang.cache.2.3.1/th.js")
+  @Source("resource/js/lang.cache.2.9.1/th.js")
   TextResource getThai();
 
-  @Source("resource/js/lang.cache.2.3.1/tr.js")
+  @Source("resource/js/lang.cache.2.9.1/tr.js")
   TextResource getTurkish();
 
-  @Source("resource/js/lang.cache.2.3.1/uk.js")
+  @Source("resource/js/lang.cache.2.9.1/uk.js")
   TextResource getUkrainian();
 
-  @Source("resource/js/lang.cache.2.3.1/vi.js")
+  @Source("resource/js/lang.cache.2.9.1/vi.js")
   TextResource getVietnamese();
 
-  @Source("resource/js/lang.cache.2.3.1/zh-cn.js")
+  @Source("resource/js/lang.cache.2.9.1/zh-cn.js")
   TextResource getChineseChina();
 
-  @Source("resource/js/lang.cache.2.3.1/zh-tw.js")
+  @Source("resource/js/lang.cache.2.9.1/zh-tw.js")
   TextResource getChineseTaiwan();
 }

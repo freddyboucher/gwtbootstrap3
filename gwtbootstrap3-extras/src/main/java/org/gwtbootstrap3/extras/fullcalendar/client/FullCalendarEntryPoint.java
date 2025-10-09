@@ -32,7 +32,7 @@ public class FullCalendarEntryPoint implements EntryPoint {
     StyleInjector.injectAtEnd("@media print {" + FullCalendarClientBundle.INSTANCE.fullCalendarPrintCss().getText() + "}");
 
     if (!isMomentPresent()) {
-      ScriptInjector.fromString(FullCalendarClientBundle.INSTANCE.getMomentJS().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+      ScriptInjector.fromString(FullCalendarClientBundle.INSTANCE.getMomentJS().getText()).setRemoveTag(false).setWindow(ScriptInjector.TOP_WINDOW).inject();
     }
 
     if (!isCalendarPresent()) {

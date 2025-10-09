@@ -103,9 +103,9 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
       unselectCancel = config.getUnselectCancel();
       selectContraint = config.getSelectContraint();
       javascriptParams = config.getJavaScriptParameters();
-      if (config.getLangauge() != null) {
-        language = config.getLangauge().getCode();
-        ensureInjected(config.getLangauge());
+      if (config.getLanguage() != null) {
+        language = config.getLanguage().getCode();
+        ensureInjected(config.getLanguage());
       }
     }
     addCalendar(getElement().getId(), currentView.name(), editable, selectable, selectHelper, unselectAuto, selectOverlap, language,
@@ -119,7 +119,7 @@ public class FullCalendar extends FlowPanel implements HasLoadHandlers {
       if (config == null) {
         config = new CalendarConfig();
       }
-      config.setLangauge(language);
+      config.setLanguage(language);
       destroy();
       renderCalendar();
     }

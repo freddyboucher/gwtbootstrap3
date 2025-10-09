@@ -30,7 +30,7 @@ import com.google.gwt.core.client.JsArray;
  */
 public class CalendarConfig {
 
-  private Language langauge;//http://arshaw.com/fullcalendar/docs/text/lang/
+  private Language language;//http://arshaw.com/fullcalendar/docs/text/lang/
 
   private ClickAndHoverConfig clickHoverConfig;//http://arshaw.com/fullcalendar/docs/mouse/
   private SelectConfig selectConfig;//http://arshaw.com/fullcalendar/docs/selection/
@@ -193,12 +193,12 @@ public class CalendarConfig {
     this.dragResizeConfig = dragResizeConfig;
   }
 
-  public Language getLangauge() {
-    return langauge;
+  public Language getLanguage() {
+    return language;
   }
 
-  public void setLangauge(Language langauge) {
-    this.langauge = langauge;
+  public void setLanguage(Language language) {
+    this.language = language;
   }
 
   public String getTimezone() {
