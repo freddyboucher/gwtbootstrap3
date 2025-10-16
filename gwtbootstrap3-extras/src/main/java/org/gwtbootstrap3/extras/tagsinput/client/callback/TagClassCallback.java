@@ -20,12 +20,16 @@ package org.gwtbootstrap3.extras.tagsinput.client.callback;
  * #L%
  */
 
+import jsinterop.annotations.JsFunction;
+
 /**
  * Callback used to get class name for a item.
  *
  * @param <T> type of item
  * @author Marko Nikolić
  */
+@JsFunction
+@FunctionalInterface
 public interface TagClassCallback<T> {
   String getTagClass(T item);
 }

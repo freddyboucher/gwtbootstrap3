@@ -19,8 +19,8 @@
   -->
 <module>
   <public path="resource">
-    <include name="css/bootstrap-slider-9.2.0.min.cache.css"/>
+    <include name="css/bootstrap-slider-10.6.2.min.cache.css"/>
   </public>
 
-  <stylesheet src="css/bootstrap-slider-9.2.0.min.cache.css"/>
+  <stylesheet src="css/bootstrap-slider-10.6.2.min.cache.css"/>
 </module>

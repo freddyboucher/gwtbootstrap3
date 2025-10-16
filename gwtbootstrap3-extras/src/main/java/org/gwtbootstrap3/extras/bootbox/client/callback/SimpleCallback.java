@@ -20,12 +20,17 @@ package org.gwtbootstrap3.extras.bootbox.client.callback;
  * #L%
  */
 
+import jsinterop.annotations.JsFunction;
+import jsinterop.annotations.JsOverlay;
+
 /**
  * Simple Bootbox callback without argument.
  *
  * @author Xiaodong Sun
  */
-public interface SimpleCallback extends Callback {
+@JsFunction
+@FunctionalInterface
+public interface SimpleCallback {
 
   /**
    * No-arguments callback function.
@@ -35,6 +40,7 @@ public interface SimpleCallback extends Callback {
   /**
    * Default {@link SimpleCallback} does nothing.
    */
+  @JsOverlay
   SimpleCallback DEFAULT_SIMPLE_CALLBACK = () -> {
   };
 }

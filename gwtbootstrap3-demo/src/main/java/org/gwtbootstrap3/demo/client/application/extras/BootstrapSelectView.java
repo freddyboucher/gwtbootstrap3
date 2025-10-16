@@ -30,11 +30,11 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
+import elemental2.core.JsArray;
 import java.util.Arrays;
 import java.util.List;
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.html.Paragraph;
-import org.gwtbootstrap3.extras.select.client.ui.MaxOptionsTextHandler;
 import org.gwtbootstrap3.extras.select.client.ui.MultipleSelect;
 import org.gwtbootstrap3.extras.select.client.ui.Select;
 import org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers;
@@ -80,17 +80,9 @@ public class BootstrapSelectView extends ViewImpl implements BootstrapSelectPres
   @Inject
   BootstrapSelectView(Binder uiBinder) {
     initWidget(uiBinder.createAndBindUi(this));
-    maxOptionsSelect.setMaxOptionsTextHandler(new MaxOptionsTextHandler() {
-      @Override
-      public String getMaxSelectOptionsText(int maxSelectOptions) {
-        return "Only " + maxSelectOptions + " options are allowed";
-      }
-
-      @Override
-      public String getMaxGroupOptionsText(int maxGroupOptions) {
-        return "No more than " + maxGroupOptions + " options in group";
-      }
-    });
+    maxOptionsSelect.setMaxOptionsTextHandler(
+        (maxSelectOptions, maxGroupOptions) -> JsArray.of("Only " + maxSelectOptions + " options are allowed",
+            "No more than " + maxGroupOptions + " options in group"));
   }
 
   @UiHandler("disableEnableSimple")

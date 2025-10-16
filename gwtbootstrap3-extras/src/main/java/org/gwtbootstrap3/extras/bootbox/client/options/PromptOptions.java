@@ -20,7 +20,9 @@ package org.gwtbootstrap3.extras.bootbox.client.options;
  * #L%
  */
 
-import com.google.gwt.core.client.JavaScriptObject;
+import jsinterop.annotations.JsOverlay;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
 import org.gwtbootstrap3.extras.bootbox.client.callback.PromptCallback;
 
 /**
@@ -28,30 +30,16 @@ import org.gwtbootstrap3.extras.bootbox.client.callback.PromptCallback;
  *
  * @author Xiaodong Sun
  */
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
 public class PromptOptions extends DialogOptions {
 
-  /**
-   *
-   */
-  protected PromptOptions() {
-  }
+  public PromptCallback callback;
 
-  /**
-   * Creates a new {@link PromptOptions}.
-   *
-   * @param message
-   * @return
-   */
+  @JsOverlay
   public static final PromptOptions newOptions(String message) {
-    PromptOptions options = JavaScriptObject.createObject().cast();
-    options.setMessage(message);
-    options.setCallback(PromptCallback.DEFAULT_PROMPT_CALLBACK);
+    PromptOptions options = new PromptOptions();
+    options.message = message;
+    options.callback = PromptCallback.DEFAULT_PROMPT_CALLBACK;
     return options;
   }
-
-  public final native void setCallback(PromptCallback callback) /*-{
-    this.callback = function (result) {
-      callback.@org.gwtbootstrap3.extras.bootbox.client.callback.PromptCallback::callback(Ljava/lang/String;)(result);
-    };
-  }-*/;
 }

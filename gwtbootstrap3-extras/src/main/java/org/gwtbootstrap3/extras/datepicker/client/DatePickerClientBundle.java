@@ -31,7 +31,7 @@ public interface DatePickerClientBundle extends ClientBundle {
 
   DatePickerClientBundle INSTANCE = GWT.create(DatePickerClientBundle.class);
 
-  String VERSION = "1.6.4";
+  String VERSION = "1.10.0";
   String LOCALES_DIR = "resource/js/locales.cache." + VERSION + "/";
 
   @Source("resource/js/bootstrap-datepicker-" + VERSION + ".min.cache.js")
@@ -40,11 +40,26 @@ public interface DatePickerClientBundle extends ClientBundle {
   @Source(LOCALES_DIR + "bootstrap-datepicker.ar.min.js")
   TextResource ar();
 
+  @Source(LOCALES_DIR + "bootstrap-datepicker.ar-DZ.min.js")
+  TextResource ar_DZ();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.ar-tn.min.js")
+  TextResource ar_tn();
+
   @Source(LOCALES_DIR + "bootstrap-datepicker.az.min.js")
   TextResource az();
 
   @Source(LOCALES_DIR + "bootstrap-datepicker.bg.min.js")
   TextResource bg();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.bm.min.js")
+  TextResource bm();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.bn.min.js")
+  TextResource bn();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.br.min.js")
+  TextResource br();
 
   @Source(LOCALES_DIR + "bootstrap-datepicker.bs.min.js")
   TextResource bs();
@@ -67,8 +82,26 @@ public interface DatePickerClientBundle extends ClientBundle {
   @Source(LOCALES_DIR + "bootstrap-datepicker.el.min.js")
   TextResource el();
 
+  @Source(LOCALES_DIR + "bootstrap-datepicker.en-AU.min.js")
+  TextResource en_AU();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.en-CA.min.js")
+  TextResource en_CA();
+
   @Source(LOCALES_DIR + "bootstrap-datepicker.en-GB.min.js")
   TextResource en_GB();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.en-IE.min.js")
+  TextResource en_IE();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.en-NZ.min.js")
+  TextResource en_NZ();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.en-US.min.js")
+  TextResource en_US();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.en-ZA.min.js")
+  TextResource en_ZA();
 
   @Source(LOCALES_DIR + "bootstrap-datepicker.eo.min.js")
   TextResource eo();
@@ -103,6 +136,9 @@ public interface DatePickerClientBundle extends ClientBundle {
   @Source(LOCALES_DIR + "bootstrap-datepicker.he.min.js")
   TextResource he();
 
+  @Source(LOCALES_DIR + "bootstrap-datepicker.hi.min.js")
+  TextResource hi();
+
   @Source(LOCALES_DIR + "bootstrap-datepicker.hr.min.js")
   TextResource hr();
 
@@ -136,6 +172,9 @@ public interface DatePickerClientBundle extends ClientBundle {
   @Source(LOCALES_DIR + "bootstrap-datepicker.kk.min.js")
   TextResource kk();
 
+  @Source(LOCALES_DIR + "bootstrap-datepicker.km.min.js")
+  TextResource km();
+
   @Source(LOCALES_DIR + "bootstrap-datepicker.ko.min.js")
   TextResource ko();
 
@@ -157,11 +196,11 @@ public interface DatePickerClientBundle extends ClientBundle {
   @Source(LOCALES_DIR + "bootstrap-datepicker.mn.min.js")
   TextResource mn();
 
+  @Source(LOCALES_DIR + "bootstrap-datepicker.mr.min.js")
+  TextResource mr();
+
   @Source(LOCALES_DIR + "bootstrap-datepicker.ms.min.js")
   TextResource ms();
-
-  @Source(LOCALES_DIR + "bootstrap-datepicker.nb.min.js")
-  TextResource nb();
 
   @Source(LOCALES_DIR + "bootstrap-datepicker.nl.min.js")
   TextResource nl();
@@ -171,6 +210,9 @@ public interface DatePickerClientBundle extends ClientBundle {
 
   @Source(LOCALES_DIR + "bootstrap-datepicker.no.min.js")
   TextResource no();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.oc.min.js")
+  TextResource oc();
 
   @Source(LOCALES_DIR + "bootstrap-datepicker.pl.min.js")
   TextResource pl();
@@ -193,6 +235,9 @@ public interface DatePickerClientBundle extends ClientBundle {
   @Source(LOCALES_DIR + "bootstrap-datepicker.ru.min.js")
   TextResource ru();
 
+  @Source(LOCALES_DIR + "bootstrap-datepicker.si.min.js")
+  TextResource si();
+
   @Source(LOCALES_DIR + "bootstrap-datepicker.sk.min.js")
   TextResource sk();
 
@@ -214,14 +259,29 @@ public interface DatePickerClientBundle extends ClientBundle {
   @Source(LOCALES_DIR + "bootstrap-datepicker.sw.min.js")
   TextResource sw();
 
+  @Source(LOCALES_DIR + "bootstrap-datepicker.ta.min.js")
+  TextResource ta();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.tg.min.js")
+  TextResource tg();
+
   @Source(LOCALES_DIR + "bootstrap-datepicker.th.min.js")
   TextResource th();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.tk.min.js")
+  TextResource tk();
 
   @Source(LOCALES_DIR + "bootstrap-datepicker.tr.min.js")
   TextResource tr();
 
   @Source(LOCALES_DIR + "bootstrap-datepicker.uk.min.js")
   TextResource uk();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.uz-cyrl.min.js")
+  TextResource uz_cyrl();
+
+  @Source(LOCALES_DIR + "bootstrap-datepicker.uz-latn.min.js")
+  TextResource uz_latn();
 
   @Source(LOCALES_DIR + "bootstrap-datepicker.vi.min.js")
   TextResource vi();

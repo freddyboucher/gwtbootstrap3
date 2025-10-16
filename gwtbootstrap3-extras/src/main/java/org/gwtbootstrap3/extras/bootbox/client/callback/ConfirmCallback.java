@@ -20,12 +20,17 @@ package org.gwtbootstrap3.extras.bootbox.client.callback;
  * #L%
  */
 
+import jsinterop.annotations.JsFunction;
+import jsinterop.annotations.JsOverlay;
+
 /**
  * Confirm callback according to the result.
  *
  * @author Xiaodong Sun
  */
-public interface ConfirmCallback extends Callback {
+@JsFunction
+@FunctionalInterface
+public interface ConfirmCallback {
 
   /**
    * Callback according to the result.
@@ -38,6 +43,7 @@ public interface ConfirmCallback extends Callback {
   /**
    * Default {@link ConfirmCallback} does nothing.
    */
+  @JsOverlay
   ConfirmCallback DEFAULT_CONFIRM_CALLBACK = result -> {
   };
 }

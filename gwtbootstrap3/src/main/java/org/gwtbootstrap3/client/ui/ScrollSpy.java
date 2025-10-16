@@ -20,11 +20,12 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import static org.gwtbootstrap3.client.shared.js.JQuery.$;
+
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.UIObject;
-import jsinterop.annotations.JsMethod;
-import org.gwtbootstrap3.client.shared.js.JQuery;
+import jsinterop.base.JsPropertyMap;
 import org.gwtbootstrap3.client.ui.base.HasId;
 
 /**
@@ -112,7 +113,7 @@ public class ScrollSpy {
     this.spyOn = spyOn;
     target = selector;
 
-    init(this.spyOn, target);
+    $(this.spyOn).scrollspy(JsPropertyMap.of("target", target));
   }
 
   private ScrollSpy(Element spyOn, HasId target) {
@@ -126,7 +127,7 @@ public class ScrollSpy {
     this.spyOn = spyOn;
     this.target = "#" + id;
 
-    init(this.spyOn, this.target);
+    $(this.spyOn).scrollspy(JsPropertyMap.of("target", this.target));
   }
 
   /**
@@ -137,10 +138,7 @@ public class ScrollSpy {
     refresh(spyOn);
   }
 
-  @JsMethod
-  private static native void init(Element e, String target);
-
   private void refresh(Element e) {
-    JQuery.jQuery(e).scrollspy("refresh");
+    $(e).scrollspy("refresh");
   }
 }

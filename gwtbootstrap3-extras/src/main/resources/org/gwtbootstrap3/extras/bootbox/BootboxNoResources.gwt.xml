@@ -19,5 +19,6 @@
   -->
 
 <module rename-to='bootbox'>
+  <inherits name="elemental2.dom.Dom"/>
   <source path='client'/>
 </module>

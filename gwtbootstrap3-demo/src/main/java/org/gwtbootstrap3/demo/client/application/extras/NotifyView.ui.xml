@@ -87,9 +87,9 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-java">
-            @UiHandler("button")\n
-            public void handleButton(ClickEvent event) {\n
-            \s\sNotify.notify("Message");\n
+            @UiHandler(&quot;basicNotify&quot;)\n
+            public void handleBasicNotify(ClickEvent event) {\n
+            \sNotify.notify(&quot;Message&quot;);\n
             }
           </d:PrettyPre>
         </b:PanelFooter>
@@ -104,9 +104,9 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-java">
-            @UiHandler("button")\n
-            public void handleButton(ClickEvent event) {\n
-            \s\sNotify.notify("Title", "Message", IconType.SMILE_O);\n
+            @UiHandler(&quot;basicNotifyWithTitleIcon&quot;)\n
+            public void handleBasicNotifyWithTitleIcon(ClickEvent event) {\n
+            \sNotify.notify(&quot;Title&quot;, &quot;Message&quot;, IconType.SMILE_O);\n
             }
           </d:PrettyPre>
         </b:PanelFooter>
@@ -121,12 +121,12 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-java">
-            @UiHandler("button")\n
-            public void handleButton(ClickEvent event) {\n
-            \s\sNotifySettings settings = NotifySettings.newSettings();\n
-            \s\ssettings.setShowProgressbar(true);\n
-            \s\ssettings.setPauseOnMouseOver(true);\n
-            \s\sNotify.notify("Title", "Message", IconType.SMILE_O, settings);\n
+            @UiHandler(&quot;showProgressbar&quot;)\n
+            public void handleShowProgressbar(ClickEvent event) {\n
+            \sNotifySettings settings = new NotifySettings();\n
+            \ssettings.showProgressbar = true;\n
+            \ssettings.setPauseOnMouseOver(true);\n
+            \sNotify.notify(&quot;Title&quot;, &quot;Message&quot;, IconType.SMILE_O, settings);\n
             }
           </d:PrettyPre>
         </b:PanelFooter>
@@ -141,12 +141,12 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-java">
-            @UiHandler("button")\n
-            public void handleButton(ClickEvent event) {\n
-            \s\sNotifySettings settings = NotifySettings.newSettings();\n
-            \s\ssettings.setType(NotifyType.SUCCESS);\n
-            \s\ssettings.setAllowDismiss(false);\n
-            \s\sNotify.notify("Title", "Message", IconType.SMILE_O, settings);\n
+            @UiHandler(&quot;changeBackgroundAndDismiss&quot;)\n
+            public void handleChangeBackgroundAndDismiss(ClickEvent event) {\n
+            \sNotifySettings settings = new NotifySettings();\n
+            \ssettings.setType(NotifyType.SUCCESS);\n
+            \ssettings.allow_dismiss = false;\n
+            \sNotify.notify(&quot;Title&quot;, &quot;Message&quot;, IconType.SMILE_O, settings);\n
             }
           </d:PrettyPre>
         </b:PanelFooter>
@@ -161,11 +161,11 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-java">
-            @UiHandler("button")\n
-            public void handleButton(ClickEvent event) {\n
-            \s\sNotifySettings settings = NotifySettings.newSettings();\n
-            \s\ssettings.setPlacement(NotifyPlacement.TOP_CENTER);\n
-            \s\sNotify.notify("Title", "Message", IconType.SMILE_O, "https://github.com/gwtbootstrap3/gwtbootstrap3", settings);\n
+            @UiHandler(&quot;positionAndLink&quot;)\n
+            public void handlePositionAndFormatting(ClickEvent event) {\n
+            \sNotifySettings settings = new NotifySettings();\n
+            \ssettings.setPlacement(NotifyPlacement.TOP_CENTER);\n
+            \sNotify.notify(&quot;Title&quot;, &quot;Message&quot;, IconType.SMILE_O, &quot;https://github.com/gwtbootstrap3/gwtbootstrap3&quot;, settings);\n
             }
           </d:PrettyPre>
         </b:PanelFooter>
@@ -184,12 +184,12 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-java">
-            @UiHandler("button")\n
-            public void handleButton(ClickEvent event) {\n
-            \s\sNotifySettings settings = NotifySettings.newSettings();\n
-            \s\ssettings.setAnimation(Animation.TADA, Animation.LIGHTSPEED_OUT);\n
-            \s\ssettings.setOffset(200, 140);\n
-            \s\sNotify.notify("Title", "Message", IconType.SMILE_O, settings);\n
+            @UiHandler(&quot;animationAndOffset&quot;)\n
+            public void handleAnimationAndOffset(ClickEvent event) {\n
+            \sNotifySettings settings = new NotifySettings();\n
+            \ssettings.setAnimation(Animation.TADA, Animation.LIGHTSPEED_OUT);\n
+            \ssettings.setOffset(200, 140);\n
+            \sNotify.notify(&quot;Title&quot;, &quot;Message&quot;, IconType.SMILE_O, settings);\n
             }
           </d:PrettyPre>
         </b:PanelFooter>
@@ -208,21 +208,19 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-java">
-            @UiHandler("button")\n
-            public void handleButton(ClickEvent event) {\n
-            \s\sNotifySettings settings = NotifySettings.newSettings();\n
-            \s\ssettings.setTemplate("&lt;div data-notify=\"container\" class=\"alert\" role=\"alert\"&gt;"+\n
-            \s\s"&lt;button type=\"button\" class=\"close\" data-notify=\"dismiss\"&gt;"+\n
-            \s\s\s"&lt;span aria-hidden=\"true\"&gt;×&lt;/span&gt;"+\n
-            \s\s\s"&lt;span class=\"sr-only\"&gt;Close&lt;/span&gt;"+\n
-            \s\s"&lt;/button&gt;"+\n
-            \s\s"&lt;span data-notify=\"icon\"&gt;&lt;/span&gt;"+\n
-            \s\s"&lt;b&gt;&lt;span data-notify=\"title\"&gt;&lt;/span&gt;&lt;/b&gt;"+\n
-            \s\s"&lt;span data-notify=\"message\"&gt;&lt;/span&gt;"+\n
-            \s\s"&lt;a href=\"#\" data-notify=\"url\"&gt;&lt;/a&gt;"+\n
-            \s\s"&lt;/div&gt;");\n
-            \s\ssettings.makeDefault();\n
-            \s\sNotify.notify("Title", "Message", IconType.SMILE_O);\n
+            @UiHandler(&quot;template&quot;)\n
+            public void handleTemplate(ClickEvent event) {\n
+            \sNotifySettings settings = new NotifySettings();\n
+            \ssettings.delay = 0;\n
+            \ssettings.template =\n
+            \s\s\s&quot;&lt;div data-notify=\&quot;container\&quot; class=\&quot;col-xs-11 col-sm-4 alert alert-{&#8203;0&#8203;}\&quot; role=\&quot;alert\&quot;&gt;&lt;button type=\&quot;button\&quot; &quot; +\n
+            \s\s\s\s\s&quot;aria-hidden=\&quot;true\&quot; class=\&quot;close\&quot; data-notify=\&quot;dismiss\&quot;&gt;&amp;times;&lt;/button&gt;&lt;span data-notify=\&quot;icon\&quot;&gt;&lt;/span&gt; &lt;span &quot; +\n
+            \s\s\s\s\s&quot;data-notify=\&quot;title\&quot;&gt;CUSTOM CODE {&#8203;1&#8203;}&lt;/span&gt; &lt;span data-notify=\&quot;message\&quot;&gt;{&#8203;2&#8203;}&lt;/span&gt;&lt;div class=\&quot;progress\&quot; &quot; +\n
+            \s\s\s\s\s&quot;data-notify=\&quot;progressbar\&quot;&gt;&lt;div class=\&quot;progress-bar progress-bar-{&#8203;0&#8203;}\&quot; role=\&quot;progressbar\&quot; aria-valuenow=\&quot;0\&quot; &quot; +\n
+            \s\s\s\s\s&quot;aria-valuemin=\&quot;0\&quot; aria-valuemax=\&quot;100\&quot; style=\&quot;width: 0%;\&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=\&quot;{&#8203;3&#8203;}\&quot; target=\&quot;{&#8203;4&#8203;}\&quot; &quot; +\n
+            \s\s\s\s\s&quot;data-notify=\&quot;url\&quot;&gt;&lt;/a&gt;&lt;/div&gt;&quot;;\n
+            \sNotify.notifyDefaults(settings);\n
+            \sNotify notify = Notify.notify(&quot;Title&quot;, &quot;Message&quot;, IconType.SMILE_O);\n
             }
           </d:PrettyPre>
         </b:PanelFooter>

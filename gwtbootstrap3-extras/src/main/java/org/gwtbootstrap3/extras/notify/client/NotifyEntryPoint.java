@@ -22,26 +22,14 @@ package org.gwtbootstrap3.extras.notify.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.ScriptInjector;
+import org.gwtbootstrap3.client.shared.js.JQuery;
 
 public class NotifyEntryPoint implements EntryPoint {
 
   @Override
   public void onModuleLoad() {
-    if (!isNotifyLoaded()) {
+    if (JQuery.jQuery.asPropertyMap().get("notify") == null) {
       ScriptInjector.fromString(NotifyClientBundle.INSTANCE.notifyJS().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
     }
   }
-
-  /**
-   * Check if notify is already loaded.
-   *
-   * @return <code>true</code> if notify is loaded, <code>false</code> otherwise
-   */
-  private native boolean isNotifyLoaded() /*-{
-    if ($wnd.jQuery && $wnd.jQuery.notify) {
-      return true;
-    } else {
-      return false;
-    }
-  }-*/;
 }

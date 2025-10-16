@@ -20,6 +20,8 @@ package org.gwtbootstrap3.client.ui.base.button;
  * #L%
  */
 
+import static org.gwtbootstrap3.client.shared.js.JQuery.$;
+
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
@@ -45,7 +47,6 @@ import com.google.gwt.user.client.ui.Focusable;
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.Widget;
 import java.util.List;
-import org.gwtbootstrap3.client.shared.js.JQuery;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.HasActive;
 import org.gwtbootstrap3.client.ui.base.HasDataTarget;
@@ -296,6 +297,6 @@ public abstract class AbstractButton extends ComplexWidget
   protected abstract Element createElement();
 
   private void button(Element e, String arg) {
-    JQuery.jQuery(e).button(arg);
+    $(e).button(arg);
   }
 }

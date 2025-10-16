@@ -67,10 +67,10 @@ public class BootboxJSView extends ViewImpl implements BootboxJSPresenter.MyView
   void handleAlertOptionsButton(ClickEvent event) {
     AlertOptions options = AlertOptions.newOptions("Alert With Options");
     options.setSize(BootboxSize.LARGE);
-    options.setAnimate(false);
-    options.setBackdrop(false);
-    options.setTitle("Custome Alert Title");
-    options.setCloseButton(false);
+    options.animate = false;
+    options.backdrop = null;
+    options.title = "Custome Alert Title";
+    options.closeButton = false;
     Bootbox.alert(options);
   }
 
@@ -83,11 +83,11 @@ public class BootboxJSView extends ViewImpl implements BootboxJSPresenter.MyView
   void handleConfirmOptionsButton(ClickEvent event) {
     ConfirmOptions options = ConfirmOptions.newOptions("Confirm With Options");
     options.setSize(BootboxSize.SMALL);
-    options.setAnimate(false);
-    options.setBackdrop(false);
-    options.setTitle("Custome Confirm Title");
-    options.setCloseButton(false);
-    options.setCallback(result -> Window.alert("Return: " + result));
+    options.animate = false;
+    options.backdrop = null;
+    options.title = "Custome Confirm Title";
+    options.closeButton = false;
+    options.callback = result -> Window.alert("Return: " + result);
     Bootbox.confirm(options);
   }
 
@@ -99,19 +99,19 @@ public class BootboxJSView extends ViewImpl implements BootboxJSPresenter.MyView
   @UiHandler("promptOptionsButton")
   void handlePromptOptionsButton(ClickEvent event) {
     PromptOptions options = PromptOptions.newOptions("Prompt With Options");
-    options.setAnimate(false);
-    options.setBackdrop(false);
-    options.setTitle("Custome Prompt Title");
-    options.setCloseButton(false);
-    options.setCallback(result -> Window.alert("Return: " + result));
+    options.animate = false;
+    options.backdrop = null;
+    options.title = "Custome Prompt Title";
+    options.closeButton = false;
+    options.callback = result -> Window.alert("Return: " + result);
     Bootbox.prompt(options);
   }
 
   @UiHandler("dialogButton")
   void handleDialogButton(ClickEvent event) {
     DialogOptions options = DialogOptions.newOptions("I am a custom dialog");
-    options.setTitle("Custom title");
-    options.setOnEscape(() -> Window.alert("On Escape!"));
+    options.title = "Custom title";
+    options.onEscape = () -> Window.alert("On Escape!");
     options.addButton("Success!", ButtonType.SUCCESS.getCssName(), () -> Window.alert("Success callback!"));
     options.addButton("Danger!", ButtonType.DANGER.getCssName(), () -> Window.alert("Danger callback!"));
     options.addButton("Click ME!");

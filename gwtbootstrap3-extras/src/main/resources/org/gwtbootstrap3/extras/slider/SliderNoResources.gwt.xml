@@ -20,6 +20,7 @@
 
 <module rename-to='slider'>
   <inherits name="org.gwtbootstrap3.GwtBootstrap3Base"/>
+  <inherits name="elemental2.dom.Dom"/>
 
   <source path='client'/>
 </module>

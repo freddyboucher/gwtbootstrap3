@@ -67,7 +67,7 @@
           Bootstrap DatePicker
         </b:Anchor>
         <b.html:Br/>
-        <b.html:Strong>Current Version Supported: 1.6.4</b.html:Strong>
+        <b.html:Strong>Current Version Supported: 1.10.0</b.html:Strong>
       </b:BlockQuote>
 
       <b:BlockQuote addStyleNames="{style.danger}">
@@ -148,7 +148,7 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-xml">
-            &lt;b2:DatePicker autoClose="true" language="..."/&gt;\n
+            &lt;b2:DatePicker autoClose="true" language="FR"/&gt;\n
           </d:PrettyPre>
         </b:PanelFooter>
       </b:Panel>
@@ -168,7 +168,7 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-xml">
-            &lt;b2:DatePicker autoClose="true" position="..."/&gt;\n
+            &lt;b2:DatePicker autoClose="true" position="TOP_RIGHT"/&gt;\n
           </d:PrettyPre>
         </b:PanelFooter>
       </b:Panel>

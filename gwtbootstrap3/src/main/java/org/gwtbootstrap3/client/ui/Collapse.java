@@ -20,6 +20,8 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import static org.gwtbootstrap3.client.shared.js.JQuery.$;
+
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Event;
@@ -31,7 +33,6 @@ import org.gwtbootstrap3.client.shared.event.ShowEvent;
 import org.gwtbootstrap3.client.shared.event.ShowHandler;
 import org.gwtbootstrap3.client.shared.event.ShownEvent;
 import org.gwtbootstrap3.client.shared.event.ShownHandler;
-import org.gwtbootstrap3.client.shared.js.JQuery;
 import org.gwtbootstrap3.client.ui.base.helper.StyleHelper;
 import org.gwtbootstrap3.client.ui.constants.CollapseParam;
 import org.gwtbootstrap3.client.ui.constants.Styles;
@@ -171,25 +172,20 @@ public class Collapse extends Div {
   }
 
   private void bindJavaScriptEvents(Element e) {
-    JQuery collapse = JQuery.jQuery(e);
-
-    collapse.on("show.bs.collapse", this::onShow);
-
-    collapse.on("shown.bs.collapse", this::onShown);
-
-    collapse.on("hide.bs.collapse", this::onHide);
-
-    collapse.on("hidden.bs.collapse", this::onHidden);
+    $(e).on("show.bs.collapse", this::onShow);
+    $(e).on("shown.bs.collapse", this::onShown);
+    $(e).on("hide.bs.collapse", this::onHide);
+    $(e).on("hidden.bs.collapse", this::onHidden);
   }
 
   private void unbindJavaScriptEvents(Element e) {
-    JQuery.jQuery(e).off("show.bs.collapse");
-    JQuery.jQuery(e).off("shown.bs.collapse");
-    JQuery.jQuery(e).off("hide.bs.collapse");
-    JQuery.jQuery(e).off("hidden.bs.collapse");
+    $(e).off("show.bs.collapse");
+    $(e).off("shown.bs.collapse");
+    $(e).off("hide.bs.collapse");
+    $(e).off("hidden.bs.collapse");
   }
 
   private void fireMethod(Element e, String method) {
-    JQuery.jQuery(e).collapse(method);
+    $(e).collapse(method);
   }
 }

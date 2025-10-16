@@ -20,6 +20,8 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import static org.gwtbootstrap3.client.shared.js.JQuery.$;
+
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -310,32 +312,27 @@ public class Modal extends Div implements IsClosable {
   }
 
   private void bindJavaScriptEvents(Element e) {
-    JQuery modal = JQuery.jQuery(e);
-
-    modal.on("show.bs.modal", this::onShow);
-
-    modal.on("shown.bs.modal", this::onShown);
-
-    modal.on("hide.bs.modal", this::onHide);
-
-    modal.on("hidden.bs.modal", this::onHidden);
+    $(e).on("show.bs.modal", this::onShow);
+    $(e).on("shown.bs.modal", this::onShown);
+    $(e).on("hide.bs.modal", this::onHide);
+    $(e).on("hidden.bs.modal", this::onHidden);
   }
 
   private void modal(Element e, String arg) {
-    JQuery.jQuery(e).modal(arg);
+    $(e).modal(arg);
   }
 
   // Will iterate over all the modals, if they are visible it will hide them
   private void hideOtherModals() {
-    JQuery hasfade = JQuery.jQuery(".modal.in.fade");
+    JQuery hasfade = $(".modal.in.fade");
     hasfade.removeClass("fade");
-    JQuery.jQuery(".modal.in").modal("hide");
+    $(".modal.in").modal("hide");
     hasfade.addClass("fade");
   }
 
   // Unbinds all the handlers
   private void unbindAllHandlers(Element e) {
-    JQuery je = JQuery.jQuery(e);
+    JQuery je = $(e);
     je.off("show.bs.modal");
     je.off("shown.bs.modal");
     je.off("hide.bs.modal");

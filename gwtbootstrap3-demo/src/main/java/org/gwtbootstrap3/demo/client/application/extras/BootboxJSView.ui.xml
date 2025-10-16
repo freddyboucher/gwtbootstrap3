@@ -44,7 +44,7 @@
         <b.html:Strong>Original Library Link:</b.html:Strong>
         <b:Anchor target="_blank" addStyleNames="{style.spacing}" href="http://bootboxjs.com/">Bootbox.js</b:Anchor>
         <b.html:Br/>
-        <b.html:Strong>Current Version Supported: 4.4.0</b.html:Strong>
+        <b.html:Strong>Current Version Supported: 6.0.4</b.html:Strong>
       </b:BlockQuote>
 
       <b:BlockQuote addStyleNames="{style.danger}">
@@ -90,10 +90,10 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-java">
-            @UiHandler("localeBox")\n
-            void onChangeLanguage(final ChangeEvent event) {\n
-            \s\sString locale = localeBox.getSelectedValue();\n
-            \s\sBootbox.setLocale(BootboxLocale.valueOf(locale));\n
+            @UiHandler(&quot;localeBox&quot;)\n
+            void onChangeLanguage(ChangeEvent event) {\n
+            \sString locale = localeBox.getSelectedValue();\n
+            \sBootbox.setLocale(BootboxLocale.valueOf(locale));\n
             }
           </d:PrettyPre>
         </b:PanelFooter>
@@ -110,31 +110,25 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-java">
-            // Alert\n
-            @UiHandler("alertButton")\n
+            /@UiHandler(&quot;alertButton&quot;)\n
             void handleAlertButton(ClickEvent event) {\n
-            \s\sBootbox.alert("Hello World");\n
-            }\n\n
-            // Alert With Callback\n
-            @UiHandler("alertCallbackButton")\n
+            \sBootbox.alert(&quot;Hello World&quot;);\n
+            }\n
+            \n
+            @UiHandler(&quot;alertCallbackButton&quot;)\n
             void handleAlertCallbackButton(ClickEvent event) {\n
-            \s\sBootbox.alert("Alert With Callback", new SimpleCallback() {\n
-            \s\s\s\s@Override\n
-            \s\s\s\spublic void callback() {\n
-            \s\s\s\s\s\sWindow.alert("Alert Callback");\n
-            \s\s\s\s}\n
-            \s\s});\n
-            }\n\n
-            // Alert With Options\n
-            @UiHandler("alertOptionsButton")\n
+            \sBootbox.alert(&quot;Alert With Callback&quot;, () -&gt; Window.alert(&quot;My Alert Callback&quot;));\n
+            }\n
+            \n
+            @UiHandler(&quot;alertOptionsButton&quot;)\n
             void handleAlertOptionsButton(ClickEvent event) {\n
-            \s\sAlertOptions options = AlertOptions.newOptions("Alert With Options");\n
-            \s\soptions.setSize(BootboxSize.LARGE);\n
-            \s\soptions.setAnimate(false);\n
-            \s\soptions.setBackdrop(false);\n
-            \s\soptions.setTitle("My Custom Title");\n
-            \s\soptions.setCloseButton(false);\n
-            \s\sBootbox.alert(options);\n
+            \sAlertOptions options = AlertOptions.newOptions(&quot;Alert With Options&quot;);\n
+            \soptions.setSize(BootboxSize.LARGE);\n
+            \soptions.animate = false;\n
+            \soptions.backdrop = null;\n
+            \soptions.title = &quot;Custome Alert Title&quot;;\n
+            \soptions.closeButton = false;\n
+            \sBootbox.alert(options);\n
             }
           </d:PrettyPre>
         </b:PanelFooter>
@@ -151,31 +145,21 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-java">
-            @UiHandler("confirmButton")\n
+            @UiHandler(&quot;confirmButton&quot;)\n
             void handleConfirmButton(ClickEvent event) {\n
-            \s\sBootbox.confirm("Hello World", new ConfirmCallback() {\n
-            \s\s\s\s@Override\n
-            \s\s\s\spublic void callback(boolean result) {\n
-            \s\s\s\s\s\sWindow.alert("Return: " + result);\n
-            \s\s\s\s}\n
-            \s\s});\n
-            }\n\n
-            // Confirm With Options\n
-            @UiHandler("confirmOptionsButton")\n
+            \sBootbox.confirm(&quot;Hello World&quot;, result -&gt; Window.alert(&quot;Return: &quot; + result));\n
+            }\n
+            \n
+            @UiHandler(&quot;confirmOptionsButton&quot;)\n
             void handleConfirmOptionsButton(ClickEvent event) {\n
-            \s\sConfirmOptions options = ConfirmOptions.newOptions("Confirm With Options");\n
-            \s\soptions.setSize(BootboxSize.SMALL);\n
-            \s\soptions.setAnimate(false);\n
-            \s\soptions.setBackdrop(false);\n
-            \s\soptions.setTitle("Custom Confirm Title");\n
-            \s\soptions.setCloseButton(false);\n
-            \s\soptions.setCallback(new ConfirmCallback() {\n
-            \s\s\s\s@Override\n
-            \s\s\s\spublic void callback(final boolean result) {\n
-            \s\s\s\s\s\sWindow.alert("Return: " + result);\n
-            \s\s\s\s}\n
-            \s\s});\n
-            \s\sBootbox.confirm(options);\n
+            \sConfirmOptions options = ConfirmOptions.newOptions(&quot;Confirm With Options&quot;);\n
+            \soptions.setSize(BootboxSize.SMALL);\n
+            \soptions.animate = false;\n
+            \soptions.backdrop = null;\n
+            \soptions.title = &quot;Custome Confirm Title&quot;;\n
+            \soptions.closeButton = false;\n
+            \soptions.callback = result -&gt; Window.alert(&quot;Return: &quot; + result);\n
+            \sBootbox.confirm(options);\n
             }
           </d:PrettyPre>
         </b:PanelFooter>
@@ -191,30 +175,20 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-java">
-            @UiHandler("button")\n
-            public void handleButton(ClickEvent event) {\n
-            \s\sBootbox.prompt("Hello World", new PromptCallback() {\n
-            \s\s\s\s@Override\n
-            \s\s\s\spublic void callback(String result) {\n
-            \s\s\s\s\s\sWindow.alert("Return: " + result);\n
-            \s\s\s\s}\n
-            \s\s});\n
-            }\n\n
-            // Prompt With Options\n
-            @UiHandler("promptOptionsButton")\n
+            @UiHandler(&quot;promptButton&quot;)\n
+            void handlePromptButton(ClickEvent event) {\n
+            \sBootbox.prompt(&quot;Hello World&quot;, result -&gt; Window.alert(&quot;Return: &quot; + result));\n
+            }\n
+            \n
+            @UiHandler(&quot;promptOptionsButton&quot;)\n
             void handlePromptOptionsButton(ClickEvent event) {\n
-            \s\sPromptOptions options = PromptOptions.newOptions("Prompt With Options");\n
-            \s\soptions.setAnimate(false);\n
-            \s\soptions.setBackdrop(false);\n
-            \s\soptions.setTitle("Custom Confirm Title");\n
-            \s\soptions.setCloseButton(false);\n
-            \s\soptions.setCallback(new PromptCallback() {\n
-            \s\s\s\s@Override\n
-            \s\s\s\spublic void callback(final boolean result) {\n
-            \s\s\s\s\s\sWindow.alert("Return: " + result);\n
-            \s\s\s\s}\n
-            \s\s});\n
-            \s\sBootbox.prompt(options);\n
+            \sPromptOptions options = PromptOptions.newOptions(&quot;Prompt With Options&quot;);\n
+            \soptions.animate = false;\n
+            \soptions.backdrop = null;\n
+            \soptions.title = &quot;Custome Prompt Title&quot;;\n
+            \soptions.closeButton = false;\n
+            \soptions.callback = result -&gt; Window.alert(&quot;Return: &quot; + result);\n
+            \sBootbox.prompt(options);\n
             }
           </d:PrettyPre>
         </b:PanelFooter>
@@ -229,30 +203,15 @@
         </b:PanelBody>
         <b:PanelFooter>
           <d:PrettyPre addStyleNames="lang-java">
-            @UiHandler("dialogButton")\n
+            @UiHandler(&quot;dialogButton&quot;)\n
             void handleDialogButton(ClickEvent event) {\n
-            \s\sDialogOptions options = DialogOptions.newOptions("I am a custom dialog");\n
-            \s\soptions.setTitle("Custom title");\n
-            \s\soptions.setOnEscape(new SimpleCallback() {\n
-            \s\s\s\s@Override\n
-            \s\s\s\spublic void callback() {\n
-            \s\s\s\s\s\sWindow.alert("On Escape!");\n
-            \s\s\s\s}\n
-            \s\s});\n
-            \s\soptions.addButton("Success!", ButtonType.SUCCESS.getCssName(), new SimpleCallback() {\n
-            \s\s\s\s@Override\n
-            \s\s\s\spublic void callback() {\n
-            \s\s\s\s\s\sWindow.alert("Success callback!");\n
-            \s\s\s\s}\n
-            \s\s});\n
-            \s\soptions.addButton("Danger!", ButtonType.DANGER.getCssName(), new SimpleCallback() {\n
-            \s\s\s\s@Override\n
-            \s\s\s\spublic void callback() {\n
-            \s\s\s\s\s\sWindow.alert("Danger callback!");\n
-            \s\s\s\s}\n
-            \s\s});\n
-            \s\soptions.addButton("Click ME!");\n
-            \s\sBootbox.dialog(options);\n
+            \sDialogOptions options = DialogOptions.newOptions(&quot;I am a custom dialog&quot;);\n
+            \soptions.title = &quot;Custom title&quot;;\n
+            \soptions.onEscape = () -&gt; Window.alert(&quot;On Escape!&quot;);\n
+            \soptions.addButton(&quot;Success!&quot;, ButtonType.SUCCESS.getCssName(), () -&gt; Window.alert(&quot;Success callback!&quot;));\n
+            \soptions.addButton(&quot;Danger!&quot;, ButtonType.DANGER.getCssName(), () -&gt; Window.alert(&quot;Danger callback!&quot;));\n
+            \soptions.addButton(&quot;Click ME!&quot;);\n
+            \sBootbox.dialog(options);\n
             }
           </d:PrettyPre>
         </b:PanelFooter>

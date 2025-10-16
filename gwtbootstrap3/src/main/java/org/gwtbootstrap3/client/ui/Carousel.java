@@ -20,10 +20,12 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import static org.gwtbootstrap3.client.shared.js.JQuery.$;
+
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Event;
-import jsinterop.annotations.JsMethod;
+import jsinterop.base.JsPropertyMap;
 import org.gwtbootstrap3.client.shared.event.CarouselSlidEvent;
 import org.gwtbootstrap3.client.shared.event.CarouselSlidHandler;
 import org.gwtbootstrap3.client.shared.event.CarouselSlideEvent;
@@ -66,7 +68,7 @@ public class Carousel extends Div {
     bindJavaScriptEvents(getElement());
 
     // Configure the carousel
-    carousel(getElement(), interval, pause, wrap);
+    $(this).carousel(JsPropertyMap.of("interval", interval, "pause", pause, "wrap", wrap));
   }
 
   @Override
@@ -151,7 +153,7 @@ public class Carousel extends Div {
   }
 
   private void bindJavaScriptEvents(Element e) {
-    JQuery carousel = JQuery.jQuery(e);
+    JQuery carousel = $(e);
 
     carousel.on("slide.bs.carousel", this::onSlide);
 
@@ -159,18 +161,15 @@ public class Carousel extends Div {
   }
 
   private void unbindJavaScriptEvents(Element e) {
-    JQuery.jQuery(e).off("slide.bs.carousel");
-    JQuery.jQuery(e).off("slid.bs.carousel");
+    $(e).off("slide.bs.carousel");
+    $(e).off("slid.bs.carousel");
   }
 
-  @JsMethod
-  private static native void carousel(Element e, int interval, String pause, boolean wrap);
-
   private void fireMethod(Element e, String method) {
-    JQuery.jQuery(e).carousel(method);
+    $(e).carousel(method);
   }
 
   private void fireMethod(Element e, int slideNumber) {
-    JQuery.jQuery(e).carousel(slideNumber);
+    $(e).carousel(slideNumber);
   }
 }

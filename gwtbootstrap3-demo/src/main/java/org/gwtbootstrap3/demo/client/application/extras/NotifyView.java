@@ -24,6 +24,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
@@ -65,30 +66,30 @@ public class NotifyView extends ViewImpl implements NotifyPresenter.MyView {
 
   @UiHandler("showProgressbar")
   public void handleShowProgressbar(ClickEvent event) {
-    NotifySettings settings = NotifySettings.newSettings();
-    settings.setShowProgressbar(true);
+    NotifySettings settings = new NotifySettings();
+    settings.showProgressbar = true;
     settings.setPauseOnMouseOver(true);
     Notify.notify("Title", "Message", IconType.SMILE_O, settings);
   }
 
   @UiHandler("changeBackgroundAndDismiss")
   public void handleChangeBackgroundAndDismiss(ClickEvent event) {
-    NotifySettings settings = NotifySettings.newSettings();
+    NotifySettings settings = new NotifySettings();
     settings.setType(NotifyType.SUCCESS);
-    settings.setAllowDismiss(false);
+    settings.allow_dismiss = false;
     Notify.notify("Title", "Message", IconType.SMILE_O, settings);
   }
 
   @UiHandler("positionAndLink")
   public void handlePositionAndFormatting(ClickEvent event) {
-    NotifySettings settings = NotifySettings.newSettings();
+    NotifySettings settings = new NotifySettings();
     settings.setPlacement(NotifyPlacement.TOP_CENTER);
     Notify.notify("Title", "Message", IconType.SMILE_O, "https://github.com/gwtbootstrap3/gwtbootstrap3", settings);
   }
 
   @UiHandler("animationAndOffset")
   public void handleAnimationAndOffset(ClickEvent event) {
-    NotifySettings settings = NotifySettings.newSettings();
+    NotifySettings settings = new NotifySettings();
     settings.setAnimation(Animation.TADA, Animation.LIGHTSPEED_OUT);
     settings.setOffset(200, 140);
     Notify.notify("Title", "Message", IconType.SMILE_O, settings);
@@ -96,15 +97,16 @@ public class NotifyView extends ViewImpl implements NotifyPresenter.MyView {
 
   @UiHandler("template")
   public void handleTemplate(ClickEvent event) {
-    NotifySettings settings = NotifySettings.newSettings();
-    settings.setTemplate("<div data-notify=\"container\" class=\"alert\" role=\"alert\">\n" +
-                             "\t\t<button type=\"button\" class=\"close\" data-notify=\"dismiss\">\n" +
-                             "\t\t\t<span aria-hidden=\"true\">×</span>\n" + "\t\t\t<span class=\"sr-only\">Close</span>\n" +
-                             "\t\t</button>\n" + "\t\t<span data-notify=\"icon\"></span>\n" +
-                             "\t\t<b><span data-notify=\"title\"></span></b>\n" + "\t\t<span data-notify=\"message\"></span>\n" +
-                             "\t\t<a href=\"#\" data-notify=\"url\"></a>\n" + "\t</div>");
-    settings.makeDefault();
-    Notify.notify("Title", "Message", IconType.SMILE_O);
+    NotifySettings settings = new NotifySettings();
+    settings.template =
+        "<div data-notify=\"container\" class=\"col-xs-11 col-sm-4 alert alert-{0}\" role=\"alert\"><button type=\"button\" " +
+            "aria-hidden=\"true\" class=\"close\" data-notify=\"dismiss\">&times;</button><span data-notify=\"icon\"></span> <span " +
+            "data-notify=\"title\">CUSTOM CODE {1}</span> <span data-notify=\"message\">{2}</span><div class=\"progress\" " +
+            "data-notify=\"progressbar\"><div class=\"progress-bar progress-bar-{0}\" role=\"progressbar\" aria-valuenow=\"0\" " +
+            "aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 0%;\"></div></div><a href=\"{3}\" target=\"{4}\" " +
+            "data-notify=\"url\"></a></div>";
+    Notify.notifyDefaults(settings);
+    Notify notify = Notify.notify("Title", "Message", IconType.SMILE_O);
   }
 
   interface Binder extends UiBinder<Widget, NotifyView> {

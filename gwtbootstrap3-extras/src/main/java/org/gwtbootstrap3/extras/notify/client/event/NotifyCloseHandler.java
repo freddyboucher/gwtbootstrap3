@@ -20,19 +20,17 @@ package org.gwtbootstrap3.extras.notify.client.event;
  * #L%
  */
 
+import jsinterop.annotations.JsFunction;
+
 /**
  * Handler interface for Notify close events.
  */
+@JsFunction
+@FunctionalInterface
 public interface NotifyCloseHandler {
 
   /**
    * Called when Notify close event is fired.
    */
   void onClose();
-
-  /**
-   * Default Notify's close handler
-   */
-  NotifyCloseHandler DEFAULT_CLOSE_HANDLER = () -> {
-  };
 }

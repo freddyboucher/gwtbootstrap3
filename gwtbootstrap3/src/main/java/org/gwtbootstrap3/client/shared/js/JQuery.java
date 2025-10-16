@@ -21,9 +21,14 @@ package org.gwtbootstrap3.client.shared.js;
  */
 
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.user.client.ui.IsWidget;
 import jsinterop.annotations.JsMethod;
+import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
+import jsinterop.base.Any;
+import jsinterop.base.JsPropertyMap;
 
 /**
  * jQuery and Bootstrap methods wrapper
@@ -31,8 +36,11 @@ import jsinterop.annotations.JsType;
  * @author Thiago Ricciardi
  *
  */
-@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "jQuery")
-public class JQuery {
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "$")
+public class JQuery implements Any {
+
+  @JsProperty(namespace = JsPackage.GLOBAL)
+  public static JQuery jQuery;
 
   /**
    * Create a JQuery object
@@ -40,8 +48,13 @@ public class JQuery {
    * @param element the element to jQuerify
    * @return JQuery object of element
    */
-  @JsMethod(namespace = JsPackage.GLOBAL, name = "jQuery")
-  public static native JQuery jQuery(Element element);
+  @JsMethod(namespace = JsPackage.GLOBAL, name = "$")
+  public static native JQuery $(Element element);
+
+  @JsOverlay
+  public static JQuery $(IsWidget widget) {
+    return $(widget.asWidget().getElement());
+  }
 
   /**
    * Select jQuery elements and create a JQuery object
@@ -49,8 +62,13 @@ public class JQuery {
    * @param selector jQuery selector
    * @return JQuery object of elements selected
    */
-  @JsMethod(namespace = JsPackage.GLOBAL, name = "jQuery")
-  public static native JQuery jQuery(String selector);
+  @JsMethod(namespace = JsPackage.GLOBAL, name = "$")
+  public static native JQuery $(String selector);
+
+  @JsMethod(namespace = JsPackage.GLOBAL, name = "jQuery.isArray")
+  public static native boolean isArray(Object object);
+
+  public native Element get(int index);
 
   /**
    * Bootstrap button() method
@@ -119,6 +137,8 @@ public class JQuery {
    */
   public native JQuery carousel(int slideNumber);
 
+  public native JQuery carousel(JsPropertyMap option);
+
   /**
    * Bootstrap collapse() method
    *
@@ -158,6 +178,8 @@ public class JQuery {
    */
   public native JQuery scrollspy(String method);
 
+  public native JQuery scrollspy(JsPropertyMap option);
+
   /**
    * Bootstrap tab() method
    *
@@ -184,4 +206,18 @@ public class JQuery {
   public native JQuery addClass(String className);
 
   public native JQuery removeClass(String className);
+
+  public native Element tagsinput(String command);
+
+  public native Element tagsinput(JsPropertyMap command);
+
+  public native void tagsinput(String command, Object tag);
+
+  public native Object val();
+
+  public native void affix(JsPropertyMap option);
+
+  public native JQuery data(String key, Object value);
+
+  public native Object data(Object obj);
 }

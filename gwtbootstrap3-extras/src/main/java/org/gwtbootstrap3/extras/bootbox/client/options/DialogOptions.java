@@ -20,7 +20,11 @@ package org.gwtbootstrap3.extras.bootbox.client.options;
  * #L%
  */
 
-import com.google.gwt.core.client.JavaScriptObject;
+import elemental2.dom.Element;
+import jsinterop.annotations.JsOverlay;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
+import jsinterop.base.JsPropertyMap;
 import org.gwtbootstrap3.extras.bootbox.client.callback.SimpleCallback;
 
 /**
@@ -28,38 +32,60 @@ import org.gwtbootstrap3.extras.bootbox.client.callback.SimpleCallback;
  *
  * @author Xiaodong Sun
  */
-public class DialogOptions extends JavaScriptObject {
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
+public class DialogOptions implements JsPropertyMap {
 
+  @JsOverlay
   private static final String BUTTON_PREFIX = "bootbox_btn_";
+  @JsOverlay
   private static int BUTTON_INDEX;
+  public String message;
+  public String title;
+  // Default language used when generating buttons for alert, confirm, and prompt dialogs
+  public String locale;
+  // Show the dialog immediately by default
+  public boolean show;
+  // Show backdrop or not. Default to static so user has to interact with dialog
+  public Boolean backdrop;
+  // Whether or not to include a close button
+  public boolean closeButton;
+  // Animate the modal in/out
+  public boolean animate;
+  // Additional class string applied to the top level dialog
+  public String className;
+  // The size of the modal to generate
+  public String size;
+  public SimpleCallback onEscape;
+  public JsPropertyMap<ButtonJs> buttons;
+  // Dialog container
+  public String container;
+  // Default value (used by the prompt helper)
+  public String value;
+  // Default input type (used by the prompt helper)
+  public String inputType;
+  // Custom error message to report if prompt fails validation
+  public String errorMessage;
+  // Switch button order from cancel/confirm (default) to confirm/cancel
+  public Boolean swapButtonOrder;
+  // Center modal vertically in page
+  public Boolean centerVertical;
+  // Append "multiple" property to the select when using the "prompt" helper
+  public Boolean multiple;
+  // Automatically scroll modal content when height exceeds viewport height
+  public Boolean scrollable;
+  // Whether or not to destroy the modal on hide
+  public Boolean reusable;
+  // The element which triggered the dialog
+  public Object   relatedTarget;
+  // A unique identifier for this modal
+  public String id;
 
-  protected DialogOptions() {
-  }
-
-  /**
-   * Creates a new {@link DialogOptions}.
-   *
-   * @param message
-   * @return
-   */
+  @JsOverlay
   public static DialogOptions newOptions(String message) {
-    DialogOptions options = JavaScriptObject.createObject().cast();
-    options.setMessage(message);
+    DialogOptions options = new DialogOptions();
+    options.message = message;
     return options;
   }
-
-  final native void setMessage(String message) /*-{
-    this.message = message;
-  }-*/;
-
-  /**
-   * Adds a header to the dialog and places this text in an H4.
-   *
-   * @param title
-   */
-  public final native void setTitle(String title) /*-{
-    this.title = title;
-  }-*/;
 
   /**
    * The locale settings used to translate the three standard button
@@ -67,95 +93,11 @@ public class DialogOptions extends JavaScriptObject {
    *
    * @param locale
    */
+  @JsOverlay
   public final void setLocale(BootboxLocale locale) {
     BootboxLocale l = (locale != null) ? locale : BootboxLocale.getDefault();
-    setLocale(l.getLocale());
+    this.locale = l.getLocale();
   }
-
-  private native void setLocale(String locale) /*-{
-    this.locale = locale;
-  }-*/;
-
-  /**
-   * Allows the user to dismiss the dialog by hitting
-   * <code>ESC</code>, which will invoke this function.<br>
-   * <br>
-   * Defaults to <code>null</code> for custom dialogs.
-   *
-   * @param callback
-   */
-  public final native void setOnEscape(SimpleCallback callback) /*-{
-    if (callback) {
-      this.onEscape = function () {
-        callback.@org.gwtbootstrap3.extras.bootbox.client.callback.SimpleCallback::callback()();
-      };
-    } else {
-      this.onEscape = undefined;
-    }
-  }-*/;
-
-  /**
-   * Whether the dialog should be shown immediately.<br>
-   * <br>
-   * Defaults to <code>true</code>.
-   *
-   * @param show
-   */
-  public final native void setShow(boolean show) /*-{
-    this.show = show;
-  }-*/;
-
-  /**
-   * Whether the dialog should have a backdrop or not.
-   * Also determines whether clicking on the backdrop dismisses the modal.
-   * <ul>
-   * <li><code>null</code>: The backdrop is displayed, but clicking on it has no effect.</li>
-   * <li><code>true</code>: The backdrop is displayed, and clicking on it dismisses the dialog.</li>
-   * <li><code>false</code>: The backdrop is not displayed.</li>
-   * </ul>
-   * Defaults to <code>null</code>.
-   *
-   * @param backdrop
-   */
-  public final native void setBackdrop(Boolean backdrop) /*-{
-    if (backdrop == null)
-      this.backdrop = undefined;
-    else
-      this.backdrop = backdrop.@java.lang.Boolean::booleanValue()();
-  }-*/;
-
-  /**
-   * Whether the dialog should have a close button or not.<br>
-   * <br>
-   * Defaults to <code>true</code>.
-   *
-   * @param closeButton
-   */
-  public final native void setCloseButton(boolean closeButton) /*-{
-    this.closeButton = closeButton;
-  }-*/;
-
-  /**
-   * Animate the dialog in and out.<br>
-   * <br>
-   * Defaults to <code>true</code>.
-   *
-   * @param animate
-   */
-  public final native void setAnimate(boolean animate) /*-{
-    this.animate = animate;
-  }-*/;
-
-  /**
-   * An additional class to apply to the dialog wrapper.<br>
-   * <br>
-   * Defaults to <code>true</code>.
-   *
-   * @param className
-   */
-  public final native void setClassName(String className) /*-{
-    this.className = className;
-  }-*/;
 
   /**
    * Adds the relevant Bootstrap modal size class to the dialog wrapper.<br>
@@ -164,18 +106,21 @@ public class DialogOptions extends JavaScriptObject {
    *
    * @param size
    */
-  public final native void setSize(BootboxSize size) /*-{
-    if (size)
-      this.size = size.@org.gwtbootstrap3.extras.bootbox.client.options.BootboxSize::getSize()();
-    else
-      this.size = undefined;
-  }-*/;
+  @JsOverlay
+  public final void setSize(BootboxSize size) {
+    if (size != null) {
+      this.size = size.getSize();
+    } else {
+      this.size = null;
+    }
+  }
 
   /**
    * Adds a custom button.
    *
    * @param label
    */
+  @JsOverlay
   public final void addButton(String label) {
     addButton(label, (String) null);
   }
@@ -186,6 +131,7 @@ public class DialogOptions extends JavaScriptObject {
    * @param label
    * @param className
    */
+  @JsOverlay
   public final void addButton(String label, String className) {
     addButton(label, className, SimpleCallback.DEFAULT_SIMPLE_CALLBACK);
   }
@@ -196,6 +142,7 @@ public class DialogOptions extends JavaScriptObject {
    * @param label
    * @param callback
    */
+  @JsOverlay
   public final void addButton(String label, SimpleCallback callback) {
     addButton(label, null, callback);
   }
@@ -207,20 +154,27 @@ public class DialogOptions extends JavaScriptObject {
    * @param className
    * @param callback
    */
+  @JsOverlay
   public final void addButton(String label, String className, SimpleCallback callback) {
     addButton(BUTTON_PREFIX + BUTTON_INDEX++, label, className, callback != null ? callback : SimpleCallback.DEFAULT_SIMPLE_CALLBACK);
   }
 
-  private native void addButton(String name, String label, String className, SimpleCallback callback) /*-{
-    this.buttons = this.buttons || {};
-    this.buttons[name] = {
-      label: label,
-      callback: function () {
-        callback.@org.gwtbootstrap3.extras.bootbox.client.callback.SimpleCallback::callback()();
-      }
-    };
-    if (className) {
-      this.buttons[name].className = className;
+  @JsOverlay
+  public final void addButton(String name, String label, String className, SimpleCallback callback) {
+    if (buttons == null) {
+      buttons = JsPropertyMap.of();
     }
-  }-*/;
+    ButtonJs button = new ButtonJs();
+    button.label = label;
+    button.className = className;
+    button.callback = callback;
+    buttons.set(name, button);
+  }
+
+  @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
+  public static class ButtonJs implements JsPropertyMap {
+    public String label;
+    public SimpleCallback callback;
+    public String className;
+  }
 }

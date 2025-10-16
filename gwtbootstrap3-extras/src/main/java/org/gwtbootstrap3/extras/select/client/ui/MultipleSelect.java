@@ -20,6 +20,7 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * #L%
  */
 
+import static org.gwtbootstrap3.extras.select.client.ui.SelectBase.SelectJQuery.$;
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.ACTIONS_BOX;
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.DESELECT_ALL_TEXT;
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.MAX_OPTIONS;
@@ -27,12 +28,10 @@ import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.MULTIPLE_S
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SELECTED_TEXT_FORMAT;
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SELECT_ALL_TEXT;
 
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArrayString;
-import com.google.gwt.dom.client.Element;
-import java.util.ArrayList;
+import elemental2.core.JsArray;
 import java.util.List;
 import java.util.stream.Collectors;
+import jsinterop.base.Js;
 import org.gwtbootstrap3.extras.select.client.ui.constants.SelectedTextFormat;
 
 /**
@@ -122,7 +121,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
    * @see #setMaxOptions(int)
    */
   public void setMaxOptionsTextHandler(MaxOptionsTextHandler handler) {
-    options.setMaxOptionsTextHandler(handler);
+    options.maxOptionsText = handler;
   }
 
   /**
@@ -171,12 +170,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
   @Override
   public List<String> getValue() {
     if (isAttached()) {
-      JsArrayString arr = getValue(getElement());
-      List<String> result = new ArrayList<>(arr.length());
-      for (int i = 0; i < arr.length(); i++) {
-        result.add(arr.get(i));
-      }
-      return result;
+      return Js.cast($(this).selectpicker(SelectCommand.VAL).asArrayLike().asList());
     }
     return getSelectedValues();
   }
@@ -188,11 +182,7 @@ public class MultipleSelect extends SelectBase<List<String>> {
   @Override
   protected void setSelectedValue(List<String> value) {
     if (isAttached()) {
-      JsArrayString arr = JavaScriptObject.createArray().cast();
-      for (String val : value) {
-        arr.push(val);
-      }
-      setValue(getElement(), arr);
+      $(this).selectpicker(SelectCommand.VAL, JsArray.of(value.toArray(new String[0])));
     } else {
       getItems().forEach(item -> item.setSelected(value.contains(item.getValue())));
     }
@@ -224,19 +214,9 @@ public class MultipleSelect extends SelectBase<List<String>> {
 
   private void setSelectAll(boolean selected) {
     if (isAttached()) {
-      String cmd = selected ? SelectCommand.SELECT_ALL : SelectCommand.DESELECT_ALL;
-      command(getElement(), cmd);
+      $(this).selectpicker(selected ? SelectCommand.SELECT_ALL : SelectCommand.DESELECT_ALL);
     } else {
       getItems().forEach(item -> item.setSelected(selected));
     }
   }
-
-  private native JsArrayString getValue(Element e) /*-{
-    var value = $wnd.jQuery(e).selectpicker('val');
-    return value || [];
-  }-*/;
-
-  private native void setValue(Element e, JsArrayString value) /*-{
-    $wnd.jQuery(e).selectpicker('val', value);
-  }-*/;
 }

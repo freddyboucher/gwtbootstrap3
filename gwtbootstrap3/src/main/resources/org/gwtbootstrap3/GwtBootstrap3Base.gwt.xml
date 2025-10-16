@@ -21,6 +21,7 @@
   <inherits name="com.google.gwt.user.User"/>
   <inherits name="com.google.gwt.user.UserAgent"/>
   <inherits name="com.google.gwt.i18n.I18N"/>
+  <inherits name="elemental2.dom.Dom"/>
 
   <!-- This is the default validator message mixin -->
   <replace-with class="org.gwtbootstrap3.client.ui.form.validator.DefaultValidatorMessageMixin">

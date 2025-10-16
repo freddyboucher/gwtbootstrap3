@@ -20,12 +20,16 @@ package org.gwtbootstrap3.extras.tagsinput.client.callback;
  * #L%
  */
 
+import jsinterop.annotations.JsFunction;
+
 /**
  * Callback used to get item text.
  *
  * @param <T> type of item
  * @author Marko Nikolić
  */
+@JsFunction
+@FunctionalInterface
 public interface ItemTextCallback<T> {
   String getItemText(T item);
 }

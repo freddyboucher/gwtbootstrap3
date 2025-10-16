@@ -21,6 +21,7 @@ package org.gwtbootstrap3.extras.tagsinput.client.callback;
  */
 
 import com.google.gwt.dom.client.Element;
+import jsinterop.annotations.JsFunction;
 
 /**
  * Callback method called when adding tag that already exists.
@@ -29,6 +30,8 @@ import com.google.gwt.dom.client.Element;
  * @author Marko Nikolić
  */
 
+@JsFunction
+@FunctionalInterface
 public interface OnTagExistsCallback<T> {
 
   /**

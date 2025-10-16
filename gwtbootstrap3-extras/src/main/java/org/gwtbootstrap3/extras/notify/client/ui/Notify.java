@@ -20,53 +20,36 @@ package org.gwtbootstrap3.extras.notify.client.ui;
  * #L%
  */
 
-import com.google.gwt.core.client.JavaScriptObject;
+import jsinterop.annotations.JsMethod;
+import jsinterop.annotations.JsOverlay;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsProperty;
+import jsinterop.annotations.JsType;
+import org.gwtbootstrap3.client.shared.js.JQuery;
 import org.gwtbootstrap3.client.ui.constants.IconType;
 import org.gwtbootstrap3.client.ui.constants.Styles;
 import org.gwtbootstrap3.extras.notify.client.constants.NotifyPlacement;
 import org.gwtbootstrap3.extras.notify.client.constants.NotifyType;
 
-/**
- * This class represent instance of displayed Notify.
- * <p/>
- * You can display new Notify using static methods, e.g.:
- * {@link #notify(String)},
- * {@link #notify(String, NotifyType)},
- * {@link #notify(String, NotifySettings)} and others
- * <p/>
- * To further configure Notify before displaying see:
- * {@see org.gwtbootstrap3.extras.notify.client.ui.NotifySettings}
- * <p/>
- * You can update displayed Notify by:
- * {@link #updateTitle(String)},
- * {@link #updateMessage(String)},
- * {@link #updateIcon(String)},
- * {@link #updateType(NotifyType)},
- * <p/>
- * You can hide displayed Notify:
- * {@link #hide()},
- * {@link #hideAll()},
- * {@link #hideAll(NotifyPlacement)}
- *
- * @author jeffisenhart
- * @author Sven Jacobs
- * @author Joshua Godi
- * @author Pavel Zlámal
- */
-public class Notify extends JavaScriptObject {
+@JsType(isNative = true, namespace = JsPackage.GLOBAL)
+public class Notify extends JQuery {
 
-  protected Notify() {
+  @JsProperty
+  public JQuery $ele;
+
+  @JsOverlay
+  public static final Notify notify(NotifyOptions options) {
+    return notify(options, null);
   }
 
-  /**
-   * Display Notify with custom message, and default settings.
-   *
-   * @param message Message to set
-   * @return Displayed Notify for update or hiding.
-   */
-  public static final native Notify notify(String message) /*-{
-    return $wnd.jQuery.notify({message: message}, null);
-  }-*/;
+  @JsMethod(namespace = JsPackage.GLOBAL, name = "jQuery.notifyDefaults")
+  public static final native void notifyDefaults(NotifySettings settings);
+
+  @JsMethod(namespace = JsPackage.GLOBAL, name = "jQuery.notify")
+  public static final native Notify notify(NotifyOptions options, NotifySettings settings);
+
+  @JsMethod(namespace = JsPackage.GLOBAL, name = "jQuery.notify")
+  public static final native Notify notify(String message);
 
   /**
    * Display Notify with custom title, message, and default settings.
@@ -75,9 +58,13 @@ public class Notify extends JavaScriptObject {
    * @param message Message to set
    * @return Displayed Notify for update or hiding.
    */
-  public static final native Notify notify(String title, String message) /*-{
-    return $wnd.jQuery.notify({title: title, message: message}, null);
-  }-*/;
+  @JsOverlay
+  public static final Notify notify(String title, String message) {
+    NotifyOptions options = new NotifyOptions();
+    options.message = message;
+    options.title = title;
+    return notify(options);
+  }
 
   /**
    * Display Notify with custom title, message, icon, and default settings.
@@ -87,9 +74,14 @@ public class Notify extends JavaScriptObject {
    * @param icon    Icon to set
    * @return Displayed Notify for update or hiding.
    */
-  public static final native Notify notify(String title, String message, String icon) /*-{
-    return $wnd.jQuery.notify({title: title, message: message, icon: icon}, null);
-  }-*/;
+  @JsOverlay
+  public static final Notify notify(String title, String message, String icon) {
+    NotifyOptions options = new NotifyOptions();
+    options.message = message;
+    options.title = title;
+    options.icon = icon;
+    return notify(options);
+  }
 
   /**
    * Display Notify with custom title, message, icon, and default settings.
@@ -99,6 +91,7 @@ public class Notify extends JavaScriptObject {
    * @param iconType IconType to set
    * @return Displayed Notify for update or hiding.
    */
+  @JsOverlay
   public static final Notify notify(String title, String message, IconType iconType) {
     return Notify.notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName());
   }
@@ -112,9 +105,15 @@ public class Notify extends JavaScriptObject {
    * @param url     Url to set
    * @return Displayed Notify for update or hiding.
    */
-  public static final native Notify notify(String title, String message, String icon, String url) /*-{
-    return $wnd.jQuery.notify({title: title, message: message, icon: icon, url: url}, null);
-  }-*/;
+  @JsOverlay
+  public static final Notify notify(String title, String message, String icon, String url) {
+    NotifyOptions options = new NotifyOptions();
+    options.message = message;
+    options.title = title;
+    options.icon = icon;
+    options.url = url;
+    return notify(options);
+  }
 
   /**
    * Display Notify with custom title, message, icon, url and default settings.
@@ -125,6 +124,7 @@ public class Notify extends JavaScriptObject {
    * @param url      Url to set
    * @return Displayed Notify for update or hiding.
    */
+  @JsOverlay
   public static final Notify notify(String title, String message, IconType iconType, String url) {
     return Notify.notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName(), url);
   }
@@ -137,9 +137,14 @@ public class Notify extends JavaScriptObject {
    * @return Displayed Notify for update or hiding.
    * @see NotifyType
    */
-  public static final native Notify notify(String message, NotifyType type) /*-{
-    return $wnd.jQuery.notify({message: message}, {type: type.@org.gwtbootstrap3.extras.notify.client.constants.NotifyType::getCssName()()});
-  }-*/;
+  @JsOverlay
+  public static final Notify notify(String message, NotifyType type) {
+    NotifyOptions options = new NotifyOptions();
+    options.message = message;
+    NotifySettings settings = new NotifySettings();
+    settings.setType(type);
+    return notify(options, settings);
+  }
 
   /**
    * Display Notify with custom title, message, type and default settings.
@@ -150,12 +155,15 @@ public class Notify extends JavaScriptObject {
    * @return Displayed Notify for update or hiding.
    * @see NotifyType
    */
-  public static final native Notify notify(String title, String message, NotifyType type) /*-{
-    return $wnd.jQuery.notify({
-      title: title,
-      message: message
-    }, {type: type.@org.gwtbootstrap3.extras.notify.client.constants.NotifyType::getCssName()()});
-  }-*/;
+  @JsOverlay
+  public static final Notify notify(String title, String message, NotifyType type) {
+    NotifyOptions options = new NotifyOptions();
+    options.message = message;
+    options.title = title;
+    NotifySettings settings = new NotifySettings();
+    settings.setType(type);
+    return notify(options, settings);
+  }
 
   /**
    * Display Notify with custom title, message, icon, type and default settings.
@@ -167,13 +175,16 @@ public class Notify extends JavaScriptObject {
    * @return Displayed Notify for update or hiding.
    * @see NotifyType
    */
-  public static final native Notify notify(String title, String message, String icon, NotifyType type) /*-{
-    return $wnd.jQuery.notify({
-      title: title,
-      message: message,
-      icon: icon
-    }, {type: type.@org.gwtbootstrap3.extras.notify.client.constants.NotifyType::getCssName()()});
-  }-*/;
+  @JsOverlay
+  public static final Notify notify(String title, String message, String icon, NotifyType type) {
+    NotifyOptions options = new NotifyOptions();
+    options.message = message;
+    options.title = title;
+    options.icon = icon;
+    NotifySettings settings = new NotifySettings();
+    settings.setType(type);
+    return notify(options, settings);
+  }
 
   /**
    * Display Notify with custom title, message, icon, type and default settings.
@@ -185,6 +196,7 @@ public class Notify extends JavaScriptObject {
    * @return Displayed Notify for update or hiding.
    * @see NotifyType
    */
+  @JsOverlay
   public static final Notify notify(String title, String message, IconType iconType, NotifyType type) {
     return Notify.notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName(), type);
   }
@@ -200,14 +212,17 @@ public class Notify extends JavaScriptObject {
    * @return Displayed Notify for update or hiding.
    * @see NotifyType
    */
-  public static final native Notify notify(String title, String message, String icon, String url, NotifyType type) /*-{
-    return $wnd.jQuery.notify({
-      title: title,
-      message: message,
-      icon: icon,
-      url: url
-    }, {type: type.@org.gwtbootstrap3.extras.notify.client.constants.NotifyType::getCssName()()});
-  }-*/;
+  @JsOverlay
+  public static final Notify notify(String title, String message, String icon, String url, NotifyType type) {
+    NotifyOptions options = new NotifyOptions();
+    options.message = message;
+    options.title = title;
+    options.icon = icon;
+    options.url = url;
+    NotifySettings settings = new NotifySettings();
+    settings.setType(type);
+    return notify(options, settings);
+  }
 
   /**
    * Display Notify with custom title, message, icon, url, type and default settings.
@@ -220,6 +235,7 @@ public class Notify extends JavaScriptObject {
    * @return Displayed Notify for update or hiding.
    * @see NotifyType
    */
+  @JsOverlay
   public static final Notify notify(String title, String message, IconType iconType, String url, NotifyType type) {
     return Notify.notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName(), url, type);
   }
@@ -232,9 +248,12 @@ public class Notify extends JavaScriptObject {
    * @return Displayed Notify for update or hiding.
    * @see NotifySettings
    */
-  public static final native Notify notify(String message, NotifySettings settings) /*-{
-    return $wnd.jQuery.notify({message: message}, settings);
-  }-*/;
+  @JsOverlay
+  public static final Notify notify(String message, NotifySettings settings) {
+    NotifyOptions options = new NotifyOptions();
+    options.message = message;
+    return notify(options, settings);
+  }
 
   /**
    * Display Notify with custom title, message and custom settings.
@@ -245,9 +264,13 @@ public class Notify extends JavaScriptObject {
    * @return Displayed Notify for update or hiding.
    * @see NotifySettings
    */
-  public static final native Notify notify(String title, String message, NotifySettings settings) /*-{
-    return $wnd.jQuery.notify({title: title, message: message}, settings);
-  }-*/;
+  @JsOverlay
+  public static final Notify notify(String title, String message, NotifySettings settings) {
+    NotifyOptions options = new NotifyOptions();
+    options.message = message;
+    options.title = title;
+    return notify(options, settings);
+  }
 
   /**
    * Display Notify with custom title, message, icon and custom settings.
@@ -259,9 +282,14 @@ public class Notify extends JavaScriptObject {
    * @return Displayed Notify for update or hiding.
    * @see NotifySettings
    */
-  public static final native Notify notify(String title, String message, String icon, NotifySettings settings) /*-{
-    return $wnd.jQuery.notify({title: title, message: message, icon: icon}, settings);
-  }-*/;
+  @JsOverlay
+  public static final Notify notify(String title, String message, String icon, NotifySettings settings) {
+    NotifyOptions options = new NotifyOptions();
+    options.message = message;
+    options.title = title;
+    options.icon = icon;
+    return notify(options, settings);
+  }
 
   /**
    * Display Notify with custom title, message, icon and custom settings.
@@ -273,8 +301,9 @@ public class Notify extends JavaScriptObject {
    * @return Displayed Notify for update or hiding.
    * @see NotifySettings
    */
+  @JsOverlay
   public static final Notify notify(String title, String message, IconType iconType, NotifySettings settings) {
-    return Notify.notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName(), settings);
+    return notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName(), settings);
   }
 
   /**
@@ -288,9 +317,15 @@ public class Notify extends JavaScriptObject {
    * @return Displayed Notify for update or hiding.
    * @see NotifySettings
    */
-  public static final native Notify notify(String title, String message, String icon, String url, NotifySettings settings) /*-{
-    return $wnd.jQuery.notify({title: title, message: message, icon: icon, url: url}, settings);
-  }-*/;
+  @JsOverlay
+  public static final Notify notify(String title, String message, String icon, String url, NotifySettings settings) {
+    NotifyOptions options = new NotifyOptions();
+    options.message = message;
+    options.title = title;
+    options.icon = icon;
+    options.url = url;
+    return notify(options, settings);
+  }
 
   /**
    * Display Notify with custom title, message, icon, URL and custom settings.
@@ -303,16 +338,24 @@ public class Notify extends JavaScriptObject {
    * @return Displayed Notify for update or hiding.
    * @see NotifySettings
    */
+  @JsOverlay
   public static final Notify notify(String title, String message, IconType iconType, String url, NotifySettings settings) {
-    return Notify.notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName(), url, settings);
+    return notify(title, message, Styles.FONT_AWESOME_BASE + " " + iconType.getCssName(), url, settings);
   }
 
   /**
    * Hide all displayed Notifies.
    */
-  public static final native void hideAll() /*-{
-    $wnd.jQuery.notifyClose();
-  }-*/;
+  @JsMethod(namespace = JsPackage.GLOBAL, name = "jQuery.notifyClose")
+  public static final native void notifyClose();
+
+  @JsMethod(namespace = JsPackage.GLOBAL, name = "jQuery.notifyClose")
+  public static final native void notifyClose(String command);
+
+  @JsOverlay
+  public static final void hideAll() {
+    notifyClose();
+  }
 
   /**
    * Hide all displayed Notifies on specific screen location.
@@ -320,38 +363,42 @@ public class Notify extends JavaScriptObject {
    * @param placement Notify's placement on screen.
    * @see NotifyPlacement
    */
-  public static final native void hideAll(NotifyPlacement placement) /*-{
-    if (plamenet !== null) {
-      $wnd.jQuery.notifyClose(placement.@org.gwtbootstrap3.extras.notify.client.constants.NotifyPlacement::getPlacement()());
+  @JsOverlay
+  public static final void hideAll(NotifyPlacement placement) {
+    if (placement != null) {
+      notifyClose(placement.getPlacement());
     }
-  }-*/;
+  }
 
   /**
    * Updates title parameter of once displayed Notify.
    *
    * @param title Title to set
    */
-  public final native void updateTitle(String title) /*-{
-    this.update('title', title);
-  }-*/;
+  @JsOverlay
+  public final void updateTitle(String title) {
+    update("title", title);
+  }
 
   /**
    * Updates message parameter of once displayed Notify.
    *
    * @param message Message to set
    */
-  public final native void updateMessage(String message) /*-{
-    this.update('message', message);
-  }-*/;
+  @JsOverlay
+  public final void updateMessage(String message) {
+    update("message", message);
+  }
 
   /**
    * Updates Icon parameter of once displayed Notify.
    *
    * @param icon Icon to set
    */
-  public final native void updateIcon(String icon) /*-{
-    this.update('icon', icon);
-  }-*/;
+  @JsOverlay
+  public final void updateIcon(String icon) {
+    update("icon", icon);
+  }
 
   /**
    * Updates Icon parameter of once displayed Notify.
@@ -359,6 +406,7 @@ public class Notify extends JavaScriptObject {
    *
    * @param type IconType to get CSS class name to set
    */
+  @JsOverlay
   public final void updateIcon(IconType type) {
     if (type != null) {
       updateIcon(Styles.FONT_AWESOME_BASE + " " + type.getCssName());
@@ -371,6 +419,7 @@ public class Notify extends JavaScriptObject {
    * @param type one of INFO, WARNING, DANGER, SUCCESS
    * @see NotifyType
    */
+  @JsOverlay
   public final void updateType(NotifyType type) {
     if (type != null) {
       updateType(type.getCssName());
@@ -383,23 +432,24 @@ public class Notify extends JavaScriptObject {
    *
    * @param type CSS class name to set
    */
-  private native void updateType(String type) /*-{
-    this.update('type', type);
-  }-*/;
+  @JsOverlay
+  private void updateType(String type) {
+    update("type", type);
+  }
 
   /**
    * Update URL target of once displayed Notify.
    *
    * @param target URL target to set
    */
-  private native void updateTarget(String target) /*-{
-    this.update('target', target);
-  }-*/;
+  @JsOverlay
+  private void updateTarget(String target) {
+    update("target", target);
+  }
 
-  /**
-   * Hide this Notify.
-   */
-  public final native void hide() /*-{
-    this.close();
-  }-*/;
+  @JsMethod
+  public final native void update(String command, Object any);
+
+  @JsMethod
+  public final native void close();
 }

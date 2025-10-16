@@ -20,19 +20,17 @@ package org.gwtbootstrap3.extras.notify.client.event;
  * #L%
  */
 
+import jsinterop.annotations.JsFunction;
+
 /**
  * Handler interface for Notify show events.
  */
+@JsFunction
+@FunctionalInterface
 public interface NotifyShowHandler {
 
   /**
    * Called when Notify show event is fired.
    */
   void onShow();
-
-  /**
-   * Default Notify's show handler
-   */
-  NotifyShowHandler DEFAULT_SHOW_HANDLER = () -> {
-  };
 }

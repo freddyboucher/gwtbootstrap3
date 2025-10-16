@@ -20,6 +20,8 @@ package org.gwtbootstrap3.client.ui.base;
  * #L%
  */
 
+import static org.gwtbootstrap3.client.shared.js.JQuery.*;
+
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.user.client.Event;
@@ -31,7 +33,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import jsinterop.annotations.JsMethod;
+import jsinterop.base.Js;
+import jsinterop.base.JsPropertyMap;
 import org.gwtbootstrap3.client.shared.event.HiddenEvent;
 import org.gwtbootstrap3.client.shared.event.HiddenHandler;
 import org.gwtbootstrap3.client.shared.event.HideEvent;
@@ -211,12 +214,11 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
   }
 
   protected void bindJavaScriptEvents(Element e) {
-    JQuery tooltip = JQuery.jQuery(e);
-    tooltip.on("show." + dataTarget, this::onShow);
-    tooltip.on("shown." + dataTarget, this::onShown);
-    tooltip.on("hide." + dataTarget, this::onHide);
-    tooltip.on("hidden." + dataTarget, this::onHidden);
-    tooltip.on("inserted." + dataTarget, this::onInserted);
+    $(e).on("show." + dataTarget, this::onShow);
+    $(e).on("shown." + dataTarget, this::onShown);
+    $(e).on("hide." + dataTarget, this::onHide);
+    $(e).on("hidden." + dataTarget, this::onHidden);
+    $(e).on("inserted." + dataTarget, this::onInserted);
   }
 
   protected abstract void call(String arg);
@@ -852,22 +854,26 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
     updateBool(dataTarget, e, option, value);
   }
 
-  @JsMethod
-  private static native void updateBool(String dataTarget, Element e, String option, boolean value);
+  private static void updateBool(String dataTarget, Element e, String option, boolean value) {
+    Js.asPropertyMap($(e).data(dataTarget)).getAsAny("options").asPropertyMap().set(option, value);
+  }
 
   private void updateDelay(Element e, int showDelay, int hideDelay) {
     updateDelay(dataTarget, e, showDelay, hideDelay);
   }
 
-  @JsMethod
-  private static native void updateDelay(String dataTarget, Element e, int showDelay, int hideDelay);
+  private static void updateDelay(String dataTarget, Element e, int showDelay, int hideDelay) {
+    Js.asPropertyMap($(e).data(dataTarget)).getAsAny("options").asPropertyMap()
+        .set("delay", JsPropertyMap.of("show", showDelay, "hide", hideDelay));
+  }
 
   protected void updateString(Element e, String option, String value) {
     updateString(dataTarget, e, option, value);
   }
 
-  @JsMethod
-  private static native void updateString(String dataTarget, Element e, String option, String value);
+  private static void updateString(String dataTarget, Element e, String option, String value) {
+    Js.asPropertyMap($(e).data(dataTarget)).getAsAny("options").asPropertyMap().set(option, value);
+  }
 
   /**
    * Update the title. This should only be called when the title is already showing. It causes a small flicker but
@@ -876,9 +882,7 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
   protected abstract void updateTitleWhenShowing();
 
   private void updateViewport(Element e, String selector, int padding) {
-    updateViewport(dataTarget, e, selector, padding);
+    Js.asPropertyMap($(e).data(dataTarget)).getAsAny("options").asPropertyMap()
+        .set("viewport", JsPropertyMap.of("selector", selector, "padding", padding));
   }
-
-  @JsMethod
-  private static native void updateViewport(String dataTarget, Element e, String selector, int padding);
 }

@@ -1,5 +1,7 @@
 package org.gwtbootstrap3.extras.select.client.ui;
 
+import static org.gwtbootstrap3.client.shared.js.JQuery.*;
+
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.junit.client.GWTTestCase;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -64,7 +66,7 @@ public class SelectTest extends GWTTestCase {
   }
 
   private String readText(Select select) {
-    return JQuery.jQuery(select.getElement().getParentElement()).find(".filter-option-inner-inner").text();
+    return $(select.getElement().getParentElement()).find(".filter-option-inner-inner").text();
   }
 
   public void testGetItems() {
@@ -246,8 +248,8 @@ public class SelectTest extends GWTTestCase {
 
       Scheduler.get().scheduleDeferred(() -> {
         select.setFocus(true);
-        JQuery.jQuery(select.getFocusElement()).trigger("click");
-        JQuery.jQuery(select.getElement().getParentElement()).find(":contains('text2')").closest("a").trigger("click");
+        $(select.getFocusElement()).trigger("click");
+        $(select.getElement().getParentElement()).find(":contains('text2')").closest("a").trigger("click");
         assertTrue(called.get());
         assertEquals("value2", select.getValue());
         finishTest();

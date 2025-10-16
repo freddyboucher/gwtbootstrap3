@@ -55,6 +55,11 @@
         <artifactId>htmlunit</artifactId>
         <version>2.70.0</version>
       </dependency>
+      <dependency>
+        <groupId>com.google.elemental2</groupId>
+        <artifactId>elemental2-dom</artifactId>
+        <version>1.2.3</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 

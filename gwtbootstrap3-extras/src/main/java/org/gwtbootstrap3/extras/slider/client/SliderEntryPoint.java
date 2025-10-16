@@ -22,6 +22,8 @@ package org.gwtbootstrap3.extras.slider.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.ScriptInjector;
+import elemental2.dom.DomGlobal;
+import jsinterop.base.Js;
 
 /**
  * @author Xiaodong SUN
@@ -30,17 +32,8 @@ public class SliderEntryPoint implements EntryPoint {
 
   @Override
   public void onModuleLoad() {
-    if (!isSliderLoaded()) {
-      ScriptInjector.fromString(SliderClientBundle.INSTANCE.slider().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+    if (Js.asPropertyMap(DomGlobal.window).get("Slider") == null) {
+      ScriptInjector.fromString(SliderClientBundle.INSTANCE.slider().getText()).setRemoveTag(false).setWindow(ScriptInjector.TOP_WINDOW).inject();
     }
   }
-
-  /**
-   * Check if slider is already loaded.
-   *
-   * @return <code>true</code> if slider is loaded, <code>false</code> otherwise
-   */
-  private native boolean isSliderLoaded() /*-{
-    return (typeof $wnd['Slider'] !== 'undefined');
-  }-*/;
 }

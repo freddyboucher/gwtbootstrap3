@@ -22,7 +22,7 @@ package org.gwtbootstrap3.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.ScriptInjector;
-import jsinterop.annotations.JsMethod;
+import org.gwtbootstrap3.client.shared.js.JQuery;
 
 /**
  * Provides script injection for jQuery and boostrap if they aren't already loaded.
@@ -33,32 +33,14 @@ import jsinterop.annotations.JsMethod;
 public class GwtBootstrap3EntryPoint implements EntryPoint {
 
   /**
-   * Check to see if Bootstrap is loaded already.
-   *
-   * @return true is Bootstrap loaded, false otherwise.
-   */
-  @JsMethod
-  private static native boolean isBootstrapLoaded();
-
-  /**
-   * Check to see if jQuery is loaded already
-   *
-   * @return true is jQuery is loaded, false otherwise
-   */
-  @JsMethod
-  private static native boolean isjQueryLoaded();
-
-  /**
    * {@inheritDoc}
    */
   @Override
   public void onModuleLoad() {
-    ScriptInjector.fromString(GwtBootstrap3ClientBundle.INSTANCE.gwtBootstrap3().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
-    if (!isjQueryLoaded()) {
+    if (JQuery.jQuery == null) {
       ScriptInjector.fromString(GwtBootstrap3ClientBundle.INSTANCE.jQuery().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
     }
-
-    if (!isBootstrapLoaded()) {
+    if (JQuery.jQuery.asPropertyMap().getAsAny("fn").asPropertyMap().get("emulateTransitionEnd") == null) {
       ScriptInjector.fromString(GwtBootstrap3ClientBundle.INSTANCE.bootstrap().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
     }
   }

@@ -20,9 +20,10 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import static org.gwtbootstrap3.client.shared.js.JQuery.$;
+
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
-import org.gwtbootstrap3.client.shared.js.JQuery;
 import org.gwtbootstrap3.client.ui.base.AbstractTooltip;
 
 /**
@@ -93,7 +94,7 @@ public class Tooltip extends AbstractTooltip {
    * @param arg the arg
    */
   private void call(Element e, String arg) {
-    JQuery.jQuery(e).tooltip(arg);
+    $(e).tooltip(arg);
   }
 
   /**
@@ -121,7 +122,7 @@ public class Tooltip extends AbstractTooltip {
    * Create the tooltip.
    */
   private void tooltip(Element e) {
-    JQuery.jQuery(e).tooltip();
+    $(e).tooltip();
   }
 
   /**
@@ -139,6 +140,6 @@ public class Tooltip extends AbstractTooltip {
    * @param e the tooltip {@link Element}.
    */
   private void updateTitleWhenShowing(Element e) {
-    JQuery.jQuery(e).tooltip("fixTitle").tooltip("show");
+    $(e).tooltip("fixTitle").tooltip("show");
   }
 }

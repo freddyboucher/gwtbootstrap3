@@ -20,19 +20,20 @@ package org.gwtbootstrap3.extras.slider.client.ui;
  * #L%
  */
 
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArrayNumber;
-import com.google.gwt.core.client.JsonUtils;
+import elemental2.core.Global;
+import jsinterop.annotations.JsOverlay;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
+import jsinterop.base.Js;
+import jsinterop.base.JsArrayLike;
 
 /**
  * Slider range with a min value and a max value.
  */
-public class Range {
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Array")
+public class Range implements JsArrayLike<Double> {
 
-  private double minValue;
-  private double maxValue;
-
-  protected Range() {
+  private Range() {
   }
 
   /**
@@ -41,20 +42,12 @@ public class Range {
    * @param minValue
    * @param maxValue
    */
-  public Range(double minValue, double maxValue) {
-    this.minValue = minValue;
-    this.maxValue = maxValue;
-  }
-
-  /**
-   * Creates a slider range with a JavaScritp number array. <br>
-   * <br>
-   * This constructor is useful in JSNI calls.
-   *
-   * @param array
-   */
-  public Range(JsArrayNumber array) {
-    this(array.get(0), array.get(1));
+  @JsOverlay
+  public static Range create(double minValue, double maxValue) {
+    Range range = new Range();
+    range.setAt(0, minValue);
+    range.setAt(1, maxValue);
+    return range;
   }
 
   /**
@@ -62,8 +55,9 @@ public class Range {
    *
    * @return the min value
    */
-  public double getMinValue() {
-    return minValue;
+  @JsOverlay
+  public final double getMinValue() {
+    return getAt(0);
   }
 
   /**
@@ -71,20 +65,9 @@ public class Range {
    *
    * @return the max value
    */
-  public double getMaxValue() {
-    return maxValue;
-  }
-
-  /**
-   * Converts the range to a JavaScript number array.
-   *
-   * @return a JavaScript number array
-   */
-  public JsArrayNumber toJsArray() {
-    JsArrayNumber array = JavaScriptObject.createArray().cast();
-    array.push(minValue);
-    array.push(maxValue);
-    return array;
+  @JsOverlay
+  public final double getMaxValue() {
+    return getAt(1);
   }
 
   /**
@@ -95,16 +78,11 @@ public class Range {
    * @param value
    * @return
    */
+  @JsOverlay
   public static Range fromString(String value) {
     if (value == null || value.isEmpty()) {
       return null;
     }
-    JsArrayNumber array = JsonUtils.safeEval(value);
-    return new Range(array);
-  }
-
-  @Override
-  public String toString() {
-    return new StringBuilder("[").append(getMinValue()).append(", ").append(getMaxValue()).append("]").toString();
+    return Js.cast(Global.eval(value));
   }
 }

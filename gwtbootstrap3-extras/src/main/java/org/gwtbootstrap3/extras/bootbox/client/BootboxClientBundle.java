@@ -31,6 +31,6 @@ interface BootboxClientBundle extends ClientBundle {
 
   BootboxClientBundle INSTANCE = GWT.create(BootboxClientBundle.class);
 
-  @Source("resource/js/bootbox-4.4.0.min.cache.js")
+  @Source("resource/js/bootbox-6.0.4.min.cache.js")
   TextResource bootbox();
 }

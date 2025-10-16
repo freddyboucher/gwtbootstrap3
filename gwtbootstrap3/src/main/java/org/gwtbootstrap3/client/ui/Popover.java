@@ -20,9 +20,10 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import static org.gwtbootstrap3.client.shared.js.JQuery.$;
+
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
-import org.gwtbootstrap3.client.shared.js.JQuery;
 import org.gwtbootstrap3.client.ui.base.AbstractTooltip;
 
 /**
@@ -113,7 +114,7 @@ public class Popover extends AbstractTooltip {
    * @param arg the arg
    */
   private void call(Element e, String arg) {
-    JQuery.jQuery(e).popover(arg);
+    $(e).popover(arg);
   }
 
   /**
@@ -149,7 +150,7 @@ public class Popover extends AbstractTooltip {
    */
   private void popover(Element e, String content) {
     e.setAttribute("data-content", content);
-    JQuery.jQuery(e).popover();
+    $(e).popover();
   }
 
   /**
@@ -177,6 +178,6 @@ public class Popover extends AbstractTooltip {
    * @param e the popover {@link Element}.
    */
   private void updateTitleWhenShowing(Element e) {
-    JQuery.jQuery(e).popover("fixTitle").popover("show");
+    $(e).popover("fixTitle").popover("show");
   }
 }

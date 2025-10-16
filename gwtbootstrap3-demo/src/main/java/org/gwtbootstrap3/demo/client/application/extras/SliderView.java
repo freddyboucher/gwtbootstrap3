@@ -34,6 +34,7 @@ import org.gwtbootstrap3.client.ui.html.Paragraph;
 import org.gwtbootstrap3.extras.slider.client.ui.Range;
 import org.gwtbootstrap3.extras.slider.client.ui.RangeSlider;
 import org.gwtbootstrap3.extras.slider.client.ui.Slider;
+import org.gwtbootstrap3.extras.slider.client.ui.base.FormatterCallback;
 import org.gwtbootstrap3.extras.slider.client.ui.base.event.SlideDisabledEvent;
 import org.gwtbootstrap3.extras.slider.client.ui.base.event.SlideEnabledEvent;
 import org.gwtbootstrap3.extras.slider.client.ui.base.event.SlideEvent;
@@ -71,8 +72,18 @@ public class SliderView extends ViewImpl implements SliderPresenter.MyView {
 
     formatterExample.setFormatter(value -> "Current value: " + value);
 
-    rangeFormatterExample.setFormatter(value -> "Range: [" + value.getMinValue() + ", " + value.getMaxValue() + "]");
+    // As of GWT 2.12.2, you must define the FormatterCallback with JSNI
+    rangeFormatterExample.setFormatter(rangeFormatter());
+
+    // This won't work
+    //    rangeFormatterExample.setFormatter(range -> "Range: [" + range.getMinValue() + ", " + range.getMaxValue() + "]");
   }
+
+  private native FormatterCallback<Range> rangeFormatter() /*-{
+    return function (value) {
+      return "Range: [" + value[0] + ", " + value[1] + "]";
+    };
+  }-*/;
 
   @UiHandler("enable")
   void onEnable(ClickEvent event) {
@@ -131,7 +142,7 @@ public class SliderView extends ViewImpl implements SliderPresenter.MyView {
 
   @UiHandler("rangeSetValue")
   void onRangeSetValue(ClickEvent event) {
-    rangeExample.setValue(new Range(400, 700));
+    rangeExample.setValue(Range.create(400, 700));
   }
 
   @UiHandler("verticalReversed")
@@ -216,7 +227,7 @@ public class SliderView extends ViewImpl implements SliderPresenter.MyView {
 
   @UiHandler("eventRangeSetValue")
   void onEventRangeSetValue(ClickEvent event) {
-    eventRangeExample.setValue(new Range(20, 50));
+    eventRangeExample.setValue(Range.create(20, 50));
   }
 
   private void addEventLog(String eventName, String logSuffix) {

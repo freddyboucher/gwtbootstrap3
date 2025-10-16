@@ -20,9 +20,8 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * #L%
  */
 
+import static org.gwtbootstrap3.extras.select.client.ui.SelectBase.SelectJQuery.$;
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.SHOW_TICK;
-
-import com.google.gwt.dom.client.Element;
 
 /**
  * Standard select box.
@@ -64,7 +63,7 @@ public class Select extends SelectBase<String> {
   protected void setSelectedValue(String value) {
     selectElement.setValue(value);
     if (isAttached()) {
-      render(getElement());
+      $(this).selectpicker(SelectCommand.RENDER);
     }
   }
 
@@ -77,10 +76,6 @@ public class Select extends SelectBase<String> {
     int selectedIndex = selectElement.getSelectedIndex();
     return selectedIndex != -1 ? getItems().get(selectedIndex) : null;
   }
-
-  private native void render(Element e) /*-{
-    $wnd.jQuery(e).selectpicker('render');
-  }-*/;
 
   @Override
   public void setTitle(String title) {

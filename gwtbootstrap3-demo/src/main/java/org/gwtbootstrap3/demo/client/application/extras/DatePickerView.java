@@ -27,6 +27,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.datepicker.client.CalendarUtil;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 import java.util.Date;
@@ -149,12 +150,15 @@ public class DatePickerView extends ViewImpl implements DatePickerPresenter.MyVi
 
   @UiHandler("getValue")
   public void handleGetValue(ClickEvent event) {
-    Window.alert(methods.getValue().toString());
+    Date date = methods.getValue();
+    Window.alert(date != null ? date.toString() : null);
   }
 
   @UiHandler("setValue")
   public void handleSetValue(ClickEvent event) {
-    methods.setValue(new Date(System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 3)));
+    Date date = new Date();
+    CalendarUtil.addDaysToDate(date, -3);
+    methods.setValue(date);
   }
 
   @UiHandler("enable")
@@ -200,7 +204,7 @@ public class DatePickerView extends ViewImpl implements DatePickerPresenter.MyVi
   @UiHandler("setFormat")
   public void handleSetFormat(ClickEvent event) {
     methods.setFormat("dd.mm.yyyy");
-    methods.reload();
+    methods.resetOptions();
   }
 
   interface Binder extends UiBinder<Widget, DatePickerView> {

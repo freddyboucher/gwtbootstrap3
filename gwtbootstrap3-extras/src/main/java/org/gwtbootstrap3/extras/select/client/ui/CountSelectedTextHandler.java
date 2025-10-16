@@ -20,6 +20,8 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * #L%
  */
 
+import jsinterop.annotations.JsFunction;
+
 /**
  * Handler to format the text displayed when selectedTextFormat
  * is <code>count</code> or <code>count > #</code>.<br>
@@ -28,6 +30,8 @@ package org.gwtbootstrap3.extras.select.client.ui;
  *
  * @author Xiaodong Sun
  */
+@JsFunction
+@FunctionalInterface
 public interface CountSelectedTextHandler {
 
   /**

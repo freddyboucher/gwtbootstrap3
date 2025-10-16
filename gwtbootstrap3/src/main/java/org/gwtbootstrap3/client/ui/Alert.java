@@ -20,6 +20,8 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import static org.gwtbootstrap3.client.shared.js.JQuery.$;
+
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.HasText;
@@ -29,7 +31,6 @@ import org.gwtbootstrap3.client.shared.event.AlertCloseEvent;
 import org.gwtbootstrap3.client.shared.event.AlertCloseHandler;
 import org.gwtbootstrap3.client.shared.event.AlertClosedEvent;
 import org.gwtbootstrap3.client.shared.event.AlertClosedHandler;
-import org.gwtbootstrap3.client.shared.js.JQuery;
 import org.gwtbootstrap3.client.ui.base.HasResponsiveness;
 import org.gwtbootstrap3.client.ui.base.HasType;
 import org.gwtbootstrap3.client.ui.base.button.CloseButton;
@@ -239,19 +240,16 @@ public class Alert extends Div implements HasWidgets, HasText, HasType<AlertType
   }
 
   private void alert(Element e, String arg) {
-    JQuery.jQuery(e).alert(arg);
+    $(e).alert(arg);
   }
 
   private void bindJavaScriptEvents(Element e) {
-    JQuery alert = JQuery.jQuery(e);
-
-    alert.on("close.bs.alert", this::onClose);
-
-    alert.on("closed.bs.alert", this::onClosed);
+    $(e).on("close.bs.alert", this::onClose);
+    $(e).on("closed.bs.alert", this::onClosed);
   }
 
   private void unbindJavaScriptEvents(Element e) {
-    JQuery.jQuery(e).off("close.bs.alert");
-    JQuery.jQuery(e).off("closed.bs.alert");
+    $(e).off("close.bs.alert");
+    $(e).off("closed.bs.alert");
   }
 }

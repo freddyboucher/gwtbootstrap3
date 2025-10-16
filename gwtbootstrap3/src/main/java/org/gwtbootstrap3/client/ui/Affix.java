@@ -20,9 +20,12 @@ package org.gwtbootstrap3.client.ui;
  * #L%
  */
 
+import static org.gwtbootstrap3.client.shared.js.JQuery.*;
+
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.UIObject;
-import jsinterop.annotations.JsMethod;
+import jsinterop.base.JsPropertyMap;
+import org.gwtbootstrap3.client.shared.js.JQuery;
 
 /**
  * An Affix is an element/container that gets "pinned" as soon as a certain
@@ -77,6 +80,7 @@ public class Affix {
     affix(object.getElement(), offset);
   }
 
-  @JsMethod
-  private static native void internalAffix(Element e, int offset);
+  private static void internalAffix(Element e, int offset) {
+    $(e).affix(JsPropertyMap.of("offset", offset));
+  }
 }

@@ -20,9 +20,10 @@ package org.gwtbootstrap3.client.ui.base.mixin;
  * #L%
  */
 
+import static org.gwtbootstrap3.client.shared.js.JQuery.$;
+
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.UIObject;
-import org.gwtbootstrap3.client.shared.js.JQuery;
 
 /**
  * @author Grant Slender
@@ -47,6 +48,6 @@ public class HTMLMixin<T extends UIObject> extends TextMixin<T> {
   }
 
   private void setInnerHTML(Element e, String html) {
-    JQuery.jQuery(e).html(html);
+    $(e).html(html);
   }
 }

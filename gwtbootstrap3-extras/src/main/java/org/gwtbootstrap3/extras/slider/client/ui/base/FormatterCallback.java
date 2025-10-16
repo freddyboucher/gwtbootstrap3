@@ -20,6 +20,8 @@ package org.gwtbootstrap3.extras.slider.client.ui.base;
  * #L%
  */
 
+import jsinterop.annotations.JsFunction;
+
 /**
  * Formatter callback to display the tool-tip text. Defaults to the slider
  * value.
@@ -27,6 +29,8 @@ package org.gwtbootstrap3.extras.slider.client.ui.base;
  * @param <T> slider value type
  * @author Xiaodong SUN
  */
+@JsFunction
+@FunctionalInterface
 public interface FormatterCallback<T> {
 
   /**

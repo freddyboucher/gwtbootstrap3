@@ -20,12 +20,17 @@ package org.gwtbootstrap3.extras.bootbox.client.callback;
  * #L%
  */
 
+import jsinterop.annotations.JsFunction;
+import jsinterop.annotations.JsOverlay;
+
 /**
  * Prompt callback to handle the user's input.
  *
  * @author Xiaodong Sun
  */
-public interface PromptCallback extends Callback {
+@JsFunction
+@FunctionalInterface
+public interface PromptCallback {
 
   /**
    * Callback according to the result.
@@ -38,6 +43,7 @@ public interface PromptCallback extends Callback {
   /**
    * Default {@link PromptCallback} does nothing.
    */
+  @JsOverlay
   PromptCallback DEFAULT_PROMPT_CALLBACK = result -> {
   };
 }

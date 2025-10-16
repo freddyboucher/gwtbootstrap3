@@ -20,6 +20,7 @@ package org.gwtbootstrap3.extras.select.client.ui;
  * #L%
  */
 
+import static org.gwtbootstrap3.extras.select.client.ui.SelectBase.SelectJQuery.$;
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.CONTAINER;
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.DROPDOWN_ALIGN_RIGHT;
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.DROPUP_AUTO;
@@ -41,9 +42,6 @@ import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.STYLE_BASE
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.WIDTH;
 import static org.gwtbootstrap3.extras.select.client.ui.SelectOptions.WINDOW_PADDING;
 
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArrayNumber;
-import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
@@ -58,12 +56,20 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.Focusable;
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasValue;
+import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.impl.FocusImpl;
+import elemental2.core.Global;
+import elemental2.core.JsArray;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+import jsinterop.annotations.JsMethod;
+import jsinterop.annotations.JsOverlay;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
+import org.gwtbootstrap3.client.shared.js.JQuery;
 import org.gwtbootstrap3.client.ui.base.ComplexWidget;
 import org.gwtbootstrap3.client.ui.base.HasSize;
 import org.gwtbootstrap3.client.ui.base.HasType;
@@ -166,15 +172,15 @@ public abstract class SelectBase<T> extends ComplexWidget
     if (language.getJs() != null) {
       ScriptInjector.fromString(language.getJs().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
     }
-    initialize(getElement(), options);
-    bindSelectEvents(getElement());
+    $(this).selectpicker(options);
+    bindSelectEvents();
   }
 
   @Override
   protected void onUnload() {
     super.onUnload();
-    unbindSelectEvents(getElement());
-    command(getElement(), SelectCommand.DESTROY);
+    unbindSelectEvents();
+    $(this).selectpicker(SelectCommand.DESTROY);
   }
 
   @Override
@@ -199,7 +205,7 @@ public abstract class SelectBase<T> extends ComplexWidget
    * @param language
    */
   public void setLanguage(SelectLanguage language) {
-    this.language = (language == null) ? DEFAULT_LANGUAGE : language;
+    this.language = language == null ? DEFAULT_LANGUAGE : language;
   }
 
   /**
@@ -232,7 +238,7 @@ public abstract class SelectBase<T> extends ComplexWidget
    * @param handler
    */
   public void setCountSelectedTextHandler(CountSelectedTextHandler handler) {
-    options.setCountSelectedTextHandler(handler);
+    options.countSelectedText = handler;
   }
 
   /**
@@ -608,7 +614,7 @@ public abstract class SelectBase<T> extends ComplexWidget
    * @see SelectWidth
    */
   public void setSelectWidth(SelectWidth width) {
-    setWidth((width != null) ? width.getValue() : null);
+    setWidth(width != null ? width.getValue() : null);
   }
 
   /**
@@ -647,12 +653,7 @@ public abstract class SelectBase<T> extends ComplexWidget
    * @param left
    */
   public void setWindowPaddingTopRightBottomLeft(int top, int right, int bottom, int left) {
-    JsArrayNumber array = JavaScriptObject.createArray(4).cast();
-    array.push(top);
-    array.push(right);
-    array.push(bottom);
-    array.push(left);
-    attrMixin.setAttribute(WINDOW_PADDING, JsonUtils.stringify(array));
+    attrMixin.setAttribute(WINDOW_PADDING, Global.JSON.stringify(JsArray.of(top, right, bottom, left)));
   }
 
   /**
@@ -683,9 +684,7 @@ public abstract class SelectBase<T> extends ComplexWidget
 
   @Override
   public void setValue(T value, boolean fireEvents) {
-
     T oldValue = fireEvents ? getValue() : null;
-
     setSelectedValue(value);
 
     if (fireEvents) {
@@ -846,7 +845,7 @@ public abstract class SelectBase<T> extends ComplexWidget
    */
   public void render() {
     if (isAttached()) {
-      command(getElement(), SelectCommand.RENDER);
+      $(this).selectpicker(SelectCommand.RENDER);
     }
   }
 
@@ -855,7 +854,7 @@ public abstract class SelectBase<T> extends ComplexWidget
    */
   public void toggle() {
     if (isAttached()) {
-      command(getElement(), SelectCommand.TOGGLE);
+      $(this).selectpicker(SelectCommand.TOGGLE);
     }
   }
 
@@ -864,7 +863,7 @@ public abstract class SelectBase<T> extends ComplexWidget
    */
   public void mobile() {
     if (isAttached()) {
-      command(getElement(), SelectCommand.MOBILE);
+      $(this).selectpicker(SelectCommand.MOBILE);
     }
   }
 
@@ -873,7 +872,7 @@ public abstract class SelectBase<T> extends ComplexWidget
    */
   public void refresh() {
     if (isAttached()) {
-      command(getElement(), SelectCommand.REFRESH);
+      $(this).selectpicker(SelectCommand.REFRESH);
     }
   }
 
@@ -883,7 +882,7 @@ public abstract class SelectBase<T> extends ComplexWidget
    */
   public void show() {
     if (isAttached()) {
-      command(getElement(), SelectCommand.SHOW);
+      $(this).selectpicker(SelectCommand.SHOW);
     } else {
       super.setVisible(true);
     }
@@ -895,7 +894,7 @@ public abstract class SelectBase<T> extends ComplexWidget
    */
   public void hide() {
     if (isAttached()) {
-      command(getElement(), SelectCommand.HIDE);
+      $(this).selectpicker(SelectCommand.HIDE);
     } else {
       super.setVisible(false);
     }
@@ -918,62 +917,48 @@ public abstract class SelectBase<T> extends ComplexWidget
     return super.isVisible();
   }
 
-  private native void initialize(Element e, SelectOptions options) /*-{
-    $wnd.jQuery(e).selectpicker(options);
-  }-*/;
-
   /**
    * Binds the select events.
-   *
-   * @param e
    */
-  private native void bindSelectEvents(Element e) /*-{
-    var select = this;
-    $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::LOADED_EVENT, function (event) {
-      @org.gwtbootstrap3.extras.select.client.ui.event.LoadedEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasLoadedHandlers;)(select);
-    });
-    $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::CHANGED_EVENT, function (event,
-                                                                                                                      clickedIndex,
-                                                                                                                      newValue, oldValue) {
-      select.@org.gwtbootstrap3.extras.select.client.ui.SelectBase::onValueChange()();
-    });
-    $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::SHOW_EVENT, function (event) {
-      @org.gwtbootstrap3.extras.select.client.ui.event.ShowEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasShowHandlers;)(select);
-    });
-    $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::SHOWN_EVENT, function (event) {
-      @org.gwtbootstrap3.extras.select.client.ui.event.ShownEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasShownHandlers;)(select);
-    });
-    $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::HIDE_EVENT, function (event) {
-      @org.gwtbootstrap3.extras.select.client.ui.event.HideEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasHideHandlers;)(select);
-    });
-    $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::HIDDEN_EVENT, function (event) {
-      @org.gwtbootstrap3.extras.select.client.ui.event.HiddenEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasHiddenHandlers;)(select);
-    });
-    $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::RENDERED_EVENT, function (event) {
-      @org.gwtbootstrap3.extras.select.client.ui.event.RenderedEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasRenderedHandlers;)(select);
-    });
-    $wnd.jQuery(e).on(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::REFRESHED_EVENT, function (event) {
-      @org.gwtbootstrap3.extras.select.client.ui.event.RefreshedEvent::fire(Lorg/gwtbootstrap3/extras/select/client/ui/event/HasRefreshedHandlers;)(select);
-    });
-  }-*/;
+  private void bindSelectEvents() {
+    $(this).on(HasAllSelectHandlers.LOADED_EVENT, event -> LoadedEvent.fire(this));
+    $(this).on(HasAllSelectHandlers.CHANGED_EVENT, event -> onValueChange());
+    $(this).on(HasAllSelectHandlers.SHOW_EVENT, event -> ShowEvent.fire(this));
+    $(this).on(HasAllSelectHandlers.SHOWN_EVENT, event -> ShownEvent.fire(this));
+    $(this).on(HasAllSelectHandlers.HIDE_EVENT, event -> HideEvent.fire(this));
+    $(this).on(HasAllSelectHandlers.HIDDEN_EVENT, event -> HiddenEvent.fire(this));
+    $(this).on(HasAllSelectHandlers.RENDERED_EVENT, event -> RenderedEvent.fire(this));
+    $(this).on(HasAllSelectHandlers.REFRESHED_EVENT, event -> RefreshedEvent.fire(this));
+  }
 
   /**
    * Unbinds the select events.
-   *
-   * @param e
    */
-  private native void unbindSelectEvents(Element e) /*-{
-    $wnd.jQuery(e).off(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::LOADED_EVENT);
-    $wnd.jQuery(e).off(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::CHANGED_EVENT);
-    $wnd.jQuery(e).off(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::SHOW_EVENT);
-    $wnd.jQuery(e).off(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::SHOWN_EVENT);
-    $wnd.jQuery(e).off(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::HIDE_EVENT);
-    $wnd.jQuery(e).off(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::HIDDEN_EVENT);
-    $wnd.jQuery(e).off(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::RENDERED_EVENT);
-    $wnd.jQuery(e).off(@org.gwtbootstrap3.extras.select.client.ui.event.HasAllSelectHandlers::REFRESHED_EVENT);
-  }-*/;
+  private void unbindSelectEvents() {
+    $(this).off(HasAllSelectHandlers.LOADED_EVENT);
+    $(this).off(HasAllSelectHandlers.CHANGED_EVENT);
+    $(this).off(HasAllSelectHandlers.SHOW_EVENT);
+    $(this).off(HasAllSelectHandlers.SHOWN_EVENT);
+    $(this).off(HasAllSelectHandlers.HIDE_EVENT);
+    $(this).off(HasAllSelectHandlers.HIDDEN_EVENT);
+    $(this).off(HasAllSelectHandlers.RENDERED_EVENT);
+    $(this).off(HasAllSelectHandlers.REFRESHED_EVENT);
+  }
 
-  protected native void command(Element e, String command) /*-{
-    $wnd.jQuery(e).selectpicker(command);
-  }-*/;
+  @JsType(isNative = true, namespace = JsPackage.GLOBAL)
+  public static class SelectJQuery extends JQuery {
+    @JsMethod(namespace = JsPackage.GLOBAL, name = "$")
+    public static native SelectJQuery $(Element element);
+
+    @JsOverlay
+    public static SelectJQuery $(IsWidget widget) {
+      return $(widget.asWidget().getElement());
+    }
+
+    public native SelectJQuery selectpicker(SelectOptions obj);
+
+    public native SelectJQuery selectpicker(String command);
+
+    public native SelectJQuery selectpicker(String command, Object obj);
+  }
 }

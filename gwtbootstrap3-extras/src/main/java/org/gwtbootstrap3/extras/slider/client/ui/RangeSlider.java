@@ -20,11 +20,17 @@ package org.gwtbootstrap3.extras.slider.client.ui;
  * #L%
  */
 
-import com.google.gwt.core.client.JavaScriptObject;
+import static org.gwtbootstrap3.extras.slider.client.ui.base.SliderBase.SliderJQuery.$;
+
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.uibinder.client.UiConstructor;
 import com.google.gwt.user.client.Event;
+import jsinterop.base.Js;
+import jsinterop.base.JsPropertyMap;
+import org.gwtbootstrap3.extras.slider.client.ui.base.FormatterCallback;
 import org.gwtbootstrap3.extras.slider.client.ui.base.SliderBase;
+import org.gwtbootstrap3.extras.slider.client.ui.base.SliderCommand;
+import org.gwtbootstrap3.extras.slider.client.ui.base.SliderOption;
 
 /**
  * This slider takes as value a range with a min value and a max value.
@@ -69,50 +75,22 @@ public class RangeSlider extends SliderBase<Range> {
   }
 
   @Override
-  protected native void setValue(Element e, Range value) /*-{
-    var range = value.@org.gwtbootstrap3.extras.slider.client.ui.Range::toJsArray()();
-    if (this.@org.gwtbootstrap3.extras.slider.client.ui.RangeSlider::isSliderNamespaceAvailable()())
-      $wnd.jQuery(e).slider(@org.gwtbootstrap3.extras.slider.client.ui.base.SliderCommand::SET_VALUE, range);
-    else
-      $wnd.jQuery(e).bootstrapSlider(@org.gwtbootstrap3.extras.slider.client.ui.base.SliderCommand::SET_VALUE, range);
-  }-*/;
+  protected Range getValue(Element e) {
+    if (isBoostrapSliderNamespaceAvailable()) {
+      return $(e).bootstrapSlider(SliderCommand.GET_VALUE).cast();
+    } else {
+      return $(e).slider(SliderCommand.GET_VALUE).cast();
+    }
+  }
 
   @Override
-  protected native Range getValue(Element e) /*-{
-    var range;
-    if (this.@org.gwtbootstrap3.extras.slider.client.ui.RangeSlider::isSliderNamespaceAvailable()())
-      range = $wnd.jQuery(e).slider(@org.gwtbootstrap3.extras.slider.client.ui.base.SliderCommand::GET_VALUE);
-    else
-      range = $wnd.jQuery(e).bootstrapSlider(@org.gwtbootstrap3.extras.slider.client.ui.base.SliderCommand::GET_VALUE);
-    return @org.gwtbootstrap3.extras.slider.client.ui.Range::new(Lcom/google/gwt/core/client/JsArrayNumber;)(range);
-  }-*/;
+  protected void setFormatterOption(JsPropertyMap options) {
+    options.set(SliderOption.FORMATTER.getName(), createFormatter());
+  }
 
   @Override
-  protected native void setFormatterOption(JavaScriptObject options) /*-{
-    var slider = this;
-    options.formatter = function (value) {
-      var range = @org.gwtbootstrap3.extras.slider.client.ui.Range::new(Lcom/google/gwt/core/client/JsArrayNumber;)(value);
-      return slider.@org.gwtbootstrap3.extras.slider.client.ui.RangeSlider::formatTooltip(Lorg/gwtbootstrap3/extras/slider/client/ui/Range;)(range);
-    };
-  }-*/;
-
-  @Override
-  protected native void setFormatter(Element e) /*-{
-    var slider = this;
-    var attr = @org.gwtbootstrap3.extras.slider.client.ui.base.SliderOption::FORMATTER;
-    var formatter = function (value) {
-      var range = @org.gwtbootstrap3.extras.slider.client.ui.Range::new(Lcom/google/gwt/core/client/JsArrayNumber;)(value);
-      return slider.@org.gwtbootstrap3.extras.slider.client.ui.RangeSlider::formatTooltip(Lorg/gwtbootstrap3/extras/slider/client/ui/Range;)(range);
-    };
-    if (this.@org.gwtbootstrap3.extras.slider.client.ui.RangeSlider::isSliderNamespaceAvailable()())
-      $wnd.jQuery(e).slider(@org.gwtbootstrap3.extras.slider.client.ui.base.SliderCommand::SET_ATTRIBUTE, attr, formatter);
-    else
-      $wnd.jQuery(e).bootstrapSlider(@org.gwtbootstrap3.extras.slider.client.ui.base.SliderCommand::SET_ATTRIBUTE, attr, formatter);
-  }-*/;
-
-  @Override
-  protected String format(Range value) {
-    return value.getMinValue() + " : " + value.getMaxValue();
+  protected FormatterCallback<Range> defaultFormatter() {
+    return range -> range.getMinValue() + " : " + range.getMaxValue();
   }
 
   @Override
@@ -121,26 +99,22 @@ public class RangeSlider extends SliderBase<Range> {
   }
 
   @Override
-  protected native void onSlide(Event event) /*-{
-    var range = @org.gwtbootstrap3.extras.slider.client.ui.Range::new(Lcom/google/gwt/core/client/JsArrayNumber;)(event.value);
-    this.@org.gwtbootstrap3.extras.slider.client.ui.RangeSlider::fireSlideEvent(Lorg/gwtbootstrap3/extras/slider/client/ui/Range;)(range);
-  }-*/;
+  protected void onSlide(Event event) {
+    fireSlideEvent(Js.asPropertyMap(event).getAsAny("value").cast());
+  }
 
   @Override
-  protected native void onSlideStart(Event event) /*-{
-    var range = @org.gwtbootstrap3.extras.slider.client.ui.Range::new(Lcom/google/gwt/core/client/JsArrayNumber;)(event.value);
-    this.@org.gwtbootstrap3.extras.slider.client.ui.RangeSlider::fireSlideStartEvent(Lorg/gwtbootstrap3/extras/slider/client/ui/Range;)(range);
-  }-*/;
+  protected void onSlideStart(Event event) {
+    fireSlideStartEvent(Js.asPropertyMap(event).getAsAny("value").cast());
+  }
 
   @Override
-  protected native void onSlideStop(Event event) /*-{
-    var range = @org.gwtbootstrap3.extras.slider.client.ui.Range::new(Lcom/google/gwt/core/client/JsArrayNumber;)(event.value);
-    this.@org.gwtbootstrap3.extras.slider.client.ui.RangeSlider::fireSlideStopEvent(Lorg/gwtbootstrap3/extras/slider/client/ui/Range;)(range);
-  }-*/;
+  protected void onSlideStop(Event event) {
+    fireSlideStopEvent(Js.asPropertyMap(event).getAsAny("value").cast());
+  }
 
   @Override
-  protected native void onSlideChange(Event event) /*-{
-    var range = @org.gwtbootstrap3.extras.slider.client.ui.Range::new(Lcom/google/gwt/core/client/JsArrayNumber;)(event.value.newValue);
-    this.@org.gwtbootstrap3.extras.slider.client.ui.RangeSlider::fireChangeEvent(Lorg/gwtbootstrap3/extras/slider/client/ui/Range;)(range);
-  }-*/;
+  protected void onSlideChange(Event event) {
+    fireChangeEvent(Js.asPropertyMap(event).getAsAny("value").asPropertyMap().getAsAny("newValue").cast());
+  }
 }

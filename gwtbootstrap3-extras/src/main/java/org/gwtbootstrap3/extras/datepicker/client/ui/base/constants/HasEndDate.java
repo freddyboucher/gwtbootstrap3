@@ -32,6 +32,15 @@ import java.util.Date;
 public interface HasEndDate {
   void setEndDate(Date endDate);
 
+  /**
+   * Date or String. Default: End of time
+   * <p>
+   * The latest date that may be selected; all later dates will be disabled.
+   * <p>
+   * Date should be in local timezone. String must be parsable with format.
+   *
+   * @param endDate
+   */
   void setEndDate(String endDate);
 
   void clearEndDate();
